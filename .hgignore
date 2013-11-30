@@ -7,6 +7,7 @@ syntax: glob
 *.pdf_tex
 bin/*
 *.o
+*.obj
 *.a
 *.depend
 *.layout
@@ -18,3 +19,10 @@ bin/*
 *.dsp
 *.suo
 *.opt
+*.dep
+*.idb
+*.res
+*.manifest
+*.ncb
+*Release*
+*Debug*

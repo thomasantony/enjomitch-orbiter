@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TransX" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc8" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/Zi" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\TransX.dll.manifest&quot; /outputresource:&quot;bin\Debug\TransX.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010_PL">
+				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010_PL/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_PL" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010">
+				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2006">
+				<Option output="../../../Orbiter/orbiter060929/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2006/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/TP" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Gy" />
+					<Add option="/GF" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2006" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseBETA">
+				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/ReleaseBETA/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/TP" />
+			<Add option="/EHc" />
+			<Add option="/EHs" />
+			<Add option="/GR" />
+			<Add option="/Gy" />
+			<Add option="/GF" />
+			<Add option="/W3" />
+			<Add option="/EHsc" />
+			<Add option="/wd 4996" />
+			<Add directory="../lib" />
+			<Add directory="../libMFD" />
+			<Add directory="../KOST_Orbiter" />
+			<Add directory="../libWin" />
+		</Compiler>
+		<Linker>
+			<Add option="/NODEFAULTLIB:LIBCMT" />
+			<Add library="orbiter.lib" />
+			<Add library="orbitersdk.lib" />
+			<Add library="kernel32.lib" />
+			<Add library="user32.lib" />
+			<Add library="gdi32.lib" />
+			<Add library="OrbiterSoundSDK40.lib" />
+			<Add library="VesselHooking.lib" />
+		</Linker>
+		<Unit filename="src/TransX.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="src/TransXFunction.cpp" />
+		<Unit filename="src/TransXFunction.h" />
+		<Unit filename="src/basefunction.cpp" />
+		<Unit filename="src/basefunction.h" />
+		<Unit filename="src/cmdnugget.h" />
+		<Unit filename="src/doublelink.cpp" />
+		<Unit filename="src/doublelink.h" />
+		<Unit filename="src/globals.cpp" />
+		<Unit filename="src/graph.cpp" />
+		<Unit filename="src/graph.h" />
+		<Unit filename="src/intercept.cpp" />
+		<Unit filename="src/intercept.h" />
+		<Unit filename="src/mapfunction.cpp" />
+		<Unit filename="src/mapfunction.h" />
+		<Unit filename="src/mfd.h" />
+		<Unit filename="src/mfdfunction.cpp" />
+		<Unit filename="src/mfdfunction.h" />
+		<Unit filename="src/mfdvarhandler.cpp" />
+		<Unit filename="src/mfdvarhandler.h" />
+		<Unit filename="src/mfdvariable.cpp" />
+		<Unit filename="src/mfdvariable.h" />
+		<Unit filename="src/mfdvartypes.cpp" />
+		<Unit filename="src/mfdvartypes.h" />
+		<Unit filename="src/orbitelements.cpp" />
+		<Unit filename="src/orbitelements.h" />
+		<Unit filename="src/parser.cpp" />
+		<Unit filename="src/parser.h" />
+		<Unit filename="src/planfunction.cpp" />
+		<Unit filename="src/planfunction.h" />
+		<Unit filename="src/resource.h" />
+		<Unit filename="src/shiplist.cpp" />
+		<Unit filename="src/shiplist.h" />
+		<Unit filename="src/transx.cpp" />
+		<Unit filename="src/transx.h" />
+		<Unit filename="src/transxstate.cpp" />
+		<Unit filename="src/transxstate.h" />
+		<Unit filename="src/viewstate.cpp" />
+		<Unit filename="src/viewstate.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
