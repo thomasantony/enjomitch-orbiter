@@ -12,7 +12,7 @@ class OptimiserVar
         void Init( basefunction * base, Intercept * icept );
         virtual ~OptimiserVar();
 
-        double GetOpti( double currentValue ) const;
+        double GetOpti( double * currentValue ) const;
     protected:
     private:
 
