@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HUDDrawer", "Module\HUDDrawerModule.vcproj", "{618053AC-D57F-446E-89DC-9F1367C198CC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C} = {E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VesselHooking", "VesselHooking\VesselHooking.vcproj", "{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release2006|Win32 = Release2006|Win32
+		Release2009_PL|Win32 = Release2009_PL|Win32
+		Release2009|Win32 = Release2009|Win32
+		ReleaseBETA|Win32 = ReleaseBETA|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug|Win32.Build.0 = Debug|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2006|Win32.ActiveCfg = Release2006|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2006|Win32.Build.0 = Release2006|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009_PL|Win32.ActiveCfg = Release2009_PL|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009_PL|Win32.Build.0 = Release2009_PL|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009|Win32.ActiveCfg = Release2009|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009|Win32.Build.0 = Release2009|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.ReleaseBETA|Win32.ActiveCfg = ReleaseBETA|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.ReleaseBETA|Win32.Build.0 = ReleaseBETA|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Debug|Win32.Build.0 = Debug|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Release2006|Win32.ActiveCfg = Release2006|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Release2006|Win32.Build.0 = Release2006|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Release2009_PL|Win32.ActiveCfg = Release2009_PL|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Release2009_PL|Win32.Build.0 = Release2009_PL|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Release2009|Win32.ActiveCfg = Release2009|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.Release2009|Win32.Build.0 = Release2009|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.ReleaseBETA|Win32.ActiveCfg = ReleaseBETA|Win32
+		{E3A18A39-A133-407E-8FBD-7D96FCFC1D5C}.ReleaseBETA|Win32.Build.0 = ReleaseBETA|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

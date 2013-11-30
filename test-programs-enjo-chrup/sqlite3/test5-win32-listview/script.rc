@@ -1,0 +1,177 @@
+#if !defined __BORLANDC__
+#include <afxres.h>
+#endif
+
+#include <commctrl.h>
+#include "resources.h"
+
+#ifndef IDC_STATIC
+  #define IDC_STATIC -1
+#endif
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK  
+
+IDR_MYMENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+    //MENUITEM "&Init a DB", MNU_INIT_DB
+		//MENUITEM "&Load .ini", MNU_LOAD
+		//MENUITEM "&Save .ini", MNU_SAVE
+    MENUITEM "&Exit",  MNU_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+      MENUITEM "&Usage", MNU_USAGE
+      MENUITEM "&About", MNU_ABOUT
+    END
+END
+
+#define BUTH 15
+#define BUTW 50
+
+#define D1w 400
+#define D1h 310
+#define SPACE		5
+#define X1 	10
+#define X2  45
+#define Y2  SPACE*3
+#define LABW		60
+#define EDXOFFS		X1+LABW+SPACE
+#define EDW			60
+#define ROWH		(BUTH+SPACE*1)
+#define ERX		EDXOFFS+EDW+SPACE*4
+#define ERY		ROWH*1
+#define ERW			320	
+#define ERH			40
+#define EXEQY   ERY+ERH+SPACE*1
+
+
+#define GR2XOFFS 	ERX-SPACE
+#define GR3XOFFS 	ERX-SPACE
+
+#define GR1X 	  (X1-SPACE)
+#define GR1Y    5
+#define GR1W		(D1w-10)
+#define GR1H    100
+
+#define GR2Y    GR1Y+GR1H+SPACE*2
+//#define GR2W		ERW+SPACE*2
+#define GR2H		50
+
+#define OUTY		GR2H+SPACE*8
+#define OUTW		320	
+#define OUTH		150
+
+#define GR3Y		GR2Y+GR2H+SPACE*2
+#define GR3W		(D1w/2-GR1X*2)
+#define GR3H		40
+
+#define GR4X    (D1w/2+GR1X)
+
+#define GR5Y    GR3Y+GR3H+SPACE*2
+#define GR5H    80
+
+#define ECOLW   (EDW+SPACE*3)  // Edit boxes column width
+#define BCOLW   (BUTW+SPACE*2) // Buttons column witdth
+//#define COLSP  
+
+#define CHAR_EDIT_STYLE 	ES_AUTOHSCROLL|ES_LEFT
+#define CB_STYLE			CBS_DROPDOWN|CBS_AUTOHSCROLL
+#define GROUP_STYLE			BS_GROUPBOX
+
+#define CHAR_MULTILINE		ES_MULTILINE|ES_AUTOVSCROLL|WS_VSCROLL|ES_LEFT|WS_CHILD|WS_VISIBLE|ES_NOHIDESEL|ES_OEMCONVERT
+
+
+
+IDD_DIALOG1 DIALOGEX 0, 0, D1w, D1h
+//STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE |  WS_CAPTION | WS_SYSMENU | WS_THICKFRAME| WS_CLIPCHILDREN | WS_CLIPSIBLINGS
+STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE |  WS_CAPTION | WS_SYSMENU 
+CAPTION "SQLite3 specialised database"
+MENU IDR_MYMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+
+  GROUPBOX	"Workers",	IDC_STATIC,  GR1X,  GR1Y, GR1W, GR1H,	GROUP_STYLE
+ 
+  CONTROL "", ID_LV_ALL, WC_LISTVIEW, WS_CHILD | WS_BORDER | LVS_REPORT| WS_VISIBLE | WS_TABSTOP| LVS_SINGLESEL , X1, GR1Y+SPACE*2, GR1W-SPACE*2, GR1H-SPACE*3
+  
+  GROUPBOX  "Fields",	IDC_STATIC,  GR1X,  GR2Y,  GR1W,   GR2H,  GROUP_STYLE
+  LTEXT 	"Surname",	IDC_STATIC,	 X1,        GR2Y+SPACE*3, LABW, 12
+  LTEXT 	"Name",	IDC_STATIC,	     X1+ECOLW*1, GR2Y+SPACE*3, LABW, 12
+  LTEXT 	"City",	IDC_STATIC,	     X1+ECOLW*2, GR2Y+SPACE*3, LABW, 12
+  LTEXT 	"Salary",	IDC_STATIC,	   X1+ECOLW*3, GR2Y+SPACE*3, LABW, 12
+  
+  LTEXT 	"ID",	    IDC_STATIC,	   X1+ECOLW*4, GR2Y+SPACE*3, LABW, 12
+ 
+  EDITTEXT  ID_ED_SUR,  X1,   GR2Y+SPACE*5,  EDW,   12,  CHAR_EDIT_STYLE 
+  
+  EDITTEXT  ID_ED_NAM, X1+ECOLW*1, GR2Y+SPACE*5, EDW, 12, CHAR_EDIT_STYLE
+  EDITTEXT  ID_ED_CIT, X1+ECOLW*2, GR2Y+SPACE*5, EDW, 12, CHAR_EDIT_STYLE 
+  EDITTEXT  ID_ED_SAL, X1+ECOLW*3, GR2Y+SPACE*5, EDW, 12, CHAR_EDIT_STYLE 
+  EDITTEXT  ID_ED_ID,  X1+ECOLW*4, GR2Y+SPACE*5, EDW, 12, CHAR_EDIT_STYLE 
+  
+  GROUPBOX	"Basic manipulation",	IDC_STATIC,  GR1X,  GR3Y, GR3W, GR3H,	GROUP_STYLE
+  PUSHBUTTON "Add",     ID_BT_ADD,  X1,        GR3Y+SPACE*3 ,BUTW,BUTH
+  PUSHBUTTON "Modify",  ID_BT_UPD,  X1+BCOLW*1, GR3Y+SPACE*3 ,BUTW,BUTH
+  PUSHBUTTON "Delete",  ID_BT_DEL,  X1+BCOLW*2, GR3Y+SPACE*3 ,BUTW,BUTH
+  
+  GROUPBOX	"Basic search",	IDC_STATIC,  GR4X,  GR3Y, GR3W, GR3H,	GROUP_STYLE
+  PUSHBUTTON "Fields AND", ID_BT_SFIELDS_AND, D1w/2+X1+BCOLW*0, GR3Y+SPACE*3 ,BUTW,BUTH
+  PUSHBUTTON "Fields OR",  ID_BT_SFIELDS_OR,  D1w/2+X1+BCOLW*1, GR3Y+SPACE*3 ,BUTW,BUTH
+  PUSHBUTTON "Search all",   ID_BT_SALL,      D1w/2+X1+BCOLW*2, GR3Y+SPACE*3 ,BUTW,BUTH
+  
+  GROUPBOX	"Salary functions",	IDC_STATIC,  GR1X,  GR5Y, GR3W, GR5H,	GROUP_STYLE
+  PUSHBUTTON "Sum",     ID_BT_SUM,  X2+BCOLW*0, GR5Y+Y2+ROWH*0 ,BUTW,BUTH
+  PUSHBUTTON "Average", ID_BT_AVG,  X2+BCOLW*0, GR5Y+Y2+ROWH*1 ,BUTW,BUTH
+  PUSHBUTTON "Count",   ID_BT_CNT,  X2+BCOLW*0, GR5Y+Y2+ROWH*2 ,BUTW,BUTH
+  PUSHBUTTON "Max",     ID_BT_MAX,  X2+BCOLW*1, GR5Y+Y2+ROWH*0 ,BUTW,BUTH
+  PUSHBUTTON "Min",     ID_BT_MIN,  X2+BCOLW*1, GR5Y+Y2+ROWH*1 ,BUTW,BUTH
+  EDITTEXT		          ID_ED_OUT,  X2+BCOLW*1, GR5Y+Y2+ROWH*2,	BUTW,BUTH, CHAR_EDIT_STYLE 
+  
+  GROUPBOX	"Salary range search",	IDC_STATIC,  GR4X,  GR5Y, GR3W, GR5H,	GROUP_STYLE
+  PUSHBUTTON "Less than",  ID_BT_LESS,  D1w/2+X2+BCOLW*0, GR5Y+Y2+ROWH*0 ,BUTW,BUTH
+  PUSHBUTTON "More than",  ID_BT_MORE,  D1w/2+X2+BCOLW*0, GR5Y+Y2+ROWH*1 ,BUTW,BUTH
+  PUSHBUTTON "Between",    ID_BT_BTW,   D1w/2+X2+BCOLW*0, GR5Y+Y2+ROWH*2 ,BUTW,BUTH
+  EDITTEXT		             ID_ED_LESS,  D1w/2+X2+BCOLW*1, GR5Y+Y2+ROWH*0 ,BUTW,BUTH,CHAR_EDIT_STYLE 
+  EDITTEXT		             ID_ED_MORE,  D1w/2+X2+BCOLW*1, GR5Y+Y2+ROWH*1 ,BUTW,BUTH,CHAR_EDIT_STYLE 
+  PUSHBUTTON "Not between",ID_BT_NBTW,  D1w/2+X2+BCOLW*1, GR5Y+Y2+ROWH*2,	BUTW,BUTH  
+END
+
+#define HW     240
+#define HH     100
+#define HGBH   HH-20
+#define HCTW   HW-32  // 150
+#define HCTH   HH-40
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 239, HH
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif"
+{
+    DEFPUSHBUTTON   "&OK",IDOK,174,18,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,174,35,50,14
+    GROUPBOX        "About this program...",IDC_STATIC,7,7,225,HGBH
+    CTEXT           "An example WinAPI program presenting a simple specialized database. In this program the user has no direct interaction with SQL queries.\r\n\r\nSee BSD-licence.txt for copyright.\r\nSF.net project's page:\r\nhttp://sourceforge.net/projects/enjomitchsorbit",
+                    IDC_STATIC,16,18,150,HCTH
+}
+
+#define USW     240
+#define USH     220
+#define USGBH   USH-35
+#define USCTW   USW-32  // 150
+#define USCTH   USH-50
+#define USBUTY  USH-20
+
+IDD_USAGE DIALOG DISCARDABLE  0, 0, USW, USH
+STYLE DS_CENTER |DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Usage"
+FONT 8, "MS Sans Serif"
+{
+    DEFPUSHBUTTON   "&OK",IDOK,USW/2-75,USBUTY,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,USW/2+25,USBUTY,50,14
+    GROUPBOX        "Usage",IDC_STATIC,7,7,225,USGBH
+    CTEXT           "This specialized database allows you to perform basic data manipulation, search and executeution of SQL functions. Records can be selected by clicking on the first column.\r\n\r\nDetails:\r\n1) Basic manipulation - when adding and modifying you must specify at least the Salary field (it's an INTEGER NOT NULL). Deletion depends on the ID field being set, and is based on that value\r\n2) Basic search - supply search conditions in Fields group and press Fields AND for a conjunction search, or press Fields OR for alternative search. Press Search all to display all records.\r\n3) Salary functions - calculates Sum, Average, Count, Max and Min of salaries and displays them in the edit box. Additioanlly, Max and Min buttons display appropriate salary holders in the ListView.\r\n4) Salary range search - to perform a search for a salary less or more than a given value, enter this value in an editbox on the right of a 'Less than' or 'More than' button. Between/Not between perform an inclusive searches for values between or outside of a range specified by values in both edit boxes. The lower bound must be specified in the upper edit box",
+                    IDC_STATIC,16,18,USCTW,USCTH
+}
+  

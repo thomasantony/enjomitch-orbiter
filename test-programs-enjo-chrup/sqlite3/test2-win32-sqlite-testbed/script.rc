@@ -1,0 +1,133 @@
+#if !defined __BORLANDC__
+#include <afxres.h>
+#endif
+#include "resources.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK  
+
+IDR_MYMENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+    //MENUITEM "&Init a DB", MNU_INIT_DB
+		//MENUITEM "&Load .ini", MNU_LOAD
+		//MENUITEM "&Save .ini", MNU_SAVE
+		//MENUITEM "&Generate default .ini", MNU_GEN_DEF
+    MENUITEM "&Exit",  MNU_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+      MENUITEM "&Usage", MNU_USAGE
+      MENUITEM "&About", MNU_ABOUT
+    END
+END
+
+#define BUTH 12
+
+#define D1w 480
+#define D1h 300
+#define SPACE		5
+#define LABXOFFS 	10
+#define LABW		60
+#define EDXOFFS		LABXOFFS+LABW+SPACE
+#define EDW			65
+#define ROWH		16
+
+#define EXEQY   ERY+ERH+SPACE*1
+
+#define GR1XOFFS 	LABXOFFS-SPACE
+#define GR2XOFFS 	ERX-SPACE
+#define GR3XOFFS 	ERX-SPACE
+#define GR1W		EDXOFFS+EDW	
+
+#define GR2W		320
+#define GR2H		ERH+SPACE*8
+
+#define ERX		EDXOFFS+EDW+SPACE*4
+#define ERY		ROWH*1
+#define ERW			GR2W-SPACE*2
+#define ERH			40
+
+#define GR3Y		ROWH*6+ROWH/3
+#define GR3W		320
+#define GR3H		150
+ 
+#define OUTY		GR3Y+SPACE*2
+#define OUTW		GR3W-SPACE*2
+#define OUTH		GR3H-SPACE*3
+
+#define CHAR_EDIT_STYLE 	ES_AUTOHSCROLL|ES_LEFT
+#define CB_STYLE			CBS_DROPDOWN|CBS_AUTOHSCROLL
+#define GROUP_STYLE			BS_GROUPBOX
+
+#define CHAR_MULTILINE		ES_MULTILINE|ES_AUTOVSCROLL|WS_VSCROLL|ES_LEFT|WS_CHILD|WS_VISIBLE|ES_NOHIDESEL|ES_OEMCONVERT
+
+
+IDD_DIALOG1 DIALOGEX 0, 0, D1w, D1h
+//STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE |  WS_CAPTION | WS_SYSMENU | WS_THICKFRAME| WS_CLIPCHILDREN | WS_CLIPSIBLINGS
+STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE |  WS_CAPTION | WS_SYSMENU 
+CAPTION "SQLite testbed"
+MENU IDR_MYMENU
+FONT 5, "MS Sans Serif"
+{  
+  GROUPBOX	"Settings",	ID_GROUP,	    GR1XOFFS,  ROWH*0+ROWH/3,GR1W, ROWH*5,	GROUP_STYLE |  WS_GROUP
+  LTEXT 	"DB name",	ID_LAB,	    LABXOFFS, ROWH * 1 + 2, LABW, 12
+  EDITTEXT		        ID_ED_DB, 	EDXOFFS,  ROWH * 1,		EDW	,12, CHAR_EDIT_STYLE 
+  PUSHBUTTON	"Init DB",ID_INIT_DB,  EDXOFFS, ROWH * 2 ,50,BUTH
+  LTEXT 	"Default table",	ID_LAB,	    LABXOFFS, ROWH * 3 + 2, LABW, 12
+  EDITTEXT		        ID_ED_TAB, 	EDXOFFS,  ROWH * 3,		EDW	,12, CHAR_EDIT_STYLE 
+  PUSHBUTTON	"Set table",ID_SET_TAB,  EDXOFFS, ROWH * 4 ,50,BUTH
+
+  GROUPBOX	"Users",	ID_GROUP,	    GR1XOFFS,  ROWH*6+ROWH/3,GR1W, ROWH*4,	GROUP_STYLE |  WS_GROUP
+  LTEXT 	"User name",	ID_LAB,	LABXOFFS, ROWH * 7 + 2, LABW, 12
+  EDITTEXT		ID_ED_USER, 		EDXOFFS,  ROWH * 7,		EDW	,12, CHAR_EDIT_STYLE 
+  LTEXT 	"Add / Remove",	ID_LAB,LABXOFFS , ROWH * 8 + 2, LABW,12
+  AUTORADIOBUTTON "Add",	ID_RB_ADD,EDXOFFS,  ROWH * 8 + 2, 30,10
+  AUTORADIOBUTTON "Rem",	ID_RB_REM,EDXOFFS+35,  ROWH * 8 + 2, 30,10
+  PUSHBUTTON		"Gen. query",ID_GEN_QUERY,  EDXOFFS, ROWH * 9 ,50,BUTH
+  
+  GROUPBOX	"SQL query",	ID_GROUP,	GR2XOFFS, ROWH/3,GR2W, 	 GR2H,	GROUP_STYLE
+  EDITTEXT 		ID_ED_QUERY,		ERX,  ERY,	ERW	,ERH, CHAR_MULTILINE
+  DEFPUSHBUTTON		"Exe. query",IDOK,  ERX, EXEQY ,50,BUTH
+  PUSHBUTTON		"SELECT *"	,ID_SEL_ALL, 		ERX + 70,EXEQY ,50,BUTH
+  PUSHBUTTON		"Generate tab"	,ID_GEN_TAB, 		ERX + 140 ,EXEQY ,50,BUTH
+  
+  GROUPBOX	"Output",	ID_GROUP,	GR3XOFFS, GR3Y, GR3W, 	GR3H,	GROUP_STYLE
+  EDITTEXT 		ID_ED_OUTPUT,		ERX,  OUTY,	OUTW,	OUTH, CHAR_MULTILINE
+  
+  //PUSHBUTTON		"Reset",ID_RESET,  D1w/2+70, D1h-20,50,BUTH
+  PUSHBUTTON		"Exit",IDCANCEL,  D1w/2+20, D1h-25,50,BUTH
+}
+  
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 239, 86
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif"
+{
+    DEFPUSHBUTTON   "&OK",IDOK,174,18,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,174,35,50,14
+    GROUPBOX        "About this program...",IDC_STATIC,7,7,225,72
+    CTEXT           "An example WinAPI program allowing you to practice SQLite syntax.\r\n\r\nSee BSD-licence.txt for copyright.\r\nSF.net project's page:\r\nhttp://sourceforge.net/projects/enjomitchsorbit",
+                    IDC_STATIC,16,18,150,53
+}
+
+#define USW     240
+#define USH     220
+#define USGBH   USH-35
+#define USCTW   USW-32  // 150
+#define USCTH   USH-50
+
+#define USBUTY  USH-20
+
+
+IDD_USAGE DIALOG DISCARDABLE  0, 0, USW, USH
+STYLE DS_CENTER |DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Usage"
+FONT 8, "MS Sans Serif"
+{
+    DEFPUSHBUTTON   "&OK",IDOK,USW/2-75,USBUTY,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,USW/2+25,USBUTY,50,14
+    GROUPBOX        "Usage",IDC_STATIC,7,7,225,USGBH
+    CTEXT           "This program works by generating, or allowing you to create SQLite queries in the SQL query edit box, and executing them in the SQLite engine with the Exe. query button.\r\n\r\nTutorial:\r\n1) Init a DataBase with a given name (dbtest.db is inited by default),\r\n2) Init a default table name (users is inited by default),\r\n3) Generate an SQL CREATE TABLE query with Generate tab. button and execute the query with Exe. query button (already created by default),\r\n4) Add a username by entering it in the User name edit box, press Add radio button and generate SQL query with Gen. query button. After this execute the SQL query. User names must be unique (see Generate tab query) or they will not be added,\r\n5) Press SELECT * button to select all columns from the default table and execute the query to see the contents of the table,\r\n6) Think of anything else :)",
+                    IDC_STATIC,16,18,USCTW,USCTH
+}

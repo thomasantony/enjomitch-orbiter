@@ -1,0 +1,39 @@
+# Project: Projekt2
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = da-solver_private.res
+OBJ  = win32.o DirectAscentWin.o ../launchmfd/DirectAscent.o $(RES)
+LINKOBJ  = win32.o DirectAscentWin.o ../launchmfd/DirectAscent.o $(RES)
+LIBS =  -mwindows  -g3 
+INCS = 
+CXXINCS = 
+BIN  = da-solver.exe
+CXXFLAGS = $(CXXINCS)   -g3
+CFLAGS = $(INCS)   -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before da-solver.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "da-solver.exe" $(LIBS)
+
+win32.o: win32.cpp
+	$(CPP) -c win32.cpp -o win32.o $(CXXFLAGS)
+
+DirectAscentWin.o: DirectAscentWin.cpp
+	$(CPP) -c DirectAscentWin.cpp -o DirectAscentWin.o $(CXXFLAGS)
+
+../launchmfd/DirectAscent.o: ../launchmfd/DirectAscent.cpp
+	$(CPP) -c ../launchmfd/DirectAscent.cpp -o ../launchmfd/DirectAscent.o $(CXXFLAGS)
+
+da-solver_private.res: da-solver_private.rc da-solver.rc 
+	$(WINDRES) -i da-solver_private.rc --input-format=rc -o da-solver_private.res -O coff  --include-dir C:/PROGRA~1/MICROS~1/Include/mfc

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="velOptimum" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/velOptimum" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="`wx-config --debug=yes --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="`wx-config --debug=yes --libs`" />
+					<Add directory="bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/velOptimum" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config --debug=no --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`wx-config --debug=no --libs`" />
+					<Add directory="bin/Release" />
+				</Linker>
+			</Target>
+			<Target title="Windows Release">
+				<Option output="bin/Release/velOptimum" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-ffast-math" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.8.11/lib/wx/include/msw-unicode-release-static-2.8" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.8.11/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mtreads" />
+					<Add library="libwx_mswu_core-2.8.a" />
+					<Add library="libwx_baseu-2.8.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.8.11/lib" />
+					<Add directory="bin/Release" />
+				</Linker>
+			</Target>
+			<Target title="MinGW32 Release">
+				<Option output="bin/Release-MinGW32/velOptimum.exe" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Release-MinGW32/" />
+				<Option type="0" />
+				<Option compiler="mingw32" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`/usr/i686-w64-mingw32/bin/wx-config  --version=2.9 --static=yes --debug=no --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mtreads" />
+					<Add option="`/usr/i686-w64-mingw32/bin/wx-config  --version=2.9 --static=yes --debug=no --libs`" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+				</Linker>
+			</Target>
+			<Target title="Windows Debug">
+				<Option output="bin/Debug/velOptimum" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D__WXDEBUG__" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.8.11/lib/wx/include/msw-unicode-debug-static-2.8" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.8.11/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-mtreads" />
+					<Add library="libwx_mswud_core-2.8.a" />
+					<Add library="libwx_baseud-2.8.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add library="libFuzzyEngine++d.a" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.8.11/lib" />
+					<Add directory="bin/Debug" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-Winvalid-pch" />
+			<Add directory="../lib" />
+		</Compiler>
+		<Unit filename="../launchmfd/BODYPHYS.cpp" />
+		<Unit filename="../launchmfd/BODYPHYS.h" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolver.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolver.hpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverFunctions.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverFunctions.hpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverParams.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverParams.hpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/VelIntegral.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/VelIntegral.h" />
+		<Unit filename="../lib/Math/Constants.hpp" />
+		<Unit filename="../lib/Math/GeneralMath.cpp" />
+		<Unit filename="../lib/Math/GeneralMath.hpp" />
+		<Unit filename="../lib/Math/SimpsonFunctor.cpp" />
+		<Unit filename="../lib/Math/SimpsonFunctor.hpp" />
+		<Unit filename="../lib/Systems/Point.cpp" />
+		<Unit filename="../lib/Systems/Point.hpp" />
+		<Unit filename="IntegralOnVelWindow.cpp" />
+		<Unit filename="IntegralOnVelWindow.h" />
+		<Unit filename="VertAccWindow.cpp" />
+		<Unit filename="VertAccWindow.h" />
+		<Unit filename="myScrolledWindow.cpp" />
+		<Unit filename="myScrolledWindow.h" />
+		<Unit filename="velOptimumApp.cpp" />
+		<Unit filename="velOptimumApp.h" />
+		<Unit filename="velOptimumMain.cpp" />
+		<Unit filename="velOptimumMain.h" />
+		<Unit filename="wx_pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="wxsmith/velOptimumframe.wxs" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="velOptimumApp.cpp" main="velOptimumFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/velOptimumframe.wxs" src="velOptimumMain.cpp" hdr="velOptimumMain.h" name="velOptimumFrame" language="CPP" />
+				</resources>
+			</wxsmith>
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

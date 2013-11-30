@@ -1,0 +1,5 @@
+
+iconsmall   ICON    "small1.ico"
+#include <wx\msw\wx.rc>
+
+

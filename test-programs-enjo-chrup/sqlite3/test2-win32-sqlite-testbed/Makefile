@@ -1,0 +1,49 @@
+# Project: test1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+
+RES  = resource.res
+SQLITE3 = ../common/sqlite3
+SQLITEMODULE1 = ../common/sqlitemodule1
+WINGETVAL = ../common/WinGetVal
+
+OBJ  = main.o $(SQLITEMODULE1).o $(SQLITE3).o $(WINGETVAL).o $(RES)
+LINKOBJ  = $(OBJ) 
+LIBS =  -mwindows  
+INCS = 
+CXXINCS = 
+BIN  = sql-testbed.exe
+CXXFLAGS = $(CXXINCS) -Wall
+CFLAGS = $(INCS)
+RM = rm -f
+
+
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $@ $(LIBS)
+
+main.o: main.cpp $(SQLITEMODULE1).h $(WINGETVAL).h resources.h
+	$(CPP) -c $< -o $@ $(CXXFLAGS)
+
+$(SQLITEMODULE1).o: $(SQLITEMODULE1).cpp $(SQLITEMODULE1).h
+	$(CPP) -c $< -o $@ $(CXXFLAGS)
+  
+$(WINGETVAL).o: $(WINGETVAL).cpp $(WINGETVAL).h
+	$(CPP) -c $< -o $@ $(CXXFLAGS)
+
+$(SQLITE3).o: $(SQLITE3).c $(SQLITE3).h
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(RES): script.rc resources.h
+	$(WINDRES) -i script.rc --input-format=rc -o $@ -O coff 

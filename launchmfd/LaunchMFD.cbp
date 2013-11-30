@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="LaunchMFD" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc8" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/Zi" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Debug\LaunchMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010_PL">
+				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010_PL/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_PL" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010">
+				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2006">
+				<Option output="../../../Orbiter/orbiter060929/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2006/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/TP" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Gy" />
+					<Add option="/GF" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2006" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseBETA">
+				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/ReleaseBETA/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/TP" />
+			<Add option="/EHc" />
+			<Add option="/EHs" />
+			<Add option="/GR" />
+			<Add option="/Gy" />
+			<Add option="/GF" />
+			<Add option="/W3" />
+			<Add option="/EHsc" />
+			<Add directory="../lib" />
+			<Add directory="../libMFD" />
+			<Add directory="../KOST_Orbiter" />
+		</Compiler>
+		<Linker>
+			<Add option="/NODEFAULTLIB:LIBCMT" />
+			<Add library="orbiter.lib" />
+			<Add library="orbitersdk.lib" />
+			<Add library="kernel32.lib" />
+			<Add library="user32.lib" />
+			<Add library="gdi32.lib" />
+			<Add library="OrbiterSoundSDK40.lib" />
+			<Add library="VesselHooking.lib" />
+		</Linker>
+		<Unit filename="../KOST_Orbiter/kost.h" />
+		<Unit filename="../KOST_Orbiter/kost_constants.h" />
+		<Unit filename="../KOST_Orbiter/kost_elements.cpp" />
+		<Unit filename="../KOST_Orbiter/kost_elements.h" />
+		<Unit filename="../KOST_Orbiter/kost_linalg.cpp" />
+		<Unit filename="../KOST_Orbiter/kost_linalg.h" />
+		<Unit filename="../KOST_Orbiter/kost_math.cpp" />
+		<Unit filename="../KOST_Orbiter/kost_math.h" />
+		<Unit filename="../KOST_Orbiter/kost_propagate.cpp" />
+		<Unit filename="../KOST_Orbiter/kost_propagate.h" />
+		<Unit filename="../KOST_Orbiter/kost_settings.h" />
+		<Unit filename="../KOST_Orbiter/kost_shape.cpp" />
+		<Unit filename="../KOST_Orbiter/kost_shape.h" />
+		<Unit filename="../KOST_Orbiter/kost_types.h" />
+		<Unit filename="../KOST_Orbiter/kostmm.h" />
+		<Unit filename="../libMFD/MFDButtonPage.cpp" />
+		<Unit filename="../libMFD/MFDButtonPage.hpp" />
+		<Unit filename="../libMFD/MFDHUDDrawer/IMFDDrawsHUD.hpp" />
+		<Unit filename="../libMFD/MFDSound++/Sound.cpp" />
+		<Unit filename="../libMFD/MFDSound++/Sound.hpp" />
+		<Unit filename="../libMFD/MFDSound++/SoundMap.cpp" />
+		<Unit filename="../libMFD/MFDSound++/SoundMap.hpp" />
+		<Unit filename="../libMFD/MFDTextCalculator.cpp" />
+		<Unit filename="../libMFD/MFDTextCalculator.hpp" />
+		<Unit filename="../libMFD/MyDC.cpp" />
+		<Unit filename="../libMFD/MyDC.h" />
+		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.cpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.hpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.cpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.hpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.cpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.hpp" />
+		<Unit filename="../lib/Math/AzimuthMath.cpp" />
+		<Unit filename="../lib/Math/AzimuthMath.hpp" />
+		<Unit filename="../lib/Math/BinSearchArg.cpp" />
+		<Unit filename="../lib/Math/BinSearchArg.hpp" />
+		<Unit filename="../lib/Math/BinSearchArgSubject.cpp" />
+		<Unit filename="../lib/Math/BinSearchArgSubject.hpp" />
+		<Unit filename="../lib/Math/Constants.hpp" />
+		<Unit filename="../lib/Math/GeneralMath.cpp" />
+		<Unit filename="../lib/Math/GeneralMath.hpp" />
+		<Unit filename="../lib/Math/GreatCircleAdvMath.cpp" />
+		<Unit filename="../lib/Math/GreatCircleAdvMath.hpp" />
+		<Unit filename="../lib/Math/GreatCircleMath.cpp" />
+		<Unit filename="../lib/Math/GreatCircleMath.hpp" />
+		<Unit filename="../lib/Math/MaxMin.cpp" />
+		<Unit filename="../lib/Math/MaxMin.hpp" />
+		<Unit filename="../lib/Math/MaxMinPoint.cpp" />
+		<Unit filename="../lib/Math/MaxMinPoint.hpp" />
+		<Unit filename="../lib/Math/SimpsonFunctor.cpp" />
+		<Unit filename="../lib/Math/SimpsonFunctor.hpp" />
+		<Unit filename="../lib/Math/SpaceMath.cpp" />
+		<Unit filename="../lib/Math/SpaceMath.hpp" />
+		<Unit filename="../lib/Math/SpaceMathBody.cpp" />
+		<Unit filename="../lib/Math/SpaceMathBody.hpp" />
+		<Unit filename="../lib/Math/VectorMath.cpp" />
+		<Unit filename="../lib/Math/VectorMath.hpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.cpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.hpp" />
+		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />
+		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.hpp" />
+		<Unit filename="../lib/PID/DerivatorDiscrete.cpp" />
+		<Unit filename="../lib/PID/DerivatorDiscrete.hpp" />
+		<Unit filename="../lib/PID/IntegratorDiscrete.cpp" />
+		<Unit filename="../lib/PID/IntegratorDiscrete.hpp" />
+		<Unit filename="../lib/PID/PID.cpp" />
+		<Unit filename="../lib/PID/PID.hpp" />
+		<Unit filename="../lib/Systems/Geo.cpp" />
+		<Unit filename="../lib/Systems/Geo.hpp" />
+		<Unit filename="../lib/Systems/Point.cpp" />
+		<Unit filename="../lib/Systems/Point.hpp" />
+		<Unit filename="../lib/Systems/RectangleMy.cpp" />
+		<Unit filename="../lib/Systems/RectangleMy.hpp" />
+		<Unit filename="../lib/Systems/Spherical.cpp" />
+		<Unit filename="../lib/Systems/Spherical.hpp" />
+		<Unit filename="../lib/Systems/Systems.hpp" />
+		<Unit filename="../lib/Systems/SystemsConverter.cpp" />
+		<Unit filename="../lib/Systems/SystemsConverter.hpp" />
+		<Unit filename="../lib/Systems/ThreeSphericals.cpp" />
+		<Unit filename="../lib/Systems/ThreeSphericals.hpp" />
+		<Unit filename="../lib/Systems/Vect3.cpp" />
+		<Unit filename="../lib/Systems/Vect3.hpp" />
+		<Unit filename="../lib/Util/CharManipulations.cpp" />
+		<Unit filename="../lib/Util/CharManipulations.hpp" />
+		<Unit filename="../lib/Util/FileUtils.cpp" />
+		<Unit filename="../lib/Util/FileUtils.hpp" />
+		<Unit filename="../lib/Util/NonCopyable.cpp" />
+		<Unit filename="../lib/Util/NonCopyable.hpp" />
+		<Unit filename="../lib/Util/Result.cpp" />
+		<Unit filename="../lib/Util/Result.hpp" />
+		<Unit filename="../lib/Util/StackTrace.hpp" />
+		<Unit filename="../lib/Util/ValueWithDescription.cpp" />
+		<Unit filename="../lib/Util/ValueWithDescription.hpp" />
+		<Unit filename="../lib/Util/WinAPIFileUtils.cpp" />
+		<Unit filename="../lib/Util/WinAPIFileUtils.hpp" />
+		<Unit filename="../lib/Visual/Canvas.cpp" />
+		<Unit filename="../lib/Visual/Canvas.hpp" />
+		<Unit filename="../lib/Visual/CanvasMovableScallable.cpp" />
+		<Unit filename="../lib/Visual/CanvasMovableScallable.hpp" />
+		<Unit filename="../lib/Visual/ScalePointFunctor.cpp" />
+		<Unit filename="../lib/Visual/ScalePointFunctor.hpp" />
+		<Unit filename="Autopilot/AutopilotBase.cpp" />
+		<Unit filename="Autopilot/AutopilotBase.hpp" />
+		<Unit filename="Autopilot/AutopilotDirectAscentStd.cpp" />
+		<Unit filename="Autopilot/AutopilotDirectAscentStd.hpp" />
+		<Unit filename="Autopilot/AutopilotDirectAscentSynchro.cpp" />
+		<Unit filename="Autopilot/AutopilotDirectAscentSynchro.hpp" />
+		<Unit filename="Autopilot/AutopilotManager.cpp" />
+		<Unit filename="Autopilot/AutopilotManager.hpp" />
+		<Unit filename="Autopilot/AutopilotStandard.cpp" />
+		<Unit filename="Autopilot/AutopilotStandard.hpp" />
+		<Unit filename="Autopilot/AutopilotType.hpp" />
+		<Unit filename="Autopilot/DirectAscentOptiEngineLevel.cpp" />
+		<Unit filename="Autopilot/DirectAscentOptiEngineLevel.hpp" />
+		<Unit filename="Autopilot/PIDAP.cpp" />
+		<Unit filename="Autopilot/PIDAP.hpp" />
+		<Unit filename="Autopilot/PitchPointComparator.cpp" />
+		<Unit filename="Autopilot/PitchPointComparator.h" />
+		<Unit filename="Autopilot/PitchProgramReader.cpp" />
+		<Unit filename="Autopilot/PitchProgramReader.h" />
+		<Unit filename="BODYPHYS.cpp" />
+		<Unit filename="BODYPHYS.h" />
+		<Unit filename="BODYPHYS_ORB.cpp" />
+		<Unit filename="BODYPHYS_ORB.h" />
+		<Unit filename="Dialogs/DialogAlt.cpp" />
+		<Unit filename="Dialogs/DialogAlt.h" />
+		<Unit filename="Dialogs/DialogDistDA.cpp" />
+		<Unit filename="Dialogs/DialogDistDA.h" />
+		<Unit filename="Dialogs/DialogPID.cpp" />
+		<Unit filename="Dialogs/DialogPID.h" />
+		<Unit filename="Dialogs/DialogTarget.cpp" />
+		<Unit filename="Dialogs/DialogTarget.h" />
+		<Unit filename="DirectAscentPage.cpp" />
+		<Unit filename="DirectAscentPage.hpp" />
+		<Unit filename="EnergyPitchProgram.cpp" />
+		<Unit filename="EnergyPitchProgram.hpp" />
+		<Unit filename="GreatCircle.cpp" />
+		<Unit filename="GreatCircle.h" />
+		<Unit filename="HUD/FlightDirector.cpp" />
+		<Unit filename="HUD/FlightDirector.h" />
+		<Unit filename="HUD/HUD.cpp" />
+		<Unit filename="HUD/HUD.h" />
+		<Unit filename="HUD/HUDCompass.cpp" />
+		<Unit filename="HUD/HUDCompass.h" />
+		<Unit filename="HUD/HUDDrawer.cpp" />
+		<Unit filename="HUD/HUDDrawer.hpp" />
+		<Unit filename="LaunchCompass.cpp" />
+		<Unit filename="LaunchCompass.h" />
+		<Unit filename="LaunchMFD.cpp" />
+		<Unit filename="LaunchMFD.h" />
+		<Unit filename="LaunchMFD.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="MFDButtonPageLaunchMFD.cpp" />
+		<Unit filename="MFDButtonPageLaunchMFD.hpp" />
+		<Unit filename="MFDDataLaunchMFD.cpp" />
+		<Unit filename="MFDDataLaunchMFD.hpp" />
+		<Unit filename="MFDPage.cpp" />
+		<Unit filename="MFDPage.h" />
+		<Unit filename="MovementParams.cpp" />
+		<Unit filename="MovementParams.h" />
+		<Unit filename="OffPlaneCorrector/OffPlaneCorrector.cpp" />
+		<Unit filename="OffPlaneCorrector/OffPlaneCorrector.hpp" />
+		<Unit filename="OffPlaneCorrector/OffPlaneCorrectorDirectAscent.cpp" />
+		<Unit filename="OffPlaneCorrector/OffPlaneCorrectorDirectAscent.hpp" />
+		<Unit filename="OffPlaneCorrector/OffPlaneCorrectorStandard.cpp" />
+		<Unit filename="OffPlaneCorrector/OffPlaneCorrectorStandard.hpp" />
+		<Unit filename="PEG/PEG.cpp" />
+		<Unit filename="PEG/PEG.h" />
+		<Unit filename="PEG/PEGDirectAscent.cpp" />
+		<Unit filename="PEG/PEGDirectAscent.h" />
+		<Unit filename="PEG/PEGDirectAscentOpti.cpp" />
+		<Unit filename="PEG/PEGDirectAscentOpti.h" />
+		<Unit filename="PEG/PEGDirectAscentStd.cpp" />
+		<Unit filename="PEG/PEGDirectAscentStd.h" />
+		<Unit filename="PEG/PEGDirectAscentSynchro.cpp" />
+		<Unit filename="PEG/PEGDirectAscentSynchro.h" />
+		<Unit filename="PEG/PEGMulti.cpp" />
+		<Unit filename="PEG/PEGMulti.h" />
+		<Unit filename="PEG/PEGNormal.cpp" />
+		<Unit filename="PEG/PEGNormal.h" />
+		<Unit filename="PitchGuidance.cpp" />
+		<Unit filename="PitchGuidance.h" />
+		<Unit filename="PluginLaunchMFD.cpp" />
+		<Unit filename="PluginLaunchMFD.hpp" />
+		<Unit filename="ShipVariables.cpp" />
+		<Unit filename="ShipVariables.h" />
+		<Unit filename="Sound/SoundMapLaunchMFD.cpp" />
+		<Unit filename="Sound/SoundMapLaunchMFD.hpp" />
+		<Unit filename="Sound/SoundSampleIDEnum.hpp" />
+		<Unit filename="Stage.cpp" />
+		<Unit filename="Stage.h" />
+		<Unit filename="StagingContainer.cpp" />
+		<Unit filename="StagingContainer.hpp" />
+		<Unit filename="StagingDetector.cpp" />
+		<Unit filename="StagingDetector.hpp" />
+		<Unit filename="TGTPARAM.cpp" />
+		<Unit filename="TGTPARAM.h" />
+		<Unit filename="TGTPARAM_ORB.cpp" />
+		<Unit filename="TGTPARAM_ORB.h" />
+		<Unit filename="Types.hpp" />
+		<Unit filename="Utils/AngularAcc.cpp" />
+		<Unit filename="Utils/AngularAcc.hpp" />
+		<Unit filename="Utils/Engine.cpp" />
+		<Unit filename="Utils/Engine.hpp" />
+		<Unit filename="Utils/FileUtilsOrbiter.cpp" />
+		<Unit filename="Utils/FileUtilsOrbiter.hpp" />
+		<Unit filename="Utils/Pens.cpp" />
+		<Unit filename="Utils/Pens.h" />
+		<Unit filename="Utils/Targeting.cpp" />
+		<Unit filename="Utils/Targeting.hpp" />
+		<Unit filename="Utils/VesselCapabilities.cpp" />
+		<Unit filename="Utils/VesselCapabilities.hpp" />
+		<Unit filename="afxres.h" />
+		<Unit filename="globals.h" />
+		<Unit filename="localisation.h" />
+		<Unit filename="pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="resource.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

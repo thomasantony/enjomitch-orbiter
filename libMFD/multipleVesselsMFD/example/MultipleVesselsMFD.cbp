@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MyMultipleVesselsMFD" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc8" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../../../Orbiter/orbiterBETA/Modules/Plugin/MyMultipleVesselsMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/Zi" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\MyMultipleVesselsMFD.dll.manifest&quot; /outputresource:&quot;bin\Debug\MyMultipleVesselsMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010_PL">
+				<Option output="../../../../../Orbiter/orbiter100830/Modules/Plugin/MyMultipleVesselsMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010_PL/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_PL" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\MyMultipleVesselsMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\MyMultipleVesselsMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010">
+				<Option output="../../../../../Orbiter/orbiter100830/Modules/Plugin/MyMultipleVesselsMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\MyMultipleVesselsMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\MyMultipleVesselsMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2006">
+				<Option output="../../../../../Orbiter/orbiter060929/Modules/Plugin/MyMultipleVesselsMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2006/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/TP" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Gy" />
+					<Add option="/GF" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2006" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../../../Orbiter/orbiter060929/Orbitersdk/include" />
+					<Add directory="../../../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../../../Orbiter/orbiter060929/Orbitersdk/lib" />
+					<Add directory="../../../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\MyMultipleVesselsMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\MyMultipleVesselsMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseBETA">
+				<Option output="../../../../../Orbiter/orbiterBETA/Modules/Plugin/MyMultipleVesselsMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/ReleaseBETA/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
+					<Add directory="../../../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\MyMultipleVesselsMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\MyMultipleVesselsMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/TP" />
+			<Add option="/EHc" />
+			<Add option="/EHs" />
+			<Add option="/GR" />
+			<Add option="/Gy" />
+			<Add option="/GF" />
+			<Add option="/W3" />
+			<Add option="/EHsc" />
+			<Add directory="../lib" />
+			<Add directory="../libMFD" />
+		</Compiler>
+		<Linker>
+			<Add option="/NODEFAULTLIB:LIBCMT" />
+			<Add library="OrbiterSoundSDK40.lib" />
+			<Add library="VesselHooking.lib" />
+			<Add library="orbiter.lib" />
+			<Add library="orbitersdk.lib" />
+			<Add library="kernel32.lib" />
+			<Add library="user32.lib" />
+			<Add library="gdi32.lib" />
+		</Linker>
+		<Unit filename="../../../HUDDrawer/VesselHooking/IDrawsHUD.hpp" />
+		<Unit filename="../../MFDButtonPage.cpp" />
+		<Unit filename="../../MFDButtonPage.hpp" />
+		<Unit filename="../../MFDSound++/Sound.cpp" />
+		<Unit filename="../../MFDSound++/Sound.hpp" />
+		<Unit filename="../../MFDSound++/SoundMap.cpp" />
+		<Unit filename="../../MFDSound++/SoundMap.hpp" />
+		<Unit filename="../MFDData.cpp" />
+		<Unit filename="../MFDData.hpp" />
+		<Unit filename="../PluginMultipleVessels.cpp" />
+		<Unit filename="../PluginMultipleVessels.hpp" />
+		<Unit filename="../SimulationTimeData.cpp" />
+		<Unit filename="../SimulationTimeData.hpp" />
+		<Unit filename="Autopilot/AutopilotBase.cpp" />
+		<Unit filename="Autopilot/AutopilotBase.hpp" />
+		<Unit filename="Autopilot/AutopilotManager.cpp" />
+		<Unit filename="Autopilot/AutopilotManager.hpp" />
+		<Unit filename="Autopilot/AutopilotSophisticated.cpp" />
+		<Unit filename="Autopilot/AutopilotSophisticated.hpp" />
+		<Unit filename="Autopilot/AutopilotStandard.cpp" />
+		<Unit filename="Autopilot/AutopilotStandard.hpp" />
+		<Unit filename="Autopilot/AutopilotType.hpp" />
+		<Unit filename="Globals.cpp" />
+		<Unit filename="Globals.hpp" />
+		<Unit filename="MyMFDButtonsPage.cpp" />
+		<Unit filename="MyMFDButtonsPage.hpp" />
+		<Unit filename="MyMFDData.cpp" />
+		<Unit filename="MyMFDData.hpp" />
+		<Unit filename="MyMFDMultipleVessels.cpp" />
+		<Unit filename="MyMFDMultipleVessels.hpp" />
+		<Unit filename="MyPluginMultipleVessels.cpp" />
+		<Unit filename="MyPluginMultipleVessels.hpp" />
+		<Unit filename="Sound/SoundMapMyMFD.cpp" />
+		<Unit filename="Sound/SoundMapMyMFD.hpp" />
+		<Unit filename="Sound/SoundSampleIDEnum.hpp" />
+		<Unit filename="Types.hpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

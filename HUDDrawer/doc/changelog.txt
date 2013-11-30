@@ -1,0 +1,10 @@
+v. 0.3 	23.04.2013
+- Removed exposed STL templates
+- Removed identifier in IDrawsHUD constructor and added as pure virtual method
+
+v. 0.2 	16.03.2013
+- Ability to select active modules through HUDDrawer MFD
+- Changed license to GPL
+
+v. 0.1 	01.03.2013
+- Initial release

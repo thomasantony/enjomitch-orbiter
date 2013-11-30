@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="da_solver" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/da_solver" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="`wx-config --version=3.0 --debug=yes --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add option="`wx-config --version=3.0 --debug=yes --libs`" />
+					<Add directory="bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/da_solver" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config --version=3.0 --debug=no --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`wx-config --version=3.0 --debug=no --libs`" />
+					<Add directory="bin/Release" />
+				</Linker>
+			</Target>
+			<Target title="Windows Release">
+				<Option output="bin/Release/da_solver" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/lib/wx/include/msw-unicode-static-2.9" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mtreads" />
+					<Add library="libwx_mswu_core-2.9.a" />
+					<Add library="libwx_baseu-2.9.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/lib" />
+					<Add directory="bin/Release" />
+				</Linker>
+			</Target>
+			<Target title="MinGW32 Release">
+				<Option output="bin/Release-MinGW32/da_solver.exe" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Release-MinGW32/" />
+				<Option type="0" />
+				<Option compiler="mingw32" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`/usr/i686-w64-mingw32/bin/wx-config  --version=3.0 --static=yes --debug=no --cflags`" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="/usr/i686-w64-mingw32/include/wx-2.9" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mtreads" />
+					<Add option="`/usr/i686-w64-mingw32/bin/wx-config  --version=3.0 --static=yes --debug=no --libs`" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add directory="../../build/codeblocks/bin/MinGW32-Debug" />
+				</Linker>
+			</Target>
+			<Target title="Windows Debug">
+				<Option output="bin/Debug/da_solver" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D__WXDEBUG__" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/lib/wx/include/msw-unicode-static-2.9" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-mtreads" />
+					<Add library="libwx_mswu_core-2.9.a" />
+					<Add library="libwx_baseu-2.9.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/lib" />
+					<Add directory="bin/Debug" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DWX_PRECOMP" />
+			<Add directory="../lib" />
+		</Compiler>
+		<Unit filename="../launchmfd/BODYPHYS.cpp" />
+		<Unit filename="../launchmfd/BODYPHYS.h" />
+		<Unit filename="../launchmfd/DirectAscent/OptimalVelSolverFunctions.hpp&apos;" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/DirectAscent.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/DirectAscent.h" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolver.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolver.hpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverFunctions.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverFunctions.hpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverParams.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/OptimalVelSolverParams.hpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/SHIP_PARAMS.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/SHIP_PARAMS.h" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Satellite.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Satellite.h" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Ship.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Ship.h" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Times.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Times.h" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Vessel.cpp" />
+		<Unit filename="../launchmfd/LegacyCode/DirectAscent/Vessel.h" />
+		<Unit filename="../launchmfd/TGTPARAM.cpp" />
+		<Unit filename="../launchmfd/TGTPARAM.h" />
+		<Unit filename="../lib/Math/AzimuthMath.cpp" />
+		<Unit filename="../lib/Math/AzimuthMath.hpp" />
+		<Unit filename="../lib/Math/Constants.hpp" />
+		<Unit filename="../lib/Math/GeneralMath.cpp" />
+		<Unit filename="../lib/Math/GeneralMath.hpp" />
+		<Unit filename="../lib/Math/GreatCircleAdvMath.cpp" />
+		<Unit filename="../lib/Math/GreatCircleAdvMath.hpp" />
+		<Unit filename="../lib/Math/GreatCircleMath.cpp" />
+		<Unit filename="../lib/Math/GreatCircleMath.hpp" />
+		<Unit filename="../lib/Math/MaxMin.cpp" />
+		<Unit filename="../lib/Math/MaxMin.hpp" />
+		<Unit filename="../lib/Math/MaxMinPoint.cpp" />
+		<Unit filename="../lib/Math/MaxMinPoint.hpp" />
+		<Unit filename="../lib/Math/SimpsonFunctor.cpp" />
+		<Unit filename="../lib/Math/SimpsonFunctor.hpp" />
+		<Unit filename="../lib/Math/SpaceMath.cpp" />
+		<Unit filename="../lib/Math/SpaceMath.hpp" />
+		<Unit filename="../lib/Math/SpaceMathBody.cpp" />
+		<Unit filename="../lib/Math/SpaceMathBody.hpp" />
+		<Unit filename="../lib/Math/VectorMath.cpp" />
+		<Unit filename="../lib/Math/VectorMath.hpp" />
+		<Unit filename="../lib/Systems/Geo.cpp" />
+		<Unit filename="../lib/Systems/Geo.hpp" />
+		<Unit filename="../lib/Systems/Point.cpp" />
+		<Unit filename="../lib/Systems/Point.hpp" />
+		<Unit filename="../lib/Systems/RectangleMy.cpp" />
+		<Unit filename="../lib/Systems/RectangleMy.hpp" />
+		<Unit filename="../lib/Systems/Spherical.cpp" />
+		<Unit filename="../lib/Systems/Spherical.hpp" />
+		<Unit filename="../lib/Systems/Systems.hpp" />
+		<Unit filename="../lib/Systems/SystemsConverter.cpp" />
+		<Unit filename="../lib/Systems/SystemsConverter.hpp" />
+		<Unit filename="../lib/Systems/ThreeSphericals.cpp" />
+		<Unit filename="../lib/Systems/ThreeSphericals.hpp" />
+		<Unit filename="../lib/Systems/Vect3.cpp" />
+		<Unit filename="../lib/Systems/Vect3.hpp" />
+		<Unit filename="../lib/Util/NonCopyable.cpp" />
+		<Unit filename="../lib/Util/NonCopyable.hpp" />
+		<Unit filename="../lib/Visual/Canvas.cpp" />
+		<Unit filename="../lib/Visual/Canvas.hpp" />
+		<Unit filename="../lib/Visual/CanvasMovableScallable.cpp" />
+		<Unit filename="../lib/Visual/CanvasMovableScallable.hpp" />
+		<Unit filename="../lib/Visual/ScalePointFunctor.cpp" />
+		<Unit filename="../lib/Visual/ScalePointFunctor.hpp" />
+		<Unit filename="../libwx/MyWxScrolledWindow.cpp" />
+		<Unit filename="../libwx/MyWxScrolledWindow.h" />
+		<Unit filename="MyWxScrolledWindow.h" />
+		<Unit filename="SourceBody.cpp" />
+		<Unit filename="SourceBody.hpp" />
+		<Unit filename="da_solverApp.cpp" />
+		<Unit filename="da_solverApp.h" />
+		<Unit filename="da_solverMain.cpp" />
+		<Unit filename="da_solverMain.h" />
+		<Unit filename="myScrolledWindow.cpp" />
+		<Unit filename="myScrolledWindow.h" />
+		<Unit filename="wx_pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="da_solverApp.cpp" main="da_solverFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/da_solverframe.wxs" src="da_solverMain.cpp" hdr="da_solverMain.h" fwddecl="0" i18n="1" name="da_solverFrame" language="CPP" />
+				</resources>
+			</wxsmith>
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

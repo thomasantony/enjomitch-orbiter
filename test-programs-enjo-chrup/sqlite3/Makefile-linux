@@ -1,0 +1,47 @@
+# Project: test1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++
+CC   = gcc
+ 
+PROG2DIR = test2-win32-sqlite-testbed
+PROG5DIR = test5-win32-listview
+PROG6DIR = test6-wx-listctrl
+
+PROG2 = sqlite-testbed
+PROG5 = listview
+PROG6 = wx-listctrl
+
+INCS = 
+CXXINCS =
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+
+
+.PHONY: all clean clean-deps clean-all $(PROG2) $(PROG5) $(PROG6)
+
+all: $(PROG2) $(PROG5) $(PROG6)
+
+$(PROG5):
+	(cd $(PROG5DIR) && $(MAKE) -f Makefile-linux all)
+
+$(PROG2):
+	(cd $(PROG2DIR) && $(MAKE) -f Makefile-linux all)
+
+$(PROG6):
+	(cd $(PROG6DIR) && $(MAKE) -f Makefile-linux all)
+  
+clean-all: clean clean-deps
+
+clean: 
+	(cd $(PROG2DIR) && $(MAKE) clean)
+	(cd $(PROG5DIR) && $(MAKE) clean)
+	(cd $(PROG6DIR) && $(MAKE) clean)
+
+clean-deps:
+	(cd $(PROG2DIR) && $(MAKE) clean-deps)
+	(cd $(PROG5DIR) && $(MAKE) clean-deps)
+	(cd $(PROG6DIR) && $(MAKE) clean-deps)
+
