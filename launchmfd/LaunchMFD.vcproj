@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="LaunchMFD"
 	ProjectGUID="{618053AC-D57F-446E-89DC-9F1367C198CC}"
 	RootNamespace="LaunchMFD"
@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -247,7 +247,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -347,7 +347,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiterBETA\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiterBETA\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -447,7 +447,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_PL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -545,7 +545,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -1507,11 +1507,65 @@
 			>
 		</File>
 		<File
-			RelativePath="..\lib\Util\WinAPIFileUtils.cpp"
+			RelativePath="..\libWin\WinAPIFileUtils.cpp"
 			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\$(InputName)1.obj"
+					XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release2006|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\$(InputName)1.obj"
+					XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release2009|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\$(InputName)1.obj"
+					XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="ReleaseBETA|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\$(InputName)1.obj"
+					XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release2009_PL|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\$(InputName)1.obj"
+					XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug-BETA|Win32"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					ObjectFile="$(IntDir)\$(InputName)1.obj"
+					XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+				/>
+			</FileConfiguration>
 		</File>
 		<File
-			RelativePath="..\lib\Util\WinAPIFileUtils.hpp"
+			RelativePath="..\libWin\WinAPIFileUtils.hpp"
 			>
 		</File>
 	</Files>

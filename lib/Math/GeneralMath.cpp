@@ -75,6 +75,11 @@ int GeneralMath::sign( double x ) const
     return 0;
 }
 
+double GeneralMath::Log2( double n ) const
+{
+    return log(n) / log(2.0);
+}
+
 double GeneralMath::LinearInterpol( double x, const Point & p1, const Point & p2 ) const
 {
     // y = ax + b

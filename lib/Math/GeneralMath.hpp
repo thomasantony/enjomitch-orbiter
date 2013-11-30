@@ -51,6 +51,7 @@ struct GeneralMath
     /// Linear interpolation
     double LinearInterpol( double x, const Point & p1, const Point & p2 ) const;
 	int round(double r) const;
+	double Log2(double n) const;
 	/// Returns angle in <-PI, PI> range
 	double GetInPIRange( double angle ) const;
 	/// Returns angle in <-2PI, 2PI> range

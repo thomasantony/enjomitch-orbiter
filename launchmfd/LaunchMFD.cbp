@@ -158,6 +158,7 @@
 			<Add directory="../lib" />
 			<Add directory="../libMFD" />
 			<Add directory="../KOST_Orbiter" />
+			<Add directory="../libWin" />
 		</Compiler>
 		<Linker>
 			<Add option="/NODEFAULTLIB:LIBCMT" />
@@ -201,6 +202,8 @@
 		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.cpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.hpp" />
+		<Unit filename="../libWin/WinAPIFileUtils.cpp" />
+		<Unit filename="../libWin/WinAPIFileUtils.hpp" />
 		<Unit filename="../lib/Math/AzimuthMath.cpp" />
 		<Unit filename="../lib/Math/AzimuthMath.hpp" />
 		<Unit filename="../lib/Math/BinSearchArg.cpp" />
@@ -262,8 +265,6 @@
 		<Unit filename="../lib/Util/StackTrace.hpp" />
 		<Unit filename="../lib/Util/ValueWithDescription.cpp" />
 		<Unit filename="../lib/Util/ValueWithDescription.hpp" />
-		<Unit filename="../lib/Util/WinAPIFileUtils.cpp" />
-		<Unit filename="../lib/Util/WinAPIFileUtils.hpp" />
 		<Unit filename="../lib/Visual/Canvas.cpp" />
 		<Unit filename="../lib/Visual/Canvas.hpp" />
 		<Unit filename="../lib/Visual/CanvasMovableScallable.cpp" />

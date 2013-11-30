@@ -1,7 +1,7 @@
 #include "ShipVariables.h"
 #include "Autopilot/PIDAP.hpp"
 #include "Utils/FileUtilsOrbiter.hpp"
-#include "Util/WinAPIFileUtils.hpp"
+#include <WinAPIFileUtils.hpp>
 #include "Util/FileUtils.hpp"
 
 using namespace EnjoLib;
