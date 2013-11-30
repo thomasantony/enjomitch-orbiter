@@ -20,7 +20,7 @@
 
 
 #pragma once
-using namespace std;
+
 #include <OrbiterSDK.h>
 
 

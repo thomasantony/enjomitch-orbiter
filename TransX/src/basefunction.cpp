@@ -33,7 +33,7 @@ extern double debug;
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft)
 : TransXFunction(tstate, thmajor, thminor,thcraft)
 {
-    m_optiVar.Init(this);
+    m_optiVar.Init(this, &primary);
 	iplantype=0;
 	previousfunc=tpreviousfunc;
 	nextfunc=NULL;
@@ -51,7 +51,7 @@ basefunction::basefunction(class transxstate *tstate, class basefunction *tprevi
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, class basefunction *templbase, OBJHANDLE thcraft)
 : TransXFunction(tstate, templbase->hmajor, templbase->hminor, thcraft)
 {
-    m_optiVar.Init(this);
+    m_optiVar.Init(this, &primary);
 	iplantype=templbase->iplantype;
 	previousfunc=tpreviousfunc;
 	nextfunc=NULL;

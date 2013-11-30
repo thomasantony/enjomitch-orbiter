@@ -1,20 +1,23 @@
 #ifndef OPTIMISERVAR_H
 #define OPTIMISERVAR_H
 
+class plan;
+class Intercept;
 class basefunction;
 
 class OptimiserVar
 {
     public:
         OptimiserVar();
-        void Init( basefunction * baseFunc );
+        void Init( basefunction * base, Intercept * icept );
         virtual ~OptimiserVar();
 
-        double GetOpti() {return 1;}
+        double GetOpti( double currentValue ) const;
     protected:
     private:
 
-        basefunction * m_baseFunc;
+        basefunction * m_base;
+        Intercept * m_icept;
 };
 
 #endif // OPTIMISERVAR_H

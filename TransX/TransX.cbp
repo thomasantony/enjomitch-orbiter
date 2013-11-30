@@ -172,8 +172,11 @@
 			<Add library="OrbiterSoundSDK40.lib" />
 			<Add library="VesselHooking.lib" />
 		</Linker>
-		<Unit filename="src/OptimiserBase.cpp" />
-		<Unit filename="src/OptimiserBase.h" />
+		<Unit filename="../dlib/all/source.cpp" />
+		<Unit filename="src/OptimiserMulti.cpp" />
+		<Unit filename="src/OptimiserMulti.h" />
+		<Unit filename="src/OptimiserVar.cpp" />
+		<Unit filename="src/OptimiserVar.h" />
 		<Unit filename="src/TransX.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>

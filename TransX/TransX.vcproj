@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -58,6 +58,7 @@
 				WarningLevel="1"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4290;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -73,7 +74,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -175,7 +176,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK35.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="..\..\..\orbiter\orbiter060929\Modules\Plugin\TransX.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -247,7 +248,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -275,7 +276,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -358,7 +359,7 @@
 				ProgramDataBaseFileName=".\Release2009/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DisableSpecificWarnings="4290;4005"
+				DisableSpecificWarnings="4290;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -375,7 +376,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="..\..\..\orbiter\orbiterBETA\Modules\Plugin\TransX.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -458,7 +459,7 @@
 				ProgramDataBaseFileName=".\Release2009_PL/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				DisableSpecificWarnings="4290"
+				DisableSpecificWarnings="4290;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -475,7 +476,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -556,6 +557,7 @@
 				WarningLevel="1"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4290;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -571,7 +573,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="..\..\..\orbiter\orbiterBETA\Modules\Plugin\TransX.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -614,6 +616,14 @@
 	<References>
 	</References>
 	<Files>
+		<Filter
+			Name="dlib"
+			>
+			<File
+				RelativePath="..\dlib\all\source.cpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\src\basefunction.cpp"
 			>
@@ -696,6 +706,22 @@
 		</File>
 		<File
 			RelativePath=".\src\mfdvartypes.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\OptimiserMulti.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\OptimiserMulti.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\OptimiserVar.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\OptimiserVar.h"
 			>
 		</File>
 		<File

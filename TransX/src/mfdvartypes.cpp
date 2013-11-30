@@ -548,7 +548,7 @@ void MFDvarfloat::inc_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		value=OptimiserVar().GetOpti();
+		value = m_opti->GetOpti(value);
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -592,7 +592,7 @@ void MFDvarfloat::dec_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		value=OptimiserVar().GetOpti();
+		value = m_opti->GetOpti(value);
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -795,7 +795,7 @@ void MFDvarangle::inc_variable()
 		adjuster=0.0000001;
 		break;
 	case Min:
-		value=OptimiserVar().GetOpti();
+		value = m_opti->GetOpti(value);
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -842,7 +842,7 @@ void MFDvarangle::dec_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		value=OptimiserVar().GetOpti();
+		value = m_opti->GetOpti(value);
 		return;
 	case Reset:
 		value=defaultvalue;
