@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,9 +44,9 @@ private:
 public:
 	void initbybody(OBJHANDLE craft,bool reset);//Used to create list to select from
 	void addtolist(char *name);
-	virtual bool show(Sketchpad *sketchpad, int width, int line);
+	virtual bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	virtual OBJHANDLE gethandle() const;
-	virtual void showadjustment(Sketchpad *sketchpad, int width, int line) const{};
+	virtual void showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const{};
 	virtual void ch_adjmode(){};
 	virtual void chm_adjmode(){};
 	virtual void enter_variable();
@@ -61,7 +61,7 @@ public:
 protected:
 	virtual void InheritValues(MFDvariable *var) {};	// do nothing
 };
-	
+
 class MFDvarmoon : public MFDvariable {
 protected:
 	enum AdjustMode
@@ -82,10 +82,10 @@ public:
 	virtual void setall(class MFDvariable *var);
 	bool validate();
 	void initvalidate();
-	virtual bool show(Sketchpad *sketchpad, int width, int line);
+	virtual bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	virtual void ch_adjmode();					// toggles between craft and planet/moon
 	virtual void chm_adjmode() {ch_adjmode();};	// toggles between craft and planet/moon
-	virtual void showadjustment(Sketchpad *sketchpad, int width, int line) const;
+	virtual void showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const;
 	virtual int getvalue() const;
 	virtual OBJHANDLE gethandle() const;
 	virtual bool loadvalue(char *buffer);
@@ -97,6 +97,8 @@ public:
 protected:
 	virtual void InheritValues(MFDvariable *var) {value = ((MFDvarmoon*)var)->value;};
 };
+
+class OptimiserVar;
 
 class MFDvarfloat : public MFDvariable {
 protected:
@@ -110,6 +112,7 @@ protected:
 		Ultra,
 		Hyper,
 		Micro,
+		Min,
 		Reset
 	};
 
@@ -120,6 +123,7 @@ protected:
 	double logborder; // Number below which increment is linear scaled
 	double inputvalue;
 	AdjustMode adjMode;
+	const OptimiserVar * m_opti;
 public:
 	operator double() {return value;};
 	double operator = (double tvalue){value=tvalue;return value;};
@@ -130,13 +134,13 @@ public:
 	virtual void dec_variable(); //Decrease the variable
 	virtual void ch_adjmode();
 	virtual void chm_adjmode();
-	virtual void showadjustment(Sketchpad *sketchpad, int width, int line) const;
-	bool show(Sketchpad *sketchpad, int width, int line);
+	virtual void showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const;
+	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	double getvalue() const; //Get the value
 	void setvalue(double tvalue);
 	virtual void getsaveline(char *buffer) const;
 	virtual bool loadvalue(char *buffer);
-	void init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
+	void init(MFDvarhandler *vars, const OptimiserVar & opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
 	MFDvarfloat();
 	~MFDvarfloat();
 protected:
@@ -145,7 +149,7 @@ protected:
 
 class MFDvarMJD: public MFDvarfloat {
 public:
-	bool show(Sketchpad *sketchpad, int width, int line);
+	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	virtual void inc_variable(); // Increase the variable
 	virtual void dec_variable(); //Decrease the variable
 
@@ -162,7 +166,7 @@ public:
 	void inc_variable(); //Change to next projection
 	operator int() {return value;};
 	int operator = (int tvalue){value=tvalue;return value;};
-	bool show(Sketchpad *sketchpad, int width, int line);
+	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	virtual void getsaveline(char *buffer) const;
 	virtual bool loadvalue(char *buffer);
 	void init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname, int vvalue, int vlimit, char *st1, char *st2, char *st3, char *st4, char *st5);
@@ -180,7 +184,7 @@ public:
 	virtual void getsaveline(char *buffer) const;
 	virtual bool loadvalue(char *buffer);
 	void init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname,int tvalue);
-	virtual bool show(Sketchpad *sketchpad, int width, int line);
+	virtual bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	MFDsemiintdiscrete(){value=0;};
 protected:
 	virtual void InheritValues(MFDvariable *var) {value = ((MFDsemiintdiscrete*)var)->value;};
@@ -195,7 +199,7 @@ public:
 	double operator = (double tvalue){setvalue(tvalue);return tvalue;};
 	virtual void inc_variable(); // Increase the variable
 	virtual void dec_variable(); //Decrease the variable
-	bool show(Sketchpad *sketchpad, int width, int line);
+	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	double getsin() const;
 	double getcos() const;
 	void init(MFDvarhandler *vars,char *vname, bool vloop);

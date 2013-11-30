@@ -26,3 +26,4 @@ bin/*
 *.ncb
 *Release*
 *Debug*
+TransX/TransX.cscope_file_list

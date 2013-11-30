@@ -160,6 +160,7 @@
 			<Add directory="../libMFD" />
 			<Add directory="../KOST_Orbiter" />
 			<Add directory="../libWin" />
+			<Add directory="../" />
 		</Compiler>
 		<Linker>
 			<Add option="/NODEFAULTLIB:LIBCMT" />
@@ -171,6 +172,8 @@
 			<Add library="OrbiterSoundSDK40.lib" />
 			<Add library="VesselHooking.lib" />
 		</Linker>
+		<Unit filename="src/OptimiserBase.cpp" />
+		<Unit filename="src/OptimiserBase.h" />
 		<Unit filename="src/TransX.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>

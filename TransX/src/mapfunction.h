@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,12 +25,11 @@
 #include "orbitelements.h"
 #include "list"
 #include "map"
-using namespace std;
 
 struct GBODY{
 	OBJHANDLE bodyhandle;
 	GBODY *parent, *next, *previous; // next and previous bodies orbiting same body
-	list <GBODY*> satellites;
+	std::list <GBODY*> satellites;
 	double soisize2;
 	double gravbodyratio2;
 	double mass;
@@ -41,7 +40,7 @@ class mapfunction: public MFDFunction
 private:
 	void InitialiseSolarSystem();
 	GBODY *sun; // a tree of the sun, its satellites, the satellites' satellites etc.
-	map<OBJHANDLE, GBODY*> bodyMap;
+	std::map<OBJHANDLE, GBODY*> bodyMap;
 	bool initialised;
 	static class mapfunction *themap;
 	VECTOR3 getweightedvector(OBJHANDLE, void(OBJHANDLE, VECTOR3*));

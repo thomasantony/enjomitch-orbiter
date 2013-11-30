@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -63,7 +63,7 @@ int transxstate::movetonextfunction(unsigned int curvarfunction)
 
 	OBJHANDLE tmajor,tminor,actualhmajor;
 	VESSELSTATUS status;
-	oapiGetVesselInterface(hcraft)->GetStatus(status);	
+	oapiGetVesselInterface(hcraft)->GetStatus(status);
 	if (status.status==1 && !cfunction->getpreviousfunc()) // craft is landed and we are in the first stage
 		cfunction->setplanstate(0, 1); // force an escape plan
 	cfunction->updateplan();
@@ -371,7 +371,7 @@ bool transxstate::initialisevars()
 
 
 bool transxstate::initfunctions()//sets up transxstate if no saved state to reload
-{	
+{
 	//Create some default values for these functions
 	OBJHANDLE thmajor,thminor;
 	thminor=NULL;
@@ -386,7 +386,7 @@ bool transxstate::initfunctions()//sets up transxstate if no saved state to relo
 }
 
 basefunction *transxstate::getpreviousfunction(int positionnumber)
-{//retained for backward compatibility 
+{//retained for backward compatibility
 	return getbasefn(positionnumber);
 }
 
@@ -412,7 +412,7 @@ transxstate::~transxstate()
 	todeletelist.clear();
 }
 
-bool transxstate::doupdate(Sketchpad *sketchpad, int tw, int th,unsigned int curfunction,int currview, unsigned int curvarfunction, int currvarview,TransxMFD *tmfdpointer)
+bool transxstate::doupdate(oapi::Sketchpad *sketchpad, int tw, int th,unsigned int curfunction,int currview, unsigned int curvarfunction, int currvarview,TransxMFD *tmfdpointer)
 {
 	saveflag=false;
 	selectshipvars=(curvarfunction<1);
@@ -500,7 +500,7 @@ bool transxstate::doupdate(Sketchpad *sketchpad, int tw, int th,unsigned int cur
 	return true;
 }
 
-void transxstate::showinitialstage(Sketchpad *sketchpad,int linespacing,int tw)
+void transxstate::showinitialstage(oapi::Sketchpad *sketchpad,int linespacing,int tw)
 {
 	sketchpad->Text(tw/2,0,"General Setup",13);
 }

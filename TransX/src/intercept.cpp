@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,8 +21,8 @@
 #define STRICT
 
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "intercept.h"
@@ -97,7 +97,7 @@ void Intercept::improveinterceptstraightline(const OrbitElements &craft, const O
 	double craftangle=acos(craftcosthi);
 	if (craftsinthi<0) craftangle=-craftangle;
 	craftangle+=(-diff)*sqrt(craft.getangmomentum2())/(craftradius*craftradius);
-	
+
 	//Get time corrected cos and sin of thi
 	craftcosthi=cos(craftangle);
 	craftsinthi=sin(craftangle);
@@ -121,7 +121,7 @@ void Intercept::improveinterceptstraightline(const OrbitElements &craft, const O
 	crafttimeest=craft.GetTimeToThi(craftcosthi,craftsinthi,fullorbits,halforbits)+timeoffset;
 	if (crafttimeest-icepttimeoffset>craftorbittime/4)
 	{//You've just hit a border point on the orbit system
-		adjustorbitsdown();//This 
+		adjustorbitsdown();//This
 		crafttimeest=craft.GetTimeToThi(craftcosthi,craftsinthi,fullorbits,halforbits)+timeoffset;
 	}
 	//targettimeest=target.GetTimeToThi(targetcosthi,targetsinthi);
@@ -154,7 +154,7 @@ void Intercept::improveinterceptstraightline(const OrbitElements &craft, const O
 	relcraftpos=icraftpos-itargetpos;
 	iceptalpha=icraftpos;
 	iceptbeta=itargetpos;
-	
+
 	icepttimeoffset=crafttimeest+timecorrection*gain;
 	itimeintercept=icepttimeoffset+target.gettimestamp();
 	if (length(relcraftpos)*3>length(icraftpos))//Allows method to switch back if solution is no longer good
@@ -193,10 +193,10 @@ void Intercept::updateintercept(const OrbitElements &craft, const OrbitElements 
 
 	const OrbitElements *alpha, *beta;
 	//The inversion functionality no longer matters - timetovectors is now good enough to avoid the problem
-	
+
 	alpha=&craft;
 	beta=&target;
-	
+
 	double betacos=beta->getcurrcosthi();
 	double alphacos=alpha->getcurrcosthi();
 	double alphasin;

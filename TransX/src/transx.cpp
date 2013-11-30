@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,8 +21,8 @@
 #define STRICT
 #define ORBITER_MODULE
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 
 #include "mfd.h"
@@ -64,17 +64,17 @@ TransxMFD::~TransxMFD()
 }
 
 // Called by Orbiter when a screen update is needed
-bool TransxMFD::Update (Sketchpad *sketchpad)
+bool TransxMFD::Update (oapi::Sketchpad *sketchpad)
 {
 	Title (sketchpad, "TransX MFD");
-	Pen *pen = GetDefaultPen (TransXFunction::Green); // Retrieves a default MFD pen
+	oapi::Pen *pen = GetDefaultPen (TransXFunction::Green); // Retrieves a default MFD pen
 	valid=viewstate->doupdate(sketchpad,W,H,this);
 	shipptrs::refreshsave();//allow save again, as new values are now available
 	sketchpad->SetPen(pen);
-	if (!valid) 
+	if (!valid)
 		return false;
 	int linespacing=H/24;
-	
+
 	if (debug!=0)
 	{
 		char buffer[20];
@@ -84,12 +84,12 @@ bool TransxMFD::Update (Sketchpad *sketchpad)
 	}
 
 	MFDvariable *varpointer=viewstate->GetCurrVariable();
-	if (varpointer==NULL) 
+	if (varpointer==NULL)
 		return false;
 	varpointer->show(sketchpad,W,linespacing);
 
 	return true;
-	// From Martins (http://www.orbiter-forum.com/project.php?issueid=210#note1142): 
+	// From Martins (http://www.orbiter-forum.com/project.php?issueid=210#note1142):
 	// The return value is currently ignored.
 	// It may be used in the future to indicate if the surface was redrawn, for optimisation purposes (removal of unneccesary surface copies).
 }
@@ -166,7 +166,7 @@ bool TransxMFD::ConsumeKeyImmediate(char *kstate)
 bool TransxMFD::ConsumeButton(int bt, int event)
 // Deal with mouse pressing of keys
 {
-	static const DWORD btkey[12]={OAPI_KEY_H, OAPI_KEY_F, OAPI_KEY_R, OAPI_KEY_W, OAPI_KEY_PERIOD, 
+	static const DWORD btkey[12]={OAPI_KEY_H, OAPI_KEY_F, OAPI_KEY_R, OAPI_KEY_W, OAPI_KEY_PERIOD,
 		OAPI_KEY_COMMA, OAPI_KEY_LBRACKET, OAPI_KEY_RBRACKET, OAPI_KEY_EQUALS, OAPI_KEY_MINUS, OAPI_KEY_X, OAPI_KEY_E};
 	if (!valid) return false;
 	MFDvariable *varpointer=viewstate->GetCurrVariable();
@@ -243,7 +243,7 @@ bool TransxMFD::ConsumeKeyBuffered (DWORD key)
 
 void TransxMFD::WriteStatus(FILEHANDLE scn) const
 {
-	if (!valid) 
+	if (!valid)
 		return;
 	shipptrs::saveallships(scn);
 }

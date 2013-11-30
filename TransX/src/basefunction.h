@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,6 +24,7 @@
 #include "mfdvartypes.h"
 #include "TransXFunction.h"
 #include "planfunction.h"
+#include "OptimiserVar.h"
 
 class transxstate;
 
@@ -48,6 +49,7 @@ private:
 	class plan *planpointer;
 	int interceptwith;
 	OrbitTime mode2orbittime,deltavel;
+	OptimiserVar m_optiVar;
 protected:
 	Intercept primary;
 	OrbitElements craft, rmin, basisorbit, hypormaj, target, context;
@@ -75,7 +77,8 @@ public:
 	void setplanstate(int plantype,int plan);//selects the type of plan to be carried out
 	void setnextplanstate(int plantype,int plan,int targettype);
 	void getplanstate(int *xplantype,int *xplan,int *targettype);
-	virtual void doupdate(Sketchpad *sketchpad, int tw, int th,int viewmode);
+	virtual void doupdate(oapi::Sketchpad *sketchpad, int tw, int th,int viewmode);
+	const OptimiserVar & GetOptiVar() const;
 
 	virtual void saveself(FILEHANDLE scn);
 	virtual void restoreself(FILEHANDLE scn);

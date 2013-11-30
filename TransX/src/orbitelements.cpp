@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,8 +21,8 @@
 #define STRICT
 
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "graph.h"
@@ -66,7 +66,7 @@ double OrbitElements::getvelocityatdist(double tradius)
 	energy=((energy>0) ? sqrt(energy) : 0);
 	return energy;
 }
-	
+
 void OrbitElements::minortomajorinit(const OrbitElements &craftinrmin, const OrbitElements &rmininrmaj, double soisize)
 //Now aims close to transfer coordinates very close to the minor planet - should be very accurate!
 {
@@ -89,13 +89,13 @@ void OrbitElements::minortomajorinit(const OrbitElements &craftinrmin, const Orb
 	// Note that this may be non-standard for some applications
 	costhi=-1/craftinrmin.eccentricity;
 	sinthi=sqrt(1-costhi*costhi); //Positive thi again
-	
+
 	//At infinity position and velocity vectors are aligned
 	vel=(craftinrmin.majoraxis*costhi+craftinrmin.minoraxis*sinthi)*sqrt(craftinrmin.planet/craftinrmin.semimajor);
 
 	//Calculate position at time zero - without the planet!
 	pos=pos-vel*time;
-	
+
 	//Get the planet's position at the time of ejection
 	time=craftinrmin.gettimestamp()-craftinrmin.deltatime;
 	rmininrmaj.timetovectors(time-rmininrmaj.gettimestamp(), &plpos, &plvel);//works well in this context
@@ -234,7 +234,7 @@ void OrbitElements::init(OBJHANDLE hmajor, OBJHANDLE hminor)
 		oapiGetGlobalVel(hminor, &mintruevel);
 		double m2 = 0;// the mass of the most massive satellite of the minor body
 		if(map->getfirstmoon(hminor))
-			m2 = oapiGetMass(map->getfirstmoon(hminor)); 
+			m2 = oapiGetMass(map->getfirstmoon(hminor));
 		double m1 = oapiGetMass(hminor); // the mass of the minor body
 		minoraboutbarycentre->init(mintruepos - minbary, mintruevel - minvel, GRAVITY * pow(m2, 3) / pow((m1 + m2), 2));
 	}
@@ -321,7 +321,7 @@ double OrbitElements::simpletimetoradius(double radius) const
 			e_angle=0;
 		}
 	}
-	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh); 
+	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh);
 	return loc_deltatime;
 }
 
@@ -367,7 +367,7 @@ double OrbitElements::GetTimeToRadius(double radius, bool outward) const
 			e_angle=0;
 		}
 	}
-	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh); 
+	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh);
 	if (!outward) loc_deltatime=-loc_deltatime;
 	loc_deltatime-=deltatime;
 	if (loc_deltatime<0 && eccentricity<1)
@@ -428,7 +428,7 @@ double OrbitElements::simpletimetothi(double costhi,double sinthi) const
 			e_angle=0;
 		}
 	}
-	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh); 
+	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh);
 	if (sinthi<0) return -loc_deltatime;
 	return loc_deltatime;
 }
@@ -497,7 +497,7 @@ double OrbitElements::GetTimeToThi(double costhi, double sinthi,int fullorbits,i
 			e_angle=0;
 		}
 	}
-	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh); 
+	loc_deltatime=orbitconstant*(e_angle-eccentricity*sinsinh);
 	if (sinthi<0) loc_deltatime=-loc_deltatime;
 	loc_deltatime-=deltatime;
 	double orbittime=orbitconstant*(PI+PI);
@@ -558,7 +558,7 @@ VECTOR3 OrbitElements::getintersectvector(const OrbitElements &torbit) const
 	return crossp(planevector, torbit.planevector);
 }
 
-double OrbitElements::geteccentricity() const 
+double OrbitElements::geteccentricity() const
 {
 	return eccentricity;
 }
@@ -573,7 +573,7 @@ double OrbitElements::getcurrcosthi() const
 	return currcosthi;
 }
 
-double OrbitElements::getcurrsinthi() const 
+double OrbitElements::getcurrsinthi() const
 {
 	return currsinthi;
 }
@@ -583,7 +583,7 @@ void OrbitElements::getaxes(VECTOR3 *tmajoraxis, VECTOR3 *tminoraxis) const
 	*tmajoraxis=majoraxis;
 	*tminoraxis=minoraxis;
 }
-	
+
 void OrbitElements::getcurrentvectors(VECTOR3 *tpos, VECTOR3 *tvel) const
 {
 	*tpos=currposition;
@@ -707,7 +707,7 @@ void OrbitElements::GetTimesToThi(double costhi, double *time1, double *time2,in
 }
 
 
-void OrbitElements::draworbit(Sketchpad *sketchpad, const Graph *graph, bool drawradius) const
+void OrbitElements::draworbit(oapi::Sketchpad *sketchpad, const Graph *graph, bool drawradius) const
 {
 	// Create projection vectors
 	if (!valid) return;
@@ -720,7 +720,7 @@ void OrbitElements::draworbit(Sketchpad *sketchpad, const Graph *graph, bool dra
 	DWORD ystart=graph->iystart;
 	DWORD yend=graph->iyend;
 	double scale=graph->scale;
-	IVECTOR2 pointarray[50];
+	oapi::IVECTOR2 pointarray[50];
 	DWORD numpoints;
 	int xpos, ypos;
 	double xposd,yposd;
@@ -836,7 +836,7 @@ void OrbitElements::timetovectors(double timefromnow,OrbitTime *posvel) const
 		double orbittime=orbitconstant*2*PI;
 		timetarget-=floor(timetarget/orbittime+0.5)*orbittime;
 	}
-	
+
 	if (posvel->processed)
 	{//We've scanned this structure already, go ahead and improve on it
 		if (improve(timetarget,posvel)) return;//If untrue, it's because result indicates major overhaul needed
@@ -1025,7 +1025,7 @@ void OrbitElements::timetovectors(double timefromnow, VECTOR3 *pos, VECTOR3 *vel
 	else
 	{
 		double e_angle;
-		// Assume that the first initial e_angle is thi (present position)! 
+		// Assume that the first initial e_angle is thi (present position)!
 		double loc_deltatime,delta;
 		double to=(timefromnow+deltatime)/orbitconstant; //Required time / orbitconstant
 		if (to>PI)

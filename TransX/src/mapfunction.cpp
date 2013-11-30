@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,11 +21,13 @@
 #define STRICT
 
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "mapfunction.h"
+
+using namespace std;
 
 mapfunction *mapfunction::themap=NULL;
 
@@ -35,7 +37,7 @@ mapfunction::~mapfunction()
 	themap=NULL;
 }
 
-mapfunction::mapfunction() : 
+mapfunction::mapfunction() :
 sun(NULL)
 {
 	initialised=false;
@@ -53,7 +55,7 @@ void mapfunction::DeleteGBody(GBODY *body)
 {
 	if(body)
 	{
-		// recursively eletes the GBODY and the tree of satellites 
+		// recursively eletes the GBODY and the tree of satellites
 		list<GBODY*>::iterator it;
 		for(it = body->satellites.begin(); it != body->satellites.end(); ++it)
 			DeleteGBody(*it);
@@ -105,7 +107,7 @@ OBJHANDLE mapfunction::getcurrbody(OBJHANDLE vessel)//Finds current body for cur
 	//We now have the actual body for this object
 	return currentsoi->bodyhandle;
 }
-	
+
 double mapfunction::getsoisize(OBJHANDLE handle)
 {
 	double radius;
@@ -118,7 +120,7 @@ double mapfunction::getsoisize(OBJHANDLE handle)
 		GBODY *body = bodyMap[handle];
 		OBJHANDLE parent = body->parent->bodyhandle;
 		VECTOR3 vecradius;
-		
+
 		oapiGetRelativePos(parent,handle,&vecradius);
 		radius=sqrt(dotp(vecradius,vecradius)*body->gravbodyratio2);
 	}
@@ -153,7 +155,7 @@ OBJHANDLE mapfunction::getnextpeer(OBJHANDLE handle)
 }
 
 OBJHANDLE mapfunction::getpreviouspeer(OBJHANDLE handle)
-{	
+{
 	if(bodyMap[handle])
 		if(bodyMap[handle]->previous)
 			return bodyMap[handle]->previous->bodyhandle;
@@ -187,7 +189,7 @@ VECTOR3 mapfunction::getweightedvector(OBJHANDLE body, void (*func)(OBJHANDLE, V
 		barycentre.y += bodypos.y * bodymass;
 		barycentre.z += bodypos.z * bodymass;
 		totalmass += bodymass;
-		
+
 		moon = getnextpeer(moon);
 	}
 
@@ -239,7 +241,7 @@ void mapfunction::InitialiseSolarSystem()
 				char itname[30], name[30];
 				oapiGetObjectName((*it)->bodyhandle, itname, 30);
 				oapiGetObjectName(body->bodyhandle, name, 30);
-				
+
 				VECTOR3 pos;
 				oapiGetRelativePos(body->bodyhandle, (*it)->bodyhandle, &pos);
 				double distance2 = dotp(pos, pos);
@@ -248,7 +250,7 @@ void mapfunction::InitialiseSolarSystem()
 					currparent = *it;
 					currdistance2 = distance2;
 				}
-	
+
 				it++;
 			}
 			body->parent = currparent;
@@ -272,7 +274,7 @@ double mapfunction::GetApproxAtmosphericLimit(OBJHANDLE body)
 		return 0;
 	if(atmLimit[body] != 0)
 		return atmLimit[body];	// return the limit if we have already found it
-	
+
 	// Perform a binary search (trial and error) to see find the altitude for a given static pressure
 	double alt = oapiGetPlanetAtmConstants(body)->radlimit;
 	double step = oapiGetPlanetAtmConstants(body)->radlimit / 2;

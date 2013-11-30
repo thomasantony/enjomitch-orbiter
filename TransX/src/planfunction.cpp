@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,8 +20,8 @@
 
 #define STRICT
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mapfunction.h"
 #include "mfd.h"
@@ -36,7 +36,7 @@ bool minorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 	double radius;
 	radius=oapiGetSize(base->gethmajor());
 
-	m_ped.init(vars,3,3,"Pe Distance", radius*1.2, 0, radius*1000, 0.05, 1000);
+	m_ped.init(vars, base->GetOptiVar(),3,3,"Pe Distance", radius*1.2, 0, radius*1000, 0.05, 1000);
 	m_ejorient.init(vars,"Ej Orientation", true);
 	m_equatorial.init(vars,3,3,"Equatorial view",0,1,"No","Yes","","","");
 	ibase=base;
@@ -87,7 +87,7 @@ void slingshot::calculate(class MFDvarhandler *vars,basefunction *base)
 	if (next==NULL) return;//No way to know where slingshot should go, so stop here
 	//First, get handed-on orbit from previous
 	planorbit.setinvalid();
-	
+
 	OrbitElements craft=base->getcraftorbit();
 	VECTOR3 inward={0,0,0};
 	if (craft.isvalid())
@@ -175,7 +175,7 @@ void slingshot::calculate(class MFDvarhandler *vars,basefunction *base)
 		pevel=pevel*sqrt(inwardvelocity*inwardvelocity+2*gmhmajor/periapsisguess);
 	else
 		pevel=pevel*sqrt(ejectvelocity2+2*gmhmajor/periapsisguess);
-	
+
 	planorbit.init(peposition,pevel,ejecttime,gmhmajor);
 }
 
@@ -217,7 +217,7 @@ void slingshot::graphscale(Graph *graph)
 		graph->setviewscale(planorbit);
 }
 
-bool minorejectplan::maingraph(Sketchpad *sketchpad,Graph *graph, basefunction *base)
+bool minorejectplan::maingraph(oapi::Sketchpad *sketchpad,Graph *graph, basefunction *base)
 {
 	OrbitElements craft=base->getcraftorbit();
 	if (craft.isvalid() && planorbit.isvalid())
@@ -237,7 +237,7 @@ bool minorejectplan::maingraph(Sketchpad *sketchpad,Graph *graph, basefunction *
 	return true;
 }
 
-bool slingshot::maingraph(Sketchpad *sketchpad,Graph *graph,basefunction *base)
+bool slingshot::maingraph(oapi::Sketchpad *sketchpad,Graph *graph,basefunction *base)
 {
 	OrbitElements craft=base->getcraftorbit();
 	OBJHANDLE hmajor=base->gethmajor();
@@ -255,9 +255,9 @@ bool slingshot::maingraph(Sketchpad *sketchpad,Graph *graph,basefunction *base)
 	graph->setprojection(velvector);
 
 	oapi::Pen *pen=base->SelectDefaultPen(sketchpad,TransXFunction::PEN_ATMOSPHERE);
-	graph->drawatmosphere(sketchpad,hmajor); 
+	graph->drawatmosphere(sketchpad,hmajor);
 	pen=base->SelectDefaultPen(sketchpad,TransXFunction::Grey);
-	graph->drawplanet(sketchpad,hmajor); 
+	graph->drawplanet(sketchpad,hmajor);
 	pen=base->SelectDefaultPen(sketchpad,TransXFunction::Green);
 	graph->drawvector(sketchpad,craftpos);
 	pen=base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
@@ -266,10 +266,10 @@ bool slingshot::maingraph(Sketchpad *sketchpad,Graph *graph,basefunction *base)
 }
 
 
-void encounterplan::graphupdate(Sketchpad *sketchpad,Graph *graph,basefunction *base)
+void encounterplan::graphupdate(oapi::Sketchpad *sketchpad,Graph *graph,basefunction *base)
 {
 	drawnbase=false;
-	Pen* pen=base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
+	oapi::Pen* pen=base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
 	OBJHANDLE hvessel=base->gethcraft();
 	VESSEL *curfocus=oapiGetVesselInterface(hvessel);
 	VESSELSTATUS status;
@@ -280,7 +280,7 @@ void encounterplan::graphupdate(Sketchpad *sketchpad,Graph *graph,basefunction *
 	oapiGetRelativePos(surfbase,hmaj,&baseposition);
 	double rot = oapiGetPlanetPeriod(hmaj);
 	OrbitElements craft=base->getcraftorbit();
-	
+
 	// Get the base position at the Pe/impact by rotating the body by the time until Pe/impact
 	double radius = oapiGetSize(hmaj);
 	double deltatime;
@@ -292,7 +292,7 @@ void encounterplan::graphupdate(Sketchpad *sketchpad,Graph *graph,basefunction *
 	oapiGetPlanetObliquityMatrix(hmaj, &oblrot);
 	MATRIX3 invoblrot = getinvmatrix(oblrot);
 	double theta = 2 * PI * deltatime / rot; // angle rotated by planet in 1 second
-	MATRIX3 majrot = {cos(theta), 0, -sin(theta), 
+	MATRIX3 majrot = {cos(theta), 0, -sin(theta),
 					  0,		  1, 0,
 					  sin(theta), 0, cos(theta)};
 	VECTOR3 v1 = mul(invoblrot, baseposition);
@@ -309,9 +309,9 @@ void encounterplan::graphupdate(Sketchpad *sketchpad,Graph *graph,basefunction *
 }
 
 
-void slingshot::graphupdate(Sketchpad *sketchpad, Graph *graph,basefunction *base)
+void slingshot::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunction *base)
 {
-	Pen* pen=base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
+	oapi::Pen* pen=base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
 	planorbit.draworbit(sketchpad,graph,false);
 	OrbitElements craft=base->getcraftorbit();
 	if (!craft.isvalid()) return;
@@ -320,7 +320,7 @@ void slingshot::graphupdate(Sketchpad *sketchpad, Graph *graph,basefunction *bas
 	graph->drawvectorline(sketchpad,intersect);
 }
 
-void minorejectplan::wordupdate(Sketchpad *sketchpad, int width, int height, basefunction *base)
+void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height, basefunction *base)
 {
 	char buffer[20];
 	int linespacing=height/24;
@@ -331,7 +331,7 @@ void minorejectplan::wordupdate(Sketchpad *sketchpad, int width, int height, bas
 	OBJHANDLE hcraft=base->gethcraft();
 	VESSEL *pV=oapiGetVesselInterface(hcraft);
 	VESSELSTATUS status;
-	pV->GetStatus(status);	
+	pV->GetStatus(status);
 	double angle=180/PI*acos(cosangle(planorbit.getplanevector(),craft.getplanevector()));
 	VECTOR3 tpos,tvel;
 	tpos=status.rpos;
@@ -414,7 +414,7 @@ void minorejectplan::wordupdate(Sketchpad *sketchpad, int width, int height, bas
 }
 
 
-void slingshot::wordupdate(Sketchpad *sketchpad, int width, int height, basefunction *base)
+void slingshot::wordupdate(oapi::Sketchpad *sketchpad, int width, int height, basefunction *base)
 {
 	int linespacing=height/24;
 	int pos=15*linespacing;
@@ -447,7 +447,7 @@ void encounterplan::getplanorbit(OrbitElements *planorbit)
 }
 
 
-void encounterplan::wordupdate(Sketchpad *sketchpad, int width, int height, basefunction *base)
+void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height, basefunction *base)
 {
 	int linespacing=height/24;
 	int pos=18*linespacing;
@@ -537,7 +537,7 @@ void encounterplan::wordupdate(Sketchpad *sketchpad, int width, int height, base
 }
 
 
-void majejectplan::wordupdate(Sketchpad *sketchpad,int width, int height, basefunction *base)
+void majejectplan::wordupdate(oapi::Sketchpad *sketchpad,int width, int height, basefunction *base)
 {
 	if (ratioorbit>0)
 	{
@@ -549,7 +549,7 @@ void majejectplan::wordupdate(Sketchpad *sketchpad,int width, int height, basefu
 
 
 
-void minorejectplan::graphupdate(Sketchpad *sketchpad, Graph *graph,basefunction *base)
+void minorejectplan::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunction *base)
 {
 	base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
 	planorbit.draworbit(sketchpad,graph,true);
@@ -561,7 +561,7 @@ void majejectplan::graphscale(Graph *graph)
 		graph->setviewscale(planorbit);
 }
 
-void majejectplan::graphupdate(Sketchpad *sketchpad, Graph *graph,basefunction *base)
+void majejectplan::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunction *base)
 {
 	base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
 	planorbit.draworbit(sketchpad,graph,false);
@@ -569,11 +569,11 @@ void majejectplan::graphupdate(Sketchpad *sketchpad, Graph *graph,basefunction *
 
 bool slingejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 {
-	m_totalvel.init(vars,3,3,"Velocity.",0, 0,1e8,0.1,1000);
+	m_totalvel.init(vars, base->GetOptiVar(),3,3,"Velocity.",0, 0,1e8,0.1,1000);
 	m_outwardangle.init(vars,"Outward angle",true);
 	m_incangle.init(vars,"Inc. angle",false);
 	m_inheritvel.init(vars,3,3,"Inherit Vel.",0,1,"Yes","No","","","");
-	m_ejdate.init(vars,3,3,"Eject date",0,0,1e20,0.000005,1000000);
+	m_ejdate.init(vars, base->GetOptiVar(),3,3,"Eject date",0,0,1e20,0.000005,1000000);
 	m_ejdate=oapiGetSimMJD();//Temporary default.
 
 	m_totalvel.sethelpstrings(
@@ -601,12 +601,12 @@ bool slingejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 
 bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 {
-	m_prograde.init(vars,3,3,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
-	m_ejdate.init(vars,3,3,"Eject date", 0, 0, 1e20, 0.000005, 1000000);
+	m_prograde.init(vars, base->GetOptiVar(),3,3,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
+	m_ejdate.init(vars, base->GetOptiVar(),3,3,"Eject date", 0, 0, 1e20, 0.000005, 1000000);
 	m_ejdate=oapiGetSimMJD();//Temporary default
 	m_inheritvel=1;//MFDvariable capabilities not used in this class
-	m_outwardvel.init(vars,3,3,"Outward vel.", 0,-1e8,1e8,0.1,1000);
-	m_chplvel.init(vars,3,3,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
+	m_outwardvel.init(vars, base->GetOptiVar(),3,3,"Outward vel.", 0,-1e8,1e8,0.1,1000);
+	m_chplvel.init(vars, base->GetOptiVar(),3,3,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 	m_prograde.sethelpstrings(
 		"Positive to move outward from MAJ",
 		"Negative to move inward toward MAJ");
@@ -785,7 +785,7 @@ void minorejectplan::calculate(class MFDvarhandler *vars,basefunction *base)
 	double costhiinfangle=1/ecc;
 	double sinthiinfangle=sqrt(1-costhiinfangle*costhiinfangle);
 
-	// Use this, in conjunction with other elements, to obtain 
+	// Use this, in conjunction with other elements, to obtain
 	//radius and velocity vectors for periapsis of required orbit
 	VECTOR3 periposvector=(txaxis*(-costhiinfangle)+tnaxis*sinthiinfangle)*peridistance; //Periapsis position vector
 	double tvel=sqrt(2*gmhmajor/peridistance+ejectvelocity2); // Velocity size at periapsis
@@ -793,7 +793,7 @@ void minorejectplan::calculate(class MFDvarhandler *vars,basefunction *base)
 
 	// Create orbit for hypothetical orbit in rmin
 	planorbit.init(periposvector, perivelvector, ejecttime, gmhmajor);
-	
+
 	//use that and the periapsis distance to calculate the eccentricity
 	//use that and the rotation vector to generate the required vectors
 	//make the orbit, then track back to also give parameters to pass to the major function

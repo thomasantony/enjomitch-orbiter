@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,14 +21,15 @@
 #define STRICT
 
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "mfdvartypes.h"
 #include "doublelink.h"
 #include "basefunction.h"
 #include "shiplist.h"
+#include "OptimiserVar.h"
 
 liststring::liststring(bool manageme) : listelement(manageme)
 {
@@ -104,7 +105,7 @@ void MFDvarshiplist::initbybody(OBJHANDLE craft,bool reset)
 	iterator->front();
 }
 
-		
+
 void MFDvarshiplist::addtolist(char *name)
 {
 	class liststring *temp=new liststring();
@@ -204,14 +205,14 @@ void MFDvarmoon::ch_adjmode()
 		adjMode = Planet;
 }
 
-void MFDvarmoon::showadjustment(Sketchpad *sketchpad, int width, int line) const
+void MFDvarmoon::showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const
 // This shows the mode of adjustment currently in force for the current MFDvariable
 {
 	char buffer[20];
 	int ypos=int(7*line);
 	int xpos=int(width/2);
 	int length;
-	switch (adjMode) 
+	switch (adjMode)
 	{
 	case Planet:
 		length=sprintf(buffer,"Planets/Moons");
@@ -292,7 +293,7 @@ bool MFDvarmoon::validate()
 	return false;
 }
 
-bool MFDvarmoon::show(Sketchpad *sketchpad, int width, int line)
+bool MFDvarmoon::show(oapi::Sketchpad *sketchpad, int width, int line)
 {
 	char buffer[20];
 	if (target!=NULL)
@@ -332,7 +333,7 @@ MFDvarfloat::MFDvarfloat()
 	continuous = true;
 }
 
-void MFDvarfloat::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder)
+void MFDvarfloat::init(MFDvarhandler *vars, const OptimiserVar & opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder)
 {
 	initialise(vars,viewmode1,viewmode2);
 	strcpy(name,vname);
@@ -341,9 +342,10 @@ void MFDvarfloat::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vna
 	max=vmax;
 	increment=vincrement;
 	logborder=vlogborder;
+	m_opti = &opti;
 }
 
-bool MFDvarshiplist::show(Sketchpad *sketchpad,int width,int line)
+bool MFDvarshiplist::show(oapi::Sketchpad *sketchpad,int width,int line)
 {
 	char buffer[20];
 	liststring *entry=static_cast<liststring*>(iterator->current());//It is this type
@@ -372,7 +374,7 @@ OBJHANDLE MFDvarshiplist::gethandle() const
 
 void MFDvarshiplist::enter_variable() {
 	oapiOpenInputBox("Select Ship",SelectVariableBody,0,20, (void*)this);
-}	
+}
 
 void MFDvarshiplist::inc_variable()
 {
@@ -384,7 +386,7 @@ void MFDvarshiplist::dec_variable()
 	iterator->previous();
 }
 
-bool MFDvarfloat::show(Sketchpad *sketchpad, int width, int line)
+bool MFDvarfloat::show(oapi::Sketchpad *sketchpad, int width, int line)
 {
 	char buffer[20];
 	int linecentre=(int) width/2;
@@ -416,44 +418,28 @@ bool MFDvarfloat::loadvalue(char *buffer)
 void MFDvarfloat::ch_adjmode()
 // Change the adjustment mode of this MFDvariable
 {
-	switch(adjMode)
-	{
-		case Rough	: adjMode = Coarse;	break;
-		case Coarse	: adjMode = Medium;	break;
-		case Medium	: adjMode = Fine;	break;
-		case Fine	: adjMode = Super;	break;
-		case Super	: adjMode = Ultra;	break;
-		case Ultra	: adjMode = Hyper;	break;
-		case Hyper	: adjMode = Micro;	break;
-		case Micro	: adjMode = Reset;	break;
-		case Reset	: adjMode = Rough;	break;
-	}
+    if (adjMode == Reset)
+        adjMode = Rough;
+    else
+        adjMode = (AdjustMode)((int)adjMode + 1);
 }
 
 void MFDvarfloat::chm_adjmode()
 {
-	switch(adjMode)
-	{
-		case Rough	: adjMode = Reset;	break;
-		case Coarse	: adjMode = Rough;	break;
-		case Medium	: adjMode = Coarse;	break;
-		case Fine	: adjMode = Medium;	break;
-		case Super	: adjMode = Fine;	break;
-		case Ultra	: adjMode = Super;	break;
-		case Hyper	: adjMode = Ultra;	break;
-        case Micro	: adjMode = Hyper;	break;
-		case Reset	: adjMode = Micro;	break;
-	}
+    if (adjMode == Rough)
+        adjMode = Reset;
+    else
+        adjMode = (AdjustMode)((int)adjMode - 1);
 }
 
-void MFDvarfloat::showadjustment(Sketchpad *sketchpad, int width, int line) const
+void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const
 // This shows the mode of adjustment currently in force for the current MFDvariable
 {
 	char buffer[MAX_NAME_LENGTH];
 	int ypos=int(7*line);
 	int xpos=int(width/2);
 	int length;
-	switch (adjMode) 
+	switch (adjMode)
 	{
     case Rough:
 		length=sprintf(buffer,"Rough");
@@ -479,6 +465,9 @@ void MFDvarfloat::showadjustment(Sketchpad *sketchpad, int width, int line) cons
     case Micro:
 		length=sprintf(buffer,"Micro");
 		break;
+	case Min:
+		length=sprintf(buffer,"Min");
+		break;
 	case Reset:
 		length=sprintf(buffer,"Reset");
 		break;
@@ -499,7 +488,7 @@ bool MFDvarfloat::floatvalidate(char * str, double * dfinal, double valcurrent, 
 	int lfullstr=strlen(str);
 	int lendstr=strlen(endstr);
 	if(d==0.0) {
-		if(lfullstr==lendstr) { 
+		if(lfullstr==lendstr) {
 			if(lfullstr==1 && *endstr=='x') {
 				*dfinal=valdefault;
 				return true;
@@ -558,6 +547,9 @@ void MFDvarfloat::inc_variable()
 	case Micro:
 		adjuster=0.0000001;
 		break;
+    case Min:
+		value=OptimiserVar().GetOpti();
+		return;
 	case Reset:
 		value=defaultvalue;
 		return;
@@ -599,6 +591,9 @@ void MFDvarfloat::dec_variable()
 	case Micro:
 		adjuster=0.0000001;
 		break;
+    case Min:
+		value=OptimiserVar().GetOpti();
+		return;
 	case Reset:
 		value=defaultvalue;
 		return;
@@ -625,7 +620,7 @@ double MFDvarfloat::getvalue() const
 MFDvarfloat::~MFDvarfloat()
 {}
 
-bool MFDsemiintdiscrete::show(Sketchpad *sketchpad, int width, int line)
+bool MFDsemiintdiscrete::show(oapi::Sketchpad *sketchpad, int width, int line)
 {
 	char buffer[20];
 	double temp=value*0.5;
@@ -634,7 +629,7 @@ bool MFDsemiintdiscrete::show(Sketchpad *sketchpad, int width, int line)
 	return true;
 }
 
-bool MFDvarMJD::show(Sketchpad *sketchpad, int width, int line)
+bool MFDvarMJD::show(oapi::Sketchpad *sketchpad, int width, int line)
 {
 	char buffer[20];
 	sprintf(buffer,"%.4f", value);
@@ -696,7 +691,7 @@ void MFDvardiscrete::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *
 }
 
 
-bool MFDvardiscrete::show(Sketchpad *sketchpad, int width, int line)
+bool MFDvardiscrete::show(oapi::Sketchpad *sketchpad, int width, int line)
 {
 	showgeneric(sketchpad, width, line, label[value]);
 	return true;
@@ -743,7 +738,7 @@ void MFDvarangle::init(MFDvarhandler *vars,char *vname, bool vloop)
 	loop=vloop;
 }
 
-bool MFDvarangle::show(Sketchpad *sketchpad, int width, int line)
+bool MFDvarangle::show(oapi::Sketchpad *sketchpad, int width, int line)
 {
 	char buffer[20];
 	sprintf(buffer,"%.4f'", value/PI*180);
@@ -799,6 +794,9 @@ void MFDvarangle::inc_variable()
     case Micro:
 		adjuster=0.0000001;
 		break;
+	case Min:
+		value=OptimiserVar().GetOpti();
+		return;
 	case Reset:
 		value=defaultvalue;
 		return;
@@ -843,6 +841,9 @@ void MFDvarangle::dec_variable()
 	case Micro:
 		adjuster=0.0000001;
 		break;
+    case Min:
+		value=OptimiserVar().GetOpti();
+		return;
 	case Reset:
 		value=defaultvalue;
 		return;
@@ -857,7 +858,7 @@ void MFDvarangle::dec_variable()
 	}
 	value=temp;
 }
-	
+
 
 double MFDvarangle::getsin() const
 {

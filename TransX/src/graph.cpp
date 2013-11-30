@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,8 +21,8 @@
 #define STRICT
 
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "graph.h"
@@ -121,13 +121,13 @@ void Graph::setprojection(const VECTOR3 &projection)
 	}
 }
 
-void Graph::draworbit(const OrbitElements &element, Sketchpad *sketchpad, bool drawradius)
+void Graph::draworbit(const OrbitElements &element, oapi::Sketchpad *sketchpad, bool drawradius)
 {
 	element.draworbit(sketchpad,this ,drawradius);
 }
 
 
-void Graph::drawtwovector(Sketchpad *sketchpad, const VECTOR3 &line1, const VECTOR3 &line2)
+void Graph::drawtwovector(oapi::Sketchpad *sketchpad, const VECTOR3 &line1, const VECTOR3 &line2)
 // Draw two vectors from the planet centre
 {
 	const double xoffset=(ixstart+ixend)*0.5;
@@ -148,7 +148,7 @@ void Graph::drawtwovector(Sketchpad *sketchpad, const VECTOR3 &line1, const VECT
 }
 
 
-void Graph::drawvector(Sketchpad *sketchpad,const VECTOR3 &line1)
+void Graph::drawvector(oapi::Sketchpad *sketchpad,const VECTOR3 &line1)
 {
 	const double xoffset=(ixstart+ixend)*0.5;
 	const double yoffset=(iystart+iyend)*0.5;
@@ -162,7 +162,7 @@ void Graph::drawvector(Sketchpad *sketchpad,const VECTOR3 &line1)
 }
 
 
-void Graph::drawvectorline(Sketchpad *sketchpad, const VECTOR3 &line)
+void Graph::drawvectorline(oapi::Sketchpad *sketchpad, const VECTOR3 &line)
 // Draw a vector from the planet centre
 {
 	const double xoffset=(ixstart+ixend)*0.5;
@@ -179,7 +179,7 @@ void Graph::drawvectorline(Sketchpad *sketchpad, const VECTOR3 &line)
 	sketchpad->LineTo(xpos, ypos);
 }
 
-void Graph::drawplanet(Sketchpad *sketchpad, OBJHANDLE body)
+void Graph::drawplanet(oapi::Sketchpad *sketchpad, OBJHANDLE body)
 {
 	// Draw a circle of the right size to represent a planet
 	double size=oapiGetSize(body);
@@ -196,7 +196,7 @@ void Graph::drawplanet(Sketchpad *sketchpad, OBJHANDLE body)
 	}
 }
 
-void Graph::drawatmosphere(Sketchpad *sketchpad, OBJHANDLE body)
+void Graph::drawatmosphere(oapi::Sketchpad *sketchpad, OBJHANDLE body)
 {
 	// Draw a circle of the right size to represent the atmosphere of a planet
 	double atmlimit = mapfunction::GetApproxAtmosphericLimit(body);
@@ -209,7 +209,7 @@ void Graph::drawatmosphere(Sketchpad *sketchpad, OBJHANDLE body)
 	}
 }
 
-void Graph::drawcircle(Sketchpad *sketchpad, double size)
+void Graph::drawcircle(oapi::Sketchpad *sketchpad, double size)
 {
 	int x=int((ixstart+ixend)/2);
 	int y=int((iystart+iyend)/2);
@@ -220,7 +220,7 @@ void Graph::drawcircle(Sketchpad *sketchpad, double size)
 	sketchpad->Ellipse(lowx, lowy, highx, highy);
 }
 
-double Graph::vectorpointdisplay(Sketchpad *sketchpad, const VECTOR3 &target, MFD2 *mfd, VESSEL *vessel, bool isposition)
+double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &target, MFD2 *mfd, VESSEL *vessel, bool isposition)
 //targetvector is a vector in the global reference plane
 //isposition true
 {
@@ -251,8 +251,8 @@ double Graph::vectorpointdisplay(Sketchpad *sketchpad, const VECTOR3 &target, MF
 		// Must move to the righthand side of the circle to draw
 		double radius = i * width * edgeBorderSize / 2 / rings;
 		sketchpad->Ellipse(int(width/2 - radius),
-							int(height/2 - radius), 
-							int(width/2 + radius), 
+							int(height/2 - radius),
+							int(width/2 + radius),
 							int(height/2 + radius));
 	}
 
@@ -268,7 +268,7 @@ double Graph::vectorpointdisplay(Sketchpad *sketchpad, const VECTOR3 &target, MF
 	double xang = trtarget.x / offsetsize;
 	double yang =- trtarget.y / offsetsize;
 	offsetsize = sqrt(offsetsize / trtarget.z);
-	if (offsetsize > scalar || trtarget.z < 0) 
+	if (offsetsize > scalar || trtarget.z < 0)
 		offsetsize = scalar;
 	offsetsize = offsetsize / scalar * windowsize * edgeBorderSize / 2;
 	int xpos = int(offsetsize * xang + width / 2 + ixstart);
@@ -283,7 +283,7 @@ double Graph::vectorpointdisplay(Sketchpad *sketchpad, const VECTOR3 &target, MF
 	return length(trtarget);
 }
 
-void Graph::drawmarker(Sketchpad *sketchpad, const VECTOR3 location, Shape shape)
+void Graph::drawmarker(oapi::Sketchpad *sketchpad, const VECTOR3 location, Shape shape)
 {
 	int x = (ixstart + ixend) / 2;
 	int y = (iystart + iyend) / 2;

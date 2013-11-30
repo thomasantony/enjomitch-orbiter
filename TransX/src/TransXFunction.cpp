@@ -20,8 +20,8 @@
 
 #define STRICT
 #include <windows.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "transxstate.h"
@@ -335,7 +335,7 @@ void TransXFunction::deletepens()
 	}
 }
 															//(rbd-)
-Pen* TransXFunction::SelectDefaultPen(Sketchpad *sketchpad, int value)
+oapi::Pen* TransXFunction::SelectDefaultPen(oapi::Sketchpad *sketchpad, int value)
 {
 	oapi::Pen* ret;
 	if(value < NUM_PENS) {//(rbd+)
@@ -351,7 +351,7 @@ Pen* TransXFunction::SelectDefaultPen(Sketchpad *sketchpad, int value)
 	return ret;
 }
 
-Brush* TransXFunction::SelectBrush(Sketchpad *sketchpad, int value)
+oapi::Brush* TransXFunction::SelectBrush(oapi::Sketchpad *sketchpad, int value)
 {
 	if(value < NUM_PENS && value >= 0) //(rbd+)
 		return sketchpad->SetBrush(brush[value]);		// Custom brush
@@ -377,5 +377,5 @@ void TransXFunction::gethelp(char *help1,char *help2,char *help3,char *help4,cha
 	strcpy(help5,helpstring5);
 }
 
-Pen* TransXFunction::pens[NUM_PENS] = {0};
-Brush* TransXFunction::brush[NUM_PENS] = {0};
+oapi::Pen* TransXFunction::pens[NUM_PENS] = {0};
+oapi::Brush* TransXFunction::brush[NUM_PENS] = {0};

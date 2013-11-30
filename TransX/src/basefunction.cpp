@@ -6,10 +6,10 @@
 ** to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ** copies of the Software, and to permit persons to whom the Software is
 ** furnished to do so, subject to the following conditions:
-** 
+**
 ** The above copyright notice and this permission notice shall be included in
 ** all copies or substantial portions of the Software.
-** 
+**
 ** THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ** IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ** FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,7 +32,8 @@ extern double debug;
 
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft)
 : TransXFunction(tstate, thmajor, thminor,thcraft)
-{ 
+{
+    m_optiVar.Init(this);
 	iplantype=0;
 	previousfunc=tpreviousfunc;
 	nextfunc=NULL;
@@ -50,6 +51,7 @@ basefunction::basefunction(class transxstate *tstate, class basefunction *tprevi
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, class basefunction *templbase, OBJHANDLE thcraft)
 : TransXFunction(tstate, templbase->hmajor, templbase->hminor, thcraft)
 {
+    m_optiVar.Init(this);
 	iplantype=templbase->iplantype;
 	previousfunc=tpreviousfunc;
 	nextfunc=NULL;
@@ -413,10 +415,10 @@ bool basefunction::initialisevars()
 	m_minor.init(&vars,2,2,"Select Minor",hmajor);
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
 	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
-	m_prograde.init(&vars,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
-	m_ejdate.init(&vars,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
-	m_outwardvel.init(&vars,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
-	m_chplvel.init(&vars,4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
+	m_prograde.init(&vars, m_optiVar,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
+	m_ejdate.init(&vars, m_optiVar,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
+	m_outwardvel.init(&vars, m_optiVar,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
+	m_chplvel.init(&vars, m_optiVar,4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 	m_intwith.init(&vars,2,2,"Intercept with",0,3,"Auto","Plan","Manoeuvre","Focus","");
 	m_orbitsahead.init(&vars,2,2,"Orbits to Icept",0);
 	m_graphprj.init(&vars,2,2,"Graph projection",0,4, "Ecliptic","Focus","Manoeuvre","Plan","Edge On");
@@ -512,7 +514,7 @@ void basefunction::switchplantype()
 {
 	m_planinitial.setshow(false);
 	m_planthrough.setshow(false);
-	m_planminor.setshow(false);	
+	m_planminor.setshow(false);
 	switch (m_plantype){
 	case 0:
 		m_planinitial.setshow(true);
@@ -613,7 +615,7 @@ void basefunction::calculate(VECTOR3 *targetvel)
 	// Get positions of major, minor bodies and spacecraft
 	if (previousfunc==NULL)
 	{
-		hcontext=mappointer->getmajor(hmajor);		
+		hcontext=mappointer->getmajor(hmajor);
 		if (hcontext!=hmajor)
 		{
 			context.init(hcontext,hmajor);//the orbit of hmajor around its boss
@@ -752,7 +754,7 @@ OrbitElements basefunction::getpassforwardorbit()
 	return craft;
 }
 
-void basefunction::doupdate(Sketchpad *sketchpad,int tw, int th,int viewmode)
+void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmode)
 {
 	if (!valid) return;
 	if (!m_target.validate()) hmajtarget=NULL;
@@ -842,13 +844,13 @@ void basefunction::doupdate(Sketchpad *sketchpad,int tw, int th,int viewmode)
 		}
 		if (planpointer!=NULL && viewmode==3)
 		{
-			if (!planpointer->maingraph(sketchpad,&graph,this)) 
+			if (!planpointer->maingraph(sketchpad,&graph,this))
 			{
 				planpointer->wordupdate(sketchpad,tw,th,this);
 				return;
 			}
 		}
-		double scale=0;	
+		double scale=0;
 
 		// Set the viewscale for the graph
 		graph.setviewscale(scale);
@@ -896,9 +898,9 @@ void basefunction::doupdate(Sketchpad *sketchpad,int tw, int th,int viewmode)
 
 		//Draw the central body
 		SelectDefaultPen(sketchpad,PEN_ATMOSPHERE);
-		graph.drawatmosphere(sketchpad,hmajor); 
+		graph.drawatmosphere(sketchpad,hmajor);
 		SelectDefaultPen(sketchpad,Grey);
-		graph.drawplanet(sketchpad,hmajor); 
+		graph.drawplanet(sketchpad,hmajor);
 
 		// If there is a target, draw it, and if there's an intercept,the targeting lines
 		if (target.isvalid())
@@ -995,10 +997,15 @@ void basefunction::Getmode2hypo(VECTOR3 *targetvel)
 
 	VECTOR3 hypopos, hypovel;
 	// Add to basisorbit vectors at eject time to give ejection vector in rmaj
-	hypopos=ejradius; 
-	hypovel=ejectvector+ejvel; 
+	hypopos=ejradius;
+	hypovel=ejectvector+ejvel;
 	*targetvel=hypovel;
 
 	//Create hypothetical orbit in rmaj
 	hypormaj.init(hypopos, hypovel, (m_ejdate-simstartMJD)*SECONDS_PER_DAY, basisorbit.getgmplanet());
+}
+
+const OptimiserVar & basefunction::GetOptiVar() const
+{
+    return m_optiVar;
 }
