@@ -1,0 +1,15 @@
+syntax: glob
+*.aux
+*.log
+*.dvi
+*.gz
+*.pdf
+*.pdf_tex
+bin/*
+*.o
+*.a
+*.depend
+*.layout
+*~
+*_gch
+*.out
