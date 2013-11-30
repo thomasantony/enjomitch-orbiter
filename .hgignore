@@ -13,3 +13,8 @@ bin/*
 *~
 *_gch
 *.out
+*.user
+*.dsw
+*.dsp
+*.suo
+*.opt
