@@ -24,6 +24,7 @@
 #include "mapfunction.h"
 #include "mfdvariable.h"
 #include "doublelink.h"
+#include <memory>
 
 #define MAX_STRING_LENGTH	40
 
@@ -124,6 +125,7 @@ protected:
 	double inputvalue;
 	AdjustMode adjMode;
 	const OptimiserVar * m_opti;
+	std::auto_ptr<OptimiserVar *> opti;
 public:
 	operator double() {return value;};
 	double operator = (double tvalue){value=tvalue;return value;};
