@@ -2,10 +2,9 @@
 #define OPTIMISERBASE_H
 
 #include <vector>
-#include "mfdvartypes.h"
 class Intercept;
 class basefunction;
-
+class MFDvarfloat;
 class Optimiser
 {
     public:

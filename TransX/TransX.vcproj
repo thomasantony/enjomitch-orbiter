@@ -709,19 +709,19 @@
 			>
 		</File>
 		<File
-			RelativePath=".\src\OptimiserMulti.cpp"
+			RelativePath=".\src\Optimiser.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\src\OptimiserMulti.h"
+			RelativePath=".\src\Optimiser.h"
 			>
 		</File>
 		<File
-			RelativePath=".\src\OptimiserVar.cpp"
+			RelativePath=".\src\OptimiserFactory.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\src\OptimiserVar.h"
+			RelativePath=".\src\OptimiserFactory.h"
 			>
 		</File>
 		<File

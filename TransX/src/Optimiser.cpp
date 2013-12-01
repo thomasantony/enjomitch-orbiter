@@ -8,19 +8,22 @@ typedef dlib::matrix<double,0,1> column_vector;
 
 Optimiser::Optimiser(basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find)
 {
+	m_pArgs2Find = pArgs2Find;
     m_base = base;
     m_icept = icept;
-    m_pArgs2Find = pArgs2Find;
+
 }
 Optimiser::Optimiser(basefunction * base, Intercept * icept, MFDvarfloat* pArg2Find)
 {
+	m_pArgs2Find.push_back(pArg2Find);
     m_base = base;
     m_icept = icept;
-    m_pArgs2Find = std::vector<MFDvarfloat*>(1, pArg2Find);
 }
 
 Optimiser::~Optimiser()
 {
+    int test = 1;
+    int test2 = 23;
 }
 
 class OptiFunction
@@ -62,8 +65,10 @@ void Optimiser::Optimise() const
     bfgs_search_strategy stratSearch;
     objective_delta_stop_strategy stratStop(1e-7, 50);
     OptiFunction optiFunction(m_base, m_icept, m_pArgs2Find);
+    //for (size_t i = 0; i < m_pArgs2Find.size(); ++i)
+    //    starting_point(i) = *m_pArgs2Find.at(i);
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i)
-        starting_point(i) = *m_pArgs2Find.at(i);
+        starting_point(i) = 1.01;
 
     // The starting point will be modified by the optimiser
     find_min_using_approximate_derivatives

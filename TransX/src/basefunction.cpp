@@ -26,6 +26,7 @@
 #include "TransXFunction.h"
 #include "mfd.h"
 
+
 #include "transx.h"
 
 extern double debug;
@@ -33,7 +34,7 @@ extern double debug;
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft)
 : TransXFunction(tstate, thmajor, thminor,thcraft)
 {
-    m_optiVar.Init(this, &primary);
+    //m_optiVar.Init(this, &primary);
 	iplantype=0;
 	previousfunc=tpreviousfunc;
 	nextfunc=NULL;
@@ -51,7 +52,7 @@ basefunction::basefunction(class transxstate *tstate, class basefunction *tprevi
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, class basefunction *templbase, OBJHANDLE thcraft)
 : TransXFunction(tstate, templbase->hmajor, templbase->hminor, thcraft)
 {
-    m_optiVar.Init(this, &primary);
+    //m_optiVar.Init(this, &primary);
 	iplantype=templbase->iplantype;
 	previousfunc=tpreviousfunc;
 	nextfunc=NULL;
@@ -406,6 +407,12 @@ void basefunction::loadplan(int plan)
 
 bool basefunction::initialisevars()
 {
+    OptimiserFactory optiFact = GetOptiFactory();
+    std::vector<MFDvarfloat*> allVelocities;
+    allVelocities.push_back(&m_prograde);
+    allVelocities.push_back(&m_outwardvel);
+    allVelocities.push_back(&m_chplvel);
+
 	m_target.init(&vars,2,2,"Select Target",hmajor);
 	m_planauto.init(&vars,2,2,"Autoplan",0,1,"On","Off","","","");
 	m_plantype.init(&vars,2,2,"Plan type",0,2,"Initial","Through point","Cruise plan","","");
@@ -415,10 +422,10 @@ bool basefunction::initialisevars()
 	m_minor.init(&vars,2,2,"Select Minor",hmajor);
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
 	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
-	m_prograde.init(&vars, m_optiVar,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
-	m_ejdate.init(&vars, m_optiVar,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
-	m_outwardvel.init(&vars, m_optiVar,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
-	m_chplvel.init(&vars, m_optiVar,4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
+	m_prograde.init(&vars, optiFact.Create(&m_prograde),4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
+	m_ejdate.init(&vars, optiFact.Create(allVelocities),4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
+	m_outwardvel.init(&vars, optiFact.Create(&m_outwardvel),4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
+	m_chplvel.init(&vars, optiFact.Create(&m_chplvel),4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 	m_intwith.init(&vars,2,2,"Intercept with",0,3,"Auto","Plan","Manoeuvre","Focus","");
 	m_orbitsahead.init(&vars,2,2,"Orbits to Icept",0);
 	m_graphprj.init(&vars,2,2,"Graph projection",0,4, "Ecliptic","Focus","Manoeuvre","Plan","Edge On");
@@ -1005,7 +1012,14 @@ void basefunction::Getmode2hypo(VECTOR3 *targetvel)
 	hypormaj.init(hypopos, hypovel, (m_ejdate-simstartMJD)*SECONDS_PER_DAY, basisorbit.getgmplanet());
 }
 
+OptimiserFactory basefunction::GetOptiFactory()
+{
+    return OptimiserFactory(this, &primary);
+}
+
+/*
 const OptimiserVar & basefunction::GetOptiVar() const
 {
     return m_optiVar;
 }
+*/

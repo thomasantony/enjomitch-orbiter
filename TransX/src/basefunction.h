@@ -24,7 +24,7 @@
 #include "mfdvartypes.h"
 #include "TransXFunction.h"
 #include "planfunction.h"
-#include "OptimiserVar.h"
+#include "OptimiserFactory.h"
 
 class transxstate;
 
@@ -49,7 +49,6 @@ private:
 	class plan *planpointer;
 	int interceptwith;
 	OrbitTime mode2orbittime,deltavel;
-	OptimiserVar m_optiVar;
 protected:
 	Intercept primary;
 	OrbitElements craft, rmin, basisorbit, hypormaj, target, context;
@@ -78,7 +77,7 @@ public:
 	void setnextplanstate(int plantype,int plan,int targettype);
 	void getplanstate(int *xplantype,int *xplan,int *targettype);
 	virtual void doupdate(oapi::Sketchpad *sketchpad, int tw, int th,int viewmode);
-	const OptimiserVar & GetOptiVar() const;
+	//const OptimiserVar & GetOptiVar() const;
 
 	virtual void saveself(FILEHANDLE scn);
 	virtual void restoreself(FILEHANDLE scn);
@@ -94,6 +93,7 @@ public:
 	basefunction(class transxstate *tstate, class basefunction *tpreviousfunc,OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft);
 	basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, class basefunction *templbase, OBJHANDLE thcraft);
 	~basefunction();
+	OptimiserFactory GetOptiFactory();
 };
 
 #endif

@@ -29,7 +29,7 @@
 #include "doublelink.h"
 #include "basefunction.h"
 #include "shiplist.h"
-#include "OptimiserVar.h"
+#include "Optimiser.h"
 
 liststring::liststring(bool manageme) : listelement(manageme)
 {
@@ -333,8 +333,9 @@ MFDvarfloat::MFDvarfloat()
 	continuous = true;
 }
 
-void MFDvarfloat::init(MFDvarhandler *vars, const OptimiserVar & opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder)
+void MFDvarfloat::init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder)
 {
+    m_opti = opti;
 	initialise(vars,viewmode1,viewmode2);
 	strcpy(name,vname);
 	defaultvalue=value=vvalue;
@@ -342,7 +343,6 @@ void MFDvarfloat::init(MFDvarhandler *vars, const OptimiserVar & opti,int viewmo
 	max=vmax;
 	increment=vincrement;
 	logborder=vlogborder;
-	m_opti = &opti;
 }
 
 bool MFDvarshiplist::show(oapi::Sketchpad *sketchpad,int width,int line)
@@ -466,7 +466,7 @@ void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line
 		length=sprintf(buffer,"Micro");
 		break;
 	case Min:
-		length=sprintf(buffer,"Min");
+		length=sprintf(buffer,"Auto-Min");
 		break;
 	case Reset:
 		length=sprintf(buffer,"Reset");
@@ -548,7 +548,7 @@ void MFDvarfloat::inc_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		value = m_opti->GetOpti(&value);
+		m_opti->Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -592,7 +592,7 @@ void MFDvarfloat::dec_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		value = m_opti->GetOpti(&value);
+		m_opti->Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -639,36 +639,55 @@ bool MFDvarMJD::show(oapi::Sketchpad *sketchpad, int width, int line)
 
 void MFDvarMJD::inc_variable()
 {
+    if(adjMode == Min) // Don't minimize the date
+    {
+        m_opti->Optimise();
+        return;
+    }
+
 	ELEMENTS el;
 	ORBITPARAM param;
 	oapiGetFocusInterface()->GetElements(oapiGetFocusInterface()->GetGravityRef(), el, &param);
 	if(adjMode == Coarse)
 	{
 		value += 5500.8249307686044282429796200623 / SECONDS_PER_DAY;
+		//m_opti->Optimise();
 	}
 	else
 	{
-	MFDvarfloat::inc_variable();
-	if(adjMode == Reset)
-		value = oapiGetSimMJD();
+        MFDvarfloat::inc_variable();
+        if(adjMode == Reset)
+            value = oapiGetSimMJD();
+		//else
+        //    m_opti->Optimise();
 	}
+
 }
 
 void MFDvarMJD::dec_variable()
 {
+    if(adjMode == Min)
+    {
+        m_opti->Optimise();
+        return; // Don't minimize the date
+    }
+
 	ELEMENTS el;
 	ORBITPARAM param;
 	oapiGetFocusInterface()->GetElements(oapiGetFocusInterface()->GetGravityRef(), el, &param);
 	if(adjMode == Coarse)
 	{
 		value -= 5506.8249307686044282429796200623 / SECONDS_PER_DAY;
+		//m_opti->Optimise();
 	}
-	else
+    else
 	{
-	MFDvarfloat::dec_variable();
-	if(adjMode == Reset)
-		value = oapiGetSimMJD();
-	}
+        MFDvarfloat::dec_variable();
+        if(adjMode == Reset)
+            value = oapiGetSimMJD();
+        //else
+        //    m_opti->Optimise();
+    }
 }
 
 void MFDvarshiplist::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname)
@@ -795,7 +814,7 @@ void MFDvarangle::inc_variable()
 		adjuster=0.0000001;
 		break;
 	case Min:
-		value = m_opti->GetOpti(&value);
+		m_opti->Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -842,7 +861,7 @@ void MFDvarangle::dec_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		value = m_opti->GetOpti(&value);
+		m_opti->Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;

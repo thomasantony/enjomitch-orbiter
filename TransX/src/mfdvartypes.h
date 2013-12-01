@@ -99,8 +99,7 @@ protected:
 	virtual void InheritValues(MFDvariable *var) {value = ((MFDvarmoon*)var)->value;};
 };
 
-class OptimiserVar;
-
+#include "Optimiser.h"
 class MFDvarfloat : public MFDvariable {
 protected:
 	enum AdjustMode
@@ -124,8 +123,7 @@ protected:
 	double logborder; // Number below which increment is linear scaled
 	double inputvalue;
 	AdjustMode adjMode;
-	const OptimiserVar * m_opti;
-	std::auto_ptr<OptimiserVar *> opti;
+	std::auto_ptr<Optimiser> m_opti;
 public:
 	operator double() {return value;};
 	double operator = (double tvalue){value=tvalue;return value;};
@@ -142,7 +140,7 @@ public:
 	void setvalue(double tvalue);
 	virtual void getsaveline(char *buffer) const;
 	virtual bool loadvalue(char *buffer);
-	void init(MFDvarhandler *vars, const OptimiserVar & opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
+	void init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
 	MFDvarfloat();
 	~MFDvarfloat();
 protected:
