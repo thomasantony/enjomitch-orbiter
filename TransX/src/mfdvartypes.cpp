@@ -548,7 +548,7 @@ void MFDvarfloat::inc_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		m_opti->Optimise();
+		m_opti->Optimise(&value);
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -592,7 +592,7 @@ void MFDvarfloat::dec_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		m_opti->Optimise();
+		m_opti->Optimise(&value);
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -641,7 +641,7 @@ void MFDvarMJD::inc_variable()
 {
     if(adjMode == Min) // Don't minimize the date
     {
-        m_opti->Optimise();
+        //m_opti->Optimise();
         return;
     }
 
@@ -668,7 +668,7 @@ void MFDvarMJD::dec_variable()
 {
     if(adjMode == Min)
     {
-        m_opti->Optimise();
+        //m_opti->Optimise();
         return; // Don't minimize the date
     }
 
@@ -814,7 +814,7 @@ void MFDvarangle::inc_variable()
 		adjuster=0.0000001;
 		break;
 	case Min:
-		m_opti->Optimise();
+		m_opti->Optimise(&value);
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -861,7 +861,7 @@ void MFDvarangle::dec_variable()
 		adjuster=0.0000001;
 		break;
     case Min:
-		m_opti->Optimise();
+		m_opti->Optimise(&value);
 		return;
 	case Reset:
 		value=defaultvalue;

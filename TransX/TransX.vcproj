@@ -624,6 +624,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="EnjoLib"
+			>
+			<File
+				RelativePath=".\src\EnjoLib\Constants.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\EnjoLib\SpaceMathBody.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\EnjoLib\SpaceMathBody.hpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\src\basefunction.cpp"
 			>

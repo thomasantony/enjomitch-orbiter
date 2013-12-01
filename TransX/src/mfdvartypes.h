@@ -135,6 +135,7 @@ public:
 	virtual void ch_adjmode();
 	virtual void chm_adjmode();
 	virtual void showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const;
+	virtual bool GetHohmannConstraintHint() const { return false; }
 	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	double getvalue() const; //Get the value
 	void setvalue(double tvalue);
@@ -153,6 +154,12 @@ public:
 	virtual void inc_variable(); // Increase the variable
 	virtual void dec_variable(); //Decrease the variable
 
+	double operator = (double tvalue){value=tvalue;return value;};
+};
+
+class MFDvarPrograde: public MFDvarfloat {
+public:
+	virtual bool GetHohmannConstraintHint() const { return true; }
 	double operator = (double tvalue){value=tvalue;return value;};
 };
 

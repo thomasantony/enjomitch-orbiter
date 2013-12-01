@@ -27,6 +27,7 @@
 #include "transxstate.h"
 #include "TransXFunction.h"
 #include "transx.h"
+#include "EnjoLib/SpaceMathBody.hpp"
 
 TransXFunction::TransXFunction(class transxstate *tstate, OBJHANDLE thmajor, OBJHANDLE thminor, OBJHANDLE thtarget, OBJHANDLE thcraft, OBJHANDLE thbase)
 {
@@ -375,6 +376,23 @@ void TransXFunction::gethelp(char *help1,char *help2,char *help3,char *help4,cha
 	strcpy(help3,helpstring3);
 	strcpy(help4,helpstring4);
 	strcpy(help5,helpstring5);
+}
+
+double TransXFunction::GetHohmannDV()
+{
+    if (!hminor || !hmajor || !hmajtarget)
+        return 0;
+    EnjoLib::SpaceMathBody smb(oapiGetMass(hmajor));
+    VECTOR3 posSrc, posTgt;
+    oapiGetRelativePos(hminor, hmajor, &posSrc);
+    oapiGetRelativePos(hmajtarget, hmajor, &posTgt);
+    double radSrc = length(posSrc);
+    double radTgt = length(posTgt);
+    double dv = smb.GetHohmannDVExtend(radSrc, radTgt);
+    if (radTgt > radSrc)
+        return dv;
+    else
+        return -dv;
 }
 
 oapi::Pen* TransXFunction::pens[NUM_PENS] = {0};

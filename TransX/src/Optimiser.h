@@ -11,13 +11,16 @@ class Optimiser
         Optimiser(basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find);
         Optimiser(basefunction * base, Intercept * icept, MFDvarfloat* pArg2Find);
         virtual ~Optimiser();
-        void Optimise() const;
+        void Optimise( double * toOpti ) const;
 
     protected:
     private:
         basefunction * m_base;
         Intercept * m_icept;
         std::vector<MFDvarfloat*> m_pArgs2Find;
+        static const double m_cdefaultMax;
+        static const double m_cdefaultMin;
+        static const double m_cdefaultRatioHohmann;
 };
 
 #endif // OPTIMISERBASE_H

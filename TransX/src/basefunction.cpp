@@ -927,10 +927,9 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 				//Describe targeting quality
 				int hpos=8*linespacing;
 				int wpos=0;
-				int len=sprintf(buffer, "Cl. App. (rough)");
-				sketchpad->Text(wpos, hpos, buffer, len);
+				TextShow(sketchpad, "Cl. App.: ", wpos, hpos, length(craftpos-targetpos));
 				hpos+=linespacing;
-				TextShow(sketchpad, " ", wpos, hpos, length(craftpos-targetpos));
+				TextShow(sketchpad, "Hohmann dv: ", wpos, hpos, GetHohmannDV());
 				hpos+=linespacing;
 				VECTOR3 relvel;
 				primary.getrelvel(&relvel);
@@ -938,7 +937,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 				hpos+=linespacing;
 				double intercepttime=primary.gettimeintercept();
 				double arrmjd=oapiTime2MJD(intercepttime);
-				len=sprintf(buffer,"Enc. MJD %.4f", arrmjd);
+				int len=sprintf(buffer,"Enc. MJD %.4f", arrmjd);
 				sketchpad->Text(wpos, hpos, buffer, len);
 			}
 		}
@@ -1016,10 +1015,3 @@ OptimiserFactory basefunction::GetOptiFactory()
 {
     return OptimiserFactory(this, &primary);
 }
-
-/*
-const OptimiserVar & basefunction::GetOptiVar() const
-{
-    return m_optiVar;
-}
-*/
