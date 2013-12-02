@@ -65,7 +65,7 @@ double GeneralMath::SimpsonInt(double a, double b, const SimpsonFunctor & functi
 
 int GeneralMath::round(double r) const
 {
-    return static_cast<int>((r > 0.0) ? floor(r + 0.5) : ceil(r - 0.5));
+	return static_cast<int>((r > 0.0) ? std::floor(r + 0.5) : std::ceil(r - 0.5));
 }
 
 int GeneralMath::sign( double x ) const

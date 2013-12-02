@@ -27,7 +27,7 @@
 #include "transxstate.h"
 #include "TransXFunction.h"
 #include "transx.h"
-#include "EnjoLib/SpaceMathBody.hpp"
+#include <Math/SpaceMathBody.hpp>
 
 TransXFunction::TransXFunction(class transxstate *tstate, OBJHANDLE thmajor, OBJHANDLE thminor, OBJHANDLE thtarget, OBJHANDLE thcraft, OBJHANDLE thbase)
 {

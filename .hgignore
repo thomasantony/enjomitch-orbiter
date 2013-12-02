@@ -27,3 +27,4 @@ bin/*
 *Release*
 *Debug*
 TransX/TransX.cscope_file_list
+*.lib

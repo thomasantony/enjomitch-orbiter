@@ -15,7 +15,6 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-std=c++11" />
-					<Add option="-pg" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
@@ -85,6 +84,10 @@
 		</Compiler>
 		<Unit filename="Math/AzimuthMath.cpp" />
 		<Unit filename="Math/AzimuthMath.hpp" />
+		<Unit filename="Math/BinSearchOpti.cpp" />
+		<Unit filename="Math/BinSearchOpti.hpp" />
+		<Unit filename="Math/BinSearchOptiSubject.cpp" />
+		<Unit filename="Math/BinSearchOptiSubject.hpp" />
 		<Unit filename="Math/Bisection.cpp" />
 		<Unit filename="Math/Bisection.hpp" />
 		<Unit filename="Math/BisectionSubject.cpp" />

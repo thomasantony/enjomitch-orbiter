@@ -7,6 +7,7 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug-BETA|Win32 = Debug-BETA|Win32
+		Release|Win32 = Release|Win32
 		Release2006|Win32 = Release2006|Win32
 		Release2009_PL|Win32 = Release2009_PL|Win32
 		Release2009|Win32 = Release2009|Win32
@@ -17,6 +18,8 @@ Global
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug|Win32.Build.0 = Debug|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug-BETA|Win32.ActiveCfg = Debug-BETA|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug-BETA|Win32.Build.0 = Debug-BETA|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release|Win32.ActiveCfg = Release2009_PL|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release|Win32.Build.0 = Release2009_PL|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2006|Win32.ActiveCfg = Release2006|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2006|Win32.Build.0 = Release2006|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009_PL|Win32.ActiveCfg = Release2009_PL|Win32

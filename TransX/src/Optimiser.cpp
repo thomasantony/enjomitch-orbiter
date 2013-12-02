@@ -1,13 +1,12 @@
 #include "Optimiser.h"
 #include "basefunction.h"
-
-#include "dlib/optimization.h"
+#include <Math/BinSearchOptiSubject.hpp>
+#include <Math/BinSearchOpti.hpp>
 using namespace std;
-using namespace dlib;
-typedef dlib::matrix<double,0,1> column_vector;
+using namespace EnjoLib;
 
-const double Optimiser::m_cdefaultMin = -3.5e3;
-const double Optimiser::m_cdefaultMax = +3.5e3;
+const double Optimiser::m_cdefaultMin = -4.5e3;
+const double Optimiser::m_cdefaultMax = +4.5e3;
 const double Optimiser::m_cdefaultRatioHohmann = 0.5;
 
 Optimiser::Optimiser(basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find)
@@ -15,8 +14,8 @@ Optimiser::Optimiser(basefunction * base, Intercept * icept, const std::vector<M
 	m_pArgs2Find = pArgs2Find;
     m_base = base;
     m_icept = icept;
-
 }
+
 Optimiser::Optimiser(basefunction * base, Intercept * icept, MFDvarfloat* pArg2Find)
 {
 	m_pArgs2Find.push_back(pArg2Find);
@@ -30,7 +29,7 @@ Optimiser::~Optimiser()
     int test2 = 23;
 }
 
-class OptiFunction
+class OptiFunction : public EnjoLib::BinSearchOptiSubject
 {
     public:
         OptiFunction(double * toOpti, basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find)
@@ -38,19 +37,16 @@ class OptiFunction
         , m_base(base)
         , m_icept(icept)
         , m_toOpti(toOpti)
+		, m_iter(0)
         {
         }
 
         // Deduct the minimized value, based on tested input, supplied by the optimizer
-        double operator()(const column_vector& input) const
+		double UpdateGetValue( double arg )
         {
-            // Initialize the basefunction's calculation variables with input
-            for (size_t i = 0; i < m_pArgs2Find.size(); ++i)
-            {
-                double x = input(i);
-                //m_pArgs2Find.at(i)->setvalue(x);
-                *m_toOpti = x;
-            }
+			++m_iter;
+			double xx = arg; // for debugging
+			*m_toOpti = arg;
             VECTOR3 targetVecUnused;
             m_base->calculate(&targetVecUnused);
             VECTOR3 craftpos, targetpos;
@@ -63,76 +59,38 @@ class OptiFunction
         Intercept * m_icept;
         double * m_toOpti;
         std::vector<MFDvarfloat*> m_pArgs2Find;
+		mutable int m_iter;
 };
 
 void Optimiser::Optimise( double * toOpti ) const
 {
-    const size_t sz = m_pArgs2Find.size();
-    column_vector starting_point(sz);
-    column_vector variablesBackup(sz); // will revert to this
-    column_vector min_point(sz);
-    column_vector max_point(sz);
-    bfgs_search_strategy stratSearch;
-    objective_delta_stop_strategy stratStop(1e-7, 30);
+    double starting_point;
+    double variablesBackup; // will revert to this
+    double min_point;
+    double max_point;
     OptiFunction optiFunction(toOpti, m_base, m_icept, m_pArgs2Find);
     //for (size_t i = 0; i < sz; ++i)
     //    starting_point(i) = *m_pArgs2Find.at(i);
-    for (size_t i = 0; i < sz; ++i)
-    {
-        variablesBackup(i) = *toOpti;
-        if (m_pArgs2Find.at(i)->GetHohmannConstraintHint())
-        {
-            const double hohmanDV = m_base->GetHohmannDV();
-            starting_point(i) = hohmanDV;
-            min_point(i) = hohmanDV * (1 - m_cdefaultRatioHohmann);
-            max_point(i) = hohmanDV * (1 + m_cdefaultRatioHohmann);
-        }
-        else
-        {
-            starting_point(i) = 1.01;
-            min_point(i) = m_cdefaultMin;
-            max_point(i) = m_cdefaultMax;
-        }
-    }
 
-
-    // The starting point will be modified by the optimiser
-	//find_min_using_approximate_derivatives
-    //(stratSearch, stratStop, optiFunction, starting_point, -1);
-    find_min_using_approximate_derivatives
-    (stratSearch, stratStop, clamped_function_object<OptiFunction,column_vector,column_vector> (optiFunction, min_point, max_point), starting_point, -1);
-    bool success = true;
-    for (size_t i = 0; i < sz; ++i)
+    variablesBackup = *toOpti;
+    if (m_pArgs2Find.at(0)->GetHohmannConstraintHint())
     {
-        if (m_pArgs2Find.at(i)->GetHohmannConstraintHint())
-        {
-            // Extension over this limit is always OK
-			int a = 1;
-        }
-        //else
-        {
-            const double x = starting_point(i);
-            const double xmin = min_point(i);
-            const double xmax = max_point(i);
-			const double ratioMin = fabs((x ) / xmin);
-			const double ratioMax = fabs((x ) / xmax);
-			if ( x > 0 )
-			{
-				if (ratioMax > 0.95)
-					success = false;
-			}
-			else
-			{
-				if (ratioMin > 0.95)
-					success = false;
-			}
-        }
+        const double hohmanDV = m_base->GetHohmannDV();
+        starting_point = hohmanDV;
+        min_point = hohmanDV * (1 - m_cdefaultRatioHohmann);
+        max_point = hohmanDV * (1 + m_cdefaultRatioHohmann);
     }
-    if (!success)
+    else
     {
-        // The optimizer failed. Revert values
-        for (size_t i = 0; i < sz; ++i)
-            *toOpti = variablesBackup(i);
+        starting_point = 1.01;
+        min_point = m_cdefaultMin;
+        max_point = m_cdefaultMax;
     }
-
+    BinSearchOpti bs(min_point, max_point, 0.00001);
+    Result<double> xopt = bs.Run(optiFunction);
+    //if (xopt.status)
+   //    cout << "SUCCESS!" << endl;
+    //else
+    //    cout << "FAILURE!" << endl;
+    //cout << "opti x = " << xopt.value << ", y = " << f.UpdateGetValue(xopt.value) << endl;
 }
