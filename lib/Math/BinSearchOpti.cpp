@@ -29,7 +29,7 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 {
 //    GeneralMath gm;
     //const double refValue = subj.GetRefValue();
-    const double refValue = 0;
+//    const double refValue = 0;
    // double fmin = subj.UpdateGetValue(m_minArg) - refValue;
   //  double fmax = subj.UpdateGetValue(m_maxArg) - refValue;
     double mid;
@@ -46,7 +46,6 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         double valLeft = subj.UpdateGetValue(left);
 		double valMid = subj.UpdateGetValue(mid);
         double valRight = subj.UpdateGetValue(right);
-		
 
         if ( valLeft < valRight && valLeft < valMid )
         {
@@ -56,11 +55,16 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         {
             a = mid; // Narrow left border
            // fmin = value;
-        } else
+        }
+        else if ( valMid < valLeft && valMid < valRight )
 		{
 			a = left;
 			b = right;
 		}
+        else
+        {   // Everything is the same. Somethin' ain't right with yer function!
+            return Result<double>(m_maxArg, false);
+        }
 
         bmaxIter = ++i == m_maxIter;
     } while( (b-a)/2 > m_eps && ! bmaxIter ); // Continue searching, until below threshold
