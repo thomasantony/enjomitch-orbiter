@@ -112,7 +112,7 @@ protected:
 		Ultra,
 		Hyper,
 		Micro,
-		Min,
+		AutoMin,
 		Reset
 	};
 
@@ -123,7 +123,8 @@ protected:
 	double logborder; // Number below which increment is linear scaled
 	double inputvalue;
 	AdjustMode adjMode;
-	std::auto_ptr<Optimiser> m_opti;
+    void Optimise();
+    bool HasOptimiser();
 public:
 	operator double() {return value;};
 	double operator = (double tvalue){value=tvalue;return value;};
@@ -144,6 +145,11 @@ public:
 	void init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
 	MFDvarfloat();
 	~MFDvarfloat();
+
+private:
+
+    std::auto_ptr<Optimiser> m_opti;
+
 protected:
 	virtual void InheritValues(MFDvariable *var) {value = ((MFDvarfloat*)var)->value;};
 };

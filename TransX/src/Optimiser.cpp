@@ -32,7 +32,7 @@ Optimiser::~Optimiser()
 class OptiFunction : public EnjoLib::BinSearchOptiSubject
 {
     public:
-        OptiFunction(double * toOpti, basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find)
+        OptiFunction(MFDvarfloat * toOpti, basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find)
         : m_pArgs2Find(pArgs2Find)
         , m_base(base)
         , m_icept(icept)
@@ -46,9 +46,12 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
         {
 			++m_iter;
 			double xx = arg; // for debugging
+
 			*m_toOpti = arg;
+			//*m_pArgs2Find.at(0) = arg;
             VECTOR3 targetVecUnused;
-            m_base->calculate(&targetVecUnused);
+            for (int i = 0; i < 10; ++i) // needs at least 7 iterations to converge
+                m_base->calculate(&targetVecUnused);
             VECTOR3 craftpos, targetpos;
             m_icept->getpositions(&craftpos,&targetpos);
             double len = length(craftpos-targetpos);
@@ -57,40 +60,43 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
     private:
         basefunction * m_base;
         Intercept * m_icept;
-        double * m_toOpti;
+        MFDvarfloat * m_toOpti;
         std::vector<MFDvarfloat*> m_pArgs2Find;
 		mutable int m_iter;
 };
 
-void Optimiser::Optimise( double * toOpti ) const
+void Optimiser::Optimise() const
 {
-    double starting_point;
-    double variablesBackup; // will revert to this
-    double min_point;
-    double max_point;
-    OptiFunction optiFunction(toOpti, m_base, m_icept, m_pArgs2Find);
-    //for (size_t i = 0; i < sz; ++i)
-    //    starting_point(i) = *m_pArgs2Find.at(i);
+    for (size_t i = 0; i < m_pArgs2Find.size(); ++i) // quick and dirty
+    {
+        double starting_point;
+        double variablesBackup; // will revert to this
+        double min_point;
+        double max_point;
+        OptiFunction optiFunction(m_pArgs2Find.at(i), m_base, m_icept, m_pArgs2Find);
+        //for (size_t i = 0; i < sz; ++i)
+        //    starting_point(i) = *m_pArgs2Find.at(i);
 
-    variablesBackup = *toOpti;
-    if (m_pArgs2Find.at(0)->GetHohmannConstraintHint())
-    {
-        const double hohmanDV = m_base->GetHohmannDV();
-        starting_point = hohmanDV;
-        min_point = hohmanDV * (1 - m_cdefaultRatioHohmann);
-        max_point = hohmanDV * (1 + m_cdefaultRatioHohmann);
+        variablesBackup = *m_pArgs2Find.at(i);
+        if (m_pArgs2Find.at(i)->GetHohmannConstraintHint())
+        {
+            const double hohmanDV = m_base->GetHohmannDV();
+            starting_point = hohmanDV;
+            min_point = hohmanDV * (1 - m_cdefaultRatioHohmann);
+            max_point = hohmanDV * (1 + m_cdefaultRatioHohmann);
+        }
+        else
+        {
+            starting_point = 1.01;
+            min_point = m_cdefaultMin;
+            max_point = m_cdefaultMax;
+        }
+        BinSearchOpti bs(min_point, max_point, 0.001);
+        Result<double> xopt = bs.Run(optiFunction);
+        //if (xopt.status)
+       //    cout << "SUCCESS!" << endl;
+        //else
+        //    cout << "FAILURE!" << endl;
+        //cout << "opti x = " << xopt.value << ", y = " << f.UpdateGetValue(xopt.value) << endl;
     }
-    else
-    {
-        starting_point = 1.01;
-        min_point = m_cdefaultMin;
-        max_point = m_cdefaultMax;
-    }
-    BinSearchOpti bs(min_point, max_point, 0.00001);
-    Result<double> xopt = bs.Run(optiFunction);
-    //if (xopt.status)
-   //    cout << "SUCCESS!" << endl;
-    //else
-    //    cout << "FAILURE!" << endl;
-    //cout << "opti x = " << xopt.value << ", y = " << f.UpdateGetValue(xopt.value) << endl;
 }

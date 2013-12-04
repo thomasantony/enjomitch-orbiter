@@ -21,5 +21,6 @@ std::auto_ptr<Optimiser> OptimiserFactory::Create(MFDvarfloat* pArg2Find)
 }
 std::auto_ptr<Optimiser> OptimiserFactory::CreateDummy()
 {
-    return std::auto_ptr<Optimiser>(Create(std::vector<MFDvarfloat*>()));
+    //return std::auto_ptr<Optimiser>(Create(std::vector<MFDvarfloat*>()));
+    return std::auto_ptr<Optimiser>(NULL);
 }

@@ -604,11 +604,13 @@ bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
     OptimiserFactory optiFact = base->GetOptiFactory();
     std::vector<MFDvarfloat*> allVelocities;
     allVelocities.push_back(&m_prograde);
-    allVelocities.push_back(&m_outwardvel);
     allVelocities.push_back(&m_chplvel);
+    //allVelocities.push_back(&m_outwardvel); // least expected to be minimized
+    //std::auto_ptr<Optimiser> dateOptimiser = optiFact.Create(allVelocities);
+    std::auto_ptr<Optimiser> dateOptimiser = optiFact.CreateDummy(); // undecided for date
 
 	m_prograde.init(vars, optiFact.Create(&m_prograde),3,3,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
-	m_ejdate.init(vars, optiFact.Create(allVelocities),3,3,"Eject date", 0, 0, 1e20, 0.000005, 1000000);
+	m_ejdate.init(vars, dateOptimiser,3,3,"Eject date", 0, 0, 1e20, 0.000005, 1000000);
 	m_ejdate=oapiGetSimMJD();//Temporary default
 	m_inheritvel=1;//MFDvariable capabilities not used in this class
 	m_outwardvel.init(vars, optiFact.Create(&m_outwardvel),3,3,"Outward vel.", 0,-1e8,1e8,0.1,1000);

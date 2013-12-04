@@ -22,16 +22,12 @@ BinSearchOpti::BinSearchOpti(double minArg, double maxArg, double eps)
 
 BinSearchOpti::~BinSearchOpti()
 {
-    //dtor
 }
 
 Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 {
 //    GeneralMath gm;
-    //const double refValue = subj.GetRefValue();
     const double refValue = 0;
-   // double fmin = subj.UpdateGetValue(m_minArg) - refValue;
-  //  double fmax = subj.UpdateGetValue(m_maxArg) - refValue;
     double mid;
     int i = 0;
     double a = m_minArg;
@@ -46,7 +42,6 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         double valLeft = subj.UpdateGetValue(left);
 		double valMid = subj.UpdateGetValue(mid);
         double valRight = subj.UpdateGetValue(right);
-		
 
         if ( valLeft < valRight && valLeft < valMid )
         {
@@ -64,7 +59,6 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 
         bmaxIter = ++i == m_maxIter;
     } while( (b-a)/2 > m_eps && ! bmaxIter ); // Continue searching, until below threshold
-    //sprintf(oapiDebugString(), "i = %d, maxi = %d, arg = %lf, value = %lf, pdiff = %lf",i, m_maxIter, arg, diff, prevDiff);
     if ( bmaxIter )
         return Result<double>(m_maxArg, false);
     else

@@ -11,7 +11,7 @@ class Optimiser
         Optimiser(basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find);
         Optimiser(basefunction * base, Intercept * icept, MFDvarfloat* pArg2Find);
         virtual ~Optimiser();
-        void Optimise( double * toOpti ) const;
+        void Optimise() const;
 
     protected:
     private:

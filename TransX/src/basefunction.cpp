@@ -410,8 +410,10 @@ bool basefunction::initialisevars()
     OptimiserFactory optiFact = GetOptiFactory();
     std::vector<MFDvarfloat*> allVelocities;
     allVelocities.push_back(&m_prograde);
-    allVelocities.push_back(&m_outwardvel);
     allVelocities.push_back(&m_chplvel);
+    //allVelocities.push_back(&m_outwardvel); // least expected to be minimized
+    //std::auto_ptr<Optimiser> dateOptimiser = optiFact.Create(allVelocities);
+    std::auto_ptr<Optimiser> dateOptimiser = optiFact.CreateDummy(); // undecided for date
 
 	m_target.init(&vars,2,2,"Select Target",hmajor);
 	m_planauto.init(&vars,2,2,"Autoplan",0,1,"On","Off","","","");
@@ -423,7 +425,7 @@ bool basefunction::initialisevars()
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
 	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
 	m_prograde.init(&vars, optiFact.Create(&m_prograde),4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
-	m_ejdate.init(&vars, optiFact.Create(allVelocities),4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
+	m_ejdate.init(&vars, dateOptimiser,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
 	m_outwardvel.init(&vars, optiFact.Create(&m_outwardvel),4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
 	m_chplvel.init(&vars, optiFact.Create(&m_chplvel),4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 	m_intwith.init(&vars,2,2,"Intercept with",0,3,"Auto","Plan","Manoeuvre","Focus","");

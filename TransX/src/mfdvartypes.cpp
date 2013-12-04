@@ -422,6 +422,9 @@ void MFDvarfloat::ch_adjmode()
         adjMode = Rough;
     else
         adjMode = (AdjustMode)((int)adjMode + 1);
+
+    if (adjMode == AutoMin && !HasOptimiser())
+        ch_adjmode(); // Ignore this mode if there's no optimiser
 }
 
 void MFDvarfloat::chm_adjmode()
@@ -430,6 +433,9 @@ void MFDvarfloat::chm_adjmode()
         adjMode = Reset;
     else
         adjMode = (AdjustMode)((int)adjMode - 1);
+
+    if (adjMode == AutoMin && !HasOptimiser())
+        chm_adjmode(); // Ignore this mode if there's no optimiser
 }
 
 void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const
@@ -465,7 +471,7 @@ void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line
     case Micro:
 		length=sprintf(buffer,"Micro");
 		break;
-	case Min:
+	case AutoMin:
 		length=sprintf(buffer,"Auto-Min");
 		break;
 	case Reset:
@@ -516,6 +522,17 @@ bool MFDvarfloat::SetVariableFloat(char *str) { // FIXME: isangle
 	return false;
 }
 
+bool MFDvarfloat::HasOptimiser()
+{
+    return m_opti.get() != NULL;
+}
+
+void MFDvarfloat::Optimise()
+{
+    if (HasOptimiser())
+        m_opti->Optimise();
+}
+
 
 
 void MFDvarfloat::inc_variable()
@@ -547,8 +564,8 @@ void MFDvarfloat::inc_variable()
 	case Micro:
 		adjuster=0.0000001;
 		break;
-    case Min:
-		m_opti->Optimise(&value);
+    case AutoMin:
+		Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -591,8 +608,8 @@ void MFDvarfloat::dec_variable()
 	case Micro:
 		adjuster=0.0000001;
 		break;
-    case Min:
-		m_opti->Optimise(&value);
+    case AutoMin:
+		Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -639,7 +656,7 @@ bool MFDvarMJD::show(oapi::Sketchpad *sketchpad, int width, int line)
 
 void MFDvarMJD::inc_variable()
 {
-    if(adjMode == Min) // Don't minimize the date
+    if(adjMode == AutoMin) // Don't minimize the date
     {
         //m_opti->Optimise();
         return;
@@ -666,7 +683,7 @@ void MFDvarMJD::inc_variable()
 
 void MFDvarMJD::dec_variable()
 {
-    if(adjMode == Min)
+    if(adjMode == AutoMin)
     {
         //m_opti->Optimise();
         return; // Don't minimize the date
@@ -813,8 +830,8 @@ void MFDvarangle::inc_variable()
     case Micro:
 		adjuster=0.0000001;
 		break;
-	case Min:
-		m_opti->Optimise(&value);
+	case AutoMin:
+		Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
@@ -860,8 +877,8 @@ void MFDvarangle::dec_variable()
 	case Micro:
 		adjuster=0.0000001;
 		break;
-    case Min:
-		m_opti->Optimise(&value);
+    case AutoMin:
+		Optimise();
 		return;
 	case Reset:
 		value=defaultvalue;
