@@ -570,7 +570,6 @@ void majejectplan::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunc
 bool slingejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 {
     OptimiserFactory optiFact = base->GetOptiFactory();
-
 	m_totalvel.init(vars, optiFact.CreateDummy(),3,3,"Velocity.",0, 0,1e8,0.1,1000);
 	m_outwardangle.init(vars,optiFact.Create(VarConstraint(&m_outwardangle, ConstraintType::ANGLE)), "Outward angle",true);
 	m_incangle.init(vars,optiFact.Create(VarConstraint(&m_incangle, ConstraintType::ANGLE)), "Inc. angle",false);
@@ -603,20 +602,23 @@ bool slingejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 
 bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 {
+    VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN);
+    VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE);
+    VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD);
     OptimiserFactory optiFact = base->GetOptiFactory();
     std::vector<VarConstraint> allVelocities;
-    allVelocities.push_back(VarConstraint(&m_prograde, ConstraintType::PROGRADE_HOHMANN));
-    allVelocities.push_back(VarConstraint(&m_chplvel, ConstraintType::CHANGE_PLANE));
+    allVelocities.push_back(constrPrograde);
+    allVelocities.push_back(constrChPlane);
     //allVelocities.push_back(&m_outwardvel); // least expected to be minimized
     //std::auto_ptr<Optimiser> dateOptimiser = optiFact.Create(allVelocities);
     std::auto_ptr<Optimiser> dateOptimiser = optiFact.CreateDummy(); // undecided for date
 
-	m_prograde.init(vars, optiFact.Create(VarConstraint(&m_prograde, ConstraintType::PROGRADE_HOHMANN)),3,3,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
+	m_prograde.init(vars, optiFact.Create(constrPrograde),3,3,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
 	m_ejdate.init(vars, dateOptimiser,3,3,"Eject date", 0, 0, 1e20, 0.000005, 1000000);
 	m_ejdate=oapiGetSimMJD();//Temporary default
 	m_inheritvel=1;//MFDvariable capabilities not used in this class
-	m_outwardvel.init(vars, optiFact.Create(VarConstraint(&m_outwardvel, ConstraintType::OUTWARD)),3,3,"Outward vel.", 0,-1e8,1e8,0.1,1000);
-	m_chplvel.init(vars, optiFact.Create(VarConstraint(&m_chplvel, ConstraintType::CHANGE_PLANE)),3,3,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
+	m_outwardvel.init(vars, optiFact.Create(constrOutward),3,3,"Outward vel.", 0,-1e8,1e8,0.1,1000);
+	m_chplvel.init(vars, optiFact.Create(constrChPlane),3,3,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 	m_prograde.sethelpstrings(
 		"Positive to move outward from MAJ",
 		"Negative to move inward toward MAJ");

@@ -2,7 +2,7 @@
 
 Constraint::Constraint(double lower, double upper)
 {
-    if (upper > lower)
+    if (lower > upper)
         std::swap(upper, lower);
 
     this->lower = lower;

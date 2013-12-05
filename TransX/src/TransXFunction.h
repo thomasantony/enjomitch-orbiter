@@ -71,6 +71,7 @@ protected:
 	static oapi::Brush *brush[NUM_PENS];
 
 public:
+	void UpdateAllPlans();
 	static oapi::Pen* SelectDefaultPen(oapi::Sketchpad *sketchpad, int value);
 	static oapi::Brush* TransXFunction::SelectBrush(oapi::Sketchpad *sketchpad, int value);
 

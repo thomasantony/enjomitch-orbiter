@@ -22,8 +22,8 @@ Constraint ConstraintFactory::Create(ConstraintType::e type)
         return CreatePlane();
     case ConstraintType::OUTWARD:
         return CreateOutward();
-    //case ANGLE:
-      //  return CreateAngle();
+    case ConstraintType::ANGLE:
+        return CreateAngle();
     }
     return Constraint(0, 0);
 }

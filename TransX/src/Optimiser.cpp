@@ -4,6 +4,7 @@
 #include <Math/BinSearchOpti.hpp>
 #include "ConstraintFactory.h"
 #include "Constraint.h"
+
 using namespace std;
 using namespace EnjoLib;
 
@@ -51,9 +52,11 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
 
 			*m_toOpti.var = arg;
 			//*m_pArgs2Find.at(0) = arg;
-            VECTOR3 targetVecUnused;
-            for (int i = 0; i < 10; ++i) // needs at least 7 iterations to converge
-                m_base->calculate(&targetVecUnused);
+            for (int i = 0; i < 50; ++i)
+			{
+				// needs at least 7 iterations to converge in eject mode, and 40 in slingshot mode!
+				m_base->UpdateAllPlans();
+			}
             VECTOR3 craftpos, targetpos;
             m_icept->getpositions(&craftpos,&targetpos);
             double len = length(craftpos-targetpos);

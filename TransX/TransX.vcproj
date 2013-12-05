@@ -617,14 +617,6 @@
 	</References>
 	<Files>
 		<Filter
-			Name="dlib"
-			>
-			<File
-				RelativePath="..\dlib\all\source.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="EnjoLib"
 			>
 			<Filter

@@ -76,6 +76,11 @@ void TransXFunction::restoreself(FILEHANDLE scn)
 	while (strcmp(finalbuffer,"Finish")!=0 && ok==true);
 }
 
+void TransXFunction::UpdateAllPlans()
+{
+	state->dolowpriaction();
+}
+
 bool TransXFunction::loadhandle(FILEHANDLE scn,OBJHANDLE *handle)
 {
 	char *member,*bufferpointer;

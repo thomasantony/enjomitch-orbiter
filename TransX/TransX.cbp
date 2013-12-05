@@ -244,6 +244,7 @@
 		<Unit filename="src/Constraint.h" />
 		<Unit filename="src/ConstraintFactory.cpp" />
 		<Unit filename="src/ConstraintFactory.h" />
+		<Unit filename="src/ConstraintType.h" />
 		<Unit filename="src/Optimiser.cpp" />
 		<Unit filename="src/Optimiser.h" />
 		<Unit filename="src/OptimiserFactory.cpp" />
