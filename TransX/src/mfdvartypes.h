@@ -125,6 +125,7 @@ protected:
 	AdjustMode adjMode;
     void Optimise();
     bool HasOptimiser();
+    std::auto_ptr<Optimiser> m_opti;
 public:
 	operator double() {return value;};
 	double operator = (double tvalue){value=tvalue;return value;};
@@ -136,7 +137,6 @@ public:
 	virtual void ch_adjmode();
 	virtual void chm_adjmode();
 	virtual void showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const;
-	virtual bool GetHohmannConstraintHint() const { return false; }
 	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	double getvalue() const; //Get the value
 	void setvalue(double tvalue);
@@ -145,10 +145,6 @@ public:
 	void init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
 	MFDvarfloat();
 	~MFDvarfloat();
-
-private:
-
-    std::auto_ptr<Optimiser> m_opti;
 
 protected:
 	virtual void InheritValues(MFDvariable *var) {value = ((MFDvarfloat*)var)->value;};
@@ -162,13 +158,6 @@ public:
 
 	double operator = (double tvalue){value=tvalue;return value;};
 };
-
-class MFDvarPrograde: public MFDvarfloat {
-public:
-	virtual bool GetHohmannConstraintHint() const { return true; }
-	double operator = (double tvalue){value=tvalue;return value;};
-};
-
 
 class MFDvardiscrete: public MFDvariable {
 private:
@@ -215,7 +204,7 @@ public:
 	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	double getsin() const;
 	double getcos() const;
-	void init(MFDvarhandler *vars,char *vname, bool vloop);
+	void init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,char *vname, bool vloop);
 };
 
 #endif

@@ -658,7 +658,7 @@ void MFDvarMJD::inc_variable()
 {
     if(adjMode == AutoMin) // Don't minimize the date
     {
-        //m_opti->Optimise();
+        //Optimise();
         return;
     }
 
@@ -668,15 +668,15 @@ void MFDvarMJD::inc_variable()
 	if(adjMode == Coarse)
 	{
 		value += 5500.8249307686044282429796200623 / SECONDS_PER_DAY;
-		//m_opti->Optimise();
+		Optimise();
 	}
 	else
 	{
         MFDvarfloat::inc_variable();
         if(adjMode == Reset)
             value = oapiGetSimMJD();
-		//else
-        //    m_opti->Optimise();
+		else
+            Optimise();
 	}
 
 }
@@ -685,7 +685,7 @@ void MFDvarMJD::dec_variable()
 {
     if(adjMode == AutoMin)
     {
-        //m_opti->Optimise();
+        //Optimise();
         return; // Don't minimize the date
     }
 
@@ -695,15 +695,15 @@ void MFDvarMJD::dec_variable()
 	if(adjMode == Coarse)
 	{
 		value -= 5506.8249307686044282429796200623 / SECONDS_PER_DAY;
-		//m_opti->Optimise();
+		Optimise();
 	}
     else
 	{
         MFDvarfloat::dec_variable();
         if(adjMode == Reset)
             value = oapiGetSimMJD();
-        //else
-        //    m_opti->Optimise();
+        else
+            Optimise();
     }
 }
 
@@ -763,8 +763,9 @@ void MFDvardiscrete::inc_variable()
 		value=0;
 }
 
-void MFDvarangle::init(MFDvarhandler *vars,char *vname, bool vloop)
+void MFDvarangle::init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,char *vname, bool vloop)
 {
+    m_opti = opti;
 	initialise(vars,3,3); //FIXME
 	strcpy(name,vname);
 	defaultvalue=value=0;

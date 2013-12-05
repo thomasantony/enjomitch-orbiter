@@ -28,3 +28,4 @@ bin/*
 *Debug*
 TransX/TransX.cscope_file_list
 *.lib
+*.pdb

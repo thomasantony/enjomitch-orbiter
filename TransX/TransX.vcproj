@@ -929,6 +929,26 @@
 			>
 		</File>
 		<File
+			RelativePath=".\src\Constraint.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\Constraint.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\ConstraintFactory.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\ConstraintFactory.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\ConstraintType.h"
+			>
+		</File>
+		<File
 			RelativePath=".\src\doublelink.cpp"
 			>
 		</File>
@@ -1078,6 +1098,14 @@
 		</File>
 		<File
 			RelativePath=".\src\transxstate.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\VarConstraint.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\VarConstraint.h"
 			>
 		</File>
 		<File

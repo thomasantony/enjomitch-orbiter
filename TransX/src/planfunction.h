@@ -98,8 +98,7 @@ protected:
 class majorejectplan:public majejectplan
 {
 private:
-	MFDvarfloat m_outwardvel,m_chplvel;
-	MFDvarPrograde m_prograde;
+	MFDvarfloat m_prograde,m_outwardvel,m_chplvel;
 	virtual bool init(class MFDvarhandler *vars, basefunction *base);
 	virtual void calcejectvector(const VECTOR3 &rminplane,const VECTOR3 &minorvel, double inheritedvelocity);
 public:
