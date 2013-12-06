@@ -78,7 +78,7 @@ void TransXFunction::restoreself(FILEHANDLE scn)
 
 void TransXFunction::UpdateAllPlans()
 {
-	state->dolowpriaction();
+	state->UpdateForOptimiser();
 }
 
 bool TransXFunction::loadhandle(FILEHANDLE scn,OBJHANDLE *handle)

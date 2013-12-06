@@ -36,6 +36,7 @@ public:
 	bool baseonexisting(class transxstate *existing);
 
 	virtual void dolowpriaction();
+	void UpdateForOptimiser();
 
 	bool doupdate(oapi::Sketchpad *sketchpad,int tw, int th, unsigned int curfunction,int currview, unsigned int curvarfunction, int currvarview,class TransxMFD *tmfdpointer);
 	void savecurrent(FILEHANDLE scn);

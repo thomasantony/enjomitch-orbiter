@@ -677,11 +677,13 @@ void MFDvarMJD::dec_variable()
 
 void MFDvarMJD::ch_adjmode()
 {
+    MFDvarfloat::ch_adjmode();
     if (adjMode == AutoMin)
         MFDvarfloat::ch_adjmode(); // Ignore this mode for date
 }
 void MFDvarMJD::chm_adjmode()
 {
+    MFDvarfloat::chm_adjmode();
     if (adjMode == AutoMin)
         MFDvarfloat::chm_adjmode(); // Ignore this mode for date
 }

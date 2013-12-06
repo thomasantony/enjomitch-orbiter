@@ -52,6 +52,13 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
 
 			*m_toOpti.var = arg;
 			//*m_pArgs2Find.at(0) = arg;
+
+            //VECTOR3 tmp;
+			//for (int i = 0; i < 10; ++i)
+            {
+                //m_base->calculate(&tmp); // twice as fast, but works only in Eject mode
+            }
+
             for (int i = 0; i < 50; ++i)
 			{
 				// needs at least 7 iterations to converge in eject mode, and 40 in slingshot mode!
@@ -88,7 +95,7 @@ void Optimiser::Optimise() const
         variablesBackup = *item.var;
         double min_point = constraint.lower;
         double max_point = constraint.upper;
-        BinSearchOpti bs(min_point, max_point, 0.001);
+        BinSearchOpti bs(min_point, max_point, 0.1);
         Result<double> xopt = bs.Run(optiFunction);
         //if (xopt.status)
        //    cout << "SUCCESS!" << endl;
