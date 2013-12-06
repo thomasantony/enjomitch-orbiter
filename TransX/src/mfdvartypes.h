@@ -125,7 +125,9 @@ protected:
 	AdjustMode adjMode;
     void Optimise();
     bool HasOptimiser();
-    std::auto_ptr<Optimiser> m_opti;
+    double GetAdjuster();
+    bool IsAdjusterSpecialCase();
+
 public:
 	operator double() {return value;};
 	double operator = (double tvalue){value=tvalue;return value;};
@@ -142,9 +144,14 @@ public:
 	void setvalue(double tvalue);
 	virtual void getsaveline(char *buffer) const;
 	virtual bool loadvalue(char *buffer);
-	void init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
+	void init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
+	void SetOptimiser(std::auto_ptr<Optimiser> opti);
+	bool ShouldBeOptimised(); // Could be optimised actively, or passively, through the date
 	MFDvarfloat();
 	~MFDvarfloat();
+private:
+    std::auto_ptr<Optimiser> m_opti;
+    double CalcAdjustedValue(bool positive, double adjuster);
 
 protected:
 	virtual void InheritValues(MFDvariable *var) {value = ((MFDvarfloat*)var)->value;};
@@ -155,8 +162,12 @@ public:
 	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	virtual void inc_variable(); // Increase the variable
 	virtual void dec_variable(); //Decrease the variable
+    virtual void ch_adjmode();
+	virtual void chm_adjmode();
 
 	double operator = (double tvalue){value=tvalue;return value;};
+private:
+    void CalcAdjustedValue(bool positive);
 };
 
 class MFDvardiscrete: public MFDvariable {
@@ -204,7 +215,7 @@ public:
 	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	double getsin() const;
 	double getcos() const;
-	void init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,char *vname, bool vloop);
+	void init(MFDvarhandler *vars,char *vname, bool vloop);
 };
 
 #endif

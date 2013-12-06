@@ -406,8 +406,8 @@ void basefunction::loadplan(int plan)
 
 bool basefunction::initialisevars()
 {
-    OptimiserFactory optiFact = GetOptiFactory();
-    std::auto_ptr<Optimiser> dateOptimiser = optiFact.CreateDummy(); // undecided for date
+    //OptimiserFactory optiFact = GetOptiFactory();
+    //std::auto_ptr<Optimiser> dateOptimiser = optiFact.CreateDummy(); // undecided for date
 	m_target.init(&vars,2,2,"Select Target",hmajor);
 	m_planauto.init(&vars,2,2,"Autoplan",0,1,"On","Off","","","");
 	m_plantype.init(&vars,2,2,"Plan type",0,2,"Initial","Through point","Cruise plan","","");
@@ -417,10 +417,10 @@ bool basefunction::initialisevars()
 	m_minor.init(&vars,2,2,"Select Minor",hmajor);
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
 	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
-	m_prograde.init(&vars, dateOptimiser,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
-	m_ejdate.init(&vars, dateOptimiser,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
-	m_outwardvel.init(&vars, dateOptimiser,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
-	m_chplvel.init(&vars, dateOptimiser,4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
+	m_prograde.init(&vars,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
+	m_ejdate.init(&vars,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
+	m_outwardvel.init(&vars,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
+	m_chplvel.init(&vars,4,4,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 	m_intwith.init(&vars,2,2,"Intercept with",0,3,"Auto","Plan","Manoeuvre","Focus","");
 	m_orbitsahead.init(&vars,2,2,"Orbits to Icept",0);
 	m_graphprj.init(&vars,2,2,"Graph projection",0,4, "Ecliptic","Focus","Manoeuvre","Plan","Edge On");

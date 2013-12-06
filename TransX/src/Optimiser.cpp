@@ -75,6 +75,8 @@ void Optimiser::Optimise() const
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i) // quick and dirty
     {
 		const VarConstraint & item = m_pArgs2Find.at(i);
+		if (!item.var->ShouldBeOptimised())
+            continue;
 		ConstraintFactory costrFact(m_base);
 		Constraint constraint = costrFact.Create(item.constraintType);
         double variablesBackup; // will revert to this
