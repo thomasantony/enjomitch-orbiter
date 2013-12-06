@@ -3,11 +3,11 @@
 
 #include <memory>
 #include <vector>
+#include "VarConstraint.h"
 
 class basefunction;
 class Intercept;
 class Optimiser;
-class MFDvarfloat;
 
 /// Creates optimizers
 /**
@@ -19,8 +19,8 @@ class OptimiserFactory
         OptimiserFactory(basefunction * base, Intercept * icept);
         virtual ~OptimiserFactory();
 
-        std::auto_ptr<Optimiser> Create(const std::vector<MFDvarfloat*> & pArgs2Find);
-        std::auto_ptr<Optimiser> Create(MFDvarfloat* pArg2Find);
+        std::auto_ptr<Optimiser> Create(const std::vector<VarConstraint> & pArgs2Find);
+        std::auto_ptr<Optimiser> Create(VarConstraint pArg2Find);
         std::auto_ptr<Optimiser> CreateDummy();
 
     protected:

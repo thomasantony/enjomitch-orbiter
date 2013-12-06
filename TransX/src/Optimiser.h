@@ -4,20 +4,20 @@
 #include <vector>
 class Intercept;
 class basefunction;
-class MFDvarfloat;
+struct VarConstraint;
 class Optimiser
 {
     public:
-        Optimiser(basefunction * base, Intercept * icept, const std::vector<MFDvarfloat*> & pArgs2Find);
-        Optimiser(basefunction * base, Intercept * icept, MFDvarfloat* pArg2Find);
+        Optimiser(basefunction * base, Intercept * icept, const std::vector<VarConstraint> & pArgs2Find);
+        Optimiser(basefunction * base, Intercept * icept, VarConstraint pArg2Find);
         virtual ~Optimiser();
-        void Optimise( double * toOpti ) const;
+        void Optimise() const;
 
     protected:
     private:
         basefunction * m_base;
         Intercept * m_icept;
-        std::vector<MFDvarfloat*> m_pArgs2Find;
+        std::vector<VarConstraint> m_pArgs2Find;
         static const double m_cdefaultMax;
         static const double m_cdefaultMin;
         static const double m_cdefaultRatioHohmann;

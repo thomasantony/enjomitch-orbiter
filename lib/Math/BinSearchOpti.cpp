@@ -28,10 +28,6 @@ BinSearchOpti::~BinSearchOpti()
 Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 {
 //    GeneralMath gm;
-    //const double refValue = subj.GetRefValue();
-//    const double refValue = 0;
-   // double fmin = subj.UpdateGetValue(m_minArg) - refValue;
-  //  double fmax = subj.UpdateGetValue(m_maxArg) - refValue;
     double mid;
     int i = 0;
     double a = m_minArg;

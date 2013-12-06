@@ -127,6 +127,12 @@ int transxstate::inc_viewmode(unsigned int curfunction,int currview)
 	return baselist[curfunction-1]->calcnewview(currview,curfunction==1);
 }
 
+void transxstate::UpdateForOptimiser()
+{
+    //if (viewmode == 3)
+    dolowpriaction();
+}
+
 void transxstate::dolowpriaction()
 {
 

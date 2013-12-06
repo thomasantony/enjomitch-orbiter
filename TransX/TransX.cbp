@@ -206,6 +206,8 @@
 		<Unit filename="../lib/Math/SpaceMathBody.hpp" />
 		<Unit filename="../lib/Math/VectorMath.cpp" />
 		<Unit filename="../lib/Math/VectorMath.hpp" />
+		<Unit filename="../lib/Orbiter/SketchpadDummy.cpp" />
+		<Unit filename="../lib/Orbiter/SketchpadDummy.h" />
 		<Unit filename="../lib/Systems/Geo.cpp" />
 		<Unit filename="../lib/Systems/Geo.hpp" />
 		<Unit filename="../lib/Systems/Point.cpp" />
@@ -238,6 +240,11 @@
 		<Unit filename="../lib/Util/ValueWithDescription.hpp" />
 		<Unit filename="../lib/Util/VectorNonCopyable.cpp" />
 		<Unit filename="../lib/Util/VectorNonCopyable.hpp" />
+		<Unit filename="src/Constraint.cpp" />
+		<Unit filename="src/Constraint.h" />
+		<Unit filename="src/ConstraintFactory.cpp" />
+		<Unit filename="src/ConstraintFactory.h" />
+		<Unit filename="src/ConstraintType.h" />
 		<Unit filename="src/Optimiser.cpp" />
 		<Unit filename="src/Optimiser.h" />
 		<Unit filename="src/OptimiserFactory.cpp" />
@@ -247,6 +254,8 @@
 		</Unit>
 		<Unit filename="src/TransXFunction.cpp" />
 		<Unit filename="src/TransXFunction.h" />
+		<Unit filename="src/VarConstraint.cpp" />
+		<Unit filename="src/VarConstraint.h" />
 		<Unit filename="src/basefunction.cpp" />
 		<Unit filename="src/basefunction.h" />
 		<Unit filename="src/cmdnugget.h" />

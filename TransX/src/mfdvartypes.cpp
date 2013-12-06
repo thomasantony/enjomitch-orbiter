@@ -333,9 +333,8 @@ MFDvarfloat::MFDvarfloat()
 	continuous = true;
 }
 
-void MFDvarfloat::init(MFDvarhandler *vars, std::auto_ptr<Optimiser> opti,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder)
+void MFDvarfloat::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder)
 {
-    m_opti = opti;
 	initialise(vars,viewmode1,viewmode2);
 	strcpy(name,vname);
 	defaultvalue=value=vvalue;
@@ -422,6 +421,9 @@ void MFDvarfloat::ch_adjmode()
         adjMode = Rough;
     else
         adjMode = (AdjustMode)((int)adjMode + 1);
+
+    if (adjMode == AutoMin && !HasOptimiser())
+        ch_adjmode(); // Ignore this mode if there's no optimiser
 }
 
 void MFDvarfloat::chm_adjmode()
@@ -430,6 +432,9 @@ void MFDvarfloat::chm_adjmode()
         adjMode = Reset;
     else
         adjMode = (AdjustMode)((int)adjMode - 1);
+
+    if (adjMode == AutoMin && !HasOptimiser())
+        chm_adjmode(); // Ignore this mode if there's no optimiser
 }
 
 void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line) const
@@ -465,7 +470,7 @@ void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line
     case Micro:
 		length=sprintf(buffer,"Micro");
 		break;
-	case Min:
+	case AutoMin:
 		length=sprintf(buffer,"Auto-Min");
 		break;
 	case Reset:
@@ -516,95 +521,97 @@ bool MFDvarfloat::SetVariableFloat(char *str) { // FIXME: isangle
 	return false;
 }
 
+bool MFDvarfloat::ShouldBeOptimised()
+{
+    return adjMode == AutoMin;
+}
 
+bool MFDvarfloat::HasOptimiser()
+{
+    return m_opti.get() != NULL;
+}
+
+void MFDvarfloat::Optimise()
+{
+    if (HasOptimiser())
+        m_opti->Optimise();
+}
+
+double MFDvarfloat::GetAdjuster()
+{
+    switch (adjMode){
+	case Rough:
+		return 0.5;
+	case Coarse:
+		return 0.1;
+	case Medium:
+		return 0.01;
+	case Fine:
+		return 0.001;
+	case Super:
+		return 0.0001;
+	case Ultra:
+		return 0.00001;
+	case Hyper:
+		return 0.000001;
+	case Micro:
+		return 0.0000001;
+    default:
+        return 0;
+	}
+}
+
+bool MFDvarfloat::IsAdjusterSpecialCase()
+{
+    switch (adjMode)
+    {
+	    case AutoMin:
+            Optimise();
+            return true;
+        case Reset:
+            value=defaultvalue;
+            return true;
+        default:
+        return false;
+	}
+	return false;
+}
+
+double MFDvarfloat::CalcAdjustedValue(bool positive, double adjuster)
+{
+    double sign = positive ? 1 : -1;
+    double temp=value;
+	if (temp>logborder || temp<-logborder)
+		temp+=sign*fabs(temp)*adjuster*increment;
+	else
+		temp+=sign*logborder*adjuster*increment;
+    if (positive) {
+        if (temp>max) temp=max;
+    } else {
+        if (temp<min) temp=min;
+    }
+	return temp;
+}
 
 void MFDvarfloat::inc_variable()
 {
-	double temp=value;
-	double adjuster=0;
-	switch (adjMode){
-	case Rough:
-		adjuster=0.5;
-		break;
-	case Coarse:
-		adjuster=0.1;
-		break;
-	case Medium:
-		adjuster=0.01;
-		break;
-	case Fine:
-		adjuster=0.001;
-		break;
-	case Super:
-		adjuster=0.0001;
-		break;
-	case Ultra:
-		adjuster=0.00001;
-		break;
-	case Hyper:
-		adjuster=0.000001;
-		break;
-	case Micro:
-		adjuster=0.0000001;
-		break;
-    case Min:
-		m_opti->Optimise(&value);
-		return;
-	case Reset:
-		value=defaultvalue;
-		return;
-	}
-	if (temp>logborder || temp<-logborder)
-		temp+=fabs(temp)*adjuster*increment;
-	else
-		temp+=logborder*adjuster*increment;
-	if (temp>max) temp=max;
-	value=temp;
+    if (IsAdjusterSpecialCase())
+        return;
+	double adjuster=GetAdjuster();
+	value=CalcAdjustedValue(true, adjuster);
 }
 
 void MFDvarfloat::dec_variable()
 {
-	double temp=value;
-	double adjuster=0;
-	switch (adjMode){
-	case Rough:
-		adjuster=0.5;
-		break;
-	case Coarse:
-		adjuster=0.1;
-		break;
-	case Medium:
-		adjuster=0.01;
-		break;
-	case Fine:
-		adjuster=0.001;
-		break;
-	case Super:
-		adjuster=0.0001;
-		break;
-	case Ultra:
-		adjuster=0.00001;
-		break;
-	case Hyper:
-		adjuster=0.000001;
-		break;
-	case Micro:
-		adjuster=0.0000001;
-		break;
-    case Min:
-		m_opti->Optimise(&value);
-		return;
-	case Reset:
-		value=defaultvalue;
-		return;
+    if (IsAdjusterSpecialCase())
+        return;
+	double adjuster=GetAdjuster();
+	value=CalcAdjustedValue(false, adjuster);
+}
 
-	}
-	if (temp>logborder || temp<-logborder)
-		temp-=fabs(temp)*adjuster*increment;
-	else
-		temp-=logborder*adjuster*increment;
-	if (temp<min) temp=min;
-	value=temp;
+void MFDvarfloat::SetOptimiser(std::auto_ptr<Optimiser> opti)
+{
+    m_opti = opti;
 }
 
 void MFDvarfloat::setvalue(double tvalue)
@@ -637,57 +644,48 @@ bool MFDvarMJD::show(oapi::Sketchpad *sketchpad, int width, int line)
 	return true;
 }
 
-void MFDvarMJD::inc_variable()
+void MFDvarMJD::CalcAdjustedValue(bool positive)
 {
-    if(adjMode == Min) // Don't minimize the date
-    {
-        //m_opti->Optimise();
-        return;
-    }
-
-	ELEMENTS el;
-	ORBITPARAM param;
-	oapiGetFocusInterface()->GetElements(oapiGetFocusInterface()->GetGravityRef(), el, &param);
+    double sign = positive ? 1 : -1;
 	if(adjMode == Coarse)
 	{
-		value += 5500.8249307686044282429796200623 / SECONDS_PER_DAY;
-		//m_opti->Optimise();
+		value += sign * 5500.8249307686044282429796200623 / SECONDS_PER_DAY;
+		Optimise();
 	}
 	else
 	{
-        MFDvarfloat::inc_variable();
+	    if (positive)
+            MFDvarfloat::inc_variable();
+        else
+            MFDvarfloat::dec_variable();
         if(adjMode == Reset)
             value = oapiGetSimMJD();
-		//else
-        //    m_opti->Optimise();
+		else
+            Optimise();
 	}
+}
 
+void MFDvarMJD::inc_variable()
+{
+    CalcAdjustedValue(true);
 }
 
 void MFDvarMJD::dec_variable()
 {
-    if(adjMode == Min)
-    {
-        //m_opti->Optimise();
-        return; // Don't minimize the date
-    }
+    CalcAdjustedValue(false);
+}
 
-	ELEMENTS el;
-	ORBITPARAM param;
-	oapiGetFocusInterface()->GetElements(oapiGetFocusInterface()->GetGravityRef(), el, &param);
-	if(adjMode == Coarse)
-	{
-		value -= 5506.8249307686044282429796200623 / SECONDS_PER_DAY;
-		//m_opti->Optimise();
-	}
-    else
-	{
-        MFDvarfloat::dec_variable();
-        if(adjMode == Reset)
-            value = oapiGetSimMJD();
-        //else
-        //    m_opti->Optimise();
-    }
+void MFDvarMJD::ch_adjmode()
+{
+    MFDvarfloat::ch_adjmode();
+    if (adjMode == AutoMin)
+        MFDvarfloat::ch_adjmode(); // Ignore this mode for date
+}
+void MFDvarMJD::chm_adjmode()
+{
+    MFDvarfloat::chm_adjmode();
+    if (adjMode == AutoMin)
+        MFDvarfloat::chm_adjmode(); // Ignore this mode for date
 }
 
 void MFDvarshiplist::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname)
@@ -786,40 +784,10 @@ bool MFDvarangle::SetVariableAngle(char *str) { // FIXME: silly code duplication
 
 void MFDvarangle::inc_variable()
 {
+    if (IsAdjusterSpecialCase())
+        return;
+	double adjuster=GetAdjuster();
 	double temp=value;
-	double adjuster=0;
-	switch (adjMode){
-	case Rough:
-		adjuster=0.5;
-		break;
-	case Coarse:
-		adjuster=0.1;
-		break;
-	case Medium:
-		adjuster=0.01;
-		break;
-	case Fine:
-		adjuster=0.001;
-		break;
-	case Super:
-		adjuster=0.0001;
-		break;
-	case Ultra:
-		adjuster=0.00001;
-		break;
-	case Hyper:
-		adjuster=0.000001;
-		break;
-    case Micro:
-		adjuster=0.0000001;
-		break;
-	case Min:
-		m_opti->Optimise(&value);
-		return;
-	case Reset:
-		value=defaultvalue;
-		return;
-	}
 	temp+=adjuster*increment;
 	if (temp>max)
 	{
@@ -833,40 +801,10 @@ void MFDvarangle::inc_variable()
 
 void MFDvarangle::dec_variable()
 {
+    if (IsAdjusterSpecialCase())
+        return;
+	double adjuster=GetAdjuster();
 	double temp=value;
-	double adjuster=0;
-	switch (adjMode){
-    case Rough:
-		adjuster=0.5;
-		break;
-	case Coarse:
-		adjuster=0.1;
-		break;
-	case Medium:
-		adjuster=0.01;
-		break;
-	case Fine:
-		adjuster=0.001;
-		break;
-	case Super:
-		adjuster=0.0001;
-		break;
-	case Ultra:
-		adjuster=0.00001;
-		break;
-	case Hyper:
-		adjuster=0.000001;
-		break;
-	case Micro:
-		adjuster=0.0000001;
-		break;
-    case Min:
-		m_opti->Optimise(&value);
-		return;
-	case Reset:
-		value=defaultvalue;
-		return;
-	}
 	temp-=adjuster*increment;
 	if (temp<min)
 	{
