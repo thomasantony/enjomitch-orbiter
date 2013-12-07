@@ -95,6 +95,7 @@ public:
 	~basefunction();
 	OptimiserFactory GetOptiFactory();
     bool IsPlanSlingshot();
+    double GetTimeIntercept();
 };
 
 #endif

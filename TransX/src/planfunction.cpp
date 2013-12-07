@@ -549,11 +549,15 @@ void majejectplan::wordupdate(oapi::Sketchpad *sketchpad,int width, int height, 
     }
     else
     {
+        double tti = base->GetTimeIntercept();
+        double ejt = m_ejdate;
+        double numDays = tti - ejt;
+        TextShow(sketchpad,"TOF (days):",wpos,22*linespacing,numDays);
         double totaldv=length(ejectvector);
         if (totaldv>0.1)
         {
             //bottom right, watch both glass cockpit AND panel view for correct placement.
-            TextShow(sketchpad,"Total DeltaV:",wpos,(int)(22.5*linespacing),totaldv);
+            TextShow(sketchpad,"Total DeltaV:",wpos,23*linespacing,totaldv);
         }
     }
 

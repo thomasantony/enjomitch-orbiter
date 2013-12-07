@@ -1017,3 +1017,11 @@ bool basefunction::IsPlanSlingshot()
 {
     return getplanpointer()->getplanid() == 3;
 }
+
+double basefunction::GetTimeIntercept()
+{
+    double intercepttime=primary.gettimeintercept();
+	double arrmjd=oapiTime2MJD(intercepttime);
+	return arrmjd;
+}
+

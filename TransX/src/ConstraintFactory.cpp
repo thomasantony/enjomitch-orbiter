@@ -52,7 +52,7 @@ Constraint ConstraintFactory::CreateAngle()
 
 Constraint ConstraintFactory::CreateProgradeHohmann(basefunction * base)
 {
-    const double defaultRatioHohmann = 0.5;
+    const double defaultRatioHohmann = 0.25;
     const double hohmanDV = base->GetHohmannDV();
     const double lower = hohmanDV * (1 - defaultRatioHohmann);
     const double upper = hohmanDV * (1 + defaultRatioHohmann);
