@@ -28,6 +28,8 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 {
 //    GeneralMath gm;
     double mid;
+    double valMid;
+    bool valMidDirty = true; // Caching
     int i = 0;
     double a = m_minArg;
     double b = m_maxArg;
@@ -38,16 +40,20 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         double left = (a + mid) / 2;
         double right = (mid + b) / 2;
         double valLeft = subj.UpdateGetValue(left);
+        if (valMidDirty)
+            valMid = subj.UpdateGetValue(mid);
         double valRight = subj.UpdateGetValue(right);
-        if (valLeft < valRight)
+        if (valLeft < valRight && valLeft <= valMid)
         {
             b = mid; // Narrow right border
+            valMidDirty = true;
         }
-        else if (valRight < valLeft)
+        else if (valRight < valLeft && valRight <= valMid)
         {
             a = mid; // Narrow left border
+            valMidDirty = true;
         }
-        else // Both equal - narrow both borders, because the answer is inside
+        else // Narrow both borders, because the answer is inside
 		{
 			a = left;
 			b = right;

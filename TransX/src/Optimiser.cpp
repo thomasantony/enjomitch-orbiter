@@ -72,6 +72,7 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
 
 void Optimiser::Optimise() const
 {
+    //for (int j = 0; j < 4; ++j)
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i) // quick and dirty
     {
 		const VarConstraint & item = m_pArgs2Find.at(i);
