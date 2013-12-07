@@ -33,6 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef VECTORUTIL_H
 #define VECTORUTIL_H
 
+namespace EnjoLib {
 class Vector;
 class Matrix;
 
@@ -49,5 +50,5 @@ class Assertions
     protected:
     private:
 };
-
+}
 #endif // VECTORUTIL_H

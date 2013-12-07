@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Matrix.hpp"
 #include <sstream>
 #include "Assertions.hpp"
-
+using namespace EnjoLib;
 Matrix::Matrix()
 {
 }

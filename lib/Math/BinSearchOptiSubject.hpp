@@ -3,6 +3,7 @@
 
 namespace EnjoLib
 {
+    class Vector;
     class BinSearchOptiSubject
     {
         public:
@@ -10,7 +11,7 @@ namespace EnjoLib
             virtual ~BinSearchOptiSubject();
 
             /// Should return the function's value for a given argument.
-            virtual double UpdateGetValue( double arg ) = 0;
+            virtual double UpdateGetValue( const Vector & arg ) = 0;
 
         protected:
         private:

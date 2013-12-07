@@ -39,17 +39,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Vector.hpp"
 #include "Assertions.hpp"
 
+using namespace EnjoLib;
 Vector::Vector( const std::vector<double> & init )
 {
     for ( Vector::const_iterator it = init.begin(); it != init.end(); ++it)
         push_back(*it);
 }
 
-Vector::Vector( int n )
+// Dangerous constructor
+Vector::Vector( size_t n )
 {
-    for (int i = 0; i < n; ++i)
+    for (size_t i = 0; i < n; ++i)
         push_back(0);
 }
+
 Vector::Vector()
 {
 }
@@ -209,4 +212,13 @@ bool Vector::operator > (const Vector & p) const
 bool Vector::operator < (const Vector & p) const
 {
     return Len() < p.Len();
+}
+
+std::ostream& operator<< (std::ostream& stream, const Vector& v)
+{
+    stream << "(";
+    for ( Vector::const_iterator it = v.begin(); it != v.end(); ++it )
+        stream  << *it << " ";
+    stream << ")";
+    return stream;
 }

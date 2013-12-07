@@ -1,6 +1,8 @@
 #include "BinSubjSphere.h"
 
-BinSubjSphere::BinSubjSphere(double shift)
+using namespace EnjoLib;
+
+BinSubjSphere::BinSubjSphere(const Vector & shift)
 : m_shift(shift)
 {
 }
@@ -9,9 +11,11 @@ BinSubjSphere::~BinSubjSphere()
 {
 }
 
-double BinSubjSphere::UpdateGetValue( double arg )
+double BinSubjSphere::UpdateGetValue( const Vector & arg )
 {
-    double x = (arg-m_shift);
-    double y = x*x;
+    Vector x = (arg-m_shift);
+    double y = 0;
+    for ( Vector::iterator it = x.begin(); it != x.end(); ++it )
+        y += *it * *it;
     return y;
 }

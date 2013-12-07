@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "EigenValueVector.hpp"
-
+using namespace EnjoLib;
 EigenValueVector::EigenValueVector(double value, const Vector & vector)
 : m_eigenValue(value), m_eigenVector( vector.Norm() )
 {

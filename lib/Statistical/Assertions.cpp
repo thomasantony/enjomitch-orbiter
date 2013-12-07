@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Assertions.hpp"
 #include "Vector.hpp"
 #include "Matrix.hpp"
-
+using namespace EnjoLib;
 Assertions::Assertions()
 {
 }

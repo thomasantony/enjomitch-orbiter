@@ -2,17 +2,18 @@
 #define BINSUBJSPHERE_H
 
 #include <Math/BinSearchOptiSubject.hpp>
+#include <Statistical/Vector.hpp>
 
 class BinSubjSphere : public EnjoLib::BinSearchOptiSubject
 {
     public:
-        BinSubjSphere(double shift);
+        BinSubjSphere(const EnjoLib::Vector & shift);
         virtual ~BinSubjSphere();
 
-        double UpdateGetValue( double arg );
+        double UpdateGetValue( const EnjoLib::Vector & arg );
     protected:
     private:
-        double m_shift;
+        EnjoLib::Vector m_shift;
 };
 
 #endif // BINSUBJSPHERE_H
