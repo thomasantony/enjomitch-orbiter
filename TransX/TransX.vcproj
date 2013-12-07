@@ -623,22 +623,6 @@
 				Name="Math"
 				>
 				<File
-					RelativePath="..\lib\Math\BinSearchArg.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BinSearchArg.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BinSearchArgSubject.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BinSearchArgSubject.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\lib\Math\BinSearchOpti.cpp"
 					>
 				</File>
@@ -652,22 +636,6 @@
 				</File>
 				<File
 					RelativePath="..\lib\Math\BinSearchOptiSubject.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\Bisection.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\Bisection.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BisectionSubject.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BisectionSubject.hpp"
 					>
 				</File>
 				<File

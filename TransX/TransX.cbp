@@ -169,18 +169,10 @@
 			<Add library="user32.lib" />
 			<Add library="gdi32.lib" />
 		</Linker>
-		<Unit filename="../lib/Math/BinSearchArg.cpp" />
-		<Unit filename="../lib/Math/BinSearchArg.hpp" />
-		<Unit filename="../lib/Math/BinSearchArgSubject.cpp" />
-		<Unit filename="../lib/Math/BinSearchArgSubject.hpp" />
 		<Unit filename="../lib/Math/BinSearchOpti.cpp" />
 		<Unit filename="../lib/Math/BinSearchOpti.hpp" />
 		<Unit filename="../lib/Math/BinSearchOptiSubject.cpp" />
 		<Unit filename="../lib/Math/BinSearchOptiSubject.hpp" />
-		<Unit filename="../lib/Math/Bisection.cpp" />
-		<Unit filename="../lib/Math/Bisection.hpp" />
-		<Unit filename="../lib/Math/BisectionSubject.cpp" />
-		<Unit filename="../lib/Math/BisectionSubject.hpp" />
 		<Unit filename="../lib/Math/Constants.hpp" />
 		<Unit filename="../lib/Math/GeneralMath.cpp" />
 		<Unit filename="../lib/Math/GeneralMath.hpp" />

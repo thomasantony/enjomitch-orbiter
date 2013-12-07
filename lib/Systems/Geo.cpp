@@ -2,7 +2,7 @@
 Modified BSD License
 
 This file is a part of Systems package and originates from:
-http://sf.net/projects/enjomitchsorbit 
+http://sf.net/projects/enjomitchsorbit
 
 Copyright (c) 2011, Szymon "Enjo" Ender
 All rights reserved.
