@@ -40,9 +40,9 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         double left = (a + mid) / 2;
         double right = (mid + b) / 2;
         double valLeft = subj.UpdateGetValue(left);
+        double valRight = subj.UpdateGetValue(right);
         if (valMidDirty)
             valMid = subj.UpdateGetValue(mid);
-        double valRight = subj.UpdateGetValue(right);
         if (valLeft < valRight && valLeft <= valMid)
         {
             b = mid; // Narrow right border
@@ -57,6 +57,7 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 		{
 			a = left;
 			b = right;
+			// value of the middle point stays the same and doesn't need to be recalculated
 		}
         bmaxIter = ++i == m_maxIter;
     } while( (b-a)/2 > m_eps && ! bmaxIter ); // Continue searching, until below threshold
