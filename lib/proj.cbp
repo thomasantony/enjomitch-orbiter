@@ -88,6 +88,10 @@
 		<Unit filename="Math/AzimuthMath.hpp" />
 		<Unit filename="Math/BinSearchOpti.cpp" />
 		<Unit filename="Math/BinSearchOpti.hpp" />
+		<Unit filename="Math/BinSearchOpti2D.cpp" />
+		<Unit filename="Math/BinSearchOpti2D.hpp" />
+		<Unit filename="Math/BinSearchOpti2DSubject.cpp" />
+		<Unit filename="Math/BinSearchOpti2DSubject.hpp" />
 		<Unit filename="Math/BinSearchOptiSubject.cpp" />
 		<Unit filename="Math/BinSearchOptiSubject.hpp" />
 		<Unit filename="Math/Bisection.cpp" />

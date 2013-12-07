@@ -43,6 +43,8 @@
 		</Linker>
 		<Unit filename="BinSubjSphere.cpp" />
 		<Unit filename="BinSubjSphere.h" />
+		<Unit filename="BinSubjSphere2D.cpp" />
+		<Unit filename="BinSubjSphere2D.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
