@@ -53,8 +53,8 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
             for(size_t i = 0; i < arg.size() && i < m_pArgs2Find.size(); ++i )
                 *m_pArgs2Find.at(i) = arg.at(i);
 
-            //VECTOR3 tmp;
-			//for (int i = 0; i < 10; ++i)
+            VECTOR3 tmp;
+			for (int i = 0; i < 10; ++i)
             {
                 //m_base->calculate(&tmp); // twice as fast, but works only in Eject mode
             }

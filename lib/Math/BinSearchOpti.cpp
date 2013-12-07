@@ -42,8 +42,6 @@ Result<Vector> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         {
             // Cut the argument in slices until the value (value) is below threshold (binary search)
             mid = (a + b) / 2; // Midpoint
-            //Vector left = (a + mid) / 2;
-            //Vector right = (mid + b) / 2;
             Vector left = mid;
             Vector right = mid;
             left.at(dim) = (a.at(dim) + mid.at(dim)) / 2;

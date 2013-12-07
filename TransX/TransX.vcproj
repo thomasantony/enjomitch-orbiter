@@ -907,6 +907,34 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Statistical"
+				>
+				<File
+					RelativePath="..\lib\Statistical\Assertions.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Assertions.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Matrix.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Matrix.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Vector.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Vector.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\src\basefunction.cpp"
