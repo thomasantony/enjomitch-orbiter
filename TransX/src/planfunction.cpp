@@ -449,7 +449,7 @@ void encounterplan::getplanorbit(OrbitElements *planorbit)
 void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height, basefunction *base)
 {
 	int linespacing=height/24;
-	int pos=18*linespacing;
+	int pos=16*linespacing;
 	OrbitElements craft=base->getmanoeuvreorbit();
 	if (!craft.isvalid()) craft=base->getcraftorbit();//Gets manoeuvre if it's valid, otherwise craft
 
@@ -494,6 +494,8 @@ void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height
 		pos+=linespacing;
 		TextShow(sketchpad,"Capture Delta:",0,pos,actualpevelocity-escvelocity);
 		pos+=linespacing;
+		TextShow(sketchpad,"Circ. Delta:",0,pos,actualpevelocity-(escvelocity/1.4142135623731));
+		pos+=linespacing;
 
 		VECTOR3 position,velocity;
 		craft.radiustovectors(ped+10,false,&position,&velocity);
@@ -535,18 +537,27 @@ void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height
 	TextShow(sketchpad,"LAN ",0,pos,lan);
 }
 
-
 void majejectplan::wordupdate(oapi::Sketchpad *sketchpad,int width, int height, basefunction *base)
 {
-	if (ratioorbit>0)
-	{
-		int linespacing=height/24;
-		int pos=15*linespacing;
-		TextShow(sketchpad,"Pe/Pl Rad:",0,pos,ratioorbit);
-	}
+    int linespacing=height/24;
+    int wspace=width/19;
+    int wpos=9*wspace;
+
+    if (ratioorbit>0) //Don't show if View: Sling Direct
+    {
+        TextShow(sketchpad,"Pe/Pl Rad:",0,15*linespacing,ratioorbit);
+    }
+    else
+    {
+        double totaldv=length(ejectvector);
+        if (totaldv>0.1)
+        {
+            //bottom right, watch both glass cockpit AND panel view for correct placement.
+            TextShow(sketchpad,"Total DeltaV:",wpos,(int)(22.5*linespacing),totaldv);
+        }
+    }
+
 }
-
-
 
 void minorejectplan::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunction *base)
 {
@@ -617,7 +628,7 @@ bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
     std::vector<VarConstraint> allVelocities;
     allVelocities.push_back(constrPrograde);
     allVelocities.push_back(constrChPlane);
-    //allVelocities.push_back(constrOutward); // least expected to be minimized
+    allVelocities.push_back(constrOutward); // least expected to be minimized
     OptimiserFactory optiFact = base->GetOptiFactory();
     m_ejdate.SetOptimiser(optiFact.Create(allVelocities));
     m_prograde.SetOptimiser(optiFact.Create(constrPrograde));
@@ -644,8 +655,6 @@ bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 		"take off.");
 	return true;
 }
-
-
 
 void majorejectplan::calcejectvector(const VECTOR3 &rminplane,const VECTOR3 &minorvel, double inheritedvelocity)
 {//Final param not used here

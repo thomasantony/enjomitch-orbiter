@@ -917,6 +917,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 				graph.drawtwovector(sketchpad, craftpos,targetpos);
 				primary.getplanecept(&intersect);
 				SelectDefaultPen(sketchpad,Grey);
+				// Draws orbits intersection line
 				graph.drawvectorline(sketchpad,intersect);
 
 				//Describe targeting quality
