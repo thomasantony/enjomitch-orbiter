@@ -549,9 +549,7 @@ void majejectplan::wordupdate(oapi::Sketchpad *sketchpad,int width, int height, 
     }
     else
     {
-        double tti = base->GetTimeIntercept();
-        double ejt = m_ejdate;
-        double numDays = tti - ejt;
+        double numDays = base->GetTimeIntercept() - m_ejdate;
         TextShow(sketchpad,"TOF (days):",wpos,22*linespacing,numDays);
         double totaldv=length(ejectvector);
         if (totaldv>0.1)
@@ -560,7 +558,6 @@ void majejectplan::wordupdate(oapi::Sketchpad *sketchpad,int width, int height, 
             TextShow(sketchpad,"Total DeltaV:",wpos,23*linespacing,totaldv);
         }
     }
-
 }
 
 void minorejectplan::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunction *base)
