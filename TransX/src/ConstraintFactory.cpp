@@ -31,8 +31,8 @@ Constraint ConstraintFactory::Create(ConstraintType::e type)
 Constraint ConstraintFactory::CreateOutward()
 {
     // Outward velocity requires a lot of energy. Keep it small
-    const double lower = -400;
-    const double upper = +400;
+    const double lower = -1000;
+    const double upper = +1000;
     return Constraint(lower, upper);
 }
 

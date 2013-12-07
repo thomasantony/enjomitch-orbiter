@@ -617,7 +617,7 @@ bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
     std::vector<VarConstraint> allVelocities;
     allVelocities.push_back(constrPrograde);
     allVelocities.push_back(constrChPlane);
-    allVelocities.push_back(constrOutward); // least expected to be minimized
+    //allVelocities.push_back(constrOutward); // least expected to be minimized
     OptimiserFactory optiFact = base->GetOptiFactory();
     m_ejdate.SetOptimiser(optiFact.Create(allVelocities));
     m_prograde.SetOptimiser(optiFact.Create(constrPrograde));
