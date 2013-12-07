@@ -2,6 +2,7 @@
 #include "basefunction.h"
 #include <Math/BinSearchOptiSubject.hpp>
 #include <Math/BinSearchOpti.hpp>
+#include <Statistical/Vector.hpp>
 #include "ConstraintFactory.h"
 #include "Constraint.h"
 
@@ -35,23 +36,22 @@ Optimiser::~Optimiser()
 class OptiFunction : public EnjoLib::BinSearchOptiSubject
 {
     public:
-        OptiFunction(VarConstraint toOpti, basefunction * base, Intercept * icept, const std::vector<VarConstraint> & pArgs2Find)
+        OptiFunction(basefunction * base, Intercept * icept, const std::vector<MFDvarfloat *> & pArgs2Find)
         : m_pArgs2Find(pArgs2Find)
         , m_base(base)
         , m_icept(icept)
-        , m_toOpti(toOpti)
 		, m_iter(0)
         {
         }
 
         // Deduct the minimized value, based on tested input, supplied by the optimizer
-		double UpdateGetValue( double arg )
+		double UpdateGetValue( const Vector & arg )
         {
 			++m_iter;
-			double xx = arg; // for debugging
+			double xx = arg.at(0); // for debugging
 
-			*m_toOpti.var = arg;
-			//*m_pArgs2Find.at(0) = arg;
+            for(size_t i = 0; i < arg.size() && i < m_pArgs2Find.size(); ++i )
+                *m_pArgs2Find.at(i) = arg.at(i);
 
             //VECTOR3 tmp;
 			//for (int i = 0; i < 10; ++i)
@@ -72,13 +72,15 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
     private:
         basefunction * m_base;
         Intercept * m_icept;
-        VarConstraint m_toOpti;
-        std::vector<VarConstraint> m_pArgs2Find;
+        std::vector<MFDvarfloat *> m_pArgs2Find;
 		mutable int m_iter;
 };
 
 void Optimiser::Optimise() const
 {
+    // Prepare data for the optimiser
+    Vector a, b;
+    std::vector<MFDvarfloat *> argsToFind;
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i) // quick and dirty
     {
 		const VarConstraint & item = m_pArgs2Find.at(i);
@@ -88,19 +90,24 @@ void Optimiser::Optimise() const
 		Constraint constraint = costrFact.Create(item.constraintType);
         double variablesBackup; // will revert to this
 
-        OptiFunction optiFunction(item, m_base, m_icept, m_pArgs2Find);
+
         //for (size_t i = 0; i < sz; ++i)
         //    starting_point(i) = *m_pArgs2Find.at(i);
 
         variablesBackup = *item.var;
         double min_point = constraint.lower;
         double max_point = constraint.upper;
-        BinSearchOpti bs(min_point, max_point, 0.1);
-        Result<double> xopt = bs.Run(optiFunction);
-        //if (xopt.status)
-       //    cout << "SUCCESS!" << endl;
-        //else
-        //    cout << "FAILURE!" << endl;
-        //cout << "opti x = " << xopt.value << ", y = " << f.UpdateGetValue(xopt.value) << endl;
+
+        argsToFind.push_back(item.var);
+        a.push_back(min_point);
+        b.push_back(max_point);
     }
+    OptiFunction optiFunction(m_base, m_icept, argsToFind);
+    BinSearchOpti bs(a, b, 0.001);
+    Result<Vector> xopt = bs.Run(optiFunction);
+        //if (xopt.status)
+    //    cout << "SUCCESS!" << endl;
+    //else
+    //    cout << "FAILURE!" << endl;
+    //cout << "opti x = " << xopt.value << ", y = " << f.UpdateGetValue(xopt.value) << endl;
 }
