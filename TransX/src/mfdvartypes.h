@@ -163,8 +163,6 @@ public:
 	bool show(oapi::Sketchpad *sketchpad, int width, int line);
 	virtual void inc_variable(); // Increase the variable
 	virtual void dec_variable(); //Decrease the variable
-    virtual void ch_adjmode();
-	virtual void chm_adjmode();
 
 	double operator = (double tvalue){value=tvalue;return value;};
 private:

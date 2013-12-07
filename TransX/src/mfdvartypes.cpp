@@ -680,19 +680,6 @@ void MFDvarMJD::dec_variable()
     CalcAdjustedValue(false);
 }
 
-void MFDvarMJD::ch_adjmode()
-{
-    MFDvarfloat::ch_adjmode();
-    if (adjMode == AutoMin)
-        MFDvarfloat::ch_adjmode(); // Ignore this mode for date
-}
-void MFDvarMJD::chm_adjmode()
-{
-    MFDvarfloat::chm_adjmode();
-    if (adjMode == AutoMin)
-        MFDvarfloat::chm_adjmode(); // Ignore this mode for date
-}
-
 void MFDvarshiplist::init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname)
 {
 	initialise(vars,viewmode1,viewmode2);

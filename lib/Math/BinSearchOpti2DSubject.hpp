@@ -3,7 +3,7 @@
 
 namespace EnjoLib
 {
-    class Point;
+    struct Point;
     class BinSearchOpti2DSubject
     {
         public:
