@@ -9,9 +9,10 @@ using namespace EnjoLib;
 
 int main()
 {
-    double a = -10;
-    double b = +10;
-    BinSearchOpti bsearch(a, b, 0.01);
+   double a = -8;
+    double b = +8;
+    BinSearchOpti bsearch(a, b, 0.0001);
+
 
     for (double shift = a-1; shift < b+1; shift += 0.8 )
     {
@@ -25,6 +26,7 @@ int main()
         cout << ", y(xopt) = " << sph.UpdateGetValue(result.value);
         cout << endl;
     }
+
 
     return 0;
 }

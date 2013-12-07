@@ -147,6 +147,7 @@ public:
 	void init(MFDvarhandler *vars,int viewmode1,int viewmode2,char *vname, double vvalue, double vmin, double vmax, double vincrement, double vlogborder);
 	void SetOptimiser(std::auto_ptr<Optimiser> opti);
 	bool ShouldBeOptimised(); // Could be optimised actively, or passively, through the date
+	virtual double GetOptimiserPrecision() const;
 	MFDvarfloat();
 	~MFDvarfloat();
 private:
@@ -208,6 +209,7 @@ private:
 	bool loop; //If true, then loops from min to max
 public:
 	virtual bool SetVariableAngle(char *str); // Must we?...
+	double GetOptimiserPrecision() const;
 	virtual void enter_variable();
 	double operator = (double tvalue){setvalue(tvalue);return tvalue;};
 	virtual void inc_variable(); // Increase the variable

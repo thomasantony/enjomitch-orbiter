@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define MATRIX_H
 
 #include "Vector.hpp"
-
+namespace EnjoLib{
 class Matrix : public std::vector<Vector>
 {
     public:
@@ -56,5 +56,5 @@ class Matrix : public std::vector<Vector>
     protected:
     private:
 };
-
+}
 #endif // MATRIX_H

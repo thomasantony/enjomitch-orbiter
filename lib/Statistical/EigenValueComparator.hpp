@@ -33,6 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef EIGENVALUECOMPARATOR_H
 #define EIGENVALUECOMPARATOR_H
 
+namespace EnjoLib {
 class EigenValueVector;
 
 class EigenValueComparator
@@ -45,5 +46,5 @@ class EigenValueComparator
     protected:
     private:
 };
-
+}
 #endif // EIGENVALUECOMPARATOR_H

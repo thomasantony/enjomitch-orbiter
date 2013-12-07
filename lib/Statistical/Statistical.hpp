@@ -33,8 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef STATISTICAL_H
 #define STATISTICAL_H
 
-#include <vector>
-
+namespace EnjoLib {
 class Vector;
 class Matrix;
 
@@ -52,5 +51,5 @@ class Statistical
     protected:
     private:
 };
-
+}
 #endif // STATISTICAL_H

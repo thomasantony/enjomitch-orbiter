@@ -35,13 +35,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <vector>
 #include <string>
-
+namespace EnjoLib
+{
 class Vector : public std::vector<double>
 {
     public:
     std::string Print() const; // TODO
         Vector( const std::vector<double> & init );
-        Vector( int n );
+        Vector( size_t n );
         Vector();
         virtual ~Vector();
 
@@ -71,11 +72,11 @@ class Vector : public std::vector<double>
         bool operator > (const Vector & par) const;
         bool operator < (const Vector & par) const;
 
-
-
     protected:
     private:
         void SizesEqual( const Vector & par, const char * functionName ) const;
 };
 
+}
+std::ostream& operator<< (std::ostream& stream, const EnjoLib::Vector& v);
 #endif // VECTOR_H

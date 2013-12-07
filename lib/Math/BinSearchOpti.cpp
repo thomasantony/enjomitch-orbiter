@@ -22,7 +22,6 @@ BinSearchOpti::BinSearchOpti(double minArg, double maxArg, double eps)
 
 BinSearchOpti::~BinSearchOpti()
 {
-    //dtor
 }
 
 Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
@@ -32,7 +31,6 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
     int i = 0;
     double a = m_minArg;
     double b = m_maxArg;
-
     bool bmaxIter = false;
     do
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)
@@ -40,28 +38,20 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         double left = (a + mid) / 2;
         double right = (mid + b) / 2;
         double valLeft = subj.UpdateGetValue(left);
-		double valMid = subj.UpdateGetValue(mid);
         double valRight = subj.UpdateGetValue(right);
-
-        if ( valLeft < valRight && valLeft < valMid )
+        if (valLeft < valRight)
         {
             b = mid; // Narrow right border
         }
-        else if ( valRight < valLeft && valRight < valMid )
+        else if (valRight < valLeft)
         {
             a = mid; // Narrow left border
-           // fmin = value;
         }
-        else if ( valMid < valLeft && valMid < valRight )
+        else // Both equal - narrow both borders, because the answer is inside
 		{
 			a = left;
 			b = right;
 		}
-        else
-        {   // Everything is the same. Somethin' ain't right with yer function!
-            return Result<double>(m_maxArg, false);
-        }
-
         bmaxIter = ++i == m_maxIter;
     } while( (b-a)/2 > m_eps && ! bmaxIter ); // Continue searching, until below threshold
     //sprintf(oapiDebugString(), "i = %d, maxi = %d, arg = %lf, value = %lf, pdiff = %lf",i, m_maxIter, arg, diff, prevDiff);

@@ -208,6 +208,12 @@
 		<Unit filename="../lib/Math/VectorMath.hpp" />
 		<Unit filename="../lib/Orbiter/SketchpadDummy.cpp" />
 		<Unit filename="../lib/Orbiter/SketchpadDummy.h" />
+		<Unit filename="../lib/Statistical/Assertions.cpp" />
+		<Unit filename="../lib/Statistical/Assertions.hpp" />
+		<Unit filename="../lib/Statistical/Matrix.cpp" />
+		<Unit filename="../lib/Statistical/Matrix.hpp" />
+		<Unit filename="../lib/Statistical/Vector.cpp" />
+		<Unit filename="../lib/Statistical/Vector.hpp" />
 		<Unit filename="../lib/Systems/Geo.cpp" />
 		<Unit filename="../lib/Systems/Geo.hpp" />
 		<Unit filename="../lib/Systems/Point.cpp" />

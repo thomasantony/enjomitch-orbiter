@@ -1011,3 +1011,8 @@ OptimiserFactory basefunction::GetOptiFactory()
 {
     return OptimiserFactory(this, &primary);
 }
+
+bool basefunction::IsPlanSlingshot()
+{
+    return getplanpointer()->getplanid() == 3;
+}

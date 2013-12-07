@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define EIGENVALUEVECTOR_H
 
 #include "Vector.hpp"
-
+namespace EnjoLib {
 class EigenValueVector
 {
     public:
@@ -50,5 +50,5 @@ class EigenValueVector
         double m_eigenValue;
         Vector m_eigenVector;
 };
-
+}
 #endif // EIGENVALUEVECTOR_H

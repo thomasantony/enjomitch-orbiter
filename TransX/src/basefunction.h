@@ -94,6 +94,7 @@ public:
 	basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, class basefunction *templbase, OBJHANDLE thcraft);
 	~basefunction();
 	OptimiserFactory GetOptiFactory();
+    bool IsPlanSlingshot();
 };
 
 #endif

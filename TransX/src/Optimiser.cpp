@@ -28,42 +28,36 @@ Optimiser::Optimiser(basefunction * base, Intercept * icept, VarConstraint pArg2
 
 Optimiser::~Optimiser()
 {
-    int test = 1;
-    int test2 = 23;
 }
 
 class OptiFunction : public EnjoLib::BinSearchOptiSubject
 {
     public:
-        OptiFunction(VarConstraint toOpti, basefunction * base, Intercept * icept, const std::vector<VarConstraint> & pArgs2Find)
-        : m_pArgs2Find(pArgs2Find)
-        , m_base(base)
+        OptiFunction(VarConstraint toOpti, basefunction * base, Intercept * icept)
+        : m_base(base)
         , m_icept(icept)
         , m_toOpti(toOpti)
 		, m_iter(0)
         {
         }
-
         // Deduct the minimized value, based on tested input, supplied by the optimizer
 		double UpdateGetValue( double arg )
         {
 			++m_iter;
-			double xx = arg; // for debugging
-
-			*m_toOpti.var = arg;
-			//*m_pArgs2Find.at(0) = arg;
-
-            VECTOR3 tmp;
-			for (int i = 0; i < 10; ++i)
+			*m_toOpti.var = arg; // Provide feedback to TransX's calculation functions
+			if (m_base->IsPlanSlingshot()) // needs more refresh frames
             {
-                m_base->calculate(&tmp); // twice as fast, but works only in Eject mode
+				for (int i = 0; i < 50; ++i)
+				// needs at least 7 iterations to converge in eject mode, and 40 in slingshot mode!
+                    m_base->UpdateAllPlans();
+            }
+            else
+            {
+                VECTOR3 tmp;
+                for (int i = 0; i < 9; ++i)
+                    m_base->calculate(&tmp); // twice as fast, but works only in Eject mode
             }
 
-            for (int i = 0; i < 50; ++i)
-			{
-				// needs at least 7 iterations to converge in eject mode, and 40 in slingshot mode!
-				//m_base->UpdateAllPlans();
-			}
             VECTOR3 craftpos, targetpos;
             m_icept->getpositions(&craftpos,&targetpos);
             double len = length(craftpos-targetpos);
@@ -73,7 +67,6 @@ class OptiFunction : public EnjoLib::BinSearchOptiSubject
         basefunction * m_base;
         Intercept * m_icept;
         VarConstraint m_toOpti;
-        std::vector<VarConstraint> m_pArgs2Find;
 		mutable int m_iter;
 };
 
@@ -86,18 +79,16 @@ void Optimiser::Optimise() const
             continue;
 		ConstraintFactory costrFact(m_base);
 		Constraint constraint = costrFact.Create(item.constraintType);
-        double variablesBackup; // will revert to this
+        OptiFunction optiFunction(item, m_base, m_icept);
 
-        OptiFunction optiFunction(item, m_base, m_icept, m_pArgs2Find);
-        //for (size_t i = 0; i < sz; ++i)
-        //    starting_point(i) = *m_pArgs2Find.at(i);
-
-        variablesBackup = *item.var;
         double min_point = constraint.lower;
         double max_point = constraint.upper;
-        BinSearchOpti bs(min_point, max_point, 0.1);
+        double eps = item.var->GetOptimiserPrecision(); // Slingshot's angles need more precision
+        BinSearchOpti bs(min_point, max_point, eps);
+        double variableBackup = *item.var;
         Result<double> xopt = bs.Run(optiFunction);
-        //if (xopt.status)
+        if (!xopt.status)
+            *item.var = variableBackup;
        //    cout << "SUCCESS!" << endl;
         //else
         //    cout << "FAILURE!" << endl;
