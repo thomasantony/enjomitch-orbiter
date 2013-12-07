@@ -623,14 +623,6 @@
 				Name="Math"
 				>
 				<File
-					RelativePath="..\lib\Math\AzimuthMath.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\AzimuthMath.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\lib\Math\BinSearchArg.cpp"
 					>
 				</File>
@@ -691,54 +683,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Math\GreatCircleAdvMath.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\GreatCircleAdvMath.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\GreatCircleMath.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\GreatCircleMath.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\MaxMin.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\MaxMin.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\MaxMinPoint.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\MaxMinPoint.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\RK4.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\RK4.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\RK4AccelerationBase.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\RK4AccelerationBase.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\lib\Math\SimpsonFunctor.cpp"
 					>
 				</File>
@@ -747,27 +691,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Math\SpaceMath.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\SpaceMath.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\lib\Math\SpaceMathBody.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\lib\Math\SpaceMathBody.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\VectorMath.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\VectorMath.hpp"
 					>
 				</File>
 			</Filter>
@@ -788,14 +716,6 @@
 				</File>
 				<File
 					RelativePath="..\lib\Systems\Point.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Systems\RectangleMy.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Systems\RectangleMy.hpp"
 					>
 				</File>
 				<File
@@ -847,38 +767,6 @@
 				Name="Util"
 				>
 				<File
-					RelativePath="..\lib\Util\CharManipulations.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\CharManipulations.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\EnumStringMap.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\EnumStringMap.h"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\FileUtils.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\FileUtils.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\NonCopyable.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\NonCopyable.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\lib\Util\Result.cpp"
 					>
 				</File>
@@ -888,22 +776,6 @@
 				</File>
 				<File
 					RelativePath="..\lib\Util\StackTrace.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\ValueWithDescription.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\ValueWithDescription.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\VectorNonCopyable.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Util\VectorNonCopyable.hpp"
 					>
 				</File>
 			</Filter>
