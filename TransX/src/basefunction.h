@@ -96,6 +96,7 @@ public:
 	OptimiserFactory GetOptiFactory();
     bool IsPlanSlingshot();
     double GetTimeIntercept();
+    double GetHohmannDV(); // Calculate Hohmann transfer dv
 };
 
 #endif

@@ -386,10 +386,6 @@
 		<Unit filename="afxres.h" />
 		<Unit filename="globals.h" />
 		<Unit filename="localisation.h" />
-		<Unit filename="pch.h">
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
 		<Unit filename="resource.h" />
 		<Extensions>
 			<code_completion />

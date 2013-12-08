@@ -27,6 +27,7 @@
 #include "mfd.h"
 #include "transx.h"
 #include "VarConstraint.h"
+#include <Math/SpaceMathBody.hpp>
 
 extern double debug;
 
@@ -1025,3 +1026,19 @@ double basefunction::GetTimeIntercept()
 	return arrmjd;
 }
 
+double basefunction::GetHohmannDV()
+{
+    if (!hminor || !hmajor || !hmajtarget)
+        return 0;
+    VECTOR3 posSrc, posTgt;
+    oapiGetRelativePos(hminor, hmajor, &posSrc);
+    oapiGetRelativePos(hmajtarget, hmajor, &posTgt);
+    double radSrc = length(posSrc);
+    double radTgt = length(posTgt);
+    EnjoLib::SpaceMathBody smb(oapiGetMass(hmajor));
+    double dv = smb.GetHohmannDVExtend(radSrc, radTgt);
+    if (radTgt > radSrc)
+        return dv;
+    else
+        return -dv;
+}

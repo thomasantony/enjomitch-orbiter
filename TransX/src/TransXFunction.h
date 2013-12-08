@@ -107,7 +107,6 @@ public:
 	void sethbase(OBJHANDLE handle);
 	void sethelp(char *help1,char *help2,char *help3,char *help4,char *help5);
 	void gethelp(char *help1,char *help2,char *help3,char *help4,char *help5) const;
-	double GetHohmannDV(); // Calculate Hohmann transfer dv
 };
 
 #endif
