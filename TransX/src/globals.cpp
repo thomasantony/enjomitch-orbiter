@@ -26,6 +26,7 @@
 #include "orbitersdk.h"
 #include "shiplist.h"
 #include <list>
+#include "defines.h"
 
 static int mode;
 
@@ -36,14 +37,20 @@ using namespace std;
 
 DLLCLBK void InitModule (HINSTANCE hDLL)
 {
-	static char name[] = "TransX";
+#ifdef FIRST_INSTANCE
+    static char name[] = "TransX";
+    const char * configFile = "config\\MFD\\transx.cfg";
+#elif defined SECOND_INSTANCE_RED
+    static char name[] = "TransX(2)";
+    const char * configFile = "config\\MFD\\transx2.cfg";
+#endif
 	MFDMODESPECEX spec;
 	spec.name    = name;
 	spec.msgproc = TransxMFD::MsgProc;
 	spec.context = NULL;
 	//Code contributed by Dave Robotham
 	ifstream kstream;
-	kstream.open("config\\transx.cfg",NULL);	// this could be any file really.
+	kstream.open(configFile,NULL);	// this could be any file really.
 	if( kstream )
 	{
 		try

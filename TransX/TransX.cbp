@@ -220,6 +220,7 @@
 		<Unit filename="src/basefunction.cpp" />
 		<Unit filename="src/basefunction.h" />
 		<Unit filename="src/cmdnugget.h" />
+		<Unit filename="src/defines.h" />
 		<Unit filename="src/doublelink.cpp" />
 		<Unit filename="src/doublelink.h" />
 		<Unit filename="src/globals.cpp" />

@@ -33,6 +33,7 @@
 #include "viewstate.h"
 #include "shiplist.h"
 #include "transx.h"
+#include "defines.h"
 
 int TransxMFD::MfdCount=0;
 
@@ -66,7 +67,14 @@ TransxMFD::~TransxMFD()
 // Called by Orbiter when a screen update is needed
 bool TransxMFD::Update (oapi::Sketchpad *sketchpad)
 {
-	Title (sketchpad, "TransX MFD");
+#ifdef FIRST_INSTANCE
+    Title (sketchpad, "TransX MFD");
+#elif defined SECOND_INSTANCE_RED
+	Title (sketchpad, "TransX(2) MFD");
+#else
+#error
+#endif
+
 	oapi::Pen *pen = GetDefaultPen (TransXFunction::Green); // Retrieves a default MFD pen
 	valid=viewstate->doupdate(sketchpad,W,H,this);
 	shipptrs::refreshsave();//allow save again, as new values are now available

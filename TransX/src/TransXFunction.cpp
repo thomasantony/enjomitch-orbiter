@@ -27,6 +27,7 @@
 #include "transxstate.h"
 #include "TransXFunction.h"
 #include "transx.h"
+#include "defines.h"
 
 TransXFunction::TransXFunction(class transxstate *tstate, OBJHANDLE thmajor, OBJHANDLE thminor, OBJHANDLE thtarget, OBJHANDLE thcraft, OBJHANDLE thbase)
 {
@@ -307,23 +308,31 @@ void TransXFunction::gethandles(OBJHANDLE *thmajor, OBJHANDLE *thminor, OBJHANDL
 	*thcraft=hcraft;
 	*thbase=hbase;
 }
-
 void TransXFunction::initpens(void)								//(rbd+)
 {
-	if (!pens[Green])	pens[Green]		= oapiCreatePen(1, 1 , RGB(0x00, 0xFF, 0x00));	// Green - stands for craft
-	if (!pens[Blue])	pens[Blue]		= oapiCreatePen(1, 1 , RGB(0x64, 0x95, 0xED));	// Blue - stands for planet
-	if (!pens[Yellow])	pens[Yellow]	= oapiCreatePen(2,	  1	, RGB(0xCD, 0xCD, 0x00));	// Bright yellow - hypos
-	if (!pens[Red])		pens[Red]		= oapiCreatePen(1, 1 , RGB(0xFF, 0x00, 0x00));	// Bright red - unused, but danger
-	if (!pens[Grey])	pens[Grey]		= oapiCreatePen(1, 1 , RGB(0xC0, 0xC0, 0xC0));	// Light Grey
-	if (!pens[White])	pens[White]		= oapiCreatePen(1, 1 , RGB(0xFF, 0xFF, 0xFF));	// Bright white - unused
-	if (!brush[Green])	brush[Green]    = oapiCreateBrush (RGB(0x00, 0xFF, 0x00));
-	if (!brush[Blue])	brush[Blue]		= oapiCreateBrush (RGB(0x64, 0x95, 0xED));
-	if (!brush[Yellow])	brush[Yellow]	= oapiCreateBrush (RGB(0xCD, 0xCD, 0x00));
-	if (!brush[Red])	brush[Red]		= oapiCreateBrush (RGB(0xFF, 0x00, 0x00));
-	if (!brush[Grey])	brush[Grey]		= oapiCreateBrush (RGB(0xC0, 0xC0, 0xC0));
-	if (!brush[White])	brush[White]	= oapiCreateBrush (RGB(0xFF, 0xFF, 0xFF));
+    DWORD green =   RGB(0x00, 0xFF, 0x00);
+#ifdef FIRST_INSTANCE
+    DWORD blue =    RGB(0x64, 0x95, 0xED);
+#elif defined SECOND_INSTANCE_RED
+    DWORD blue =    RGB(0xFF, 0x33, 0x33);
+#endif
+    DWORD yellow =  RGB(0xCD, 0xCD, 0x00);
+    DWORD red =     RGB(0xFF, 0x00, 0x00);
+    DWORD grey =    RGB(0xC0, 0xC0, 0xC0);
+    DWORD white =   RGB(0xFF, 0xFF, 0xFF);
+	if (!pens[Green])	pens[Green]		= oapiCreatePen(1, 1, green);	// Green - stands for craft
+	if (!pens[Blue])	pens[Blue]		= oapiCreatePen(1, 1, blue);	// Blue - stands for planet
+	if (!pens[Yellow])	pens[Yellow]	= oapiCreatePen(2, 1, yellow);	// Bright yellow - hypos
+	if (!pens[Red])		pens[Red]		= oapiCreatePen(1, 1, red);	    // Bright red - unused, but danger
+	if (!pens[Grey])	pens[Grey]		= oapiCreatePen(1, 1, grey);	// Light Grey
+	if (!pens[White])	pens[White]		= oapiCreatePen(1, 1, white);	// Bright white - unused
+	if (!brush[Green])	brush[Green]    = oapiCreateBrush (green);
+	if (!brush[Blue])	brush[Blue]		= oapiCreateBrush (blue);
+	if (!brush[Yellow])	brush[Yellow]	= oapiCreateBrush (yellow);
+	if (!brush[Red])	brush[Red]		= oapiCreateBrush (red);
+	if (!brush[Grey])	brush[Grey]		= oapiCreateBrush (grey);
+	if (!brush[White])	brush[White]	= oapiCreateBrush (white);
 }
-
 
 void TransXFunction::deletepens()
 {
