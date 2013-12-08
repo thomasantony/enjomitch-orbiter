@@ -748,6 +748,54 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Opti"
+			>
+			<File
+				RelativePath=".\src\Opti\Constraint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\Constraint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\ConstraintFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\ConstraintFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\ConstraintType.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\Optimiser.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\Optimiser.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\OptimiserFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\OptimiserFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\VarConstraint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\VarConstraint.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\src\basefunction.cpp"
 			>
@@ -758,26 +806,6 @@
 		</File>
 		<File
 			RelativePath=".\src\cmdnugget.h"
-			>
-		</File>
-		<File
-			RelativePath=".\src\Constraint.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\src\Constraint.h"
-			>
-		</File>
-		<File
-			RelativePath=".\src\ConstraintFactory.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\src\ConstraintFactory.h"
-			>
-		</File>
-		<File
-			RelativePath=".\src\ConstraintType.h"
 			>
 		</File>
 		<File
@@ -853,22 +881,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\src\Optimiser.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\src\Optimiser.h"
-			>
-		</File>
-		<File
-			RelativePath=".\src\OptimiserFactory.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\src\OptimiserFactory.h"
-			>
-		</File>
-		<File
 			RelativePath=".\src\orbitelements.cpp"
 			>
 		</File>
@@ -930,14 +942,6 @@
 		</File>
 		<File
 			RelativePath=".\src\transxstate.h"
-			>
-		</File>
-		<File
-			RelativePath=".\src\VarConstraint.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\src\VarConstraint.h"
 			>
 		</File>
 		<File
