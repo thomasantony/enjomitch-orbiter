@@ -38,8 +38,6 @@ FWD and BCK move your viewpoint between the stages you've created, and create a 
 
 SW locks/unlocks the graph, whilst allowing you to move the variable selection as before.
 
-Some functionality from the old MFD's Encounter view (surface bases) is presently lost. Use the Encounter MFD for now as a workaround.
-
 
 Each stage has a PLAN associated with it. The MFD will normally auto-select the best plan for you, (although it is possible to change it if you have to). The plan is designed to help you plan your course through the stage.
 
