@@ -1,5 +1,5 @@
 #include "Optimiser.h"
-#include "basefunction.h"
+#include "../basefunction.h"
 #include <Math/BinSearchOptiSubject.hpp>
 #include <Math/BinSearchOpti.hpp>
 #include <Math/BinSearchOpti2DSubject.hpp>
@@ -102,7 +102,7 @@ void Optimiser::Optimise() const
 
         double min_point = constraint.lower;
         double max_point = constraint.upper;
-        double eps = item.var->GetOptimiserPrecision(); // Slingshot's angles need more precision
+        double eps = constraint.precision; // Slingshot's angles need more precision
         BinSearchOpti bs(min_point, max_point, eps);
         double variableBackup = *item.var;
         Result<double> xopt = bs.Run(optiFunction);

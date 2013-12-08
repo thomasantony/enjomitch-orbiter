@@ -29,7 +29,7 @@
 #include "doublelink.h"
 #include "basefunction.h"
 #include "shiplist.h"
-#include "Optimiser.h"
+#include "Opti/Optimiser.h"
 
 liststring::liststring(bool manageme) : listelement(manageme)
 {
@@ -614,11 +614,6 @@ void MFDvarfloat::SetOptimiser(std::auto_ptr<Optimiser> opti)
     m_opti = opti;
 }
 
-double MFDvarfloat::GetOptimiserPrecision() const
-{
-    return 0.001;
-}
-
 void MFDvarfloat::setvalue(double tvalue)
 {
 	value=tvalue;
@@ -772,11 +767,6 @@ bool MFDvarangle::SetVariableAngle(char *str) { // FIXME: silly code duplication
 		}
 	}
 	return false;
-}
-
-double MFDvarangle::GetOptimiserPrecision() const
-{
-    return 0.000001;
 }
 
 void MFDvarangle::inc_variable()

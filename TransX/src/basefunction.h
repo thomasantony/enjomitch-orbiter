@@ -24,7 +24,7 @@
 #include "mfdvartypes.h"
 #include "TransXFunction.h"
 #include "planfunction.h"
-#include "OptimiserFactory.h"
+#include "Opti/OptimiserFactory.h"
 
 class transxstate;
 

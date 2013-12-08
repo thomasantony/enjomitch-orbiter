@@ -26,7 +26,7 @@
 #include "TransXFunction.h"
 #include "mfd.h"
 #include "transx.h"
-#include "VarConstraint.h"
+#include "Opti/VarConstraint.h"
 #include <Math/SpaceMathBody.hpp>
 
 extern double debug;

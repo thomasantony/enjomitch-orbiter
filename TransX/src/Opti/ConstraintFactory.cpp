@@ -1,7 +1,10 @@
 #include "ConstraintFactory.h"
 #include "Constraint.h"
-#include "basefunction.h"
+#include "../basefunction.h"
 #include <Math/Constants.hpp>
+
+static const double precisionVel = 0.001;
+static const double precisionAngle = 0.000001;
 
 ConstraintFactory::ConstraintFactory(basefunction * base)
 : m_base(base)
@@ -25,7 +28,7 @@ Constraint ConstraintFactory::Create(ConstraintType::e type)
     case ConstraintType::ANGLE:
         return CreateAngle();
     }
-    return Constraint(0, 0);
+    return Constraint(0, 0, precisionVel);
 }
 
 Constraint ConstraintFactory::CreateOutward()
@@ -33,21 +36,21 @@ Constraint ConstraintFactory::CreateOutward()
     // Outward velocity requires a lot of energy. Keep it small
     const double lower = -1000;
     const double upper = +1000;
-    return Constraint(lower, upper);
+    return Constraint(lower, upper, precisionVel);
 }
 
 Constraint ConstraintFactory::CreatePlane()
 {
     const double lower = -4.5e3;
     const double upper = +4.5e3;
-    return Constraint(lower, upper);
+    return Constraint(lower, upper, precisionVel);
 }
 
 Constraint ConstraintFactory::CreateAngle()
 {
     const double lower = -180 * RAD;
     const double upper = +180 * RAD;
-    return Constraint(lower, upper);
+    return Constraint(lower, upper, precisionAngle);
 }
 
 Constraint ConstraintFactory::CreateProgradeHohmann(basefunction * base)
@@ -57,6 +60,6 @@ Constraint ConstraintFactory::CreateProgradeHohmann(basefunction * base)
     const double lower = hohmanDV * (1 - defaultRatioHohmann);
     const double upper = hohmanDV * (1 + defaultRatioHohmann);
 
-    return Constraint(lower, upper);
+    return Constraint(lower, upper, precisionVel);
 }
 
