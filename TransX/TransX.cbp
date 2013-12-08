@@ -204,6 +204,8 @@
 		<Unit filename="src/Opti/ConstraintFactory.cpp" />
 		<Unit filename="src/Opti/ConstraintFactory.h" />
 		<Unit filename="src/Opti/ConstraintType.h" />
+		<Unit filename="src/Opti/OptiFunction.cpp" />
+		<Unit filename="src/Opti/OptiFunction.h" />
 		<Unit filename="src/Opti/Optimiser.cpp" />
 		<Unit filename="src/Opti/Optimiser.h" />
 		<Unit filename="src/Opti/OptimiserFactory.cpp" />

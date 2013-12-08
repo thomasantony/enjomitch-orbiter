@@ -772,6 +772,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Opti\OptiFunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Opti\OptiFunction.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Opti\Optimiser.cpp"
 				>
 			</File>
