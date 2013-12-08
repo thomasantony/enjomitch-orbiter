@@ -1,4 +1,4 @@
-TransX V 2013.12.08 (Optimiser)
+TransX V 2013.12.08 (Auto-Min)
 
 Description & License
 ---------------------
@@ -38,7 +38,7 @@ FWD and BCK move your viewpoint between the stages you've created, and create a 
 
 SW locks/unlocks the graph, whilst allowing you to move the variable selection as before.
 
-Closest Approach minimization (by Enjo):
+Closest Approach minimization (Auto-Min) (by Enjo):
 Setting a variable's adjustment setting to Auto-Min serves the following purposes:
 1) You may use ++ or -- to find optimal value of this variable, which minimizes the Closest Approach
 2) In Maj.Ejection plan, you may do the same as in 1), but also, you may leave other variables with Auto-Min setting, which will force them to be passively minimized while changing the Ejection Date, therefore automatically finding solutions.
