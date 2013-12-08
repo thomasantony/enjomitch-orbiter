@@ -31,4 +31,4 @@ globals holds things that aren't classes - some vector functions, the opctimeste
 
 parser is a simple class designed to help with the processing of scenario files as they are loaded into basefunctions and plans.
 
-Opti classes perform the Auto-Min functionality
+Opti classes perform the Auto-Min functionality (by Enjo)

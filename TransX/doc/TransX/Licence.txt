@@ -1,6 +1,6 @@
-Copyright (c) 2007 Duncan Sharpe, Steve Arch
-Copyright (c) 2013 Dimitris Gatsoulis (dgatsoulis) - Hacks
-Copyright (c) 2013 Szymon Ender (Enjo) - Auto-Min & other hacks
+Copyright © 2007 Duncan Sharpe, Steve Arch
+Copyright © 2013 Dimitris Gatsoulis (dgatsoulis) - Hacks
+Copyright © 2013 Szymon Ender (Enjo) - Auto-Min & other hacks
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
