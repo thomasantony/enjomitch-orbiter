@@ -3,6 +3,7 @@
 
 double OptiFunctionBase::RecalculateGetValue()
 {
+    m_icept->ShouldUpdateBarycenter(false); // Barycenter mode is a CPU hog, because of uncaught divisions by 0
     if (m_base->IsPlanSlingshot()) // needs more refresh frames
     {
         for (int i = 0; i < 50; ++i)
@@ -15,6 +16,7 @@ double OptiFunctionBase::RecalculateGetValue()
         for (int i = 0; i < 9; ++i)
             m_base->calculate(&tmp); // twice as fast, but works only in Eject mode
     }
+    m_icept->ShouldUpdateBarycenter(true);
     VECTOR3 craftpos, targetpos;
     m_icept->getpositions(&craftpos,&targetpos);
     double closestApproach = length(craftpos-targetpos);

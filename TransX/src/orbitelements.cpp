@@ -262,22 +262,25 @@ void OrbitElements::init(const VECTOR3 &rposition, const VECTOR3 &rvelocity, dou
 
 	double rvel2=dotp(rvelocity, rvelocity);
 	double radius=length(rposition);
-	eccvector=(rposition*(rvel2-gmplanet/radius)-rvelocity*dotp(rposition, rvelocity))*(1/gmplanet); //Eccentricity vector
-	semimajor=gmplanet/(rvel2-2*gmplanet/radius); //Length of semimajor axis  - is NEGATIVE if orbit is elliptical, POSITIVE if hyperbolic
-	eccentricity=length(eccvector); //Eccentricity of orbit
-	majoraxis=unitise(eccvector); //Vector towards Periapsis
-	minoraxis=unitise(crossp(planevector, majoraxis)); // Vector parallel to Minor axis of orbit - important for extracting vectors later
-	currcosthi=dotp(rposition, majoraxis)/radius; //cos thi is angle from periapsis, as measured from planet centre
-	currsinthi=dotp(rposition, minoraxis)/radius;
-	currposition=rposition;
-	currvelocity=rvelocity;
-	planet=gmplanet;
-	if (semimajor>0)
-		orbitconstant=-sqrt(semimajor*semimajor*semimajor/planet);
-	else
-		orbitconstant=sqrt(-semimajor*semimajor*semimajor/planet);
-	deltatime=0;
-	deltatime=GetTimeToThi(currcosthi, currsinthi);
+	if (radius != 0)
+	{
+		eccvector=(rposition*(rvel2-gmplanet/radius)-rvelocity*dotp(rposition, rvelocity))*(1/gmplanet); //Eccentricity vector
+		semimajor=gmplanet/(rvel2-2*gmplanet/radius); //Length of semimajor axis  - is NEGATIVE if orbit is elliptical, POSITIVE if hyperbolic
+		eccentricity=length(eccvector); //Eccentricity of orbit
+		majoraxis=unitise(eccvector); //Vector towards Periapsis
+		minoraxis=unitise(crossp(planevector, majoraxis)); // Vector parallel to Minor axis of orbit - important for extracting vectors later
+		currcosthi=dotp(rposition, majoraxis)/radius; //cos thi is angle from periapsis, as measured from planet centre
+		currsinthi=dotp(rposition, minoraxis)/radius;
+		currposition=rposition;
+		currvelocity=rvelocity;
+		planet=gmplanet;
+		if (semimajor>0)
+			orbitconstant=-sqrt(semimajor*semimajor*semimajor/planet);
+		else
+			orbitconstant=sqrt(-semimajor*semimajor*semimajor/planet);
+		deltatime=0;
+		deltatime=GetTimeToThi(currcosthi, currsinthi);
+	}
 	timestamp=ttimestamp;
 }
 

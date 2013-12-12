@@ -34,6 +34,7 @@ Intercept::Intercept()
 	gain=1;
 	lasttimecorrection=0;
 	fullorbits=halforbits=-1;
+	shouldUpdateBarycenter = true;
 }
 
 void Intercept::resetintercept()
@@ -107,7 +108,7 @@ void Intercept::improveinterceptstraightline(const OrbitElements &craft, const O
 	OrbitElements *targetaboutbarycentreorbit = target.getminorbarycentricorbit();
 
 	// modify orbit if it target is based around the barycentre.
-	if(targetaboutbarycentreorbit != NULL)
+	if(targetaboutbarycentreorbit != NULL && shouldUpdateBarycenter)
 	{
 	VECTOR3 pos, vel;
 	targetaboutbarycentreorbit->timetovectors(diff, &pos, &vel);
