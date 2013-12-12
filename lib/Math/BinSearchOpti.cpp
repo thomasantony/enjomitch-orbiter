@@ -26,14 +26,13 @@ BinSearchOpti::~BinSearchOpti()
 
 Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
 {
-//    GeneralMath gm;
-    double mid;
-    double valMid;
-    bool valMidDirty = true; // Caching
     int i = 0;
     double a = m_minArg;
     double b = m_maxArg;
     bool bmaxIter = false;
+
+    double mid = (a + b) / 2; // Midpoint
+    double valMid = subj.UpdateGetValue(mid);
     do
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)
         mid = (a + b) / 2; // Midpoint
@@ -41,17 +40,15 @@ Result<double> BinSearchOpti::Run( BinSearchOptiSubject & subj ) const
         double right = (mid + b) / 2;
         double valLeft = subj.UpdateGetValue(left);
         double valRight = subj.UpdateGetValue(right);
-        if (valMidDirty)
-            valMid = subj.UpdateGetValue(mid);
         if (valLeft < valRight && valLeft <= valMid)
         {
             b = mid; // Narrow right border
-            valMidDirty = true;
+            valMid = valLeft;
         }
         else if (valRight < valLeft && valRight <= valMid)
         {
             a = mid; // Narrow left border
-            valMidDirty = true;
+            valMid = valRight;
         }
         else // Narrow both borders, because the answer is inside
 		{
