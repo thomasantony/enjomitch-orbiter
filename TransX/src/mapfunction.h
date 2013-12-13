@@ -23,31 +23,20 @@
 
 #include "mfdfunction.h"
 #include "orbitelements.h"
-#include "list"
-#include "map"
-
-struct GBODY{
-	OBJHANDLE bodyhandle;
-	GBODY *parent, *next, *previous; // next and previous bodies orbiting same body
-	std::list <GBODY*> satellites;
-	double soisize2;
-	double gravbodyratio2;
-	double mass;
-} ;
+#include "BodyProvider.h"
 
 class mapfunction: public MFDFunction
 {
 private:
 	void InitialiseSolarSystem();
-	GBODY *sun; // a tree of the sun, its satellites, the satellites' satellites etc.
-	std::map<OBJHANDLE, GBODY*> bodyMap;
+    BodyProvider m_bodyProvider;
 	bool initialised;
 	static class mapfunction *themap;
 	VECTOR3 getweightedvector(OBJHANDLE, void(OBJHANDLE, VECTOR3*));
 public:
 	mapfunction();
 	~mapfunction();
-	void DeleteGBody(GBODY *body);
+
 	static class mapfunction *getthemap();
 	virtual void dolowpriaction();
 	bool getinitialised(){return initialised;};

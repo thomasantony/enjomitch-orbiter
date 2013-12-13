@@ -11,6 +11,7 @@ Global
 		Release2006|Win32 = Release2006|Win32
 		Release2009_PL|Win32 = Release2009_PL|Win32
 		Release2009|Win32 = Release2009|Win32
+		Release2009Red|Win32 = Release2009Red|Win32
 		ReleaseBETA|Win32 = ReleaseBETA|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -26,6 +27,8 @@ Global
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009_PL|Win32.Build.0 = Release2009_PL|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009|Win32.ActiveCfg = Release2009|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009|Win32.Build.0 = Release2009|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009Red|Win32.ActiveCfg = Release2009Red|Win32
+		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009Red|Win32.Build.0 = Release2009Red|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.ReleaseBETA|Win32.ActiveCfg = ReleaseBETA|Win32
 		{618053AC-D57F-446E-89DC-9F1367C198CC}.ReleaseBETA|Win32.Build.0 = ReleaseBETA|Win32
 	EndGlobalSection

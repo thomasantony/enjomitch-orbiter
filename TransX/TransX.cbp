@@ -28,34 +28,6 @@
 					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\TransX.dll.manifest&quot; /outputresource:&quot;bin\Debug\TransX.dll&quot;;2' />
 				</ExtraCommands>
 			</Target>
-			<Target title="Release2010_PL">
-				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
-				<Option object_output="obj/Release2010_PL/" />
-				<Option type="3" />
-				<Option compiler="msvc8" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="/MD" />
-					<Add option="/Ot" />
-					<Add option="/O2" />
-					<Add option="/DBUILD_DLL" />
-					<Add option="/DNDEBUG" />
-					<Add option="/DORB2009" />
-					<Add option="/DLANG_PL" />
-					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
-					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
-				</Compiler>
-				<Linker>
-					<Add option="/INCREMENTAL:NO" />
-					<Add library="user32" />
-					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
-					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
-				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
-				</ExtraCommands>
-			</Target>
 			<Target title="Release2010">
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010/" />
@@ -69,8 +41,33 @@
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/DNDEBUG" />
-					<Add option="/DORB2009" />
-					<Add option="/DLANG_EN" />
+					<Add option="/DFIRST_INSTANCE" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010Red">
+				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX2.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010Red/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DSECOND_INSTANCE_RED" />
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Compiler>
@@ -199,6 +196,8 @@
 		<Unit filename="../lib/Systems/Vect3.hpp" />
 		<Unit filename="../lib/Util/Result.cpp" />
 		<Unit filename="../lib/Util/Result.hpp" />
+		<Unit filename="src/BodyProvider.cpp" />
+		<Unit filename="src/BodyProvider.h" />
 		<Unit filename="src/Opti/Constraint.cpp" />
 		<Unit filename="src/Opti/Constraint.h" />
 		<Unit filename="src/Opti/ConstraintFactory.cpp" />
