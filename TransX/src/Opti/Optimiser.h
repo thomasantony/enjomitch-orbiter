@@ -18,9 +18,6 @@ class Optimiser
         basefunction * m_base;
         Intercept * m_icept;
         std::vector<VarConstraint> m_pArgs2Find;
-        static const double m_cdefaultMax;
-        static const double m_cdefaultMin;
-        static const double m_cdefaultRatioHohmann;
 };
 
 #endif // OPTIMISERBASE_H

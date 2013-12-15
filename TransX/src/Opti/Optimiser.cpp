@@ -7,10 +7,6 @@
 
 using namespace std;
 
-const double Optimiser::m_cdefaultMin = -4.5e3;
-const double Optimiser::m_cdefaultMax = +4.5e3;
-const double Optimiser::m_cdefaultRatioHohmann = 0.5;
-
 Optimiser::Optimiser(basefunction * base, Intercept * icept, const std::vector<VarConstraint> & pArgs2Find)
 {
 	m_pArgs2Find = pArgs2Find;
