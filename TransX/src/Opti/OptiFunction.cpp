@@ -26,8 +26,8 @@ double OptiFunctionBase::RecalculateGetValue()
 // Deduct the minimized value, based on tested input, supplied by the optimizer
 double OptiFunction::UpdateGetValue( double arg )
 {
-    if (fabs(arg) < 1)
-        arg = 1.01; // Has to be done this way because otherwise TransX would ignore this variable
+    if (fabs(arg) <= 0.1)
+        arg = 0.11; // Has to be done this way because otherwise TransX would ignore this variable
     *m_toOpti.var = arg; // Provide feedback to TransX's calculation functions
     double closestApproach = RecalculateGetValue(); // Get feedback FROM TransX
     return closestApproach; // Return the feedback to the binary search algorithm
