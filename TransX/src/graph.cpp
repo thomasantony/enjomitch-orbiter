@@ -25,6 +25,7 @@
 #include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
+#include "MathUtil.h"
 #include "graph.h"
 #include "TransXFunction.h"
 #include "mapfunction.h"
@@ -224,6 +225,7 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 //targetvector is a vector in the global reference plane
 //isposition true
 {
+    /*
 	VECTOR3 trtarget,temp;
 	VESSELSTATUS status;
 	if (isposition)
@@ -240,6 +242,8 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 	MATRIX3 rotmatrix;
 	getinvrotmatrix(arot,&rotmatrix);
 	trtarget = mul(rotmatrix, temp);
+	*/
+
 	TransXFunction::SelectDefaultPen(sketchpad,TransXFunction::Grey);
 
 	const int rings = 3;
@@ -256,6 +260,7 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 							int(height/2 + radius));
 	}
 
+    VECTOR3 trtarget = MathUtil::GetRotationToTarget(vessel, target);
 	// Draw the horizontal and vertical lines across the target circles
 	sketchpad->MoveTo(int(width * (1 - edgeBorderSize) / 2), height / 2);
 	sketchpad->LineTo(int(width * (1 + edgeBorderSize) / 2), height / 2);
@@ -267,6 +272,7 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 	double scalar = sqrt(0.5);
 	double xang = trtarget.x / offsetsize;
 	double yang =- trtarget.y / offsetsize;
+	//sprintf(oapiDebugString(), "x = %.2lf, y = %.2lf", xang, yang);
 	offsetsize = sqrt(offsetsize / trtarget.z);
 	if (offsetsize > scalar || trtarget.z < 0)
 		offsetsize = scalar;
@@ -283,7 +289,7 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 	return length(trtarget);
 }
 
-void Graph::drawmarker(oapi::Sketchpad *sketchpad, const VECTOR3 location, Shape shape)
+void Graph::drawmarker(oapi::Sketchpad *sketchpad, const VECTOR3 & location, Shape shape)
 {
 	int x = (ixstart + ixend) / 2;
 	int y = (iystart + iyend) / 2;

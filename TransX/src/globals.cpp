@@ -27,10 +27,14 @@
 #include "shiplist.h"
 #include <list>
 #include "defines.h"
+#include "Autopilot/Autopilot.h"
 
 static int mode;
 
 using namespace std;
+
+VECTOR3 gTargetVec;
+Autopilot gAutopilot;
 
 // ==============================================================
 // API interface
@@ -150,6 +154,11 @@ DLLCLBK void opcPostStep(double SimT, double SimDT, double mjd)
 		MFDFunction::donextaction();
 		choose=1;
 	}
+}
+
+DLLCLBK void opcPreStep(double SimT, double SimDT, double mjd)
+{
+    gAutopilot.Update(SimDT);
 }
 
 bool SelectVariableFloat(void *id, char *str, void *usrdata) {

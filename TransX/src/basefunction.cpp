@@ -30,6 +30,7 @@
 #include <Math/SpaceMathBody.hpp>
 
 extern double debug;
+extern VECTOR3 gTargetVec;
 
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft)
 : TransXFunction(tstate, thmajor, thminor,thcraft)
@@ -764,6 +765,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 	int linespacing=th/24;
 	VECTOR3 targetvel;
 	calculate(&targetvel);
+
 	int wpos=0;
 	int hpos=linespacing;
 	char buffer[20];
@@ -818,6 +820,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
+		gTargetVec = targetvel-craftvel;
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);
