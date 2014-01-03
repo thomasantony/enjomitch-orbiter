@@ -4,13 +4,13 @@
 	<Project>
 		<Option title="TransX" />
 		<Option pch_mode="2" />
-		<Option compiler="msvc10" />
+		<Option compiler="msvc8" />
 		<Build>
 			<Target title="Debug">
 				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Debug/" />
 				<Option type="3" />
-				<Option compiler="msvc10" />
+				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -33,7 +33,7 @@
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010/" />
 				<Option type="3" />
-				<Option compiler="msvc10" />
+				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -57,7 +57,7 @@
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX2.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010Red/" />
 				<Option type="3" />
-				<Option compiler="msvc10" />
+				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -84,7 +84,7 @@
 				<Option output="../../../Orbiter/orbiter060929/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2006/" />
 				<Option type="3" />
-				<Option compiler="msvc10" />
+				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -118,7 +118,7 @@
 				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/ReleaseBETA/" />
 				<Option type="3" />
-				<Option compiler="msvc10" />
+				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -179,6 +179,16 @@
 		<Unit filename="../lib/Math/SimpsonFunctor.hpp" />
 		<Unit filename="../lib/Math/SpaceMathBody.cpp" />
 		<Unit filename="../lib/Math/SpaceMathBody.hpp" />
+		<Unit filename="../lib/Orbiter/AngularAcc.cpp" />
+		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
+		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />
+		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.hpp" />
+		<Unit filename="../lib/PID/DerivatorDiscrete.cpp" />
+		<Unit filename="../lib/PID/DerivatorDiscrete.hpp" />
+		<Unit filename="../lib/PID/IntegratorDiscrete.cpp" />
+		<Unit filename="../lib/PID/IntegratorDiscrete.hpp" />
+		<Unit filename="../lib/PID/PID.cpp" />
+		<Unit filename="../lib/PID/PID.hpp" />
 		<Unit filename="../lib/Systems/Geo.cpp" />
 		<Unit filename="../lib/Systems/Geo.hpp" />
 		<Unit filename="../lib/Systems/Point.cpp" />
@@ -198,8 +208,8 @@
 		<Unit filename="../lib/Systems/Vect3.hpp" />
 		<Unit filename="../lib/Util/Result.cpp" />
 		<Unit filename="../lib/Util/Result.hpp" />
-		<Unit filename="src/Autopilot/Autopilot.cpp" />
-		<Unit filename="src/Autopilot/Autopilot.h" />
+		<Unit filename="src/Autopilot.cpp" />
+		<Unit filename="src/Autopilot.h" />
 		<Unit filename="src/BodyProvider.cpp" />
 		<Unit filename="src/BodyProvider.h" />
 		<Unit filename="src/MathUtil.cpp" />

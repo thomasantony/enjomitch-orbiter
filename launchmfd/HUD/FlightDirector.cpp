@@ -58,7 +58,7 @@ void FlightDirector::DrawHUD(int mode, const HUDPAINTSPEC *hps, MyDC hDC)
 
 	// Convert the pitch/azimuth into PRY
 	VECTOR3 target = GetTargetVector(oapiGetFocusInterface(), targetPitch, targetAzimuth);
-
+    //sprintf(oapiDebugString(),  "x = %0.2lf, y = %0.2lf, z = %0.2lf",target.x, target.y, target.z);
 	// Stategy: Having got this target vector (unit), project this down to the 2D plane, scale it by
 	//			a scale factor and then draw the cross if within view or target marker if not
 

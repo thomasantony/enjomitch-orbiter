@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="EnjoLibMFD" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc8" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../Orbiter/orbiterBETA/OrbiterSDK/lib/EnjoLibMFD.dll" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/Zi" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\EnjoLibMFD.dll.manifest&quot; /outputresource:&quot;bin\Debug\EnjoLibMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010">
+				<Option platforms="Windows;" />
+				<Option output="../../../Orbiter/orbiter100830/OrbiterSDK/lib/EnjoLibMFD" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).lib" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release2010/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\EnjoLibMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\EnjoLibMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2006">
+				<Option output="../../../Orbiter/orbiter060929/OrbiterSDK/lib/EnjoLibMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2006/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/TP" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Gy" />
+					<Add option="/GF" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2006" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/include" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/lib" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\EnjoLibMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\EnjoLibMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseBETA">
+				<Option output="../../../Orbiter/orbiterBETA/OrbiterSDK/lib/EnjoLibMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/ReleaseBETA/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\EnjoLibMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\EnjoLibMFD.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/TP" />
+			<Add option="/EHc" />
+			<Add option="/EHs" />
+			<Add option="/GR" />
+			<Add option="/Gy" />
+			<Add option="/GF" />
+			<Add option="/W3" />
+			<Add option="/EHsc" />
+			<Add directory="../lib" />
+			<Add directory="../libMFD" />
+		</Compiler>
+		<Linker>
+			<Add option="/NODEFAULTLIB:LIBCMT" />
+			<Add library="orbiter.lib" />
+			<Add library="orbitersdk.lib" />
+			<Add library="kernel32.lib" />
+			<Add library="user32.lib" />
+			<Add library="gdi32.lib" />
+		</Linker>
+		<Unit filename="MFDButtonPage.cpp" />
+		<Unit filename="MFDButtonPage.hpp" />
+		<Unit filename="MFDTextCalculator.cpp" />
+		<Unit filename="MFDTextCalculator.hpp" />
+		<Unit filename="MyDC.cpp" />
+		<Unit filename="MyDC.h" />
+		<Unit filename="multipleVesselsMFD/MFDData.cpp" />
+		<Unit filename="multipleVesselsMFD/MFDData.hpp" />
+		<Unit filename="multipleVesselsMFD/PluginMultipleVessels.cpp" />
+		<Unit filename="multipleVesselsMFD/PluginMultipleVessels.hpp" />
+		<Unit filename="multipleVesselsMFD/SimulationTimeData.cpp" />
+		<Unit filename="multipleVesselsMFD/SimulationTimeData.hpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

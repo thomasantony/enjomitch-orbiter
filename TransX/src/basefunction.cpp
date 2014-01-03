@@ -814,6 +814,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		break;
 	}
 	sketchpad->Text(wpos,hpos,buffer,strlen(buffer));
+
 	if (viewmode==1 && hypormaj.isvalid())//Target view
 	{
 		double timeoffset=(m_ejdate-simstartMJD)*SECONDS_PER_DAY-craft.gettimestamp();
@@ -829,6 +830,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 	}
 	else
 	{
+	    gTargetVec = _V(0,0,0);
 		VECTOR3 ntemp={0,-1,0};
 		VECTOR3 edgeon={0,0,-1};
 		graph.setviewwindow(0,0,tw,th);

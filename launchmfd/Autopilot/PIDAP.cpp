@@ -41,7 +41,7 @@
 #include <sstream>
 #include "PIDAP.hpp"
 #include <Orbiter/SystemsConverterOrbiter.hpp>
-#include "../Utils/AngularAcc.hpp"
+#include <Orbiter/AngularAcc.hpp>
 #include "../Utils/FileUtilsOrbiter.hpp"
 
 using namespace EnjoLib;

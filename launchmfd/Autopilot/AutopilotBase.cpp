@@ -117,7 +117,6 @@ bool AutopilotBase::Guide( MFDDataLaunchMFD * data, double dt ) const
             fdTargetVector = data->flightDirector.GetTargetVector(data->GetVessel(), targetPitch, PI - azimuth);
     }
     Point targetVector2D(fdTargetVector.x / PI, fdTargetVector.y / PI);
-
     //sprintf(oapiDebugString(),  "x = %0.2lf, y = %0.2lf, z = %0.2lf",currMaxAngAcc.x, currMaxAngAcc.y, currMaxAngAcc.z);
 
     VECTOR3 accRatio = data->m_pidAP.GetVesselAngularAccelerationRatio(data->GetVessel());
