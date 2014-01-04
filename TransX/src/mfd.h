@@ -36,6 +36,7 @@ MATRIX3 getinvmatrix(const MATRIX3 mat);
 double getdeterminant(const MATRIX3 mat);
 double GetBurnTime(VESSEL *vessel, double deltaV);
 double GetBurnStart(VESSEL *vessel, double instantaneousBurnTime, double deltaV);
+VECTOR3 GetRotationToTarget(VESSEL * vessel, const VECTOR3 & target);
 
 // Standard formatting function
 void TextShow(oapi::Sketchpad *sketchpad, const char *label, int wpos, int hpos, double value);

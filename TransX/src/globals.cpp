@@ -27,7 +27,7 @@
 #include "shiplist.h"
 #include <list>
 #include "defines.h"
-#include "Autopilot/Autopilot.h"
+#include "Autopilot.h"
 
 static int mode;
 
@@ -363,4 +363,17 @@ double GetBurnStart(VESSEL *vessel, double instantaneousBurnTime, double deltaV)
 	double startBurn =  instantaneousBurnTime + (startAccel * totalBurnTime) / (2 * startAccel + jerk * totalBurnTime) - totalBurnTime;
 
 	return startBurn;
+}
+
+VECTOR3 GetRotationToTarget(VESSEL * vessel, const VECTOR3 & target)
+{
+    VECTOR3 trtarget;
+	VESSELSTATUS status;
+    vessel->GetStatus(status);
+	VECTOR3 arot=status.arot;
+	MATRIX3 rotmatrix;
+	getinvrotmatrix(arot,&rotmatrix);
+	trtarget = mul(rotmatrix, target);
+
+	return trtarget;
 }

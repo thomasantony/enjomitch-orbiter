@@ -1,6 +1,5 @@
 #include <orbitersdk.h>
 #include "Autopilot.h"
-#include "MathUtil.h"
 #include "mfd.h"
 #include <Orbiter/AngularAcc.hpp>
 #include <Orbiter/SystemsConverterOrbiter.hpp>
@@ -34,13 +33,7 @@ void Autopilot::Update(double SimDT)
     if (!vessel)
         return;
 
-    VECTOR3 trtarget = MathUtil::GetRotationToTarget(vessel, unitise(gTargetVec));
-    VECTOR3 disp = trtarget;
-	VECTOR3 disp2 = gTargetVec;
-
-    //sprintf(oapiDebugString(), "(%.3lf, %.3lf, %.3lf) (%.3lf, %.3lf, %.3lf)",disp.x, disp.y, disp.z ,disp2.x, disp2.y, disp2.z);
-    //sprintf(oapiDebugString(), "(%.3lf) (%.3lf)",length(trtarget), length(gTargetVec));
-
+    VECTOR3 trtarget = GetRotationToTarget(vessel, unitise(gTargetVec));
     const VECTOR3 accRatio = GetVesselAngularAccelerationRatio(vessel);
 
     const double x = accRatio.x * m_pidAPSpaceX.Update( trtarget.x, SimDT );

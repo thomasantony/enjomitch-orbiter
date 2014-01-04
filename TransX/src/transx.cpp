@@ -195,7 +195,7 @@ bool TransxMFD::ConsumeButton(int bt, int event)
 	return true;
 }
 
-#include "Autopilot/Autopilot.h"
+#include "Autopilot.h"
 extern Autopilot gAutopilot;
 bool TransxMFD::ConsumeKeyBuffered (DWORD key)
 {

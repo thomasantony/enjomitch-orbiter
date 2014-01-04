@@ -25,7 +25,6 @@
 #include <cmath>
 #include "orbitersdk.h"
 #include "mfd.h"
-#include "MathUtil.h"
 #include "graph.h"
 #include "TransXFunction.h"
 #include "mapfunction.h"
@@ -260,7 +259,7 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 							int(height/2 + radius));
 	}
 
-    VECTOR3 trtarget = MathUtil::GetRotationToTarget(vessel, target);
+    VECTOR3 trtarget = GetRotationToTarget(vessel, target);
 	// Draw the horizontal and vertical lines across the target circles
 	sketchpad->MoveTo(int(width * (1 - edgeBorderSize) / 2), height / 2);
 	sketchpad->LineTo(int(width * (1 + edgeBorderSize) / 2), height / 2);
