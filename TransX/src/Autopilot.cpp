@@ -9,7 +9,7 @@ extern VECTOR3 gTargetVec;
 const Vect3 Autopilot::m_statDeltaGliderRefRotAcc(0.125, 0.066, 0.189);
 
 Autopilot::Autopilot()
-: m_pidAPSpaceX(2.5, 16)
+: m_pidAPSpaceX(0.8, 5)
 , m_pidAPSpaceY(m_pidAPSpaceX)
 , m_pidAPSpaceBank(1, 12)
 {
@@ -24,30 +24,22 @@ void Autopilot::Update(double SimDT)
     {
         if (IsEnabled())
             Enable(false);
-
-        sprintf(oapiDebugString(), "TransX: AUTO rotation disabled. Press SHIFT+C in target view to enable");
+        //sprintf(oapiDebugString(), "TransX: AUTO rotation disabled. Press SHIFT+C in target view to enable");
         return;
     }
     Enable(true);
-   // if (!IsEnabled())
-    {
-   //     sprintf(oapiDebugString(), "TransX: AUTO rotation disabled. Press SHIFT+C in target view to enable");
-   //     return;
-    }
-
-    sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
-
+    //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
     VESSEL * vessel = oapiGetFocusInterface();
     if (!vessel)
         return;
+    VECTOR3 angleToTarget = GetRotationToTarget(vessel, unitise(gTargetVec));
 
-    VECTOR3 trtarget = GetRotationToTarget(vessel, unitise(gTargetVec));
     const VECTOR3 accRatio = GetVesselAngularAccelerationRatio(vessel);
 
     const double inputBank = vessel->GetBank() / PI;
     const double b = accRatio.z * m_pidAPSpaceBank.Update( inputBank, SimDT );
-    const double x = accRatio.x * m_pidAPSpaceX.Update( trtarget.x, SimDT );
-    const double y = accRatio.y * m_pidAPSpaceY.Update( trtarget.y, SimDT );
+    const double x = accRatio.x * m_pidAPSpaceX.Update( angleToTarget.x, SimDT );
+    const double y = accRatio.y * m_pidAPSpaceY.Update( angleToTarget.y, SimDT );
 
     vessel->SetAttitudeRotLevel( 2, b );
     vessel->SetAttitudeRotLevel( 1, -x );
@@ -80,10 +72,8 @@ void Autopilot::OnDisabled()
     }
 }
 
-
 VECTOR3 Autopilot::GetVesselAngularAccelerationRatio( const VESSEL * vessel )
 {
-
     VECTOR3 accRatio;
     //if ( m_rotationRatioNeeded )
     {

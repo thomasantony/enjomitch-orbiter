@@ -418,8 +418,8 @@ bool basefunction::initialisevars()
 	m_planminor.init(&vars,2,2,"Plan",0,2,"None","Eject","Sling Direct","","");//Minor body defined
 	m_minor.init(&vars,2,2,"Select Minor",hmajor);
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
-	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
 	m_autocenter.init(&vars,4,4,"Auto-Center™",1,1,"Off","On","","","");
+	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
 	m_prograde.init(&vars,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
 	m_ejdate.init(&vars,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
 	m_outwardvel.init(&vars,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
