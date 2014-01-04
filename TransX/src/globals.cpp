@@ -33,7 +33,7 @@ static int mode;
 
 using namespace std;
 
-VECTOR3 gTargetVec;
+VECTOR3 gTargetVec = _V(0,0,0);
 Autopilot gAutopilot;
 
 // ==============================================================

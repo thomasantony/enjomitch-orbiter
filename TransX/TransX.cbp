@@ -212,8 +212,6 @@
 		<Unit filename="src/Autopilot.h" />
 		<Unit filename="src/BodyProvider.cpp" />
 		<Unit filename="src/BodyProvider.h" />
-		<Unit filename="src/MathUtil.cpp" />
-		<Unit filename="src/MathUtil.h" />
 		<Unit filename="src/Opti/Constraint.cpp" />
 		<Unit filename="src/Opti/Constraint.h" />
 		<Unit filename="src/Opti/ConstraintFactory.cpp" />

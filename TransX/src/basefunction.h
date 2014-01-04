@@ -56,7 +56,7 @@ protected:
 	Graph graph;
 	MFDvarmoon m_target,m_minor;
 	MFDvardiscrete m_planauto, m_plantype,m_planinitial,m_planthrough,m_planminor;
-	MFDvardiscrete m_manoeuvremode,m_updbaseorbit;
+	MFDvardiscrete m_manoeuvremode,m_updbaseorbit,m_autocenter;
 	MFDvarfloat m_prograde,m_outwardvel,m_chplvel;
 	MFDvarMJD m_ejdate;
 	MFDvardiscrete m_intwith,m_graphprj,m_scale,m_advanced;

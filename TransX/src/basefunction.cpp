@@ -419,6 +419,7 @@ bool basefunction::initialisevars()
 	m_minor.init(&vars,2,2,"Select Minor",hmajor);
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
 	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
+	m_autocenter.init(&vars,4,4,"Auto-Center™",1,1,"Off","On","","","");
 	m_prograde.init(&vars,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
 	m_ejdate.init(&vars,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
 	m_outwardvel.init(&vars,4,4,"Outward vel.", 0,-1e8,1e8,0.1,1000);
@@ -438,6 +439,7 @@ bool basefunction::initialisevars()
 	m_planminor.setshow(false);
 	m_minor.setshow(false);
 	m_updbaseorbit.setshow(false);
+	m_autocenter.setshow(false);
 	m_prograde.setshow(false);
 	m_ejdate.setshow(false);
 	m_outwardvel.setshow(false);
@@ -475,6 +477,9 @@ bool basefunction::initialisevars()
 	m_updbaseorbit.sethelpstrings(
 		"Orbit on which manoeuvres",
 		"are based. ++ sets to focus orbit");
+    m_autocenter.sethelpstrings(
+		"Automatically centers",
+		"to target vector in target view.");
 	m_prograde.sethelpstrings(
 		"Positive numbers to outer planets.",
 		"Negative numbers to inner planets.");
@@ -538,6 +543,7 @@ void basefunction::switchmanoeuvremode()
 	if (m_manoeuvremode==1)
 	{
 		m_updbaseorbit.setshow(true);
+		m_autocenter.setshow(true);
 		m_prograde.setshow(true);
 		m_ejdate.setshow(true);
 		m_outwardvel.setshow(true);
@@ -546,6 +552,7 @@ void basefunction::switchmanoeuvremode()
 	else
 	{
 		m_updbaseorbit.setshow(false);
+		m_autocenter.setshow(false);
 		m_prograde.setshow(false);
 		m_ejdate.setshow(false);
 		m_outwardvel.setshow(false);
@@ -821,16 +828,16 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
-		gTargetVec = targetvel-craftvel;
+
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);
 		TextShow(sketchpad,"T to Mnvre ",0,19*linespacing,timeoffset);
 		TextShow(sketchpad,"Begin Burn",0,20*linespacing,GetBurnStart(pV, timeoffset, rvel));
+        gTargetVec = m_autocenter ? targetvel-craftvel : _V(0,0,0);
 	}
 	else
 	{
-	    gTargetVec = _V(0,0,0);
 		VECTOR3 ntemp={0,-1,0};
 		VECTOR3 edgeon={0,0,-1};
 		graph.setviewwindow(0,0,tw,th);

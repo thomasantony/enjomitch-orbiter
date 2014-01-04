@@ -195,8 +195,6 @@ bool TransxMFD::ConsumeButton(int bt, int event)
 	return true;
 }
 
-#include "Autopilot.h"
-extern Autopilot gAutopilot;
 bool TransxMFD::ConsumeKeyBuffered (DWORD key)
 {
 	if (!valid) return false;
@@ -245,9 +243,6 @@ bool TransxMFD::ConsumeKeyBuffered (DWORD key)
 		return true;
 	case OAPI_KEY_E:
 		if(access) currvar->enter_variable();
-		return true;
-    case OAPI_KEY_C:
-		gAutopilot.SwitchEnabled();
 		return true;
 	}
 	return false; //Key not one of cases above

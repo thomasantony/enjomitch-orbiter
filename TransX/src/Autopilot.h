@@ -16,7 +16,7 @@ class Autopilot
         VECTOR3 GetVesselAngularAccelerationRatio( const VESSEL * vessel );
     protected:
     private:
-
+        void OnDisabled();
         EnjoLib::PID m_pidAPSpaceX;
         EnjoLib::PID m_pidAPSpaceY;
         EnjoLib::PID m_pidAPSpaceBank;
