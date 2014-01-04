@@ -1,6 +1,6 @@
 #include "Stage.h"
 #include <Orbitersdk.h>
-#include "Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 
 Stage::Stage()
 {

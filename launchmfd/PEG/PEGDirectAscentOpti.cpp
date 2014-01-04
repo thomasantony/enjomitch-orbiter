@@ -39,7 +39,7 @@
 // ==============================================================
 
 #include "PEGDirectAscentOpti.h"
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 
 PEGDirectAscentOpti::PEGDirectAscentOpti( const VESSEL * v, const ShipVariables & vars )
 : PEGDirectAscentStd( v, vars )

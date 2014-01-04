@@ -47,7 +47,7 @@ Rewriting and integration into LaunchMFD was done by Steve Arch (agentgonzo) */
 
 #include "Orbitersdk.h"
 #include "../PitchGuidance.h"
-#include "../Utils/Engine.hpp"
+#include <Orbiter/Engine.hpp>
 
 struct TGTPARAM;
 

@@ -28,9 +28,10 @@
 #include "transx.h"
 #include "Opti/VarConstraint.h"
 #include <Math/SpaceMathBody.hpp>
+#include "Autopilot.h"
 
 extern double debug;
-extern VECTOR3 gTargetVec;
+extern Autopilot gAutopilot;
 
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft)
 : TransXFunction(tstate, thmajor, thminor,thcraft)
@@ -418,7 +419,7 @@ bool basefunction::initialisevars()
 	m_planminor.init(&vars,2,2,"Plan",0,2,"None","Eject","Sling Direct","","");//Minor body defined
 	m_minor.init(&vars,2,2,"Select Minor",hmajor);
 	m_manoeuvremode.init(&vars,4,4,"Manoeuvre mode",0,1,"Off","On","","","");
-	m_autocenter.init(&vars,4,4,"Auto-Center™",1,1,"Off","On","","","");
+	m_autocenter.init(&vars,4,4,"Auto-Center™",0,1,"Off","On","","","");
 	m_updbaseorbit.init(&vars,4,4,"Base Orbit",1,1,"++ Updates","Updating","","","");
 	m_prograde.init(&vars,4,4,"Prograde vel.", 0, -1e8, 1e8, 0.1, 1000);
 	m_ejdate.init(&vars,4,4,"Man. date", 0, 0, 1e20, 0.00001, 1000000);
@@ -821,20 +822,21 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		break;
 	}
 	sketchpad->Text(wpos,hpos,buffer,strlen(buffer));
-
+    if (!m_autocenter) // If user disabled AutoCenter, disable it no matter the view mode
+        gAutopilot.Disable();
 	if (viewmode==1 && hypormaj.isvalid())//Target view
 	{
 		double timeoffset=(m_ejdate-simstartMJD)*SECONDS_PER_DAY-craft.gettimestamp();
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
-
+		if (m_autocenter)
+            gAutopilot.SetTargetVector(targetvel-craftvel);
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);
 		TextShow(sketchpad,"T to Mnvre ",0,19*linespacing,timeoffset);
 		TextShow(sketchpad,"Begin Burn",0,20*linespacing,GetBurnStart(pV, timeoffset, rvel));
-        gTargetVec = m_autocenter ? targetvel-craftvel : _V(0,0,0);
 	}
 	else
 	{

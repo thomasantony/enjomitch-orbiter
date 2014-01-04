@@ -39,7 +39,7 @@
 // ==============================================================
 
 #include "PEGNormal.h"
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 
 PEGNormal::PEGNormal( const VESSEL * v )
 : PEG( v )

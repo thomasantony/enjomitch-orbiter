@@ -52,7 +52,7 @@
 #include <Orbiter/SystemsConverterOrbiter.hpp>
 #include "Systems/Geo.hpp"
 #include "Utils/FileUtilsOrbiter.hpp"
-#include "Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 #include <Orbiter/SpaceMathOrbiter.hpp>
 #include "Utils/Targeting.hpp"
 

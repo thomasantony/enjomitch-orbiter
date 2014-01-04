@@ -185,6 +185,8 @@ bool VesselCapabilities::CheckVesselAirControlSurfaces( const VESSEL * vessel ) 
 
 THGROUP_HANDLE VesselCapabilities::GetMainEnginesHandle( const VESSEL * v ) const
 {
+    if (!v)
+        return NULL;
     THGROUP_TYPE thrustersGroup = IsTailSitter(v) ? THGROUP_HOVER : THGROUP_MAIN;
     THGROUP_HANDLE h = v->GetThrusterGroupHandle( thrustersGroup );
     return h;

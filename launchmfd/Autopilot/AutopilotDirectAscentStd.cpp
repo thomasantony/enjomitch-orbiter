@@ -40,7 +40,7 @@
 
 #include "AutopilotDirectAscentStd.hpp"
 #include "../MFDDataLaunchMFD.hpp"
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 #include "Math/Constants.hpp"
 #include "../PEG/PEGDirectAscentOpti.h"
 #include "../localisation.h"

@@ -40,7 +40,7 @@
 // ==============================================================
 
 #include "PEGMulti.h"
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 
 #include <Systems/Vect3.hpp>
 using namespace EnjoLib;

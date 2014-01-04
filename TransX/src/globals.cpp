@@ -29,11 +29,9 @@
 #include "defines.h"
 #include "Autopilot.h"
 
-static int mode;
-
 using namespace std;
 
-VECTOR3 gTargetVec = _V(0,0,0);
+static int mode;
 Autopilot gAutopilot;
 
 // ==============================================================

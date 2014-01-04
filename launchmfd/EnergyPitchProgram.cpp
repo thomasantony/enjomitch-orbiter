@@ -1,7 +1,7 @@
 #include "EnergyPitchProgram.hpp"
 #include "MFDDataLaunchMFD.hpp"
 #include "Math/GeneralMath.hpp"
-#include "Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 
 using namespace EnjoLib;
 

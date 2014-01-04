@@ -3,13 +3,15 @@
 #include "mfd.h"
 #include <Orbiter/AngularAcc.hpp>
 #include <Orbiter/SystemsConverterOrbiter.hpp>
+#include <Orbiter/VesselCapabilities.hpp>
 
 using namespace EnjoLib;
-extern VECTOR3 gTargetVec;
 const Vect3 Autopilot::m_statDeltaGliderRefRotAcc(0.125, 0.066, 0.189);
 
 Autopilot::Autopilot()
-: m_pidAPSpaceX(0.8, 5)
+: m_targetVector(_V(0,0,0))
+, m_targetLengthPrev(0)
+, m_pidAPSpaceX(0.8, 5)
 , m_pidAPSpaceY(m_pidAPSpaceX)
 , m_pidAPSpaceBank(1, 12)
 {
@@ -18,9 +20,26 @@ Autopilot::Autopilot()
 
 Autopilot::~Autopilot(){}
 
+void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
+{
+    m_targetVector = targetVector;
+
+    double targetLength = length(m_targetVector);
+    bool isBurnCompleted = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
+    m_targetLengthPrev = targetLength;
+    if (isBurnCompleted)
+        MECO(oapiGetFocusInterface());
+}
+
+void Autopilot::Disable()
+{
+    SetTargetVector(_V(0,0,0));
+}
+
 void Autopilot::Update(double SimDT)
 {
-    if (gTargetVec.x + gTargetVec.y + gTargetVec.z == 0)
+    bool isZeroVector = m_targetVector.x + m_targetVector.y + m_targetVector.z == 0;
+    if (isZeroVector)
     {
         if (IsEnabled())
             Enable(false);
@@ -28,11 +47,12 @@ void Autopilot::Update(double SimDT)
         return;
     }
     Enable(true);
-    //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
     VESSEL * vessel = oapiGetFocusInterface();
     if (!vessel)
         return;
-    VECTOR3 angleToTarget = GetRotationToTarget(vessel, unitise(gTargetVec));
+    //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
+
+    VECTOR3 angleToTarget = GetRotationToTarget(vessel, unitise(m_targetVector));
 
     const VECTOR3 accRatio = GetVesselAngularAccelerationRatio(vessel);
 
@@ -44,6 +64,8 @@ void Autopilot::Update(double SimDT)
     vessel->SetAttitudeRotLevel( 2, b );
     vessel->SetAttitudeRotLevel( 1, -x );
     vessel->SetAttitudeRotLevel( 0, y );
+
+
 }
 
 void Autopilot::Enable(bool val)
@@ -51,11 +73,13 @@ void Autopilot::Enable(bool val)
     m_isEnabled = val;
     OnDisabled();
 }
+/*
 void Autopilot::SwitchEnabled()
 {
     m_isEnabled = !m_isEnabled;
     OnDisabled();
 }
+*/
 bool Autopilot::IsEnabled()
 {
     return m_isEnabled;
@@ -89,4 +113,21 @@ VECTOR3 Autopilot::GetVesselAngularAccelerationRatio( const VESSEL * vessel )
     }
 
     return accRatio;
+}
+
+void Autopilot::MECO(VESSEL * vessel)
+{
+    MainEngineOn(vessel, 0);
+}
+
+void Autopilot::MainEngineOn( VESSEL * vessel, double level )
+{
+    THGROUP_HANDLE h = VesselCapabilities().GetMainEnginesHandle(vessel);
+    if ( h == NULL )
+        return;
+    if ( level > 1 )
+        level = 1;
+    else if ( level < 0 )
+        level = 0;
+    vessel->SetThrusterGroupLevel( h, level );
 }

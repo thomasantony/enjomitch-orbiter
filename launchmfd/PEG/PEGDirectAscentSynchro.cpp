@@ -43,7 +43,7 @@
 #include <Math/SpaceMathBody.hpp>
 #include <Math/SpaceMath.hpp>
 #include <Math/GeneralMath.hpp>
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 
 using namespace EnjoLib;
 

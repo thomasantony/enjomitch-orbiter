@@ -10,17 +10,23 @@ class Autopilot
         Autopilot();
         virtual ~Autopilot();
         void Update(double SimDT);
-        void Enable(bool val);
-        void SwitchEnabled();
-        bool IsEnabled();
-        VECTOR3 GetVesselAngularAccelerationRatio( const VESSEL * vessel );
+        void SetTargetVector(const VECTOR3 & targetVector);
+        void Disable();
     protected:
     private:
+        void MECO(VESSEL * vessel);
+        void MainEngineOn( VESSEL * vessel, double level );
+        void Enable(bool val);
+        //void SwitchEnabled();
+        bool IsEnabled();
+        VECTOR3 GetVesselAngularAccelerationRatio( const VESSEL * vessel );
         void OnDisabled();
+
         EnjoLib::PID m_pidAPSpaceX;
         EnjoLib::PID m_pidAPSpaceY;
         EnjoLib::PID m_pidAPSpaceBank;
-
+        VECTOR3 m_targetVector;
+        double m_targetLengthPrev;
         bool m_isEnabled;
         const static EnjoLib::Vect3 m_statDeltaGliderRefRotAcc; // reference pitch, yaw and bank angular accelerations
 };

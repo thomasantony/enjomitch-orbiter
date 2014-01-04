@@ -45,7 +45,7 @@
 #include <orbitersdk.h>
 #include "../PitchGuidance.h"
 #include "../Stage.h"
-#include "../Utils/Engine.hpp"
+#include <Orbiter/Engine.hpp>
 
 class PEGMulti
 {

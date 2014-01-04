@@ -40,7 +40,7 @@
 
 #include "PEGDirectAscentStd.h"
 #include "../MFDDataLaunchMFD.hpp"
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 #include <Math/GeneralMath.hpp>
 
 using namespace EnjoLib;

@@ -1,6 +1,6 @@
 #include "AutopilotDirectAscentSynchro.hpp"
 #include "../MFDDataLaunchMFD.hpp"
-#include "../Utils/VesselCapabilities.hpp"
+#include <Orbiter/VesselCapabilities.hpp>
 #include "../localisation.h"
 
 AutopilotDirectAscentSynchro::AutopilotDirectAscentSynchro()
