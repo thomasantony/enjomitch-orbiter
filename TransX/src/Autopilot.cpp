@@ -46,10 +46,19 @@ void Autopilot::Update(double SimDT)
         //sprintf(oapiDebugString(), "TransX: AUTO rotation disabled. Press SHIFT+C in target view to enable");
         return;
     }
-    Enable(true);
     VESSEL * vessel = oapiGetFocusInterface();
     if (!vessel)
         return;
+
+    if (!IsEnabled())
+    {
+        vessel->DeactivateNavmode( NAVMODE_PROGRADE );
+        vessel->DeactivateNavmode( NAVMODE_RETROGRADE );
+        vessel->DeactivateNavmode( NAVMODE_NORMAL );
+        vessel->DeactivateNavmode( NAVMODE_ANTINORMAL );
+        vessel->DeactivateNavmode( NAVMODE_HLEVEL );
+        Enable(true);
+    }
     //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
 
     VECTOR3 angleToTarget = GetRotationToTarget(vessel, unitise(m_targetVector));
