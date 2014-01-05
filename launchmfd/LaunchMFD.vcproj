@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="LaunchMFD"
 	ProjectGUID="{618053AC-D57F-446E-89DC-9F1367C198CC}"
 	RootNamespace="LaunchMFD"
@@ -990,27 +990,11 @@
 			Name="Utils"
 			>
 			<File
-				RelativePath=".\Utils\AngularAcc.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\AngularAcc.hpp"
-				>
-			</File>
-			<File
 				RelativePath="..\lib\Util\CharManipulations.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\lib\Util\CharManipulations.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\Engine.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\Engine.hpp"
 				>
 			</File>
 			<File
@@ -1067,14 +1051,6 @@
 			</File>
 			<File
 				RelativePath="..\lib\Util\ValueWithDescription.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\VesselCapabilities.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\VesselCapabilities.hpp"
 				>
 			</File>
 		</Filter>
@@ -1178,6 +1154,30 @@
 			Name="OrbiterLib"
 			>
 			<File
+				RelativePath="..\lib\Orbiter\AngularAcc.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\AngularAcc.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\Engine.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\Engine.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\SpaceMathKOST.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\SpaceMathKOST.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\lib\Orbiter\SpaceMathOrbiter.cpp"
 				>
 			</File>
@@ -1191,6 +1191,14 @@
 			</File>
 			<File
 				RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\VesselCapabilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\lib\Orbiter\VesselCapabilities.hpp"
 				>
 			</File>
 		</Filter>
