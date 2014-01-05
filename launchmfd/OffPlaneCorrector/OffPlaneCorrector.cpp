@@ -46,6 +46,8 @@
 #include "../MFDDataLaunchMFD.hpp"
 #include <Orbiter/SpaceMathOrbiter.hpp>
 
+using namespace EnjoLib;
+
 OffPlaneCorrector::OffPlaneCorrector()
 : limit(PI / 2.0) // 45 degrees
 {

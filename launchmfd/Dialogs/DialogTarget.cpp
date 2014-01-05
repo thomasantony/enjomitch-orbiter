@@ -3,11 +3,13 @@
 #include "../MFDDataLaunchMFD.hpp"
 #include "../localisation.h"
 #include <MFDSound++/Sound.hpp>
-#include <Orbiter/SpaceMathOrbiter.hpp>
+#include <Orbiter/SpaceMathKOST.hpp>
 #include <Math/GeneralMath.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include "../Utils/Targeting.hpp"
 #include <locale>
+
+using namespace EnjoLib;
 
 // Callback function for target input dialog
 bool DialogTarget::clbk(void *id, char *str, void *usrdata)
@@ -89,7 +91,7 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
     }
     if ( hTgt ) // The same for all types of targets - vessels, Probes and bodies
     {
-        const SpaceMathOrbiter::ElementsOrbitParam & elopTgt = SpaceMathOrbiter().GetElements(hTgt, data->hRef, FRAME_EQU);
+        const SpaceMathKOST::ElementsOrbitParam & elopTgt = SpaceMathKOST().GetElements(hTgt, data->hRef, FRAME_EQU);
         if ( fabs(lat) < elopTgt.el.i ) // All fine
         {
             SetTarget(data, hTgt, elopTgt.el.i, dispTarget);

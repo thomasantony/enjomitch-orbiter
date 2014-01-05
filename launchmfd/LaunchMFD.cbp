@@ -24,9 +24,6 @@
 					<Add option="/INCREMENTAL:NO" />
 					<Add library="user32" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Debug\LaunchMFD.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 			<Target title="Release2010_PL">
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
@@ -52,9 +49,6 @@
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 			<Target title="Release2010">
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
@@ -80,9 +74,6 @@
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 			<Target title="Release2006">
 				<Option output="../../../Orbiter/orbiter060929/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
@@ -113,9 +104,6 @@
 					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/lib" />
 					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 			<Target title="ReleaseBETA">
 				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
@@ -141,9 +129,6 @@
 					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\LaunchMFD.dll.manifest&quot; /outputresource:&quot;bin\Release\LaunchMFD.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
@@ -233,6 +218,8 @@
 		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
 		<Unit filename="../lib/Orbiter/Engine.cpp" />
 		<Unit filename="../lib/Orbiter/Engine.hpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathKOST.cpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathKOST.hpp" />
 		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.cpp" />
 		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.hpp" />
 		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />

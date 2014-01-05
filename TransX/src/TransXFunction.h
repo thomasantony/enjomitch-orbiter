@@ -47,6 +47,7 @@ public:
 		Yellow,
 		Red,
 		Grey,
+		GreyDashed,
 		White,
 		NUM_PENS
 	};

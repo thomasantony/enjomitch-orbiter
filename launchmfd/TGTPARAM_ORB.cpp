@@ -1,4 +1,6 @@
 #include "TGTPARAM_ORB.h"
+#include <kost.h>
+#include <Orbiter/SpaceMathKOST.hpp>
 #include <Orbiter/SpaceMathOrbiter.hpp>
 #include <Math/SpaceMath.hpp>
 #include <Math/GeneralMath.hpp>
@@ -16,11 +18,11 @@ TGTPARAM_ORB::TGTPARAM_ORB( MFDDataLaunchMFD * data, double inclPrev )
     TGTPARAM_ORB tgtParamLocal( inclPrev );
     if ( const OBJHANDLE hTarget = data->GetTargetHandle() )
     {
-        SpaceMathOrbiter smOrb;
+        SpaceMathKOST smOrb;
         //VECTOR3 targetPos, targetVel;
         const OBJHANDLE hRef = data->hRef;
         const kostStateVector & tgtSVec = smOrb.GetRelativeStateVector( hTarget, hRef );
-        const SpaceMathOrbiter::ElementsOrbitParam & elemOp = smOrb.GetElements(hTarget, hRef, FRAME_EQU);
+        const SpaceMathKOST::ElementsOrbitParam & elemOp = smOrb.GetElements(hTarget, hRef, FRAME_EQU);
 
         tgtParamLocal.incl = elemOp.el.i;
         tgtParamLocal.TrL = elemOp.op.TrL;
@@ -107,7 +109,7 @@ LAUNCH_AZIMUTH TGTPARAM_ORB::CalcLaunchAzimuth( MFDDataLaunchMFD * data )
     }
     else
     {
-        SpaceMathOrbiter smOrb;
+        SpaceMathKOST smOrb;
         const OBJHANDLE hRef = data->hRef;
 
         const OBJHANDLE hTarget = data->GetTargetHandle();
@@ -121,7 +123,7 @@ LAUNCH_AZIMUTH TGTPARAM_ORB::CalcLaunchAzimuth( MFDDataLaunchMFD * data )
         // the intersecting node is perpendicular to both axes, ie, the cross product of the two axes
         VECTOR3 nodeEqu = crossp(vesselAxisEqu, targetAxisEqu);
         // Cartesian to Polar
-        smOrb.Crt2Pol(nodeEqu);
+        SpaceMathOrbiter().Crt2Pol(nodeEqu);
 
         double difference = (nodeEqu.y - mov.ele.omegab);	//data[1] = lng of intersection , omegab = lng of Pe
         if ( data->m_bodyPhys.sidDay < 0 )

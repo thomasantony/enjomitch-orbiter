@@ -49,6 +49,7 @@
 #include <Math/SpaceMathBody.hpp>
 #include <Orbiter/SystemsConverterOrbiter.hpp>
 #include <Orbiter/SpaceMathOrbiter.hpp>
+#include <Orbiter/SpaceMathKOST.hpp>
 #include <Systems/Geo.hpp>
 #include <Systems/Point.hpp>
 
@@ -140,7 +141,7 @@ void GreatCircle::DrawVessel( MyDC hDC, const OBJHANDLE hRef, const OBJHANDLE hO
     if ( ! hObj )
         return;
 
-    const SpaceMathOrbiter::ElementsOrbitParam & elop = SpaceMathOrbiter().GetElements( hObj, hRef, FRAME_EQU );
+    const SpaceMathKOST::ElementsOrbitParam & elop = SpaceMathKOST().GetElements( hObj, hRef, FRAME_EQU );
 
     const double radius = oapiGetSize(hRef);
     const double planetAngle = oapiGetPlanetCurrentRotation(hRef);

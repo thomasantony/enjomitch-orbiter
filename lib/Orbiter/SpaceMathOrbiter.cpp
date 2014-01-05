@@ -62,33 +62,6 @@ VECTOR3 SpaceMathOrbiter::GetPlaneAxis( const OBJHANDLE hObj, const OBJHANDLE hR
     return axis;
 }
 
-// ElementsOrbitParam constructor
-SpaceMathOrbiter::ElementsOrbitParam::ElementsOrbitParam( const kostElements & pel, const kostOrbitParam & pop )
-{
-    el = pel;
-    op = pop;
-}
-
-// ElementsOrbitParam constructor
-SpaceMathOrbiter::ElementsOrbitParam::ElementsOrbitParam()
-{}
-
-SpaceMathOrbiter::ElementsOrbitParam SpaceMathOrbiter::GetElements(
-                    const OBJHANDLE hObj, const OBJHANDLE hRef, int frame ) const
-{
-    kostStateVector stateVec = GetRelativeStateVector( hObj, hRef );
-    if ( frame == FRAME_EQU ) // Equatorial frame chosen
-        stateVec = ToEquatorial(stateVec, hRef);
-    // else - already in ecliptic frame
-	// Orbiter uses left hand coordinate system. Accommodate to KOST.
-	stateVec = SwapCoordinateSystem( stateVec );
-	const double mi = oapiGetMass(hRef) * GGRAV;
-	kostElements el; kostOrbitParam op;
-    kostStateVector2Elements(mi, &stateVec, &el, &op);
-
-    return ElementsOrbitParam( el, op );
-}
-
 // Rotate to get a state vector in equatorial frame
 VECTOR3 SpaceMathOrbiter::ToEquatorial( const VECTOR3 & in, const OBJHANDLE hRef ) const
 {
@@ -97,33 +70,9 @@ VECTOR3 SpaceMathOrbiter::ToEquatorial( const VECTOR3 & in, const OBJHANDLE hRef
     return tmul(rot, in);
 }
 
-kostStateVector SpaceMathOrbiter::ToEquatorial( const kostStateVector & in, const OBJHANDLE hRef ) const
-{
-    kostStateVector out;
-    out.pos = ToEquatorial(in.pos, hRef);
-    out.vel = ToEquatorial(in.vel, hRef);
-    return out;
-}
-
 VECTOR3 SpaceMathOrbiter::SwapCoordinateSystem( const VECTOR3 & in ) const
 {
     return _V(in.x, in.z, in.y);
-}
-
-kostStateVector SpaceMathOrbiter::SwapCoordinateSystem( const kostStateVector & in ) const
-{
-    kostStateVector out;
-    out.pos = SwapCoordinateSystem(in.pos);
-    out.vel = SwapCoordinateSystem(in.vel);
-    return out;
-}
-
-kostStateVector SpaceMathOrbiter::GetRelativeStateVector( const OBJHANDLE hObj, const OBJHANDLE hRef ) const
-{
-    kostStateVector out;
-    oapiGetRelativePos(hObj, hRef, &out.pos);
-    oapiGetRelativeVel(hObj, hRef, &out.vel);
-    return out;
 }
 
 ///////////////////////////////////////////////////////////////

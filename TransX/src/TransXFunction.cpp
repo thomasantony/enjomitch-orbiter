@@ -325,12 +325,14 @@ void TransXFunction::initpens(void)								//(rbd+)
 	if (!pens[Yellow])	pens[Yellow]	= oapiCreatePen(2, 1, yellow);	// Bright yellow - hypos
 	if (!pens[Red])		pens[Red]		= oapiCreatePen(1, 1, red);	    // Bright red - unused, but danger
 	if (!pens[Grey])	pens[Grey]		= oapiCreatePen(1, 1, grey);	// Light Grey
+	if (!pens[GreyDashed])	pens[GreyDashed] = oapiCreatePen(2, 1, grey);	// Light Grey dashed for line of nodes
 	if (!pens[White])	pens[White]		= oapiCreatePen(1, 1, white);	// Bright white - unused
 	if (!brush[Green])	brush[Green]    = oapiCreateBrush (green);
 	if (!brush[Blue])	brush[Blue]		= oapiCreateBrush (blue);
 	if (!brush[Yellow])	brush[Yellow]	= oapiCreateBrush (yellow);
 	if (!brush[Red])	brush[Red]		= oapiCreateBrush (red);
 	if (!brush[Grey])	brush[Grey]		= oapiCreateBrush (grey);
+	if (!brush[GreyDashed])	brush[GreyDashed] = oapiCreateBrush (grey);
 	if (!brush[White])	brush[White]	= oapiCreateBrush (white);
 }
 

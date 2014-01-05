@@ -28,6 +28,7 @@
 #include "transx.h"
 #include "Opti/VarConstraint.h"
 #include <Math/SpaceMathBody.hpp>
+#include <Orbiter/SpaceMathOrbiter.hpp>
 #include "Autopilot.h"
 
 extern double debug;
@@ -822,16 +823,13 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		break;
 	}
 	sketchpad->Text(wpos,hpos,buffer,strlen(buffer));
-    if (!m_autocenter) // If user disabled AutoCenter, disable it no matter the view mode
-        gAutopilot.Disable();
 	if (viewmode==1 && hypormaj.isvalid())//Target view
 	{
 		double timeoffset=(m_ejdate-simstartMJD)*SECONDS_PER_DAY-craft.gettimestamp();
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
-		if (m_autocenter)
-            gAutopilot.SetTargetVector(targetvel-craftvel);
+        gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) );
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);
@@ -931,9 +929,12 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 				primary.getpositions(&craftpos,&targetpos);
 				graph.drawtwovector(sketchpad, craftpos,targetpos);
 				primary.getplanecept(&intersect);
-				SelectDefaultPen(sketchpad,Grey);
-				// Draws orbits intersection line
+				SelectDefaultPen(sketchpad,GreyDashed);
+				// Draws orbits intersection line with plane change
 				graph.drawvectorline(sketchpad,intersect);
+				SelectDefaultPen(sketchpad,Grey);
+				VECTOR3 intersectRef = GetLineOfNodes(); // No change plane line of nodes
+				graph.drawvectorline(sketchpad,intersectRef);
 
 				//Describe targeting quality
 				int hpos=8*linespacing;
@@ -1055,4 +1056,15 @@ double basefunction::GetHohmannDV()
         return dv;
     else
         return -dv;
+}
+
+VECTOR3 basefunction::GetLineOfNodes()
+{
+   if (!hminor || !hmajor || !hmajtarget)
+        return _V(0,0,0);
+    EnjoLib::SpaceMathOrbiter smo;
+    VECTOR3 planeMinor = smo.GetPlaneAxis(hminor, hmajor);
+    VECTOR3 planeMajor = smo.GetPlaneAxis(hmajtarget, hmajor);
+    return crossp(planeMinor, planeMajor);
+    //return unitise(crossp(planeMinor, planeMajor));
 }

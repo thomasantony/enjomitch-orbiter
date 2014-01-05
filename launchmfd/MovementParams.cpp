@@ -1,6 +1,8 @@
 #include "MovementParams.h"
 #include <Orbiter/SpaceMathOrbiter.hpp>
 
+using namespace EnjoLib;
+
 MovementParams::MovementParams( const VESSEL * vessel )
 {
     Update(vessel);

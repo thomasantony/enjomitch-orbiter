@@ -97,6 +97,7 @@ public:
     bool IsPlanSlingshot();
     double GetTimeIntercept();
     double GetHohmannDV(); // Calculate Hohmann transfer dv
+    VECTOR3 GetLineOfNodes();
 };
 
 #endif

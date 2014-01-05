@@ -19,6 +19,7 @@
 					<Add option="/DBUILD_DLL" />
 					<Add option="/D_DEBUG" />
 					<Add directory="TransX/src" />
+					<Add directory="lib/Orbiter" />
 				</Compiler>
 				<Linker>
 					<Add option="/DEBUG" />
@@ -46,6 +47,7 @@
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="TransX/src" />
+					<Add directory="lib/Orbiter" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -70,6 +72,7 @@
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="TransX/src" />
+					<Add directory="lib/Orbiter" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -103,6 +106,7 @@
 					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="TransX/src" />
+					<Add directory="lib/Orbiter" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -132,6 +136,7 @@
 					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="TransX/src" />
+					<Add directory="lib/Orbiter" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -179,10 +184,14 @@
 		<Unit filename="../lib/Math/SimpsonFunctor.hpp" />
 		<Unit filename="../lib/Math/SpaceMathBody.cpp" />
 		<Unit filename="../lib/Math/SpaceMathBody.hpp" />
+		<Unit filename="../lib/Math/VectorMath.cpp" />
+		<Unit filename="../lib/Math/VectorMath.hpp" />
 		<Unit filename="../lib/Orbiter/AngularAcc.cpp" />
 		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
 		<Unit filename="../lib/Orbiter/Engine.cpp" />
 		<Unit filename="../lib/Orbiter/Engine.hpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.cpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.hpp" />
 		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />
 		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.hpp" />
 		<Unit filename="../lib/Orbiter/VesselCapabilities.cpp" />

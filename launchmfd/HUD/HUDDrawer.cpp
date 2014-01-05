@@ -2,6 +2,8 @@
 #include "../MFDDataLaunchMFD.hpp"
 #include <Orbiter/SpaceMathOrbiter.hpp>
 
+using namespace EnjoLib;
+
 HUDDrawer::HUDDrawer()
 : m_data(NULL)
 {

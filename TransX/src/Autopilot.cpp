@@ -23,12 +23,15 @@ Autopilot::~Autopilot(){}
 void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
 {
     m_targetVector = targetVector;
-
     double targetLength = length(m_targetVector);
-    bool isBurnCompleted = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
+    if (targetLength != 0)
+    {
+        bool isBurnCompleted = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
+        if (isBurnCompleted)
+            MECO(oapiGetFocusInterface());
+    }
     m_targetLengthPrev = targetLength;
-    if (isBurnCompleted)
-        MECO(oapiGetFocusInterface());
+
 }
 
 void Autopilot::Disable()
@@ -52,13 +55,14 @@ void Autopilot::Update(double SimDT)
 
     if (!IsEnabled())
     {
-        vessel->DeactivateNavmode( NAVMODE_PROGRADE );
-        vessel->DeactivateNavmode( NAVMODE_RETROGRADE );
-        vessel->DeactivateNavmode( NAVMODE_NORMAL );
-        vessel->DeactivateNavmode( NAVMODE_ANTINORMAL );
-        vessel->DeactivateNavmode( NAVMODE_HLEVEL );
         Enable(true);
     }
+    vessel->DeactivateNavmode( NAVMODE_PROGRADE );
+    vessel->DeactivateNavmode( NAVMODE_RETROGRADE );
+    vessel->DeactivateNavmode( NAVMODE_NORMAL );
+    vessel->DeactivateNavmode( NAVMODE_ANTINORMAL );
+    vessel->DeactivateNavmode( NAVMODE_HLEVEL );
+    vessel->DeactivateNavmode( NAVMODE_HOLDALT );
     //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
 
     VECTOR3 angleToTarget = GetRotationToTarget(vessel, unitise(m_targetVector));
@@ -73,8 +77,6 @@ void Autopilot::Update(double SimDT)
     vessel->SetAttitudeRotLevel( 2, b );
     vessel->SetAttitudeRotLevel( 1, -x );
     vessel->SetAttitudeRotLevel( 0, y );
-
-
 }
 
 void Autopilot::Enable(bool val)

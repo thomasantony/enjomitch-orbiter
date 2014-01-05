@@ -766,6 +766,14 @@
 					RelativePath="..\lib\Math\SpaceMathBody.hpp"
 					>
 				</File>
+				<File
+					RelativePath="..\lib\Math\VectorMath.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\VectorMath.hpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Systems"
@@ -847,6 +855,78 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Orbiter"
+				>
+				<File
+					RelativePath="..\lib\Orbiter\AngularAcc.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\AngularAcc.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\Engine.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\Engine.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\VesselCapabilities.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\VesselCapabilities.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="PID"
+				>
+				<File
+					RelativePath="..\lib\PID\DerivatorDiscrete.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\PID\DerivatorDiscrete.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\PID\IntegratorDiscrete.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\PID\IntegratorDiscrete.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\PID\PID.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\PID\PID.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Opti"
@@ -904,6 +984,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\src\Autopilot.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\Autopilot.h"
+			>
+		</File>
 		<File
 			RelativePath=".\src\basefunction.cpp"
 			>
