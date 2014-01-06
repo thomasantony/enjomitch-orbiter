@@ -10,7 +10,7 @@ class Autopilot
         Autopilot();
         virtual ~Autopilot();
         void Update(double SimDT);
-        void SetTargetVector(const VECTOR3 & targetVector);
+        void SetTargetVector(const VECTOR3 & targetVector); // Setting _V(0,0,0) disables the AP
         void Disable();
     protected:
     private:
@@ -26,6 +26,7 @@ class Autopilot
         EnjoLib::PID m_pidAPSpaceY;
         EnjoLib::PID m_pidAPSpaceBank;
         VECTOR3 m_targetVector;
+        VECTOR3 m_targetVectorUnit;
         double m_targetLengthPrev;
         bool m_isEnabled;
         const static EnjoLib::Vect3 m_statDeltaGliderRefRotAcc; // reference pitch, yaw and bank angular accelerations

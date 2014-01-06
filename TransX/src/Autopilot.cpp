@@ -10,6 +10,7 @@ const Vect3 Autopilot::m_statDeltaGliderRefRotAcc(0.125, 0.066, 0.189);
 
 Autopilot::Autopilot()
 : m_targetVector(_V(0,0,0))
+, m_targetVectorUnit(_V(0,0,0))
 , m_targetLengthPrev(0)
 , m_pidAPSpaceX(0.8, 5)
 , m_pidAPSpaceY(m_pidAPSpaceX)
@@ -23,7 +24,8 @@ Autopilot::~Autopilot(){}
 void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
 {
     m_targetVector = targetVector;
-    double targetLength = length(m_targetVector);
+    m_targetVectorUnit = unit(targetVector);
+    double targetLength = length2(m_targetVector);
     if (targetLength != 0)
     {
         bool isBurnCompleted = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
@@ -65,11 +67,10 @@ void Autopilot::Update(double SimDT)
     vessel->DeactivateNavmode( NAVMODE_HOLDALT );
     //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
 
-    VECTOR3 angleToTarget = GetRotationToTarget(vessel, unitise(m_targetVector));
+    const VECTOR3 & angleToTarget = GetRotationToTarget(vessel, m_targetVectorUnit);
+    const VECTOR3 & accRatio = GetVesselAngularAccelerationRatio(vessel);
 
-    const VECTOR3 accRatio = GetVesselAngularAccelerationRatio(vessel);
-
-    const double inputBank = vessel->GetBank() / PI;
+    const double inputBank = (vessel->GetBank() - PI/2.0) / PI; // Targeting 90* = PI/2, like the Prograde autopilot
     const double b = accRatio.z * m_pidAPSpaceBank.Update( inputBank, SimDT );
     const double x = accRatio.x * m_pidAPSpaceX.Update( angleToTarget.x, SimDT );
     const double y = accRatio.y * m_pidAPSpaceY.Update( angleToTarget.y, SimDT );

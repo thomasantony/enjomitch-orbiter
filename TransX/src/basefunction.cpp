@@ -1009,9 +1009,9 @@ void basefunction::Getmode2hypo(VECTOR3 *targetvel)
 	mode2orbittime.getposvel(&ejradius,&ejvel);
 
 	//basisorbit.timetovectors(difftime, &ejradius, &ejvel);
-	VECTOR3 forward=unitise(ejvel)*m_prograde;
-	VECTOR3 outward=unitise(crossp(ejvel, basisorbit.getplanevector()))*m_outwardvel;
-	VECTOR3 sideward=unitise(basisorbit.getplanevector())*m_chplvel;
+	VECTOR3 forward=unit(ejvel)*m_prograde;
+	VECTOR3 outward=unit(crossp(ejvel, basisorbit.getplanevector()))*m_outwardvel;
+	VECTOR3 sideward=unit(basisorbit.getplanevector())*m_chplvel;
 	VECTOR3 ejectvector=forward+outward+sideward; //=Eject vector in basisorbit frame
 
 	VECTOR3 hypopos, hypovel;
@@ -1066,5 +1066,4 @@ VECTOR3 basefunction::GetLineOfNodes()
     VECTOR3 planeMinor = smo.GetPlaneAxis(hminor, hmajor);
     VECTOR3 planeMajor = smo.GetPlaneAxis(hmajtarget, hmajor);
     return crossp(planeMinor, planeMajor);
-    //return unitise(crossp(planeMinor, planeMajor));
 }

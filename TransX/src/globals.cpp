@@ -221,14 +221,6 @@ void TextShow(oapi::Sketchpad *sketchpad,const char *label, int wpos, int hpos, 
 	sketchpad->Text( wpos, hpos, buffer, length);
 }
 
-
-// Standard vector functions
-// Create vector of length 1
-VECTOR3 unitise (const VECTOR3 &vector)
-{
-	return vector / length(vector);
-}
-
 // Find length of vector
 double length2(const VECTOR3 &vector)
 {

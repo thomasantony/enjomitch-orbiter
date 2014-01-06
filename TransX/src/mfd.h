@@ -28,7 +28,6 @@ bool SelectVariableFloat(void *id, char *str, void *usrdata);
 bool SelectVariableAngle(void *id, char *str, void *usrdata); // hurr
 DLLCLBK void opcDLLInit (HINSTANCE hDLL);
 DLLCLBK void opcDLLExit (HINSTANCE hDLL);
-VECTOR3 unitise(const VECTOR3 &vector);
 double cosangle(const VECTOR3 &veca,const VECTOR3 &vecb);
 double length2(const VECTOR3 &vector);
 void getinvrotmatrix(VECTOR3 arot, MATRIX3 *invrotmatrix);

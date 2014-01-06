@@ -166,7 +166,7 @@ void slingshot::calculate(class MFDvarhandler *vars,basefunction *base)
 	//set up coordinate system
 	ratiotoradius=periapsisguess/oapiGetSize(hmajor);
 	VECTOR3 asvel=inward*(1/inwardvelocity);
-	VECTOR3 rightangletovel=unitise(asvel*dotp(asvel,ejectvector)-ejectvector);
+	VECTOR3 rightangletovel=unit(asvel*dotp(asvel,ejectvector)-ejectvector);
 	double cosfirst=sqrt(1-sinfirst*sinfirst);
 	VECTOR3 peposition=(rightangletovel*cosfirst+asvel*sinfirst)*periapsisguess;
 	VECTOR3 pevel=rightangletovel*(-sinfirst)+asvel*cosfirst;
@@ -195,10 +195,10 @@ void minorejectplan::graphscale(Graph *graph)
 		oapiGetFocusRelativeVel(hmajor, &svelocity); //This is the velocity under the ship
 		oapiGetFocusShipAirspeedVector(&relvector);
 		svelocity=svelocity-relvector; //This is the velocity of the surface
-		svelocity=unitise(svelocity); //Unitise to give vector parallel to rotation
+		svelocity=unit(svelocity); //unit to give vector parallel to rotation
 		oapiGetFocusRelativePos(hmajor,&craftpos);
-		VECTOR3 tradius=unitise(craftpos);//Get unit radius vector
-		VECTOR3 tvector=unitise(crossp(tradius, svelocity));
+		VECTOR3 tradius=unit(craftpos);//Get unit radius vector
+		VECTOR3 tvector=unit(crossp(tradius, svelocity));
 		double longitude, latitude, tnumber;
 		oapiGetFocusEquPos(&longitude, &latitude, &tnumber);//Only works if current planet's surface dominates
 		double cosl=cos(-latitude);
@@ -226,7 +226,7 @@ bool minorejectplan::maingraph(oapi::Sketchpad *sketchpad,Graph *graph, basefunc
 		VECTOR3 intersect=planorbit.getintersectvector(craft);
 		graph->drawvectorline(sketchpad,intersect);
 		// Draw Ascending Node (filled)
-		intersect = unitise(intersect) * this->ibase->getcraftorbit().getapodistance(); // Put markers out of the way
+		intersect = unit(intersect) * this->ibase->getcraftorbit().getapodistance(); // Put markers out of the way
 		base->SelectBrush(sketchpad, TransXFunction::Grey);
 		graph->drawmarker(sketchpad, -intersect, Graph::Circle);
 		// Draw Descending Node (hollow)
@@ -501,7 +501,7 @@ void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height
 		craft.radiustovectors(ped+10,false,&position,&velocity);
 		if (m_drawbase==0 && drawnbase)
 		{
-			VECTOR3 plane=unitise(craft.getplanevector());
+			VECTOR3 plane=unit(craft.getplanevector());
 			double distoffplane=dotp(plane,baseposition);
 			TextShow(sketchpad,"Offplane Dist:",0,pos,distoffplane);
 			pos+=linespacing;
@@ -527,11 +527,11 @@ void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height
 	}
 
 	VECTOR3 ecliptic={0,-1,0};
-	double inclination=acos(dotp(unitise(craft.getplanevector()),ecliptic));
+	double inclination=acos(dotp(unit(craft.getplanevector()),ecliptic));
 	inclination=inclination/PI*180;
 	TextShow(sketchpad,"Inclination:",0,pos,inclination);
 	pos+=linespacing;
-	VECTOR3 lanvector=unitise(crossp(craft.getplanevector(),ecliptic));
+	VECTOR3 lanvector=unit(crossp(craft.getplanevector(),ecliptic));
 	double lan=acos(lanvector.x)/PI*180;
 	if (lanvector.z<0) lan=-lan;
 	TextShow(sketchpad,"LAN ",0,pos,lan);
@@ -659,17 +659,17 @@ bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 
 void majorejectplan::calcejectvector(const VECTOR3 &rminplane,const VECTOR3 &minorvel, double inheritedvelocity)
 {//Final param not used here
-	VECTOR3 forward=unitise(minorvel)*m_prograde;
-	VECTOR3 outward=unitise(crossp(minorvel, rminplane))*m_outwardvel;
-	VECTOR3 sideward=unitise(rminplane)*m_chplvel;
+	VECTOR3 forward=unit(minorvel)*m_prograde;
+	VECTOR3 outward=unit(crossp(minorvel, rminplane))*m_outwardvel;
+	VECTOR3 sideward=unit(rminplane)*m_chplvel;
 	ejectvector=forward+outward+sideward; //=Eject vector in RMin frame
 }
 
 void slingejectplan::calcejectvector(const VECTOR3 &rminplane,const VECTOR3 &minorvel, double inheritedvelocity)
 {
-	VECTOR3 forward=unitise(minorvel)*m_outwardangle.getcos()*m_incangle.getcos();
-	VECTOR3 outward=unitise(crossp(minorvel,rminplane))*m_outwardangle.getsin()*m_incangle.getcos();
-	VECTOR3 sideward=unitise(rminplane)*m_incangle.getsin();
+	VECTOR3 forward=unit(minorvel)*m_outwardangle.getcos()*m_incangle.getcos();
+	VECTOR3 outward=unit(crossp(minorvel,rminplane))*m_outwardangle.getsin()*m_incangle.getcos();
+	VECTOR3 sideward=unit(rminplane)*m_incangle.getsin();
 	ejectvector=forward+outward+sideward;
 	if (m_inheritvel==0 && inheritedvelocity>0)
 		ejectvector=ejectvector*inheritedvelocity;
@@ -793,9 +793,9 @@ void minorejectplan::calculate(class MFDvarhandler *vars,basefunction *base)
 
 	//Set up temporary coordinate system
 	VECTOR3 rminplane=(base->getcontextorbit()).getplanevector();
-	VECTOR3 txaxis=unitise(ejectvector);
-	VECTOR3 tzaxis=unitise(crossp(ejectvector, rminplane));
-	VECTOR3 tyaxis=unitise(crossp(ejectvector, tzaxis));
+	VECTOR3 txaxis=unit(ejectvector);
+	VECTOR3 tzaxis=unit(crossp(ejectvector, rminplane));
+	VECTOR3 tyaxis=unit(crossp(ejectvector, tzaxis));
 	double ejorientsinvalue = m_ejorient.getsin();
 	double ejorientcosvalue = m_ejorient.getcos();
 	VECTOR3 tnaxis=tzaxis*ejorientcosvalue+tyaxis*ejorientsinvalue;

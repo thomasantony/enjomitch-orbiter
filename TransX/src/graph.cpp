@@ -86,9 +86,9 @@ void Graph::setviewscale(const OrbitElements &orbit)
 void Graph::setprojection(const VECTOR3 &txaxis, const VECTOR3 &tyaxis, const VECTOR3 &tzaxis)
 // Set projection vectors
 {
-	xaxis=unitise(txaxis);
-	yaxis=unitise(tyaxis);
-	zaxis=unitise(tzaxis);
+	xaxis=unit(txaxis);
+	yaxis=unit(tyaxis);
+	zaxis=unit(tzaxis);
 }
 
 void Graph::setprojection(const OrbitElements &torbit)
@@ -113,8 +113,8 @@ void Graph::setprojection(const VECTOR3 &projection)
 	else
 	{
 		VECTOR3 temp={0,-1,0}; // Ecliptic vector
-		zaxis=unitise(projection);
-		VECTOR3 cross=unitise(crossp(temp, zaxis)); // Vector of LAN x+z only
+		zaxis=unit(projection);
+		VECTOR3 cross=unit(crossp(temp, zaxis)); // Vector of LAN x+z only
 		VECTOR3 xcross=crossp(cross, zaxis); //90 around - max out of plane
 		xaxis=cross*cross.x+xcross*cross.z; // Back around the orbit
 		yaxis=xcross*cross.x-cross*cross.z;
@@ -168,7 +168,7 @@ void Graph::drawvectorline(oapi::Sketchpad *sketchpad, const VECTOR3 &line)
 	const double xoffset=(ixstart+ixend)*0.5;
 	const double yoffset=(iystart+iyend)*0.5;
 	int xpos, ypos;
-	VECTOR3 temp=unitise(line)*(windowsize/2);
+	VECTOR3 temp=unit(line)*(windowsize/2);
 	double xline=dotp(xaxis, temp);
 	double yline=dotp(yaxis, temp);
 	xpos=int(xoffset-xline);

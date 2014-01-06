@@ -174,8 +174,8 @@ void OrbitElements::radiustovectors(double radius, bool outward, VECTOR3 *positi
 	double sinthi=sqrt(1-costhi*costhi);
 	if (!outward) sinthi=-sinthi;
 	*position=majoraxis*(radius*costhi)+minoraxis*(radius*sinthi);
-	VECTOR3 outvector=unitise(*position);
-	VECTOR3 roundvector=unitise(crossp(planevector, outvector));
+	VECTOR3 outvector=unit(*position);
+	VECTOR3 roundvector=unit(crossp(planevector, outvector));
 	double rndvel2=angularmomentum2/(radius*radius);
 	double outvel=eccentricity*planet*sinthi/sqrt(angularmomentum2);
 	*velocity=outvector*outvel+roundvector*sqrt(rndvel2);
@@ -267,8 +267,8 @@ void OrbitElements::init(const VECTOR3 &rposition, const VECTOR3 &rvelocity, dou
 		eccvector=(rposition*(rvel2-gmplanet/radius)-rvelocity*dotp(rposition, rvelocity))*(1/gmplanet); //Eccentricity vector
 		semimajor=gmplanet/(rvel2-2*gmplanet/radius); //Length of semimajor axis  - is NEGATIVE if orbit is elliptical, POSITIVE if hyperbolic
 		eccentricity=length(eccvector); //Eccentricity of orbit
-		majoraxis=unitise(eccvector); //Vector towards Periapsis
-		minoraxis=unitise(crossp(planevector, majoraxis)); // Vector parallel to Minor axis of orbit - important for extracting vectors later
+		majoraxis=unit(eccvector); //Vector towards Periapsis
+		minoraxis=unit(crossp(planevector, majoraxis)); // Vector parallel to Minor axis of orbit - important for extracting vectors later
 		currcosthi=dotp(rposition, majoraxis)/radius; //cos thi is angle from periapsis, as measured from planet centre
 		currsinthi=dotp(rposition, minoraxis)/radius;
 		currposition=rposition;
