@@ -100,10 +100,8 @@ OBJHANDLE mapfunction::getcurrbody(OBJHANDLE vessel)//Finds current body for cur
 
 double mapfunction::getsoisize(OBJHANDLE handle)
 {
-    //GBODY *body = m_bodyProvider.GetBody(handle);
-    //cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
-    if (cacheSOISize.NeedsUpdate(handle) )
-        cacheSOISize = BodyCache(handle, &m_bodyProvider);
+    if (cacheSOISize.NeedsUpdate(handle))
+        cacheSOISize = BodyCache(handle, m_bodyProvider.GetBody(handle));
     GBODY *body = cacheSOISize.Gbody();
 	double radius;
 	if(!body)
@@ -124,9 +122,8 @@ double mapfunction::getsoisize(OBJHANDLE handle)
 
 OBJHANDLE mapfunction::getfirstmoon(OBJHANDLE handle)
 {
-    //cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
     if (cacheFistsMoon.NeedsUpdate(handle))
-        cacheFistsMoon = BodyCache(handle, &m_bodyProvider);
+        cacheFistsMoon = BodyCache(handle, m_bodyProvider.GetBody(handle));
     GBODY *body = cacheFistsMoon.Gbody();
 
 	if(body)
@@ -137,9 +134,8 @@ OBJHANDLE mapfunction::getfirstmoon(OBJHANDLE handle)
 
 OBJHANDLE mapfunction::getlastmoon(OBJHANDLE handle)
 {
-	    //cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
     if (cacheLastMoon.NeedsUpdate(handle))
-        cacheLastMoon = BodyCache(handle, &m_bodyProvider);
+        cacheLastMoon = BodyCache(handle, m_bodyProvider.GetBody(handle));
     GBODY *body = cacheLastMoon.Gbody();
 
 	if(body)
@@ -150,9 +146,8 @@ OBJHANDLE mapfunction::getlastmoon(OBJHANDLE handle)
 
 OBJHANDLE mapfunction::getnextpeer(OBJHANDLE handle)
 {
-    	    //cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
     if (cacheNextPeer.NeedsUpdate(handle))
-        cacheNextPeer = BodyCache(handle, &m_bodyProvider);
+        cacheNextPeer = BodyCache(handle, m_bodyProvider.GetBody(handle));
     GBODY *body = cacheNextPeer.Gbody();
 
 	if(body)
@@ -163,9 +158,8 @@ OBJHANDLE mapfunction::getnextpeer(OBJHANDLE handle)
 
 OBJHANDLE mapfunction::getpreviouspeer(OBJHANDLE handle)
 {
-    	    //cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
     if (cachePreviousPeer.NeedsUpdate(handle))
-        cachePreviousPeer = BodyCache(handle, &m_bodyProvider);
+        cachePreviousPeer = BodyCache(handle, m_bodyProvider.GetBody(handle));
     GBODY *body = cachePreviousPeer.Gbody();
 
 	if(body)
@@ -177,9 +171,8 @@ OBJHANDLE mapfunction::getpreviouspeer(OBJHANDLE handle)
 
 OBJHANDLE mapfunction::getmajor(OBJHANDLE handle)
 {
-    	    //cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
     if (cacheMajor.NeedsUpdate(handle))
-        cacheMajor = BodyCache(handle, &m_bodyProvider);
+        cacheMajor = BodyCache(handle, m_bodyProvider.GetBody(handle));
     GBODY *body = cacheMajor.Gbody();
 
 	if(body)

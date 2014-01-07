@@ -14,6 +14,7 @@ double OptiFunctionBase::RecalculateGetValue()
     {
         VECTOR3 tmp;
         for (int i = 0; i < 9; ++i)
+		//for (int i = 0; i < 50000; ++i) // for testing
             m_base->calculate(&tmp); // twice as fast, but works only in Eject mode
     }
     m_icept->ShouldUpdateBarycenter(true);

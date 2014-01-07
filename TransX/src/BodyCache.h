@@ -4,11 +4,9 @@
 #include <OrbiterSdk.h>
 
 struct GBODY;
-class BodyProvider;
 class BodyCache
 {
     public:
-        BodyCache(OBJHANDLE handle, BodyProvider * bodyProvider);
         BodyCache(OBJHANDLE handle, GBODY * gbody);
         BodyCache();
         virtual ~BodyCache();

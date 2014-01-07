@@ -11,19 +11,14 @@ BodyCache::BodyCache(OBJHANDLE handle, GBODY * gbody)
 , m_gbody(gbody)
 {}
 
-BodyCache::BodyCache(OBJHANDLE handle, BodyProvider * bodyProvider)
-: m_handle(handle)
-, m_gbody(bodyProvider->GetBody(handle))
-{}
-
 BodyCache::~BodyCache(){}
 
 
 
 bool BodyCache::NeedsUpdate( OBJHANDLE handle )
 {
+    //return true; // For testing
     return handle != m_handle;
-    //return true;
 }
 
 GBODY * BodyCache::Gbody()

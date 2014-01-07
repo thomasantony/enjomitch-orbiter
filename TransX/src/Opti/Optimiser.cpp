@@ -27,6 +27,7 @@ Optimiser::~Optimiser()
 // Prepares the optimisation for all registered variables
 void Optimiser::Optimise() const
 {
+	// for (int k = 0; k < 10000; ++k) // For testing
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i)
     {
         const VarConstraint & item = m_pArgs2Find.at(i);

@@ -1,4 +1,4 @@
-TransX V 2014.01.08 (Auto-Center™)
+TransX V 2014.01.07 (Auto-Center™)
 
 Description & License
 ---------------------
@@ -94,6 +94,7 @@ The Manoeuvre mode now has a new variable: Auto-Center. Switch it on to automati
 WARNING: due to TransX' limitations, the selection that you make will only have an effect in the Target View!
 Additionally, the AP will automatically cut the main engines once the burn is considered complete (ie., the dV starts increasing). Once it happens, you may let the Auto-Center to realign and fix the residual error with RCS in translational mode. Also, a good technique would be to gradually decrease the thrust in the last seconds of the planned burn, as the remaining dV gets very low, which gives more margin for the Auto-Center AP to react.
 
+C) The hypotetical line of nodes, which results from changing plane velocity, is now drawn as a dashed grey line, while the solid line is the reference line of nodes between source and target bodies.
 
 Any questions - post in the addons section of the Orbiter forum.
 
