@@ -87,6 +87,7 @@ Setting a variable's adjustment setting to Auto-Min serves the following purpose
 1) You may use ++ or -- to find optimal value of this variable, which minimizes the Closest Approach
 2) In Maj.Ejection plan, you may do the same as in 1), but also, you may leave other variables with Auto-Min setting, which will force them to be passively minimized while changing the Ejection Date, therefore automatically finding solutions.
 3) After you've roughly found a solution in point 2), you may further minimize the Cl. App. by switching the Ej. Date to Auto-Min and pressing ++ or --
+As this feature performs a numerical simulation in each frame, many original TransX' bottlenecks had to be removed to make this feature operational with high FPS.
 
 B) Auto-Center™ (Target View's crosshair auto centering):
 The Manoeuvre mode now has a new variable: Auto-Center. Switch it on to automatically center the crosshair and switch it off to disable it. 
