@@ -1,4 +1,4 @@
-TransX V 2013.12.13 (Auto-Min)
+TransX V 2014.01.08 (Auto-Center™)
 
 Description & License
 ---------------------
@@ -38,20 +38,16 @@ FWD and BCK move your viewpoint between the stages you've created, and create a 
 
 SW locks/unlocks the graph, whilst allowing you to move the variable selection as before.
 
-
 Each stage has a PLAN associated with it. The MFD will normally auto-select the best plan for you, (although it is possible to change it if you have to). The plan is designed to help you plan your course through the stage.
-
 
 Each Stage has three views. The first one isn't used often.
 The second view contains an overall view of the stage, and has some generic variables to adjust.
 
 The third view contains the variables associated with the currently selected plan. These change depending on which plan you select. It may sometimes also contain a different graph from view 2.
 
-
 The graphs will largely be familiar to you if you've used TransX before. There are two differences.
 
 The green orbit in a graph is now not always your ship, but can also be ANY type of trajectory that's been passed on from the previous stage.
-
 
 There is one new graph type in the Slingshot plan in view 3. The yellow line represents your planned point of closest approach, and the green line your current one. Match the two together to get a perfect slingshot.
 
@@ -81,19 +77,21 @@ A slightly bigger "X" in the crosshair view. No more "where the heck is that gre
 -Color of planet orbits and atmospheres changed to a lighter shade of blue.
 Easier to see especially for YT videos.
 -2 TransX MFDs for the price of one!
-In addition to the transx.dll you get a second one named transx2.dll
-The second transx uses a different color scheme (red).
-In addition to the cool "TransX's evil twin" look, you get all the functionality mentioned above.
-It allows you to setup a completely independent TransX plan and both plans get saved in your scenario.
-Very handy for advanced mission planning , where you'd normally need a surrogate ship.
+In addition to the transx.dll you get a second one named transx2.dll. The second transx uses a different color scheme (red).
+In addition to the cool "TransX's evil twin" look, you get all the functionality mentioned above. It allows you to setup a completely independent TransX plan and both plans get saved in your scenario. Very handy for advanced mission planning , where you'd normally need a surrogate ship.
 
 
-By Enjo: Closest Approach minimization (Auto-Min):
+By Enjo: 
+A) Auto-Min™ (Closest Approach minimization):
 Setting a variable's adjustment setting to Auto-Min serves the following purposes:
 1) You may use ++ or -- to find optimal value of this variable, which minimizes the Closest Approach
 2) In Maj.Ejection plan, you may do the same as in 1), but also, you may leave other variables with Auto-Min setting, which will force them to be passively minimized while changing the Ejection Date, therefore automatically finding solutions.
 3) After you've roughly found a solution in point 2), you may further minimize the Cl. App. by switching the Ej. Date to Auto-Min and pressing ++ or --
 
+B) Auto-Center™ (Target View's crosshair auto centering):
+The Manoeuvre mode now has a new variable: Auto-Center. Switch it on to automatically center the crosshair and switch it off to disable it. 
+WARNING: due to TransX' limitations, the selection that you make will only have an effect in the Target View!
+Additionally, the AP will automatically cut the main engines once the burn is considered complete (ie., the dV starts increasing). Once it happens, you may let the Auto-Center to realign and fix the residual error with RCS in translational mode. Also, a good technique would be to gradually decrease the thrust in the last seconds of the planned burn, as the remaining dV gets very low, which gives more margin for the Auto-Center AP to react.
 
 
 Any questions - post in the addons section of the Orbiter forum.
