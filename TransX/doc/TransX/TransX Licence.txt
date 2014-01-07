@@ -1,4 +1,5 @@
 Copyright © 2007-9 Steve Arch, Duncan Sharpe
+Copyright © 2011 atomicdryad - Pen allocation fix
 Copyright © 2013 Dimitris Gatsoulis (dgatsoulis) - Hacks
 Copyright © 2013 Szymon Ender (Enjo) - Auto-Min & other hacks
 
