@@ -32,7 +32,6 @@
 #define IMFDDrawsHUD_HPP
 
 #include "Orbitersdk.h"
-#include <string>
 
 namespace EnjoLib
 {

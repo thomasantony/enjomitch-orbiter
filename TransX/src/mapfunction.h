@@ -24,6 +24,7 @@
 #include "mfdfunction.h"
 #include "orbitelements.h"
 #include "BodyProvider.h"
+#include "BodyCache.h"
 
 class mapfunction: public MFDFunction
 {
@@ -33,6 +34,8 @@ private:
 	bool initialised;
 	static class mapfunction *themap;
 	VECTOR3 getweightedvector(OBJHANDLE, void(OBJHANDLE, VECTOR3*));
+
+	BodyCache cacheMajor, cacheFistsMoon, cacheLastMoon, cacheNextPeer, cachePreviousPeer, cacheSOISize, cacheCurrBody;
 public:
 	mapfunction();
 	~mapfunction();

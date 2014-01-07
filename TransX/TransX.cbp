@@ -34,7 +34,7 @@
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010/" />
 				<Option type="3" />
-				<Option compiler="msvc8" />
+				<Option compiler="msvc10" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -223,6 +223,8 @@
 		<Unit filename="../lib/Util/Result.hpp" />
 		<Unit filename="src/Autopilot.cpp" />
 		<Unit filename="src/Autopilot.h" />
+		<Unit filename="src/BodyCache.cpp" />
+		<Unit filename="src/BodyCache.h" />
 		<Unit filename="src/BodyProvider.cpp" />
 		<Unit filename="src/BodyProvider.h" />
 		<Unit filename="src/Opti/Constraint.cpp" />
