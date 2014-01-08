@@ -28,13 +28,12 @@ void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
     double targetLength = length(m_targetVector);
     if (targetLength != 0)
     {
+        bool isDVVerySmall = targetLength < 1.0; // Prevent rolling 180 degrees around
         bool isDVIncreasing = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
-        bool isDVVerySmall = targetLength < 1.0;
         if (isDVIncreasing || isDVVerySmall)
             MECO(oapiGetFocusInterface());
     }
     m_targetLengthPrev = targetLength;
-
 }
 
 void Autopilot::Disable()
