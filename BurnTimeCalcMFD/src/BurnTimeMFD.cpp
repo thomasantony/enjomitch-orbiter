@@ -671,7 +671,6 @@ void BurnTimeMFD::HandlerGetFromTransX()
     Result<double> IManualRes = ModuleMessaging().GetDouble("TransX", "TBurn");
     if (dvRes.status && IManualRes.status)
     {
-        sprintf(oapiDebugString(), "%.2lf",IManualRes.value );
         dv = dvRes.value;
         IManual = IManualRes.value;
         mode = BURNMODE_MAN;
