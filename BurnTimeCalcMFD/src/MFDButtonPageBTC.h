@@ -9,6 +9,7 @@ class MFDButtonPageBTC : public EnjoLib::MFDGoodies::MFDButtonPage<BurnTimeMFD>
     public:
         MFDButtonPageBTC();
         virtual ~MFDButtonPageBTC();
+        bool SearchForKeysInOtherPages() const;
     protected:
     private:
 };

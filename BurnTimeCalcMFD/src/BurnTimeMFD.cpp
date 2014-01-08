@@ -102,6 +102,7 @@
 int inputmode = 0;
 
 #include "BurnTimeMFD.h"
+#include "MFDButtonPageBTC.h"
 #include <windows.h>
 #include <stdio.h>
 #include <math.h>
@@ -110,6 +111,7 @@ int inputmode = 0;
 #include <cctype>
 #include <algorithm>
 #include <ModuleMessaging.hpp>
+#include <Util/Result.hpp>
 
   int dspunit; //0 - SI
             //1 - US
@@ -122,7 +124,7 @@ int inputmode = 0;
 
 double dv, mextra;
 int IndexCenterObj;
-
+MFDButtonPageBTC gButtons;
 
 bool IsEngaged,IsArmed,IsCircular;
 double ECutoff,IManual,EReference;
@@ -545,56 +547,45 @@ bool ObjectInput (void *id, char *str, void *usrdata)
 
 bool BurnTimeMFD::ConsumeKeyBuffered (DWORD key)
 {
-  switch(key)
-  {
+    return gButtons.ConsumeKeyBuffered(this, key);
+}
 
-	  /*
-  OAPI_KEY_V,OAPI_KEY_V,
-  OAPI_KEY_T, OAPI_KEY_T,
-  OAPI_KEY_O,OAPI_KEY_O,
-  false,  false,
-  OAPI_KEY_COMMA, false,
-  OAPI_KEY_BACK, OAPI_KEY_R,
-  OAPI_KEY_M, OAPI_KEY_M,
-  OAPI_KEY_A, OAPI_KEY_A,
-  API_KEY_L, API_KEY_B,
-  OAPI_KEY_C, OAPI_KEY_C,
-  OAPI_KEY_U,  OAPI_KEY_U,
-  OAPI_KEY_EO API_KEY_E
+void BurnTimeMFD::HandlerSwitchButtonPage()
+{
+    gButtons.SwitchPage(this);
+}
 
-  */
-    case OAPI_KEY_V :
-	  inputmode=INPUTMODE_DV;
-	  bool ObjectInput (void *id, char *str, void *usrdata);
-	  oapiOpenInputBox("Enter dV + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
-	  return true;
+void BurnTimeMFD::HandlerTargetOrDV()
+{
+    inputmode=INPUTMODE_DV;
+    bool ObjectInput (void *id, char *str, void *usrdata);
+    oapiOpenInputBox("Enter dV + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
+}
 
-    case OAPI_KEY_X :
-	  inputmode=INPUTMODE_EXTRA;
-	  bool ObjectInput (void *id, char *str, void *usrdata);
-	  oapiOpenInputBox("Enter extra fuel mass in kilograms",ObjectInput,0,20, (void*)this);
-	  return true;
+void BurnTimeMFD::HandlerTimeOfManoeuvre()
+{
+   inputmode=INPUTMODE_TIME;
+   mode = BURNMODE_MAN;
+   bool ObjectInput (void *id, char *str, void *usrdata);
+   oapiOpenInputBox("Enter dT + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
+}
 
-     case OAPI_KEY_T :
-	   inputmode=INPUTMODE_TIME;
-	   mode = BURNMODE_MAN;
-	   bool ObjectInput (void *id, char *str, void *usrdata);
-	   oapiOpenInputBox("Enter dT + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
-	   return true;
+void BurnTimeMFD::HandlerOffsetDistance()
+{
+    inputmode=INPUTMODE_OFFSET;
+    mode = BURNMODE_TGT;
+    oapiOpenInputBox("Enter offset distance + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
+}
 
-	 case OAPI_KEY_O:
-		inputmode=INPUTMODE_OFFSET;
-	    mode = BURNMODE_TGT;
-		oapiOpenInputBox("Enter offset distance + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
+void BurnTimeMFD::HandlerTargetForDistanceCalc()
+{
+    inputmode=INPUTMODE_TARGET;
+    mode = BURNMODE_TGT;
+    oapiOpenInputBox("Enter unique part of the targets name.",ObjectInput,0,20, (void*)this);
+}
 
-		return true;
-	case OAPI_KEY_S:
-		inputmode=INPUTMODE_TARGET;
-	    mode = BURNMODE_TGT;
-		oapiOpenInputBox("Enter unique part of the targets name.",ObjectInput,0,20, (void*)this);
-		return true;
-
-    case OAPI_KEY_R:
+void BurnTimeMFD::HandlerReset()
+{
 	  mul=1.0;
 	  dv = 0.0;
 	  mextra = 0.0;
@@ -604,59 +595,87 @@ bool BurnTimeMFD::ConsumeKeyBuffered (DWORD key)
 	  mode=BURNMODE_PERI;
 	  IManual=0;
 	  IsCircular=false;
-      return true;
-    case OAPI_KEY_M:
-	  if(IsArmed && IsEngaged) return false;
+}
+
+void BurnTimeMFD::HandlerChangeMode()
+{
+	  if(IsArmed && IsEngaged) return;
 	  mode++;
 	  if(mode>=BURNMODE_TGT) mode=0;
-	return true;
-    case OAPI_KEY_A:
-	  if(IsArmed)
-	  {
-	    IsArmed=false;
-		return true;
-	  }
-	  if(IsEngaged)
-	  {
-	    IsEngaged=false;
-	  }
+}
 
-	  oapiGetVesselInterface(oapiGetFocusObject())->SetThrusterGroupLevel(groups[Sel_eng],0);
-
-	  ArmAutoBurn();
-      return true;
-    case OAPI_KEY_C:
-	  if (mode > BURNMODE_APO) mode = BURNMODE_PERI;
+void BurnTimeMFD::HandlerAutoBurn()
+{
       if(IsArmed)
-	  {
+      {
         IsArmed=false;
-        IsCircular=false;
-        return true;
+        return;
       }
       if(IsEngaged)
-	  {
+      {
         IsEngaged=false;
-		oapiGetVesselInterface(oapiGetFocusObject())->SetThrusterGroupLevel(groups[Sel_eng],0);
       }
-      IsCircular=true;
-      CalcCircular();
+      oapiGetVesselInterface(oapiGetFocusObject())->SetThrusterGroupLevel(groups[Sel_eng],0);
       ArmAutoBurn();
-      return true;
-    case OAPI_KEY_B:
+}
+
+void BurnTimeMFD::HandlerBurnNow()
+{
       IsArmed=false;
       IsEngaged=true;
       ECutoff=oapiGetSimTime()+IBurn;
       oapiGetVesselInterface(oapiGetFocusObject())->SetThrusterGroupLevel(groups[Sel_eng],1.0);
-      return true;
-	case OAPI_KEY_E:
-	  Sel_eng++;
-	  if (Sel_eng==3) Sel_eng=0;
-	  return true;
-	case OAPI_KEY_U:
-	  dspunit=1-dspunit;
-	  return true;
-  }
-  return false;
+}
+
+void BurnTimeMFD::HandlerAimAutoCirc()
+{
+      if (mode > BURNMODE_APO) mode = BURNMODE_PERI;
+      if(IsArmed)
+      {
+        IsArmed=false;
+        IsCircular=false;
+        return;
+      }
+      if(IsEngaged)
+      {
+        IsEngaged=false;
+        oapiGetVesselInterface(oapiGetFocusObject())->SetThrusterGroupLevel(groups[Sel_eng],0);
+      }
+      IsCircular=true;
+      CalcCircular();
+      ArmAutoBurn();
+}
+
+void BurnTimeMFD::HandlerSwitchSI_US()
+{
+    dspunit=1-dspunit;
+}
+
+void BurnTimeMFD::HandlerSelectEngine()
+{
+      Sel_eng++;
+      if (Sel_eng==3) Sel_eng=0;
+}
+
+void BurnTimeMFD::HandlerEnterExtraFuel()
+{
+	  inputmode=INPUTMODE_EXTRA;
+	  bool ObjectInput (void *id, char *str, void *usrdata);
+	  oapiOpenInputBox("Enter extra fuel mass in kilograms",ObjectInput,0,20, (void*)this);
+}
+
+void BurnTimeMFD::HandlerGetFromTransX()
+{
+    using namespace EnjoLib;
+    Result<double> dvRes = ModuleMessaging().GetDouble("TransX", "dv");
+    Result<double> IManualRes = ModuleMessaging().GetDouble("TransX", "TBurn");
+    if (dvRes.status && IManualRes.status)
+    {
+        sprintf(oapiDebugString(), "%.2lf",IManualRes.value );
+        dv = dvRes.value;
+        IManual = IManualRes.value;
+        mode = BURNMODE_MAN;
+    }
 }
 
 void BurnTimeMFD::ArmAutoBurn()
@@ -860,7 +879,6 @@ double BurnTimeMFD::GetStackMass(VESSEL* vessel) {
 
 void BurnTimeMFD::TimeStep(double ENowTS)
 {
-
   ENow=ENowTS;
   VESSEL *vessel;
   vessel = oapiGetFocusInterface();
@@ -882,7 +900,6 @@ void BurnTimeMFD::TimeStep(double ENowTS)
 	  }
 	  else
 	  {
-
 		 IReference=(TDist-sOffset)/(dv);
 	     EReference=oapiGetSimTime()+IReference;
 	  }
@@ -894,10 +911,8 @@ void BurnTimeMFD::TimeStep(double ENowTS)
     }
   }
 
-
   if (isp!=0) mdot=F/isp;
   else mdot=0;
-
 
   if(IsEngaged)
   {
@@ -978,70 +993,15 @@ int BurnTimeMFD::line( int i ) {
 }
 
 int BurnTimeMFD::ButtonMenu (const MFDBUTTONMENU **menu) const {
-  static const MFDBUTTONMENU mnu[12] = {
-    {"Enter target or deltaV", 0, 'V'},
-    {"Enter time to Maneuver", 0, 'T'},
-    {"Enter offset distance", "to target", 'O'},
-    {"Set Target for", "distance calculation", '\0'},
-    {"Reset MFD", 0, 'R' },
-    {"Change mode", 0, 'M'},
-    {"Arm Autoburn", 0, 'A'},
-    {"Burn Now", 0, 'B'},
-	{"Arm Autocirc", 0, 'C'},
-    {"Switch SI / US", "unit system", 'U'},
-    {"Select engine", 0, 'E'},
-	{"Enter extra fuel", 0, 'X'},
-  };
-  if (menu) *menu = mnu;
-  return 12;
+  return gButtons.ButtonMenu(menu);
 }
 
 char *BurnTimeMFD::ButtonLabel (int bt) {
-  //char *label[12] = {"+","-","/","*","NV", "RST", "MD","ARM", "BRN","CIR","UNT","ENG"};
-  char *label[12] = {"DV","DT","OS","ST","RST", "MD", "ARM","BRN", "CIR","UNT","ENG","EXT"};
-  return (bt < 12 ? label[bt] : 0);
+  //char *label[12] = {"DV","DT","OS","ST","RST", "MD", "ARM","BRN", "CIR","UNT","ENG","EXT"};
+  //return (bt < 12 ? label[bt] : 0);
+  return gButtons.ButtonLabel(bt);
 }
-
-const DWORD keys[12]=
-{
-/*
-  OAPI_KEY_V,
-  OAPI_KEY_T,
-  OAPI_KEY_O,
-  false,
-  OAPI_KEY_COMMA,
-  OAPI_KEY_BACK,
-  OAPI_KEY_M,
-  OAPI_KEY_A,
-  API_KEY_L,
-  OAPI_KEY_C,
-  OAPI_KEY_U,
-  OAPI_KEY_E
-  */
-
-  OAPI_KEY_V,
-  OAPI_KEY_T,
-  OAPI_KEY_O,
-  OAPI_KEY_S,
-  OAPI_KEY_R,
-  OAPI_KEY_M,
-  OAPI_KEY_A,
-  OAPI_KEY_B,
-  OAPI_KEY_C,
-  OAPI_KEY_U,
-  OAPI_KEY_E,
-  OAPI_KEY_X
-
-};
 
 bool BurnTimeMFD::ConsumeButton(int bt, int event) {
-
-  if (event & PANEL_MOUSE_LBDOWN) {
-    if(bt>=12) return false;
-    return ConsumeKeyBuffered(keys[bt]);
-  }
-
-  return false;
+  return gButtons.ConsumeButton(this, bt, event);
 }
-
-

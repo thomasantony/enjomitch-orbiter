@@ -4,7 +4,7 @@
 #include <OrbiterSDK.h>
 
 #include <string>
-#include "Result.hpp"
+#include <Util/Result.hpp>
 
 namespace EnjoLib
 {

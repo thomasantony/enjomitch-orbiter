@@ -38,7 +38,21 @@ public:
   int MySoundId;
   int Sel_eng;
 
-
+    //Button page handlers
+    void HandlerSwitchButtonPage();
+    void HandlerTargetOrDV();
+    void HandlerTimeOfManoeuvre();
+    void HandlerOffsetDistance();
+    void HandlerTargetForDistanceCalc();
+    void HandlerReset();
+    void HandlerChangeMode();
+    void HandlerAutoBurn();
+    void HandlerBurnNow();
+    void HandlerAimAutoCirc();
+    void HandlerSwitchSI_US();
+    void HandlerSelectEngine();
+    void HandlerEnterExtraFuel();
+    void HandlerGetFromTransX();
 protected:
 
   VESSEL *messel;

@@ -176,6 +176,8 @@
 		</Linker>
 		<Unit filename="../libMFD/MFDButtonPage.cpp" />
 		<Unit filename="../libMFD/MFDButtonPage.hpp" />
+		<Unit filename="../lib/Util/Result.cpp" />
+		<Unit filename="../lib/Util/Result.hpp" />
 		<Unit filename="src/BurnTimeMFD.cpp" />
 		<Unit filename="src/BurnTimeMFD.h" />
 		<Unit filename="src/MFDButtonPageBTC.cpp" />
