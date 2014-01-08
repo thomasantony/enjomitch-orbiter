@@ -14,8 +14,13 @@ class __declspec(dllexport) ModuleMessaging
         ModuleMessaging();
         virtual ~ModuleMessaging();
 
-        Result<double> GetDouble(const char * moduleName, const char * varName);
-        Result<VECTOR3> GetVECTOR3(const char * moduleName, const char * varName);
+        Result<bool>     GetBool(    const char * moduleName, const char * varName);
+        Result<int>      GetInt(     const char * moduleName, const char * varName);
+        Result<double>   GetDouble(  const char * moduleName, const char * varName);
+        Result<VECTOR3>  GetVECTOR3( const char * moduleName, const char * varName);
+        Result<MATRIX3>  GetMATRIX3( const char * moduleName, const char * varName);
+        Result<MATRIX4>  GetMATRIX4( const char * moduleName, const char * varName);
+        Result<const char *> GetString(  const char * moduleName, const char * varName);
 
     protected:
     private:

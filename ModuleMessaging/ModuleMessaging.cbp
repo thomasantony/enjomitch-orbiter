@@ -179,8 +179,6 @@
 		</Linker>
 		<Unit filename="../lib/Util/Result.cpp" />
 		<Unit filename="../lib/Util/Result.hpp" />
-		<Unit filename="src/IMessagingReceiver.cpp" />
-		<Unit filename="src/IMessagingReceiver.hpp" />
 		<Unit filename="src/IMessagingSender.cpp" />
 		<Unit filename="src/IMessagingSender.hpp" />
 		<Unit filename="src/ModuleMessaging.cpp" />

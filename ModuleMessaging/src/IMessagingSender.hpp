@@ -12,8 +12,13 @@ class __declspec(dllexport) IMessagingSender
         virtual ~IMessagingSender();
         virtual const char * GetModuleName() const = 0;
 
+        void Send(const char * varName, bool var) const;
+        void Send(const char * varName, int var) const;
         void Send(const char * varName, double var) const;
         void Send(const char * varName, const VECTOR3 & var) const;
+        void Send(const char * varName, const MATRIX3 & var) const;
+        void Send(const char * varName, const MATRIX4 & var) const;
+        void Send(const char * varName, const char * var) const;
 
     protected:
 
