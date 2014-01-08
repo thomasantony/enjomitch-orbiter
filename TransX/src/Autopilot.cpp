@@ -25,11 +25,12 @@ void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
 {
     m_targetVector = targetVector;
     m_targetVectorUnit = unit(targetVector);
-    double targetLength = length2(m_targetVector);
+    double targetLength = length(m_targetVector);
     if (targetLength != 0)
     {
-        bool isBurnCompleted = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
-        if (isBurnCompleted)
+        bool isDVIncreasing = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
+        bool isDVVerySmall = targetLength < 1.0;
+        if (isDVIncreasing || isDVVerySmall)
             MECO(oapiGetFocusInterface());
     }
     m_targetLengthPrev = targetLength;
