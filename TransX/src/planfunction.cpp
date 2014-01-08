@@ -30,6 +30,7 @@
 #include "basefunction.h"
 #include "planfunction.h"
 #include "TransXFunction.h"
+#include "MessagingSender.h"
 
 bool minorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 {
@@ -351,6 +352,10 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
 	sprintf(buffer, "LAN    :%.4g°", lan);
 	sketchpad->Text( 0, pos, buffer, strlen(buffer));
 	pos += linespacing;
+
+    // Send out the parameters, so that Launch MFD can catch them
+	MessagingSender().Send("Incl", targetInc);
+	MessagingSender().Send("LAN", lan);
 
 	if (status.status==1)
 	{ //Vessel is landed!

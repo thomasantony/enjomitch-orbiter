@@ -54,7 +54,7 @@
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010/" />
 				<Option type="3" />
-				<Option compiler="msvc8" />
+				<Option compiler="msvc10" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -144,6 +144,7 @@
 			<Add directory="../libMFD" />
 			<Add directory="../KOST_Orbiter" />
 			<Add directory="../libWin" />
+			<Add directory="../ModuleMessaging/src" />
 		</Compiler>
 		<Linker>
 			<Add option="/NODEFAULTLIB:LIBCMT" />
@@ -154,6 +155,7 @@
 			<Add library="gdi32.lib" />
 			<Add library="OrbiterSoundSDK40.lib" />
 			<Add library="VesselHooking.lib" />
+			<Add library="..\..\..\orbiter\orbiter100830\Modules\ModuleMessaging.lib" />
 		</Linker>
 		<Unit filename="../KOST_Orbiter/kost.h" />
 		<Unit filename="../KOST_Orbiter/kost_constants.h" />

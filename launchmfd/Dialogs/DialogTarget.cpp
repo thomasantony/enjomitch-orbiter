@@ -7,7 +7,9 @@
 #include <Math/GeneralMath.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include "../Utils/Targeting.hpp"
+#include <ModuleMessaging.hpp>
 #include <locale>
+#include <algorithm>
 
 using namespace EnjoLib;
 
@@ -18,12 +20,27 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
     MFDDataLaunchMFD * data = cLaunchMFD->GetData();
     const double lat = data->GetMovParams().m_lat;
     std::string dispTarget = str;
+    std::string tgtLowerCase = dispTarget;
+    std::transform(dispTarget.begin(), dispTarget.end(), tgtLowerCase.begin(), ::tolower);
 
     VESSEL * tgt = Targeting().GetTargetVessel(str);
     OBJHANDLE hTgt = NULL;
     if (tgt)  // Target VESSEL found
     {
         dispTarget = tgt->GetName();
+    }
+    // Perhaps targeting TransX' settings?
+    else if (tgtLowerCase == "tx" || tgtLowerCase == "transx")
+    {
+        Result<double> incl = ModuleMessaging().GetDouble("TransX", "Incl");
+        Result<double> lan = ModuleMessaging().GetDouble("TransX", "LAN");
+        if (incl.status && lan.status)
+        {
+            tgt = UpdateProbe( data, incl.value, lan.value, FRAME_ECL );
+            dispTarget = "TransX";
+        }
+        else
+            return false;
     }
     else  // Target VESSEL not found
     {
@@ -44,9 +61,9 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
                 if ( manIncl > 180 || manLAN > 360 || (manIncl < 0) || (manLAN < 0) ) // sanity checks
                     return false;
 				char frame = frameBuf[0];
-                if ( tolower(frame) == 'q' ) // Equatorial frame
+                if ( ::tolower(frame) == 'q' ) // Equatorial frame
                     tgt = UpdateProbe( data, manIncl, manLAN, FRAME_EQU );
-                else if ( tolower(frame) == 'c' ) // Ecliptic frame
+                else if ( ::tolower(frame) == 'c' ) // Ecliptic frame
                     tgt = UpdateProbe( data, manIncl, manLAN, FRAME_ECL );
                 else
                     return false;
