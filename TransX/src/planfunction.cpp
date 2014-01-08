@@ -397,6 +397,10 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
 	craft.getcurrentvectors(&craftpos,&temp);
 	craft.vectortothi(planpos,&craftcosthi,&craftsinthi);//Project onto current orbit
 	double timefromstamp=craft.GetTimeToThi(craftcosthi,craftsinthi);
+
+    // Send out a message for BTC MFD to recover it
+	MessagingSender().Send("dv", deltav);
+    MessagingSender().Send("TBurn", timefromstamp);
 	//Only display if timestamp is current
 	if (fabs(craft.gettimestamp()-oapiGetSimTime())<1)
 	{
