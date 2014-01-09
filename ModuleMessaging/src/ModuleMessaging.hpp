@@ -42,6 +42,9 @@ namespace EnjoLib
     If it weren't, then the variable's default value is returned.
     For example:
     \code
+    #include <EnjoLib/ModuleMessaging.hpp>
+    #include <EnjoLib/Result.hpp>
+
     void BurnTimeMFD::HandlerGetFromTransX()
     {
         using namespace EnjoLib;
