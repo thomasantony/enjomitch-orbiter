@@ -4,6 +4,8 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v1.4x(C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
      BurnTimeCalcMFD v1.5 (C) 2007 by kwan3217         -- ??
      BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
+	 BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
+	 BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo)
 
 
 BurnTimeCalcMFD (BTC) is a companion for TransX or any other transfer MFD that
@@ -21,6 +23,16 @@ burn.
 I've found it reliably gets me into a transfer with less than 1 degree offset
 between semi major axes using DeltaGlider and Fregat. Obviously it's only an
 approximation, however.
+
+CHANGES IN v2.5
+===============
+* Communicating directly with TransX via ModuleMessaging library. Use SHIFT_G or GET button, when TransX displays DV and time.
+* Added another, extensible button page.
+
+CHANGES IN v2.4
+===============
+* EXT button, where you enter the extra fuel mass you are carrying in kg. It may be RCS or an External fuel tank or even the total. 
+* Slightly different colors for improved visuals.
 
 CHANGES IN v2.0
 ===============
@@ -126,11 +138,7 @@ Bring up TransX with the insertion burn screen properly configured. You will
 be given a required dV (delta-velocity) and PeT (time to pereiapsis). Bring
 up BTC. 
 
-Using the SHIFT_MINUS and SHIFT_EQUALS keys you can alter BTC's input dV. 
-Each press changes the dV by the amount shown as the adjustment factor.
-
-Use SHIFT_LBRACKET and SHIFT_RBRACKET to set the adjustment factor. Each
-press multiplies or divides the adjustment factor by 10.
+Use SHIFT_G to capture the values. If the time is negative, it will be ignored.
 
 If you want to do an Autoburn, use SHIFT_PERIOD to switch variables. Set the 
 manual delay to something less than the current PeT shown in TransX. When
