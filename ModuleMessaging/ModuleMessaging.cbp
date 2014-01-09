@@ -140,12 +140,12 @@
 			<Add library="user32.lib" />
 			<Add library="gdi32.lib" />
 		</Linker>
-		<Unit filename="../lib/Util/Result.cpp" />
-		<Unit filename="../lib/Util/Result.hpp" />
 		<Unit filename="src/IMessagingSender.cpp" />
 		<Unit filename="src/IMessagingSender.hpp" />
 		<Unit filename="src/ModuleMessaging.cpp" />
 		<Unit filename="src/ModuleMessaging.hpp" />
+		<Unit filename="src/Result.cpp" />
+		<Unit filename="src/Result.hpp" />
 		<Unit filename="src/Storage.cpp" />
 		<Unit filename="src/Storage.hpp" />
 		<Extensions>

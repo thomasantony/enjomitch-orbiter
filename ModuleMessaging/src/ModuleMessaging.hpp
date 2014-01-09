@@ -30,7 +30,7 @@
 #include <OrbiterSDK.h>
 
 #include <string>
-#include <Util/Result.hpp>
+#include "Result.hpp"
 
 namespace EnjoLib
 {
