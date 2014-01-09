@@ -110,7 +110,7 @@ int inputmode = 0;
 #include <string>
 #include <cctype>
 #include <algorithm>
-#include <ModuleMessaging.hpp>
+#include <EnjoLib/ModuleMessaging.hpp>
 #include <Util/Result.hpp>
 
   int dspunit; //0 - SI

@@ -1,7 +1,7 @@
 #ifndef MESSAGINGSENDER_H
 #define MESSAGINGSENDER_H
 
-#include <IMessagingSender.hpp>
+#include <EnjoLib/IMessagingSender.hpp>
 
 class MessagingSender : public EnjoLib::IMessagingSender
 {

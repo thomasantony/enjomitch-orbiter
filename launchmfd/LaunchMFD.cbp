@@ -169,7 +169,6 @@
 			<Add directory="../libMFD" />
 			<Add directory="../KOST_Orbiter" />
 			<Add directory="../libWin" />
-			<Add directory="../ModuleMessaging/src" />
 		</Compiler>
 		<Linker>
 			<Add option="/NODEFAULTLIB:LIBCMT" />

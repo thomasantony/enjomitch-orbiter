@@ -5,9 +5,10 @@
 #include <MFDSound++/Sound.hpp>
 #include <Orbiter/SpaceMathKOST.hpp>
 #include <Math/GeneralMath.hpp>
+#include <EnjoLib/ModuleMessaging.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include "../Utils/Targeting.hpp"
-#include <ModuleMessaging.hpp>
+
 #include <locale>
 #include <algorithm>
 
