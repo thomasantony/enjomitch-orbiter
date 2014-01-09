@@ -1,6 +1,10 @@
 BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v1.2 (C) 2005 by Chris Jeppesen -- chrisj@kwansystems.org
      BurnTimeCalcMFD v1.3 (C) 2006 by Chris Jeppesen -- chrisj@kwansystems.org
+     BurnTimeCalcMFD v1.4x(C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
+     BurnTimeCalcMFD v1.5 (C) 2007 by kwan3217         -- ??
+     BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
+
 
 BurnTimeCalcMFD (BTC) is a companion for TransX or any other transfer MFD that
 gives you your required dV for transfer orbit insertion, and time to periapsis
@@ -18,6 +22,11 @@ I've found it reliably gets me into a transfer with less than 1 degree offset
 between semi major axes using DeltaGlider and Fregat. Obviously it's only an
 approximation, however.
 
+CHANGES IN v2.0
+===============
+* New interface for inputting vars (via inputbox)
+* Burn can be start related to the distance to a target object
+* New autoburnmode "burn by target distance" added
 
 CHANGES IN v1.5
 ===============
