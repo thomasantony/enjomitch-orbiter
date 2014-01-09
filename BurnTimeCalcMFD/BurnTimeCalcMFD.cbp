@@ -157,7 +157,6 @@
 			<Add option="/GF" />
 			<Add option="/W3" />
 			<Add option="/EHsc" />
-			<Add option="/wd 4996" />
 			<Add directory="../lib" />
 			<Add directory="../libMFD" />
 			<Add directory="../KOST_Orbiter" />

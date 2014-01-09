@@ -243,6 +243,8 @@ class MFDButtonPage
 
         std::vector<Page> m_pages; ///< Current page index
         mutable size_t m_i; ///< Current page index
+
+        typedef std::map<DWORD, bool>::const_iterator MapBoolIterator;
 };
 
 // Public:
@@ -304,7 +306,7 @@ template <class MFDClass>
 bool MFDButtonPage<MFDClass>::ConsumeKeyBuffered( MFDClass * mfdInstance, DWORD key ) const
 {
     // First search for the key on this page
-    std::map<DWORD, bool>::const_iterator it = m_pages.at(m_i).m_continuousKey.find(key);
+    MapBoolIterator it = m_pages.at(m_i).m_continuousKey.find(key);
     if (it != m_pages.at(m_i).m_continuousKey.end() && ! it->second )
         return PressKey(mfdInstance, key);
 
@@ -315,7 +317,7 @@ bool MFDButtonPage<MFDClass>::ConsumeKeyBuffered( MFDClass * mfdInstance, DWORD 
         {
             if ( m_i == j )
                 continue; // The current page was already queried
-            std::map<DWORD, bool>::const_iterator it = m_pages.at(j).m_continuousKey.find(key);
+            MapBoolIterator it = m_pages.at(j).m_continuousKey.find(key);
             if (it != m_pages.at(j).m_continuousKey.end() && ! it->second )
                 return PressKey(mfdInstance, key);
         }
@@ -326,7 +328,7 @@ bool MFDButtonPage<MFDClass>::ConsumeKeyBuffered( MFDClass * mfdInstance, DWORD 
 template <class MFDClass>
 bool MFDButtonPage<MFDClass>::ConsumeKeyImmediate( MFDClass * mfdInstance, char * kstate ) const
 {
-    for (std::map<DWORD, bool>::const_iterator it = m_pages.at(m_i).m_continuousKey.begin();
+    for (MapBoolIterator it = m_pages.at(m_i).m_continuousKey.begin();
     it != m_pages.at(m_i).m_continuousKey.end(); ++it)
     {
         if ( KEYDOWN(kstate, it->first ) && it->second )
@@ -340,7 +342,7 @@ bool MFDButtonPage<MFDClass>::ConsumeKeyImmediate( MFDClass * mfdInstance, char 
              if ( m_i == j )
                 continue; // The current page was already queried
 
-            for (std::map<DWORD, bool>::const_iterator it = m_pages.at(j).m_continuousKey.begin();
+            for (MapBoolIterator it = m_pages.at(j).m_continuousKey.begin();
             it != m_pages.at(j).m_continuousKey.end(); ++it)
             {
                 if ( KEYDOWN(kstate, it->first ) && it->second )
@@ -393,8 +395,9 @@ void MFDButtonPage<MFDClass>::RegisterPage( const MFDBUTTONMENU * menu, int size
 template <class MFDClass>
 bool MFDButtonPage<MFDClass>::PressKey( MFDClass * mfdInstance, DWORD key ) const
 {
+    typedef std::map<DWORD, MFDFunctionPtr>::const_iterator MapFuncIterator;
     // First search for the key on this page
-    std::map<DWORD, MFDFunctionPtr>::const_iterator it = m_pages.at(m_i).m_keys.find(key);
+    MapFuncIterator it = m_pages.at(m_i).m_keys.find(key);
     if (it != m_pages.at(m_i).m_keys.end() )
     {
         (mfdInstance->*(it->second))(); // Call the function
@@ -408,7 +411,7 @@ bool MFDButtonPage<MFDClass>::PressKey( MFDClass * mfdInstance, DWORD key ) cons
         {
             if ( m_i == j )
                 continue; // The current page was already queried
-            std::map<DWORD, MFDFunctionPtr>::const_iterator it = m_pages.at(j).m_keys.find(key);
+            MapFuncIterator it = m_pages.at(j).m_keys.find(key);
             if (it != m_pages.at(j).m_keys.end() )
             {
                 (mfdInstance->*(it->second))();  // Call the function

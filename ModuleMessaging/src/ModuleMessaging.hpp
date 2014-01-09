@@ -20,7 +20,7 @@ class __declspec(dllexport) ModuleMessaging
         Result<VECTOR3>  GetVECTOR3( const char * moduleName, const char * varName);
         Result<MATRIX3>  GetMATRIX3( const char * moduleName, const char * varName);
         Result<MATRIX4>  GetMATRIX4( const char * moduleName, const char * varName);
-        Result<const char *> GetString(  const char * moduleName, const char * varName);
+        Result<const char *> GetString( const char * moduleName, const char * varName);
 
     protected:
     private:

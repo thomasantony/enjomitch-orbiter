@@ -544,7 +544,6 @@ bool ObjectInput (void *id, char *str, void *usrdata)
 	}
 }
 
-
 bool BurnTimeMFD::ConsumeKeyBuffered (DWORD key)
 {
     return gButtons.ConsumeKeyBuffered(this, key);
@@ -673,7 +672,10 @@ void BurnTimeMFD::HandlerGetFromTransX()
     {
         dv = dvRes.value;
         IManual = IManualRes.value;
+
         mode = BURNMODE_MAN;
+        IsArmed=IsEngaged=false;
+        HandlerAutoBurn();
     }
 }
 
