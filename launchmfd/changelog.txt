@@ -1,0 +1,184 @@
+Launch MFD changelog
+
+v. 1.6.2 11-01-2014
+- Better integration with TransX: Enter "tx" or "transx" (case insensitive) in Target box, to obtain inclination and LAN from TransX' Escape Plan
+- New dependency: ModuleMessaging SDK v. 1.0
+
+v. 1.6.1 25-05-2013
+- Direct Ascent: added target distance under [Shift A] in DA mode, once AP is enabled
+- When setting target with incl. lower than your latitude, a dummy probe will be targeted and can be intercepted
+- Selecting 2nd azimuth only for low inclination launches
+- Displaying relative inclination also in standard mode
+- Bugfix: restoring target from scenario file
+
+v. 1.6.0 23-04-2013
+- Recompiled for HUDDrawer SDK v. 0.3
+- Better handling of situations when the target's inclination is lower than latitude, including vocal warning
+- Buffer overflow protection when setting manual inclination and LAN
+- Restored the ability to reach orbit with ShuttlePB and ShuttleA
+
+v. 1.5.9 13-04-2013
+- Fixed targeting and tracking celestial bodies
+- Manual inclination and LAN is now displayed instead of LaunchMFD-Probe
+- Recompiled for OrbiterSound v. 4.0
+
+v. 1.5.8 16-03-2013
+- HUD is drawn even when the MFD is disabled
+- Recompiled for HUDDrawer SDK v. 0.2
+
+v. 1.5.7 01-03-2013
+- Uses external and centralized HUD drawing system - HUDDrawerSDK (included). Enable HUDDrawer module in Orbiter
+- Restored the ability to target celestial bodies
+
+v. 1.5.6 24-02-2013
+Direct Ascent is now super precise and fully planet-wise generic and without any magic number coefficients
+Direct Ascent Offplane Corrector - plane overfit prevention and general stability tweaks
+Solved CTD on some machines when no target is selected and user switches to Direct Ascent page (reported by boogabooga)
+Fixed retrograde orbits (reported by boogabooga)
+Added option to setup equatorial target orbit with specific LAN by using additional 'q' character
+Autogenerating config files usage information about inside them
+Ability to choose and lock one of azimuths when not using a concrete target with Shift + U
+Great Circle – ability to draw GC using lines instead of dots (Shift + L)
+Autogenerating more information about config files inside them
+Code cleanups
+
+v. 1.5.5 28-01-2013
+Made zooming GC and changing inclination as continuous buttons 
+Smoother offplane correction 
+Not reseting trim after disabling AP during atmospheric (SCRAM) entry (reported by pitx) 
+Automatically creating configuration subdirectories of vessel classes for storing variables
+HUD drawing: Autodetecting incompatible vessels and preventing a CTD (reported by turtle91, helped by orb) 
+New library: MFDHUDDrawer. Allows MFDs to draw on HUDs
+MFDButtonPage: added continuous button support (like TransX)
+MFDButtonPage: allows switching to specific pages 
+Added proper namespaces to libraries
+
+v. 1.5.4 20-10-2012
+Animated Great Circle zooming 
+Added a new buttons page 
+Pitch guidance switch now available also as a separate button - PTC or Shift+I 
+Saving PID values to a SHIP_variables file 
+Code cleanups and moved MFD libraries to libMFD folder 
+New library: MFDButtonPage for high level multiple MFD buttons support 
+v. 1.5.3 19-05-2012
+Brought back HUD drawing. It's now forward compatible (for newest BETA and external graphical clients), as well as backward compatible (through 2006 release)
+Flight director reacts on “Draw pitch error” flag (switchable with DEF button in standard view) - useful when cruising in atmosphere
+Fixed Sound reinitialization problem after exiting to launchpad and restarting the simulation (reported by Keatah)
+Improved runtime speed in MultipleVesselsMFD library after deletion of vessels, and proper cleanup when exiting to launchpad (related to previous change)
+
+v. 1.5.2 12-05-2012
+Drawing Great Circles, a'la Map MFD to help timing launches
+Direct ascent: added support for multiple vessels
+Started a major source cleanup – the main classes are thinned and are more readable and removed now unused previous direct ascent code
+
+v. 1.5.1 22-04-2012
+Bugfixes:
+Direct ascent: specific off-plane correction works not only in autopilot mode (rep. by Cras)
+Direct ascent: improved precision of calculations for synchro ascent
+Compass: fixed variables that were displaying 0 (rep. by Jarod)
+Stages burnout times are now saved to file, providing correct MECO information for staging vessels, which is then used as input for off-plane correction (saving works only when a pitch program is used)
+Time to next launch is saved to a file
+Time to node for celestial bodies as targets fixed (rep. by jgrillo2002 and blane)
+
+v. 1.5.0 24-03-2012
+Working Direct Ascent! Two modes are available: regular and synchro
+Two pitch program modes: time based and altitude based
+offplane correction fix: was giving erratic values after crossing plane. Now its being disabled
+
+v. 1.4.7 07-03-2012
+Autopilot: added pitch programme individual for each vessel and for each planet
+Autopilot: support for roll program and for upside down flying vessels, like the Space Shuttle
+Autopilot: PID values can be adjusted in a running simulation
+Bugfix: the AP wouldn't work when the engines were started outside cockpit
+
+v. 1.4.6 15-08-2011
+Autopilot: Using PID autopilot instead of Fuzzy logic for better performance – up to 100x time acceleration in space
+Autopilot: The PID is both universal for all ships, and configurable via config files for individual vessel classes, when such ships aren't properly controlled by the universal PID.
+Doc: Added informations for developers
+
+v. 1.4.5 19-06-2011 
+massive code reorganisation and simplification. Many reusable classes have been isolated
+formalisation of multiple MFD instances storing technique allowed for eliminating memory leaks and prevents from CTDs upon deleting vessels 
+autopilot fix - the ship should not dive right on start now, even if an incorrect PEG readout occurs 
+full automation of the direct ascent, although the method itself still needs some work 
+added Doxygen documentation 
+
+v. 1.4.0  12-08-2010
+- Fuzzy autopilot working for fictional and some realistic craft
+- Correct time to launch, also taking nonspherical gravity sources into account
+- Direct ascent improvements – uses fuzzy logic and models great circle properly
+
+v. 1.2.8  30-09-2008
+- Off-plane correction (by Agentgonzo)
+- Data which is displayed on HUD (compass rose, and pitch marker) can be also displayed in the MFD area for vessels derived from VESSEL class.
+- Altitude for PEG more ergonomic
+- Right mouse click on button which increases a value, decreases this value
+
+v. 1.2.7  04-05-2008
+- PEG algorithm integrated. Only for SSTO craft currently (by Agentgonzo)
+- HUD display added (Flight Director)  (by Agentgonzo)
+- Direct ascent fixes - works for both northern and southern azimuths, and other bugfixes. Still for equatorial launches only.
+- some new sounds, and error notification disabled by default
+
+v. 1.20   20-04-2008 (unreleased)
+- New target input box (includes TransX semi-integration)
+- New altitude input box for PEG which itself isn't integrated yet. This is NOT the old Reference Alt.
+- Compass with different views (by Agentgonzo)
+Minor:
+- Inclination change by buttons upgraded.
+- Reference Alt removed from user's interface and is fully automatic
+- Localisation data moved to a separate file (by Agentgonzo)
+- Code restructuring (joint effort), including separation of localisation data
+
+v. 1.07	  20-03-2008
+- added an option of targeting celestial bodies. They don't need to orbit your source body
+- slightly improved direct ascent algorithm - the turning phase is not that tedious any more and saves about 5% of fuel.
+
+v. 1.05  BETA  24-12-2007
+- direct ascent prediction at BETA stage
+- fixed some sound bugs and wrong azimuth referencing after launch, and restarting the simulation
+
+v. 0.98.5  10-07-2007
+- removed Align MFD and Map MFD dependency by adding Time to Intersection var., and automatically choosing the proper azimuth and referencing. Launch MFD is now self-contained.
+- bugfix: turn left/right voice now works fine for an upside-down insertion (the Shuttle)
+
+v. 0.98  14-05-2007
+- implemented sound
+- visual: Error now changes colour when it drops below 0.10°
+- updated documentation, and included a tutorial with images.
+- bugfixes
+
+v. 0.97  21-03-2007
+- Half of Orb. Vel. Time value added
+- real-time target's inclination readout – a cure for non-spherical gravity sources
+- bugfix: target can be set dependent of latitude, not a set inclination
+- visual: tweaked the graphical representation scales so it's less annoying IMHO
+- visual: added current heading indicator
+- visual: changed “Offset” to “Error” as this seems more correct, and made its value's colour change if it drops below 0.03° so it's easy to spot that you're on course with just a glimpse.
+
+v. 0.96  13-02-2007
+- values are now finally saved while switching cockpit modes. My thanks to She'da'Lier for his help and patience
+- values are stored and read in and from a scenario file
+- She'da'Lier coded a graphical representation of the error
+- velocity excess sensor
+- Scenario Editor compatibility
+- Target string now changes to “Manual” after selecting proper target and then selecting an illegal one. Reported by: David. Thanks
+-  other fixes which I don't remember now
+
+v. 0.91	 10-02-2007
+- fixed a 270 azimuth problem. Reported by: David. Thanks
+
+v. 0.90  08-02-2007
+- added course error indicator
+- added adjustment factors which implied changing buttons' layout
+- added AutoAlt function
+- full values' correctness checking
+
+v. 0.71 BETA 07-02-2007
+Course correction feature works for all cases now.
+(it worked only for pure North-Eastern launches)
+reported by: Auditek. Thanks
+
+v. 0.7 BETA 04-02-2007
+First release. Includes target selecting (implemented by Vanguard), and course correction
+feature (by Enjo).

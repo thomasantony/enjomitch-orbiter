@@ -1,4 +1,4 @@
-TransX V 2014.01.XX (ModuleMessaging)
+TransX V 2014.01.11 (ModuleMessaging)
 
 Description & License
 ---------------------
