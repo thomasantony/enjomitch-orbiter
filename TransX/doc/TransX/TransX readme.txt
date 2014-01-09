@@ -95,7 +95,7 @@ WARNING: due to TransX' limitations, the selection that you make will only have 
 Additionally, the AP will automatically cut the main engines once the burn is considered complete (ie., the dV starts increasing). Once it happens, you may let the Auto-Center to realign and fix the residual error with RCS in translational mode. Also, a good technique would be to gradually decrease the thrust in the last seconds of the planned burn, as the remaining dV gets very low, which gives more margin for the Auto-Center AP to react.
 Another technique proposed by dgatsoulis: Set the burn ~1 m/s "short" with BurnTimeCalcMFD (BTC), wait for Auto-Center to converge, disable it and finish with linear translation.
 
-C) ModuleMessagingSDK utilisation for Launch MFD and BurnTimeCalcMFD (BTC)
+C) ModuleMessagingSDK utilisation for communicating with Launch MFD and BurnTimeCalcMFD (BTC)
 1) Launch MFD:
 In TransX, setup a proper Escape Plan, as described in Launch MFD manual, section Target Inclination, then in Launch MFD open the Target input with Shift+T, and enter "tx" or "transx" (case insensitive) to obtain the inclination and LAN values displayed by TransX
 2) BurnTimeCalcMFD:
