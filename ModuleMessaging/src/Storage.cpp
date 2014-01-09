@@ -1,3 +1,29 @@
+// ==============================================================
+//                ORBITER AUX LIBRARY: ModuleMessaging
+//             http://sf.net/projects/enjomitchsorbit
+//                  Part of the ORBITER SDK
+//
+// Allows Orbiter modules to communicate with each other,
+// using predefined module and variable names.
+//
+// Copyright (C) 2014 Szymon "Enjo" Ender
+//
+//                         All rights reserved
+//
+// ModuleMessaging is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// ModuleMessaging is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with ModuleMessaging.  If not, see <http://www.gnu.org/licenses/>.
+// ==============================================================
+
 #include "Storage.hpp"
 #include "IMessagingSender.hpp"
 
@@ -9,7 +35,6 @@ map<string, double> Storage::m_doubles;
 map<string, VECTOR3> Storage::m_vectors;
 map<string, MATRIX3> Storage::m_matrices3;
 map<string, MATRIX4> Storage::m_matrices4;
-map<string, string> Storage::m_strings;
 
 Storage::Storage()
 {}
@@ -27,33 +52,29 @@ std::string Storage::MakeID(const char * moduleName, const char * varName)
     return std::string() + moduleName + "-" + varName;
 }
 
-void Storage::Store(const IMessagingSender & sender, const char * varName, bool var)
+void Storage::StoreBool(const IMessagingSender & sender, const char * varName, bool var)
 {
     m_bools[MakeID(sender, varName)] = var;
 }
-void Storage::Store(const IMessagingSender & sender, const char * varName, int var)
+void Storage::StoreInt(const IMessagingSender & sender, const char * varName, int var)
 {
     m_ints[MakeID(sender, varName)] = var;
 }
-void Storage::Store(const IMessagingSender & sender, const char * varName, double var)
+void Storage::StoreDouble(const IMessagingSender & sender, const char * varName, double var)
 {
     m_doubles[MakeID(sender, varName)] = var;
 }
-void Storage::Store(const IMessagingSender & sender, const char * varName, const VECTOR3 & var)
+void Storage::StoreVECTOR3(const IMessagingSender & sender, const char * varName, const VECTOR3 & var)
 {
     m_vectors[MakeID(sender, varName)] = var;
 }
-void Storage::Store(const IMessagingSender & sender, const char * varName, const MATRIX3 & var)
+void Storage::StoreMATRIX3(const IMessagingSender & sender, const char * varName, const MATRIX3 & var)
 {
     m_matrices3[MakeID(sender, varName)] = var;
 }
-void Storage::Store(const IMessagingSender & sender, const char * varName, const MATRIX4 & var)
+void Storage::StoreMATRIX4(const IMessagingSender & sender, const char * varName, const MATRIX4 & var)
 {
     m_matrices4[MakeID(sender, varName)] = var;
-}
-void Storage::Store(const IMessagingSender & sender, const char * varName, const char * var)
-{
-    m_strings[MakeID(sender, varName)] = var;
 }
 
 Result<bool> Storage::GetBool(const char * moduleName, const char * varName)
@@ -80,9 +101,4 @@ Result<MATRIX4> Storage::GetMATRIX4(const char * moduleName, const char * varNam
 {
     MATRIX4 defaultVal = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     return SearchMap<MATRIX4>(moduleName, varName, m_matrices4, defaultVal);
-}
-Result<const char *> Storage::GetString(const char * moduleName, const char * varName)
-{
-    const Result<string> & result = SearchMap<string>(moduleName, varName, m_strings, string());
-    return Result<const char *>(result.value.c_str(), result.status);
 }

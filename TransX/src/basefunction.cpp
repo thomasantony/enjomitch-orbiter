@@ -834,8 +834,8 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		double burnStart = GetBurnStart(pV, timeoffset, rvel);
-		MessagingSender().Send("dv", rvel - 4.0); // Subtracting that few m/s works better for Auto-Center, as it won't turn around then
-		MessagingSender().Send("TBurn", timeoffset);
+		MessagingSender().SendDouble("dv", rvel - 4.0); // Subtracting that few m/s works better for Auto-Center, as it won't turn around then
+		MessagingSender().SendDouble("TBurn", timeoffset);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);
 		TextShow(sketchpad,"T to Mnvre: ",0,19*linespacing,timeoffset);
 		TextShow(sketchpad,"Begin Burn: ",0,20*linespacing,burnStart);

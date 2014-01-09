@@ -85,7 +85,7 @@ bool AutopilotDirectAscentStd::Guide( MFDDataLaunchMFD * data, double dt ) const
         DirectAscentOptiEngineLevel directAscentOptiEngineLevel(data);
         Result<double> optiEngineLevel = BinSearchArg(0, 1, 0.00002).Run(directAscentOptiEngineLevel);
         //sprintf( oapiDebugString(), "tmeco = %.2lf, status = %d",data->pegDA.GetTMECO(), optiEngineLevel.status );
-        if ( ! optiEngineLevel.status ) // invalid output
+        if ( ! optiEngineLevel.isSuccess ) // invalid output
             v->SetThrusterGroupLevel(mainThrusters, 1); // max power in hope for future guidance convergence
         else // all is fine! Go with engine convergence
         {

@@ -668,14 +668,17 @@ void BurnTimeMFD::HandlerGetFromTransX()
     using namespace EnjoLib;
     Result<double> dvRes = ModuleMessaging().GetDouble("TransX", "dv");
     Result<double> IManualRes = ModuleMessaging().GetDouble("TransX", "TBurn");
-    if (dvRes.status && IManualRes.status)
+    if (dvRes.isSuccess && IManualRes.isSuccess) // Are both values exposed?
     {
-        dv = dvRes.value;
-        IManual = IManualRes.value;
-
-        mode = BURNMODE_MAN;
         IsArmed=IsEngaged=false;
-        HandlerAutoBurn();
+        mode = BURNMODE_MAN;
+
+        dv = dvRes.value;
+        if (IManualRes.value > 0) // We're not interested in negative times
+        {
+            IManual = IManualRes.value;
+            HandlerAutoBurn();
+        }
     }
 }
 

@@ -7,17 +7,17 @@ template <class T>
 class Result
 {
     public:
-        Result( const T & value, bool status );
+        Result( const T & value, bool isSuccess );
 
-        T value;
-        bool status;
+        const T value;
+        const bool isSuccess;
 };
 
 template <class T>
-Result<T>::Result( const T & value, bool status )
+Result<T>::Result( const T & value, bool isSuccess )
+: value(value)
+, isSuccess(isSuccess)
 {
-    this->value = value;
-    this->status = status;
 }
 }
 

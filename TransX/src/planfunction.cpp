@@ -354,8 +354,8 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
 	pos += linespacing;
 
     // Send out the parameters, so that Launch MFD can catch them
-	MessagingSender().Send("Incl", targetInc);
-	MessagingSender().Send("LAN", lan);
+	MessagingSender().SendDouble("Incl", targetInc);
+	MessagingSender().SendDouble("LAN", lan);
 
 	if (status.status==1)
 	{ //Vessel is landed!
@@ -399,8 +399,8 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
 	double timefromstamp=craft.GetTimeToThi(craftcosthi,craftsinthi);
 
     // Send out a message for BTC MFD to recover it
-	MessagingSender().Send("dv", deltav);
-    MessagingSender().Send("TBurn", timefromstamp);
+	MessagingSender().SendDouble("dv", deltav);
+    MessagingSender().SendDouble("TBurn", timefromstamp);
 	//Only display if timestamp is current
 	if (fabs(craft.gettimestamp()-oapiGetSimTime())<1)
 	{

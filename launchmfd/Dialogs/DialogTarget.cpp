@@ -34,7 +34,7 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
     {
         Result<double> incl = ModuleMessaging().GetDouble("TransX", "Incl");
         Result<double> lan = ModuleMessaging().GetDouble("TransX", "LAN");
-        if (incl.status && lan.status)
+        if (incl.isSuccess && lan.isSuccess)
         {
             tgt = UpdateProbe( data, incl.value, lan.value, FRAME_ECL );
             dispTarget = "TransX";

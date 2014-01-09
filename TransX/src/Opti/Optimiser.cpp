@@ -40,7 +40,7 @@ void Optimiser::Optimise() const
         // Pass them to the binary search algorithm
         EnjoLib::BinSearchOpti binSearch(cstr.lower, cstr.upper, cstr.precision);
         EnjoLib::Result<double> xopt = binSearch.Run(optiFunction);
-        if (!xopt.status)
+        if (!xopt.isSuccess)
             *item.var = variableBackup;
        //    cout << "SUCCESS!" << endl;
         //else

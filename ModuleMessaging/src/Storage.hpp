@@ -1,3 +1,29 @@
+// ==============================================================
+//                ORBITER AUX LIBRARY: ModuleMessaging
+//             http://sf.net/projects/enjomitchsorbit
+//                  Part of the ORBITER SDK
+//
+// Allows Orbiter modules to communicate with each other,
+// using predefined module and variable names.
+//
+// Copyright (C) 2014 Szymon "Enjo" Ender
+//
+//                         All rights reserved
+//
+// ModuleMessaging is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// ModuleMessaging is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with ModuleMessaging.  If not, see <http://www.gnu.org/licenses/>.
+// ==============================================================
+
 #ifndef STORAGE_H
 #define STORAGE_H
 
@@ -15,13 +41,13 @@ class Storage
         Storage();
         virtual ~Storage();
 
-        static void Store(const IMessagingSender & sender, const char * varName, bool var);
-        static void Store(const IMessagingSender & sender, const char * varName, int var);
-        static void Store(const IMessagingSender & sender, const char * varName, double var);
-        static void Store(const IMessagingSender & sender, const char * varName, const VECTOR3 & var);
-        static void Store(const IMessagingSender & sender, const char * varName, const MATRIX3 & var);
-        static void Store(const IMessagingSender & sender, const char * varName, const MATRIX4 & var);
-        static void Store(const IMessagingSender & sender, const char * varName, const char * var);
+        static void StoreBool(const IMessagingSender & sender, const char * varName, bool var);
+        static void StoreInt(const IMessagingSender & sender, const char * varName, int var);
+        static void StoreDouble(const IMessagingSender & sender, const char * varName, double var);
+        static void StoreVECTOR3(const IMessagingSender & sender, const char * varName, const VECTOR3 & var);
+        static void StoreMATRIX3(const IMessagingSender & sender, const char * varName, const MATRIX3 & var);
+        static void StoreMATRIX4(const IMessagingSender & sender, const char * varName, const MATRIX4 & var);
+        static void StoreString(const IMessagingSender & sender, const char * varName, const char * var);
 
         static Result<bool>     GetBool(    const char * moduleName, const char * varName);
         static Result<int>      GetInt(     const char * moduleName, const char * varName);
@@ -29,7 +55,6 @@ class Storage
         static Result<VECTOR3>  GetVECTOR3( const char * moduleName, const char * varName);
         static Result<MATRIX3>  GetMATRIX3( const char * moduleName, const char * varName);
         static Result<MATRIX4>  GetMATRIX4( const char * moduleName, const char * varName);
-        static Result<const char *> GetString(  const char * moduleName, const char * varName);
 
     protected:
     private:
@@ -43,7 +68,6 @@ class Storage
         static std::map<std::string, VECTOR3> m_vectors;
         static std::map<std::string, MATRIX3> m_matrices3;
         static std::map<std::string, MATRIX4> m_matrices4;
-        static std::map<std::string, std::string> m_strings;
 };
 
     template<class T>
