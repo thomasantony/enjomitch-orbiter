@@ -1,5 +1,5 @@
-#ifndef BINSEARCHRESULT_H
-#define BINSEARCHRESULT_H
+#ifndef RESULT_H
+#define RESULT_H
 
 namespace EnjoLib
 {
@@ -21,4 +21,4 @@ Result<T>::Result( const T & value, bool isSuccess )
 }
 }
 
-#endif // BINSEARCHRESULT_H
+#endif // RESULT_H
