@@ -435,6 +435,19 @@ bool basefunction::initialisevars()
 	valid=true;
 	m_ejdate=oapiGetSimMJD();
 
+	VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN);
+    VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE);
+    VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD);
+    std::vector<VarConstraint> allVelocities;
+    allVelocities.push_back(constrPrograde);
+    allVelocities.push_back(constrChPlane);
+    allVelocities.push_back(constrOutward); // least expected to be minimized
+    OptimiserFactory optiFact = this->GetOptiFactory();
+    m_ejdate.SetOptimiser(optiFact.Create(allVelocities));
+    m_prograde.SetOptimiser(optiFact.Create(constrPrograde));
+    m_chplvel.SetOptimiser(optiFact.Create(constrChPlane));
+    m_outwardvel.SetOptimiser(optiFact.Create(constrOutward));
+
 	//Make invisible all variables that sometimes are invisible
 	m_plantype.setshow(false);
 	m_planinitial.setshow(false);
@@ -1035,7 +1048,7 @@ OptimiserFactory basefunction::GetOptiFactory()
 
 bool basefunction::IsPlanSlingshot()
 {
-    return getplanpointer()->getplanid() == 3;
+    return getplanpointer() && getplanpointer()->getplanid() == 3;
 }
 
 double basefunction::GetTimeIntercept()
@@ -1047,10 +1060,11 @@ double basefunction::GetTimeIntercept()
 
 double basefunction::GetHohmannDV()
 {
-    if (!hminor || !hmajor || !hmajtarget)
+    OBJHANDLE currentMinor = hminor ? hminor : oapiGetFocusObject(); // Eject or Manoeuvre?
+    if (!currentMinor || !hmajor || !hmajtarget)
         return 0;
     VECTOR3 posSrc, posTgt;
-    oapiGetRelativePos(hminor, hmajor, &posSrc);
+    oapiGetRelativePos(currentMinor, hmajor, &posSrc);
     oapiGetRelativePos(hmajtarget, hmajor, &posTgt);
     double radSrc = length(posSrc);
     double radTgt = length(posTgt);
