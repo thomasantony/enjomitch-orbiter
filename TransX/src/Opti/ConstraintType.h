@@ -6,6 +6,7 @@ struct ConstraintType
     enum e
     {
         PROGRADE_HOHMANN,
+        PROGRADE_MANOEUVRE,
         CHANGE_PLANE,
         OUTWARD,
         ANGLE

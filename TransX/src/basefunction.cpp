@@ -435,19 +435,6 @@ bool basefunction::initialisevars()
 	valid=true;
 	m_ejdate=oapiGetSimMJD();
 
-	VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN);
-    VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE);
-    VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD);
-    std::vector<VarConstraint> allVelocities;
-    allVelocities.push_back(constrPrograde);
-    allVelocities.push_back(constrChPlane);
-    allVelocities.push_back(constrOutward); // least expected to be minimized
-    OptimiserFactory optiFact = this->GetOptiFactory();
-    m_ejdate.SetOptimiser(optiFact.Create(allVelocities));
-    m_prograde.SetOptimiser(optiFact.Create(constrPrograde));
-    m_chplvel.SetOptimiser(optiFact.Create(constrChPlane));
-    m_outwardvel.SetOptimiser(optiFact.Create(constrOutward));
-
 	//Make invisible all variables that sometimes are invisible
 	m_plantype.setshow(false);
 	m_planinitial.setshow(false);
@@ -524,6 +511,23 @@ bool basefunction::initialisevars()
 		"complex manoeuvres. Use FWD to",
 		"create next stage.");
 
+
+	// Manoeuvre mode Auto-Min.
+	// Doesn't work very well, as it prefers overshooting the target too much
+	/*
+	VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN);
+    VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE);
+    VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD);
+    std::vector<VarConstraint> allVelocities;
+    allVelocities.push_back(constrPrograde);
+    allVelocities.push_back(constrChPlane);
+    allVelocities.push_back(constrOutward); // least expected to be minimized
+    OptimiserFactory optiFact = this->GetOptiFactory();
+    m_ejdate.SetOptimiser(optiFact.Create(allVelocities));
+    m_prograde.SetOptimiser(optiFact.Create(constrPrograde));
+    m_chplvel.SetOptimiser(optiFact.Create(constrChPlane));
+    m_outwardvel.SetOptimiser(optiFact.Create(constrOutward));
+    */
 	return true;
 }
 
@@ -1078,10 +1082,11 @@ double basefunction::GetHohmannDV()
 
 VECTOR3 basefunction::GetLineOfNodes()
 {
-   if (!hminor || !hmajor || !hmajtarget)
+    OBJHANDLE currentMinor = hminor ? hminor : oapiGetFocusObject(); // Eject or Manoeuvre?
+   if (!currentMinor || !hmajor || !hmajtarget)
         return _V(0,0,0);
     EnjoLib::SpaceMathOrbiter smo;
-    VECTOR3 planeMinor = smo.GetPlaneAxis(hminor, hmajor);
+    VECTOR3 planeMinor = smo.GetPlaneAxis(currentMinor, hmajor);
     VECTOR3 planeMajor = smo.GetPlaneAxis(hmajtarget, hmajor);
     return crossp(planeMinor, planeMajor);
 }

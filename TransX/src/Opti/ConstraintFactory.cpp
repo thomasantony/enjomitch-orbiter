@@ -21,6 +21,8 @@ Constraint ConstraintFactory::Create(ConstraintType::e type)
     {
     case ConstraintType::PROGRADE_HOHMANN:
         return CreateProgradeHohmann(m_base);
+    case ConstraintType::PROGRADE_MANOEUVRE:
+        return CreateProgradeManoeuvre(m_base);
     case ConstraintType::CHANGE_PLANE:
         return CreatePlane();
     case ConstraintType::OUTWARD:
@@ -60,6 +62,16 @@ Constraint ConstraintFactory::CreateProgradeHohmann(basefunction * base)
     const double lower = hohmanDV * (1 - defaultRatioHohmann);
     const double upper = hohmanDV * (1 + defaultRatioHohmann);
 
+    return Constraint(lower, upper, precisionVel);
+}
+
+// Doesn't work very well
+Constraint ConstraintFactory::CreateProgradeManoeuvre(basefunction * base)
+{
+    const double defaultRatioHohmann = 0.05;
+    const double hohmanDV = base->GetHohmannDV();
+    const double lower = 0;//hohmanDV * (1 - defaultRatioHohmann);
+    const double upper = hohmanDV * (1 + defaultRatioHohmann);
     return Constraint(lower, upper, precisionVel);
 }
 

@@ -16,6 +16,7 @@ class ConstraintFactory
     protected:
     private:
         Constraint CreateProgradeHohmann(basefunction * base);
+        Constraint CreateProgradeManoeuvre(basefunction * base);
         Constraint CreateOutward();
         Constraint CreatePlane();
         Constraint CreateAngle();
