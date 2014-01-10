@@ -771,7 +771,7 @@ void basefunction::calculate(VECTOR3 *targetvel)
 	}
 }
 
-OrbitElements basefunction::getpassforwardorbit()
+const OrbitElements & basefunction::getpassforwardorbit()
 {
 	switch (interceptwith)
 	{

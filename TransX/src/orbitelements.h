@@ -56,7 +56,7 @@ public:
 	void gettimeorbit(int *orbitnumber,double *orbittime, double timefromnow) const;
 	OrbitElements(OBJHANDLE hmajor, OBJHANDLE hminor); //Constructor
 	OrbitElements(VECTOR3 rposition, VECTOR3 rvelocity, double gmplanet); //Constructor using pos and vel vectors
-	double getvelocityatdist(double radius);//Calculates velocity using energy calculation - gives results even outside area of current orbit
+	double getvelocityatdist(double radius) const;//Calculates velocity using energy calculation - gives results even outside area of current orbit
 	void init(OBJHANDLE hmajor, OBJHANDLE hminor);//Initialiser
 	void init(const VECTOR3 &rposition, const VECTOR3 &rvelocity, double gmplanet); //Initialiser using pos and vel vectors
 	void init(const VECTOR3 &rposition, const VECTOR3 &rvelocity, double ttimestamp, double gmplanet); //Initialiser that pushes out a timestamp as well

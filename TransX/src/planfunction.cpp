@@ -88,7 +88,7 @@ void slingshot::calculate(class MFDvarhandler *vars,basefunction *base)
 	//First, get handed-on orbit from previous
 	planorbit.setinvalid();
 
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 	VECTOR3 inward={0,0,0};
 	if (craft.isvalid())
 		craft.getinfinityvelvector(false,&inward);
@@ -219,7 +219,7 @@ void slingshot::graphscale(Graph *graph)
 
 bool minorejectplan::maingraph(oapi::Sketchpad *sketchpad,Graph *graph, basefunction *base)
 {
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 	if (craft.isvalid() && planorbit.isvalid())
 	{
 		// Draw intersect line
@@ -239,7 +239,7 @@ bool minorejectplan::maingraph(oapi::Sketchpad *sketchpad,Graph *graph, basefunc
 
 bool slingshot::maingraph(oapi::Sketchpad *sketchpad,Graph *graph,basefunction *base)
 {
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 	OBJHANDLE hmajor=base->gethmajor();
 	double planetsize=oapiGetSize(hmajor);
 	if (!craft.isvalid()) return true;
@@ -279,7 +279,7 @@ void encounterplan::graphupdate(oapi::Sketchpad *sketchpad,Graph *graph,basefunc
 	OBJHANDLE hmaj=base->gethmajor();
 	oapiGetRelativePos(surfbase,hmaj,&baseposition);
 	double rot = oapiGetPlanetPeriod(hmaj);
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 
 	// Get the base position at the Pe/impact by rotating the body by the time until Pe/impact
 	double radius = oapiGetSize(hmaj);
@@ -313,9 +313,9 @@ void slingshot::graphupdate(oapi::Sketchpad *sketchpad, Graph *graph,basefunctio
 {
 	oapi::Pen* pen=base->SelectDefaultPen(sketchpad,TransXFunction::Yellow);
 	planorbit.draworbit(sketchpad,graph,false);
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 	if (!craft.isvalid()) return;
-	VECTOR3 intersect=planorbit.getintersectvector(craft);
+	const VECTOR3 & intersect=planorbit.getintersectvector(craft);
 	pen=base->SelectDefaultPen(sketchpad,TransXFunction::Grey);
 	graph->drawvectorline(sketchpad,intersect);
 }
@@ -326,7 +326,7 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
 	int linespacing=height/24;
 	int pos=16*linespacing;
 	int len;
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 	if (!craft.isvalid() || !planorbit.isvalid()) return;
 	OBJHANDLE hcraft=base->gethcraft();
 	VESSEL *pV=oapiGetVesselInterface(hcraft);
@@ -426,7 +426,7 @@ void slingshot::wordupdate(oapi::Sketchpad *sketchpad, int width, int height, ba
 {
 	int linespacing=height/24;
 	int pos=15*linespacing;
-	OrbitElements craft=base->getcraftorbit();
+	const OrbitElements & craft=base->getcraftorbit();
 	if (!craft.isvalid() || !planorbit.isvalid()) return;
 	TextShow(sketchpad,"R. Inc:",0,pos,180*acos(cosangle(planorbit.getplanevector(),craft.getplanevector()))/PI);
 	pos+=linespacing;
@@ -459,8 +459,9 @@ void encounterplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int height
 {
 	int linespacing=height/24;
 	int pos=16*linespacing;
-	OrbitElements craft=base->getmanoeuvreorbit();
-	if (!craft.isvalid()) craft=base->getcraftorbit();//Gets manoeuvre if it's valid, otherwise craft
+	//OrbitElements craft=base->getmanoeuvreorbit();
+	//if (!craft.isvalid()) craft=base->getcraftorbit();//Gets manoeuvre if it's valid, otherwise craft
+	const OrbitElements & craft = base->getmanoeuvreorbit().isvalid() ? base->getmanoeuvreorbit() : base->getcraftorbit();
 
 	OBJHANDLE hmajor=base->gethmajor();
 	double radius=oapiGetSize(hmajor);
@@ -690,7 +691,7 @@ void slingejectplan::calcejectvector(const VECTOR3 &rminplane,const VECTOR3 &min
 void majejectplan::calculate(class MFDvarhandler *vars,basefunction *base)
 {
 	//get the position and velocity vectors of the minor planet at the eject time
-	OrbitElements rmin=base->getminororbit();
+	const OrbitElements & rmin=base->getminororbit();
 	VECTOR3 minorpos,minorvel;
 	planorbit.setinvalid();
 	mapfunction *map=mapfunction::getthemap();

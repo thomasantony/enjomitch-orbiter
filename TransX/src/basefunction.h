@@ -83,13 +83,13 @@ public:
 	virtual void restoreself(FILEHANDLE scn);
 	void handlesfornextfunction(OBJHANDLE *thmajor, OBJHANDLE *thminor);
 	class plan *getplanpointer(){return planpointer;};
-	OrbitElements getcraftorbit(){return craft;};
-	OrbitElements getpassforwardorbit();
+	const OrbitElements & getcraftorbit(){return craft;};
+	const OrbitElements & getpassforwardorbit();
 	void getcraftorbitattarget(OrbitElements *tcraft);
-	OrbitElements getcontextorbit(){return context;};//Returns copy of context orbit
-	OrbitElements getminororbit(){return rmin;};
-	OrbitElements getmanoeuvreorbit(){return hypormaj;};
-	OrbitElements gettargetorbit(){return target;};//Returns copy of target orbit
+	const OrbitElements & getcontextorbit(){return context;};//Returns copy of context orbit
+	const OrbitElements & getminororbit(){return rmin;};
+	const OrbitElements & getmanoeuvreorbit(){return hypormaj;};
+	const OrbitElements & gettargetorbit(){return target;};//Returns copy of target orbit
 	basefunction(class transxstate *tstate, class basefunction *tpreviousfunc,OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft);
 	basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, class basefunction *templbase, OBJHANDLE thcraft);
 	~basefunction();

@@ -60,7 +60,7 @@ void OrbitElements::gettimeorbit(int *orbitnumber,double *orbittime, double time
 	*orbitnumber=int(floor(timefromnow/ (*orbittime)));
 }
 
-double OrbitElements::getvelocityatdist(double tradius)
+double OrbitElements::getvelocityatdist(double tradius) const
 {
 	double energy=planet/semimajor+2*planet/tradius;
 	energy=((energy>0) ? sqrt(energy) : 0);
