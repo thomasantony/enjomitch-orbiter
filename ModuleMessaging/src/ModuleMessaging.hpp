@@ -44,7 +44,6 @@ namespace EnjoLib
     For example:
     \code
     #include <EnjoLib/ModuleMessaging.hpp>
-    #include <EnjoLib/Result.hpp>
 
     void BurnTimeMFD::HandlerGetFromTransX()
     {
