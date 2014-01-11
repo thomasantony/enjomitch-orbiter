@@ -37,14 +37,13 @@ namespace EnjoLib
     Make this a base class of one of your module's classes and implement the GetModuleName() method.
     For example:
     \code
-    #include <Orbitersdk.h>
     #include <EnjoLib/IMessagingSender.hpp>
 
     class MySender : public EnjoLib::IMessagingSender
     {
         public:
         // EnjoLib::IMessagingSender methods:
-        const char * GetModuleName() const;
+        const char * GetModuleName() const { return "MyMFD"; }
 
         protected:
         private:
