@@ -123,6 +123,9 @@ INSTALLATION
 Unpack in your Orbiter folder, using folder names. Using the Modules tab
 in the Launchpad, activate BurnTimeMFD.
 
+You also need ModuleMessaging library, available under:
+http://www.orbithangar.com/searchid.php?ID=6412
+
 INSTRUCTIONS
 ============
 

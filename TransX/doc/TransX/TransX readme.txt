@@ -18,7 +18,8 @@ Installing
 ----------
 
 Copy the enclosed dll file into the modules/plugin directory of your Orbiter installation. Select the module on the Modules tab of the Orbiter Launchpad, and activate it.
-
+You also need to download and install ModuleMessaging SDK, available here:
+http://www.orbithangar.com/searchid.php?ID=6412
 
 To start the module, either select the MFD from the onscreen menu, or use Shift-J to select it.
 
