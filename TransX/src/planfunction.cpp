@@ -356,6 +356,7 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
     // Send out the parameters, so that Launch MFD can catch them
 	MessagingSender().SendDouble("Incl", targetInc);
 	MessagingSender().SendDouble("LAN", lan);
+	MessagingSender().SendDouble("PeRadius", m_ped);
 
 	if (status.status==1)
 	{ //Vessel is landed!

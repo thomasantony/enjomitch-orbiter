@@ -4,6 +4,8 @@
 #include <MFDSound++/Sound.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include <Math/MaxMin.hpp>
+#include <EnjoLib/ModuleMessaging.hpp>
+#include <algorithm>
 
 using namespace EnjoLib;
 
@@ -11,9 +13,24 @@ bool DialogAlt::clbk(void *id, char *str, void *usrdata)
 {
     LaunchMFD* cLaunchMFD = (LaunchMFD*)usrdata;
     MFDDataLaunchMFD * data = cLaunchMFD->GetData();
+    std::string input = str;
+    std::transform(input.begin(), input.end(), input.begin(), ::tolower);
     double PeA, ApA;
 
-    if (sscanf_s(str, "%lf%lf",&PeA, &ApA) == 2)
+    if (input == "tx" || input == "transx")
+    {
+        Result<double> rad = ModuleMessaging().GetDouble("TransX", "PeRadius");
+        if (rad.isSuccess)
+        {
+            PeA = rad.value - oapiGetSize(data->hRef);
+            if (PeA < 0) return false;
+            data->PeA = data->ApA = PeA;
+            cLaunchMFD->GetSound().PlaySound(ALTITUDE_SET);
+        }
+        else
+            return false;
+    }
+    else if (sscanf_s(str, "%lf%lf",&PeA, &ApA) == 2)
     {
         if (PeA < 0 || ApA < 0) return false;
         MaxMin<double> maxMinApses(PeA,ApA);
