@@ -147,7 +147,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter060929\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter060929\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter060929\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter060929\Orbitersdk\include;..\lib;..\libWin;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2006;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"

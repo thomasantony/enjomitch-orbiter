@@ -55,11 +55,18 @@ static int g_MFDmode; // identifier for new MFD mode
 DLLCLBK void InitModule (HINSTANCE hDLL)
 {
     static char *name = "LaunchMFD";   // MFD mode name
+#ifdef ORB2006
     MFDMODESPEC spec;
+#else
+    MFDMODESPECEX spec;
+#endif
     // Set MFDMODESPEC's fields
     spec.name = name;
     spec.key = OAPI_KEY_T;                // MFD mode selection key
     spec.msgproc = LaunchMFD::MsgProc;  // MFD mode callback function
+#ifndef ORB2006
+    spec.context = NULL;
+#endif // ORB2006
     // Register the new MFD mode with Orbiter
     g_MFDmode = oapiRegisterMFDMode (spec);
 
