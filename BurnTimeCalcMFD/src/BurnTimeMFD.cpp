@@ -242,7 +242,9 @@ BurnTimeMFD::BurnTimeMFD (DWORD w, DWORD h, VESSEL *vessel) : MFD (w, h, vessel)
   if (mul==0) mul=1.0;
 }
 
-BurnTimeMFD::~BurnTimeMFD () {
+BurnTimeMFD::~BurnTimeMFD () 
+{
+	burntime = NULL;
 }
 
 void getGroupThrustParm(VESSEL* vessel, THGROUP_TYPE group, double *F, double *isp) {

@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8,00"
 	Name="LaunchMFD"
-	ProjectGUID="{618053AC-D57F-446E-89DC-9F1367C198CC}"
+	ProjectGUID="{AA57F7A4-411D-417D-8200-FE19E0319935}"
 	RootNamespace="LaunchMFD"
 	>
 	<Platforms>
