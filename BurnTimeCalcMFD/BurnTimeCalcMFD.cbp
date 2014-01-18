@@ -135,10 +135,21 @@
 		</Linker>
 		<Unit filename="../libMFD/MFDButtonPage.cpp" />
 		<Unit filename="../libMFD/MFDButtonPage.hpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.cpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.hpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.cpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.hpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.cpp" />
+		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.hpp" />
 		<Unit filename="src/BurnTimeMFD.cpp" />
 		<Unit filename="src/BurnTimeMFD.h" />
 		<Unit filename="src/MFDButtonPageBTC.cpp" />
 		<Unit filename="src/MFDButtonPageBTC.h" />
+		<Unit filename="src/MFDDataBurnTime.cpp" />
+		<Unit filename="src/MFDDataBurnTime.h" />
+		<Unit filename="src/PluginBurnTime.cpp" />
+		<Unit filename="src/PluginBurnTime.h" />
+		<Unit filename="src/globals.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -1,0 +1,9 @@
+#ifndef GLOBALS_H_INCLUDED
+#define GLOBALS_H_INCLUDED
+
+#define BURNMODE_PERI 0
+#define BURNMODE_APO  1
+#define BURNMODE_MAN  2
+#define BURNMODE_TGT  3
+
+#endif // GLOBALS_H_INCLUDED

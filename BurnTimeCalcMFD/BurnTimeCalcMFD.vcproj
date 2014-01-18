@@ -416,6 +416,46 @@
 	<References>
 	</References>
 	<Files>
+		<Filter
+			Name="libMFD"
+			>
+			<File
+				RelativePath="..\libMFD\MFDButtonPage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\libMFD\MFDButtonPage.hpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="MultipleVessels"
+			>
+			<File
+				RelativePath="..\libMFD\multipleVesselsMFD\MFDData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\libMFD\multipleVesselsMFD\MFDData.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\src\BurnTimeMFD.cpp"
 			>
@@ -425,11 +465,31 @@
 			>
 		</File>
 		<File
+			RelativePath=".\src\globals.h"
+			>
+		</File>
+		<File
 			RelativePath=".\src\MFDButtonPageBTC.cpp"
 			>
 		</File>
 		<File
 			RelativePath=".\src\MFDButtonPageBTC.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\MFDDataBurnTime.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\MFDDataBurnTime.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\PluginBurnTime.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\PluginBurnTime.h"
 			>
 		</File>
 	</Files>
