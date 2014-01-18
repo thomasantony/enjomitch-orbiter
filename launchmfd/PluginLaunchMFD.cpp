@@ -66,7 +66,7 @@ DLLCLBK void InitModule (HINSTANCE hDLL)
     spec.msgproc = LaunchMFD::MsgProc;  // MFD mode callback function
 #ifndef ORB2006
     spec.context = NULL;
-#endif // ORB2006
+#endif
     // Register the new MFD mode with Orbiter
     g_MFDmode = oapiRegisterMFDMode (spec);
 

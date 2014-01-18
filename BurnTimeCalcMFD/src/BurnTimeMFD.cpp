@@ -200,10 +200,11 @@ BurnTimeMFD *burntime;
 
 DLLCLBK void opcDLLInit (HINSTANCE hDLL) {
   static char *name = "BurnTimeMFD";
-  MFDMODESPEC spec;
+  MFDMODESPECEX spec;
   spec.name    = name;
   spec.key     = OAPI_KEY_T;
   spec.msgproc = BurnTimeMFD::MsgProc;
+  spec.context = NULL;
 
   g_BurnTimeMFD.mode = oapiRegisterMFDMode (spec);
 
