@@ -6,6 +6,7 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
 	 BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
 	 BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo)
+	 BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo)
 
 
 BurnTimeCalcMFD (BTC) is a companion for TransX or any other transfer MFD that
@@ -24,10 +25,16 @@ I've found it reliably gets me into a transfer with less than 1 degree offset
 between semi major axes using DeltaGlider and Fregat. Obviously it's only an
 approximation, however.
 
+CHANGES IN v2.6
+===============
+* Resolved CTDs when switching the MFD on and off
+* Simultaneous multiple vessels support (can be pre-programmed!) thanks to MultipleVesselsMFD
+* Added RCS Forward, Up, and Retro "engine types"
+
 CHANGES IN v2.5
 ===============
 * Communicating directly with TransX via ModuleMessaging library. Use SHIFT_G or GET button, when TransX displays DV and time.
-* Added another, extensible button page.
+* Added another, extensible button page thanks to MFDButtonPage.
 
 CHANGES IN v2.4
 ===============
