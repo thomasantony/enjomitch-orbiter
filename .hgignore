@@ -32,3 +32,5 @@ TransX/TransX.cscope_file_list
 *.orig
 *.cbTemp
 *.aps
+*.sdf
+*.opensdf

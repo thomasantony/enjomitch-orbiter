@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="libMFD">
+      <UniqueIdentifier>{fceb4975-e26f-45c5-adf5-34d6fe83734f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\libMFD\MFDButtonPage.cpp">
+      <Filter>libMFD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libMFD\MFDTextCalculator.cpp">
+      <Filter>libMFD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libMFD\MyDC.cpp">
+      <Filter>libMFD</Filter>
+    </ClCompile>
+    <ClCompile Include="HUDDrawer.cpp" />
+    <ClCompile Include="HUDDrawerMFD.cpp" />
+    <ClCompile Include="MFDButtonPageHUDDrawer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\libMFD\MFDButtonPage.hpp">
+      <Filter>libMFD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libMFD\MFDTextCalculator.hpp">
+      <Filter>libMFD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libMFD\MyDC.h">
+      <Filter>libMFD</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="HUDDrawer.hpp" />
+    <ClInclude Include="HUDDrawerMFD.h" />
+    <ClInclude Include="MFDButtonPageHUDDrawer.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\VesselHooking\VesselHooking.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HUDDrawer.rc" />
+  </ItemGroup>
+</Project>

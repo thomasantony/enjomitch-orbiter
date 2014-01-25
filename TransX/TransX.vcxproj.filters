@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="EnjoLib">
+      <UniqueIdentifier>{c85c6131-3a55-4f0f-8827-c1af9029e6bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnjoLib\Math">
+      <UniqueIdentifier>{a5edcad1-86d3-409a-98dd-3dc1814f95da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnjoLib\Systems">
+      <UniqueIdentifier>{49379511-2d1f-4f12-8b5c-cd7fff18e5ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnjoLib\Util">
+      <UniqueIdentifier>{0a7b12c5-0351-4ce0-b1f2-166719780207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnjoLib\Orbiter">
+      <UniqueIdentifier>{ae3958fe-29c9-4734-afa9-bcb7c5122de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnjoLib\PID">
+      <UniqueIdentifier>{cc3cf67b-f723-4a0b-a1b8-d1f58d085968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opti">
+      <UniqueIdentifier>{e7eac47c-3da1-4048-8cd8-3d7e59bc21c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\Math\BinSearchOpti.cpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\BinSearchOptiSubject.cpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\GeneralMath.cpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\SimpsonFunctor.cpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\SpaceMathBody.cpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\VectorMath.cpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Geo.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Point.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Spherical.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\StateVect3.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\SystemsConverter.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\ThreeSphericals.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Vect3.cpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\Result.cpp">
+      <Filter>EnjoLib\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\AngularAcc.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\Engine.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\SpaceMathOrbiter.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\SystemsConverterOrbiter.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\VesselCapabilities.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\PID\DerivatorDiscrete.cpp">
+      <Filter>EnjoLib\PID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\PID\IntegratorDiscrete.cpp">
+      <Filter>EnjoLib\PID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\PID\PID.cpp">
+      <Filter>EnjoLib\PID</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Opti\Constraint.cpp">
+      <Filter>Opti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Opti\ConstraintFactory.cpp">
+      <Filter>Opti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Opti\OptiFunction.cpp">
+      <Filter>Opti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Opti\Optimiser.cpp">
+      <Filter>Opti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Opti\OptimiserFactory.cpp">
+      <Filter>Opti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Opti\VarConstraint.cpp">
+      <Filter>Opti</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Autopilot.cpp" />
+    <ClCompile Include="src\basefunction.cpp" />
+    <ClCompile Include="src\BodyCache.cpp" />
+    <ClCompile Include="src\BodyProvider.cpp" />
+    <ClCompile Include="src\doublelink.cpp" />
+    <ClCompile Include="src\globals.cpp" />
+    <ClCompile Include="src\graph.cpp" />
+    <ClCompile Include="src\intercept.cpp" />
+    <ClCompile Include="src\mapfunction.cpp" />
+    <ClCompile Include="src\MessagingSender.cpp" />
+    <ClCompile Include="src\mfdfunction.cpp" />
+    <ClCompile Include="src\mfdvarhandler.cpp" />
+    <ClCompile Include="src\mfdvariable.cpp" />
+    <ClCompile Include="src\mfdvartypes.cpp" />
+    <ClCompile Include="src\orbitelements.cpp" />
+    <ClCompile Include="src\parser.cpp" />
+    <ClCompile Include="src\planfunction.cpp" />
+    <ClCompile Include="src\shiplist.cpp" />
+    <ClCompile Include="src\transx.cpp" />
+    <ClCompile Include="src\TransXFunction.cpp" />
+    <ClCompile Include="src\transxstate.cpp" />
+    <ClCompile Include="src\viewstate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\Math\BinSearchOpti.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\BinSearchOptiSubject.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Constants.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\GeneralMath.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\SimpsonFunctor.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\SpaceMathBody.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\VectorMath.hpp">
+      <Filter>EnjoLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Geo.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Point.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Spherical.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\StateVect3.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Systems.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\SystemsConverter.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\ThreeSphericals.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Vect3.hpp">
+      <Filter>EnjoLib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\Result.hpp">
+      <Filter>EnjoLib\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\StackTrace.hpp">
+      <Filter>EnjoLib\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\AngularAcc.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\Engine.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\SpaceMathOrbiter.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\SystemsConverterOrbiter.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\VesselCapabilities.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\PID\DerivatorDiscrete.hpp">
+      <Filter>EnjoLib\PID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\PID\IntegratorDiscrete.hpp">
+      <Filter>EnjoLib\PID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\PID\PID.hpp">
+      <Filter>EnjoLib\PID</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\Constraint.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\ConstraintFactory.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\ConstraintType.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\OptiFunction.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\Optimiser.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\OptimiserFactory.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Opti\VarConstraint.h">
+      <Filter>Opti</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Autopilot.h" />
+    <ClInclude Include="src\basefunction.h" />
+    <ClInclude Include="src\BodyCache.h" />
+    <ClInclude Include="src\BodyProvider.h" />
+    <ClInclude Include="src\cmdnugget.h" />
+    <ClInclude Include="src\defines.h" />
+    <ClInclude Include="src\doublelink.h" />
+    <ClInclude Include="src\graph.h" />
+    <ClInclude Include="src\intercept.h" />
+    <ClInclude Include="src\mapfunction.h" />
+    <ClInclude Include="src\MessagingSender.h" />
+    <ClInclude Include="src\mfd.h" />
+    <ClInclude Include="src\mfdfunction.h" />
+    <ClInclude Include="src\mfdvarhandler.h" />
+    <ClInclude Include="src\mfdvariable.h" />
+    <ClInclude Include="src\mfdvartypes.h" />
+    <ClInclude Include="src\orbitelements.h" />
+    <ClInclude Include="src\parser.h" />
+    <ClInclude Include="src\planfunction.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\shiplist.h" />
+    <ClInclude Include="src\transx.h" />
+    <ClInclude Include="src\TransXFunction.h" />
+    <ClInclude Include="src\transxstate.h" />
+    <ClInclude Include="src\viewstate.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\TransX.rc" />
+  </ItemGroup>
+</Project>

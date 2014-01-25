@@ -445,7 +445,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/DEBUG"
-				Optimization="2"
+				Optimization="0"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_PL"

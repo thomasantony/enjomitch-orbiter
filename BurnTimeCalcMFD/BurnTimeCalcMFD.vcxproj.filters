@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="libMFD">
+      <UniqueIdentifier>{3704ccd1-f78d-4a48-93ee-8d137437dbd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MultipleVessels">
+      <UniqueIdentifier>{d157aa41-39b7-4318-a937-0d4b5c751650}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libMFD\MFDButtonPage.cpp">
+      <Filter>libMFD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\MFDData.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BurnTimeMFD.cpp" />
+    <ClCompile Include="src\MFDButtonPageBTC.cpp" />
+    <ClCompile Include="src\MFDDataBurnTime.cpp" />
+    <ClCompile Include="src\PluginBurnTime.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libMFD\MFDButtonPage.hpp">
+      <Filter>libMFD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\MFDData.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BurnTimeMFD.h" />
+    <ClInclude Include="src\globals.h" />
+    <ClInclude Include="src\MFDButtonPageBTC.h" />
+    <ClInclude Include="src\MFDDataBurnTime.h" />
+    <ClInclude Include="src\PluginBurnTime.h" />
+  </ItemGroup>
+</Project>

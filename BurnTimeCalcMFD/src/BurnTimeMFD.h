@@ -5,22 +5,22 @@
 
 class MFDDataBurnTime;
 class PluginBurnTime;
-class BurnTimeMFD: public MFD {
+class BurnTimeMFD: public MFD2 {
 public:
   BurnTimeMFD (DWORD w, DWORD h, VESSEL *vessel, PluginBurnTime * plugin);
   ~BurnTimeMFD ();
   bool ConsumeKeyBuffered (DWORD key);
-  void Update (HDC hDC);
+  bool Update (oapi::Sketchpad * skp);
   static int MsgProc (UINT msg, UINT mfinald, WPARAM wparam, LPARAM lparam);
   int ButtonMenu (const MFDBUTTONMENU **menu) const;
   char *ButtonLabel (int bt);
   bool ConsumeButton(int bt, int event);
 
-  void PrintEngUnit(HDC hDC, char* format, char* units, double mult, double value, int x, int l);
-  void PrintEngUnit(HDC hDC, char* format, char* units, double value, int x, int l);
-  void PrintEngUnit(HDC hDC, char* format, char* unitSI, char* unitUS, double multSI, double multUS, double value, int x, int l);
-  void PrintString(HDC hDC, char* format, const char* value, int x, int l);
-  void PrintString(HDC hDC, const char* format, int x, int l);
+  void PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double mult, double value, int x, int l);
+  void PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double value, int x, int l);
+  void PrintEngUnit(oapi::Sketchpad * skp, char* format, char* unitSI, char* unitUS, double multSI, double multUS, double value, int x, int l);
+  void PrintString(oapi::Sketchpad * skp, char* format, const char* value, int x, int l);
+  void PrintString(oapi::Sketchpad * skp, const char* format, int x, int l);
 
 
 
@@ -52,7 +52,7 @@ protected:
 
 private:
   //static int Sel_eng;
-  void writemenu( HDC hDC );
+	void writemenu(oapi::Sketchpad * skp);
   int line( int );
 
 

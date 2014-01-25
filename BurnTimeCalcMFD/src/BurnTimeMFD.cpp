@@ -36,44 +36,6 @@
 
 // ==============================================================
 
-// ==============================================================
-// $Id: BurnTimeMFD.cpp,v 1.5 2004/05/25 19:08:46 dh219 Exp $
-// BTC by D Henderson orbiter@aibs.org.uk
-// Copyright 2004
-// Extensively modified by C Jeppesen chrisj@kwansystems.org
-// Copyright 2005-2006
-// Extended with the ability to use different Engines (Hover,Main,Retro) by Topper
-// Copyright 2007
-// Version 1.5 by kwan3217 (2008):
-//		Some code cleanup,
-//		Bug case where engine group existed but was not connected to a propellant resource - FIXED
-//		Works in SI or feet (for use with Space Shuttle)
-// Version 2.0 by Topper
-//		Var-setting now working via inputbox
-//		Entering of Targets (Vessels or Gbodys) instead of dv possible
-//		New Autoburnmode "Burn by target distance" added
-
-
-// Released under the terms of the LGPL: http://www.gnu.org/licenses/lgpl.txt
-/*
-    This software and sourcecode is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
-
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-*/
-
-// ==============================================================
-
 #define STRICT
 #define ORBITER_MODULE
 
@@ -98,9 +60,6 @@
 #define INPUTMODE_TIME 4
 #define INPUTMODE_EXTRA 5
 
-
-
-
 #include "BurnTimeMFD.h"
 #include "MFDButtonPageBTC.h"
 #include <windows.h>
@@ -118,8 +77,7 @@
 #define NTolbf 0.224808943
 #define mperssqToftperssq 1.0/0.3048
 
-
-MFDButtonPageBTC gButtons;
+static MFDButtonPageBTC gButtons;
 extern PluginBurnTime * plugin;
 
 int DisplayEngUnit(char* buffer, char* pattern,double x) {
@@ -145,43 +103,43 @@ int DisplayEngUnit(char* buffer, char* pattern,double x) {
   }
 }
 
-void BurnTimeMFD::PrintEngUnit(HDC hDC, char* format, char* unitSI, char* unitUS, double multSI, double multUS, double value, int x, int l) {
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* unitSI, char* unitUS, double multSI, double multUS, double value, int x, int l) {
   char buf[256];
   char label[256];
   sprintf(label,"%s%%c%s",format,m_data->dspunit==0?unitSI:unitUS);
   int len=DisplayEngUnit(buf,label,value*(m_data->dspunit==0?multSI:multUS));
-  TextOut(hDC,x,line(l),buf,len);
+  skp->Text(x,line(l),buf,len);
 }
 
-void BurnTimeMFD::PrintEngUnit(HDC hDC, char* format, char* units, double mult, double value, int x, int l) {
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double mult, double value, int x, int l) {
   char buf[256];
   char label[256];
   sprintf(label,"%s%%c%s",format,units);
   int len=DisplayEngUnit(buf,label,value*mult);
-  TextOut(hDC,x,line(l),buf,len);
+  skp->Text(x,line(l),buf,len);
 }
 
-void BurnTimeMFD::PrintEngUnit(HDC hDC, char* format, char* units, double value, int x, int l) {
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double value, int x, int l) {
   char buf[256];
   char label[256];
   sprintf(label,"%s%%c%s",format,units);
   int len=DisplayEngUnit(buf,label,value);
-  TextOut(hDC,x,line(l),buf,len);
+  skp->Text(x,line(l),buf,len);
 }
 
-void BurnTimeMFD::PrintString(HDC hDC, char* format, const char* value, int x, int l) {
+void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, char* format, const char* value, int x, int l) {
   char buf[256];
   sprintf(buf,format,value);
-  TextOut(hDC,x,line(l),buf,strlen(buf));
+  skp->Text(x,line(l),buf,strlen(buf));
 }
 
-void BurnTimeMFD::PrintString(HDC hDC, const char* format, int x, int l) {
+void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, int x, int l) {
   char buf[256];
-  TextOut(hDC,x,line(l),format,strlen(buf));
+  skp->Text(x,line(l),format,strlen(buf));
 }
 
 BurnTimeMFD::BurnTimeMFD (DWORD w, DWORD h, VESSEL *vessel, PluginBurnTime * plugin)
- : MFD (w, h, vessel)
+ : MFD2 (w, h, vessel)
  , m_data(dynamic_cast<MFDDataBurnTime *>(plugin->AssociateMFDData(vessel)))
  {
   height = (int)h;
@@ -192,16 +150,11 @@ BurnTimeMFD::~BurnTimeMFD ()
 {
 }
 
-void BurnTimeMFD::Update (HDC hDC)
+bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 {
-
-
-
-
   unsigned int thrustercount = 0;
 
-  Title (hDC, "BurnTimeMFD");
-
+  Title (skp, "BurnTimeMFD");
 
   int line1 = 1;
   int line8 = 2;
@@ -227,75 +180,75 @@ void BurnTimeMFD::Update (HDC hDC)
 
 
 
-  SetTextColor(hDC,GRAY);
+  skp->SetTextColor(GRAY);
 
-  if (m_data->mode == BURNMODE_PERI) PrintEngUnit(hDC,"Time to Periapse:      %7.3f","s", m_data->IPeri, 5, line8 );
+  if (m_data->mode == BURNMODE_PERI) PrintEngUnit(skp,"Time to Periapse:      %7.3f","s", m_data->IPeri, 5, line8 );
   if(m_data->IApo>0 && m_data->mode == BURNMODE_APO)
   {
-    SetTextColor(hDC,GRAY);
-    PrintEngUnit(hDC,"Time to Apoapse:       %7.3f","s", m_data->IApo, 5, line8 );
+    skp->SetTextColor(GRAY);
+    PrintEngUnit(skp,"Time to Apoapse:       %7.3f","s", m_data->IApo, 5, line8 );
   }
 
   if (m_data->mode == BURNMODE_MAN)
   {
-    SetTextColor(hDC,((m_data->inputmode==INPUTMODE_TIME )?YELLOW:GRAY));
-	PrintEngUnit(hDC,"Time to Manual start:  %7.3f","s", m_data->IManual, 5, line8 );
+    skp->SetTextColor(((m_data->inputmode==INPUTMODE_TIME )?YELLOW:GRAY));
+	PrintEngUnit(skp,"Time to Manual start:  %7.3f","s", m_data->IManual, 5, line8 );
   }
 
   if (m_data->mode == BURNMODE_TGT)
   {
 
-    SetTextColor(hDC,GRAY);
-	PrintEngUnit(hDC,"Distance to target:    %7.3f","m", "ft",1,mToft,m_data->TDist, 5, line8 );
-	SetTextColor(hDC,((m_data->inputmode==INPUTMODE_OFFSET )?YELLOW:GRAY));
-	PrintEngUnit(hDC,"Offset distance:       %7.3f","m", "ft",1,mToft,m_data->sOffset, 5, line9 );
+    skp->SetTextColor(GRAY);
+	PrintEngUnit(skp,"Distance to target:    %7.3f","m", "ft",1,mToft,m_data->TDist, 5, line8 );
+	skp->SetTextColor(((m_data->inputmode==INPUTMODE_OFFSET )?YELLOW:GRAY));
+	PrintEngUnit(skp,"Offset distance:       %7.3f","m", "ft",1,mToft,m_data->sOffset, 5, line9 );
   }
 
-  SetTextColor( hDC, BRIGHTERGRAY );
-  PrintString(hDC,"Engine:                   %s",&m_data->group_names[m_data->Sel_eng][0],5,line10);
+  skp->SetTextColor( BRIGHTERGRAY );
+  PrintString(skp,"Engine:                   %s",&m_data->group_names[m_data->Sel_eng][0],5,line10);
 
   if(m_data->maxdv==0)
   {
-    PrintString(hDC,"Enginetype not available%s","",5,line2);
+    PrintString(skp,"Enginetype not available%s","",5,line2);
   }
   else
   {
 	if(m_data->IsEngaged)
 	{
-	  SetTextColor( hDC, RED );
-	  TextOut(hDC,5,line(line3),"Autoburn Engaged",16);
-	  PrintEngUnit(hDC,"Time to cutoff:        %7.3f","s", m_data->ECutoff-m_data->ENow,5,line4);
+	  skp->SetTextColor( RED );
+	  skp->Text(5,line(line3),"Autoburn Engaged",16);
+	  PrintEngUnit(skp,"Time to cutoff:        %7.3f","s", m_data->ECutoff-m_data->ENow,5,line4);
 	}
 	else if(m_data->IsArmed)
 	{
-	  SetTextColor( hDC, YELLOW );
+	  skp->SetTextColor( YELLOW );
 
 	  if(m_data->IsCircular)
 	  {
-	     PrintEngUnit(hDC,"Autocirc Armed:        %7.3f","s", m_data->IBurn,5,line3);
+	     PrintEngUnit(skp,"Autocirc Armed:        %7.3f","s", m_data->IBurn,5,line3);
 	  }
 	  else
 	  {
-	    PrintEngUnit(hDC,"Autoburn Armed:        %7.3f","s", m_data->IBurn,5,line3);
+	    PrintEngUnit(skp,"Autoburn Armed:        %7.3f","s", m_data->IBurn,5,line3);
 	  }
-	  PrintEngUnit(hDC,"Time to ignition:      %7.3f","s", m_data->EReference-m_data->ENow-m_data->IBurn2,5,line4);
+	  PrintEngUnit(skp,"Time to ignition:      %7.3f","s", m_data->EReference-m_data->ENow-m_data->IBurn2,5,line4);
 	}
 	else
 	{
-	  SetTextColor( hDC, GREEN );
-	  PrintEngUnit(hDC,"Estimated burn time:   %7.3f","s", m_data->IBurn,5,line3);
-	  PrintEngUnit(hDC,"Half DeltaV time       %7.3f","s", m_data->IBurn2,5,line4);
-	  PrintEngUnit(hDC,"Rel. DeltaS distance   %7.3f","m", "ft",1,mToft,m_data->dv*m_data->IBurn2, 5, line5 );
+	  skp->SetTextColor( GREEN );
+	  PrintEngUnit(skp,"Estimated burn time:   %7.3f","s", m_data->IBurn,5,line3);
+	  PrintEngUnit(skp,"Half DeltaV time       %7.3f","s", m_data->IBurn2,5,line4);
+	  PrintEngUnit(skp,"Rel. DeltaS distance   %7.3f","m", "ft",1,mToft,m_data->dv*m_data->IBurn2, 5, line5 );
 	}
 
-	SetTextColor(hDC, (m_data->inputmode==INPUTMODE_DV)?YELLOW:GRAY );
-	PrintEngUnit(hDC,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
+	skp->SetTextColor( (m_data->inputmode==INPUTMODE_DV)?YELLOW:GRAY );
+	PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
 
-	SetTextColor(hDC, (m_data->inputmode==INPUTMODE_EXTRA)?YELLOW:BLUE );
-	PrintEngUnit(hDC,"Extra fuel mass:       %7.3f","g","lbm", 1000,gTolb,m_data->mextra,5,line19);
+	skp->SetTextColor( (m_data->inputmode==INPUTMODE_EXTRA)?YELLOW:BLUE );
+	PrintEngUnit(skp,"Extra fuel mass:       %7.3f","g","lbm", 1000,gTolb,m_data->mextra,5,line19);
 	if (m_data->mextra !=0){
-		SetTextColor(hDC, ORANGE );
-	    PrintEngUnit(hDC,"Extra fuel mass:       %7.3f","g","lbm", 1000,gTolb,m_data->mextra,5,line19);
+		skp->SetTextColor( ORANGE );
+	    PrintEngUnit(skp,"Extra fuel mass:       %7.3f","g","lbm", 1000,gTolb,m_data->mextra,5,line19);
 	}
 
 
@@ -306,25 +259,26 @@ void BurnTimeMFD::Update (HDC hDC)
 
 	if (m_data->mode == BURNMODE_TGT)
 	{
-	  SetTextColor(hDC,m_data->inputmode==INPUTMODE_TARGET?YELLOW:GRAY);
+	  skp->SetTextColor(m_data->inputmode==INPUTMODE_TARGET?YELLOW:GRAY);
 	  oapiGetObjectName(oapiGetObjectByIndex(m_data->IndexCenterObj),buffer,255);
 	  TargetString = "=> Selected Object: " + std::string(buffer);
-	  TextOut(hDC,5,line(line2),TargetString.c_str(),TargetString.length());
+	  skp->Text(5,line(line2),TargetString.c_str(),TargetString.length());
 	}
 
-	SetTextColor( hDC, ORANGE );
-	PrintEngUnit(hDC,"Estimate Total dV:     %7.3f","m/s","ft/s",1,mToft, m_data->maxdv,5,line7);
-	PrintEngUnit(hDC,"Total burn time:       %7.3f","s", m_data->TTot,5,line6);
-	SetTextColor( hDC, BLUE );
-	PrintEngUnit(hDC,"Current vehicle mass:  %7.3f","g","lbm", 1000,gTolb,m_data->mv,5,line11);
-	PrintEngUnit(hDC,"Current stack mass:    %7.3f","g","lbm", 1000,gTolb, m_data->ms,5,line12);
-	PrintEngUnit(hDC,"Postburn vehicle mass: %7.3f","g","lbm", 1000,gTolb, m_data->mfinal,5,line13);
-	PrintEngUnit(hDC,"Empty vehicle mass:    %7.3f","g","lbm", 1000,gTolb, m_data->me,5,line14);
-	PrintEngUnit(hDC,"mass flow rate:        %7.3f","g/s","lbm/s", 1000,gTolb, m_data->mdot,5,line15);
-	PrintEngUnit(hDC,"Eng Thrust:           %7.3f","N","lbf",1,NTolbf, m_data->F,5,line16);
-	PrintEngUnit(hDC,"Eng Isp:              %7.3f","m/s","ft/s",1,mpersToftpers, m_data->isp,5,line17);
-	PrintEngUnit(hDC,"Eng Acc:              %7.3f","m/s²","ft/s²",1,mperssqToftperssq,m_data->F/m_data->ms,5,line18);
+	skp->SetTextColor( ORANGE );
+	PrintEngUnit(skp,"Estimate Total dV:     %7.3f","m/s","ft/s",1,mToft, m_data->maxdv,5,line7);
+	PrintEngUnit(skp,"Total burn time:       %7.3f","s", m_data->TTot,5,line6);
+	skp->SetTextColor( BLUE );
+	PrintEngUnit(skp,"Current vehicle mass:  %7.3f","g","lbm", 1000,gTolb,m_data->mv,5,line11);
+	PrintEngUnit(skp,"Current stack mass:    %7.3f","g","lbm", 1000,gTolb, m_data->ms,5,line12);
+	PrintEngUnit(skp,"Postburn vehicle mass: %7.3f","g","lbm", 1000,gTolb, m_data->mfinal,5,line13);
+	PrintEngUnit(skp,"Empty vehicle mass:    %7.3f","g","lbm", 1000,gTolb, m_data->me,5,line14);
+	PrintEngUnit(skp,"mass flow rate:        %7.3f","g/s","lbm/s", 1000,gTolb, m_data->mdot,5,line15);
+	PrintEngUnit(skp,"Eng Thrust:           %7.3f","N","lbf",1,NTolbf, m_data->F,5,line16);
+	PrintEngUnit(skp,"Eng Isp:              %7.3f","m/s","ft/s",1,mpersToftpers, m_data->isp,5,line17);
+	PrintEngUnit(skp,"Eng Acc:              %7.3f","m/s²","ft/s²",1,mperssqToftperssq,m_data->F/m_data->ms,5,line18);
   }
+  return true;
 }
 
 int BurnTimeMFD::MsgProc (UINT msg, UINT mfinald, WPARAM wparam, LPARAM lparam)

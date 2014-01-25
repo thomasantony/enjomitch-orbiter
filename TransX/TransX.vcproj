@@ -445,7 +445,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/DEBUG"
-				Optimization="2"
+				Optimization="0"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..\..\..\orbiter\orbiter100830\Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;SECOND_INSTANCE_RED"

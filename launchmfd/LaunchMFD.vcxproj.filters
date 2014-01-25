@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{519ea1a6-e2a6-4415-bd6b-c6fadfd3a4f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{68cd526b-67bb-4dbf-bd90-45339b754db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Autopilot">
+      <UniqueIdentifier>{042b9671-468c-4854-91b5-e78fe2c0d290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{4a87079d-6b13-4d09-a6ff-b8a37ffb1b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MultipleVessels">
+      <UniqueIdentifier>{c2b75c96-e324-4158-a20f-e5ff4def1e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visual">
+      <UniqueIdentifier>{9fa63192-9fc8-4693-b7b7-7c2d0d6ecd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PID">
+      <UniqueIdentifier>{8a4650e2-fd5e-4cb5-898a-8528b7cc4791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b20e851e-f738-458c-ad07-0414c95cae01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUDDrawer">
+      <UniqueIdentifier>{bec905a0-9882-4af6-8217-e760d635b562}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OffPlaneCorrector">
+      <UniqueIdentifier>{b668e37b-e375-4031-ad44-c8860b0c31ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PEG">
+      <UniqueIdentifier>{73b857cc-8cbd-4fa4-b7b8-1ddd4ea87dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OrbiterLib">
+      <UniqueIdentifier>{667a927a-f9aa-4a02-a4f4-04a0cad5ee50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KOST_Orbiter">
+      <UniqueIdentifier>{e1ff6178-037a-4969-83a5-424737c53df2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialogs">
+      <UniqueIdentifier>{8fb3718b-14bd-4fb4-80b4-3fddbc825531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUD">
+      <UniqueIdentifier>{584a404d-296c-4da0-9a0f-a52f15a0729f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\Math\AzimuthMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\BinSearchArg.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\BinSearchArgSubject.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\GeneralMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\GreatCircleAdvMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\GreatCircleMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\MaxMin.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\MaxMinPoint.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\SimpsonFunctor.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\SpaceMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\SpaceMathBody.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\VectorMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Geo.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Point.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\RectangleMy.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Spherical.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\SystemsConverter.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\ThreeSphericals.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Vect3.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\AutopilotBase.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\AutopilotDirectAscentStd.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\AutopilotDirectAscentSynchro.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\AutopilotManager.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\AutopilotStandard.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\DirectAscentOptiEngineLevel.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\PIDAP.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\PitchPointComparator.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="Autopilot\PitchProgramReader.cpp">
+      <Filter>Autopilot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\MFDSound++\Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\MFDSound++\SoundMap.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\SoundMapLaunchMFD.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\MFDData.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="MFDDataLaunchMFD.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="PluginLaunchMFD.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp">
+      <Filter>MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Visual\Canvas.cpp">
+      <Filter>Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Visual\ScalePointFunctor.cpp">
+      <Filter>Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\PID\DerivatorDiscrete.cpp">
+      <Filter>PID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\PID\IntegratorDiscrete.cpp">
+      <Filter>PID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\PID\PID.cpp">
+      <Filter>PID</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\CharManipulations.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\FileUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\FileUtilsOrbiter.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\NonCopyable.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Pens.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\Result.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Targeting.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\ValueWithDescription.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="OffPlaneCorrector\OffPlaneCorrector.cpp">
+      <Filter>OffPlaneCorrector</Filter>
+    </ClCompile>
+    <ClCompile Include="OffPlaneCorrector\OffPlaneCorrectorDirectAscent.cpp">
+      <Filter>OffPlaneCorrector</Filter>
+    </ClCompile>
+    <ClCompile Include="OffPlaneCorrector\OffPlaneCorrectorStandard.cpp">
+      <Filter>OffPlaneCorrector</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEG.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEGDirectAscent.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEGDirectAscentOpti.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEGDirectAscentStd.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEGDirectAscentSynchro.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEGMulti.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="PEG\PEGNormal.cpp">
+      <Filter>PEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\AngularAcc.cpp">
+      <Filter>OrbiterLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\Engine.cpp">
+      <Filter>OrbiterLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\SpaceMathKOST.cpp">
+      <Filter>OrbiterLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\SpaceMathOrbiter.cpp">
+      <Filter>OrbiterLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\SystemsConverterOrbiter.cpp">
+      <Filter>OrbiterLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\VesselCapabilities.cpp">
+      <Filter>OrbiterLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KOST_Orbiter\kost_elements.cpp">
+      <Filter>KOST_Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KOST_Orbiter\kost_linalg.cpp">
+      <Filter>KOST_Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KOST_Orbiter\kost_math.cpp">
+      <Filter>KOST_Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KOST_Orbiter\kost_propagate.cpp">
+      <Filter>KOST_Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\KOST_Orbiter\kost_shape.cpp">
+      <Filter>KOST_Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialogs\DialogAlt.cpp">
+      <Filter>Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialogs\DialogDistDA.cpp">
+      <Filter>Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialogs\DialogPID.cpp">
+      <Filter>Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialogs\DialogTarget.cpp">
+      <Filter>Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD\FlightDirector.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD\HUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD\HUDCompass.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD\HUDDrawer.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="BODYPHYS.cpp" />
+    <ClCompile Include="BODYPHYS_ORB.cpp" />
+    <ClCompile Include="DirectAscentPage.cpp" />
+    <ClCompile Include="EnergyPitchProgram.cpp" />
+    <ClCompile Include="GreatCircle.cpp" />
+    <ClCompile Include="LaunchCompass.cpp" />
+    <ClCompile Include="LaunchMFD.cpp" />
+    <ClCompile Include="..\libMFD\MFDButtonPage.cpp" />
+    <ClCompile Include="MFDButtonPageLaunchMFD.cpp" />
+    <ClCompile Include="MFDPage.cpp" />
+    <ClCompile Include="..\libMFD\MFDTextCalculator.cpp" />
+    <ClCompile Include="MovementParams.cpp" />
+    <ClCompile Include="..\libMFD\MyDC.cpp" />
+    <ClCompile Include="PitchGuidance.cpp" />
+    <ClCompile Include="ShipVariables.cpp" />
+    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="StagingContainer.cpp" />
+    <ClCompile Include="StagingDetector.cpp" />
+    <ClCompile Include="TGTPARAM.cpp" />
+    <ClCompile Include="TGTPARAM_ORB.cpp" />
+    <ClCompile Include="..\libWin\WinAPIFileUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\Math\AzimuthMath.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\BinSearchArg.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\BinSearchArgSubject.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Constants.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\GeneralMath.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\GreatCircleAdvMath.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\GreatCircleMath.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\MaxMin.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\MaxMinPoint.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\SimpsonFunctor.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\SpaceMath.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\SpaceMathBody.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\VectorMath.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Geo.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Point.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\RectangleMy.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Spherical.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Systems.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\SystemsConverter.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\ThreeSphericals.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Vect3.hpp">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\AutopilotBase.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\AutopilotDirectAscentStd.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\AutopilotDirectAscentSynchro.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\AutopilotManager.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\AutopilotStandard.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\AutopilotType.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\DirectAscentOptiEngineLevel.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\PIDAP.hpp">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\PitchPointComparator.h">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="Autopilot\PitchProgramReader.h">
+      <Filter>Autopilot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\MFDSound++\Sound.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\MFDSound++\SoundMap.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\SoundMapLaunchMFD.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\SoundSampleIDEnum.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\MFDData.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="MFDDataLaunchMFD.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginLaunchMFD.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp">
+      <Filter>MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Visual\Canvas.hpp">
+      <Filter>Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Visual\ScalePointFunctor.hpp">
+      <Filter>Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\PID\DerivatorDiscrete.hpp">
+      <Filter>PID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\PID\IntegratorDiscrete.hpp">
+      <Filter>PID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\PID\PID.hpp">
+      <Filter>PID</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\CharManipulations.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\FileUtils.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\FileUtilsOrbiter.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\NonCopyable.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Pens.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\Result.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Targeting.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\ValueWithDescription.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HUDDrawer\VesselHooking\IDrawsHUD.hpp">
+      <Filter>HUDDrawer</Filter>
+    </ClInclude>
+    <ClInclude Include="OffPlaneCorrector\OffPlaneCorrector.hpp">
+      <Filter>OffPlaneCorrector</Filter>
+    </ClInclude>
+    <ClInclude Include="OffPlaneCorrector\OffPlaneCorrectorDirectAscent.hpp">
+      <Filter>OffPlaneCorrector</Filter>
+    </ClInclude>
+    <ClInclude Include="OffPlaneCorrector\OffPlaneCorrectorStandard.hpp">
+      <Filter>OffPlaneCorrector</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEG.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEGDirectAscent.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEGDirectAscentOpti.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEGDirectAscentStd.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEGDirectAscentSynchro.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEGMulti.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="PEG\PEGNormal.h">
+      <Filter>PEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\AngularAcc.hpp">
+      <Filter>OrbiterLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\Engine.hpp">
+      <Filter>OrbiterLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\SpaceMathKOST.hpp">
+      <Filter>OrbiterLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\SpaceMathOrbiter.hpp">
+      <Filter>OrbiterLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\SystemsConverterOrbiter.hpp">
+      <Filter>OrbiterLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\VesselCapabilities.hpp">
+      <Filter>OrbiterLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_constants.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_elements.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_linalg.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_math.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_propagate.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_settings.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_shape.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kost_types.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\KOST_Orbiter\kostmm.h">
+      <Filter>KOST_Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogs\DialogAlt.h">
+      <Filter>Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogs\DialogDistDA.h">
+      <Filter>Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogs\DialogPID.h">
+      <Filter>Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogs\DialogTarget.h">
+      <Filter>Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD\FlightDirector.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD\HUD.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD\HUDCompass.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD\HUDDrawer.hpp">
+      <Filter>HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="BODYPHYS.h" />
+    <ClInclude Include="BODYPHYS_ORB.h" />
+    <ClInclude Include="DirectAscentPage.hpp" />
+    <ClInclude Include="EnergyPitchProgram.hpp" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="GreatCircle.h" />
+    <ClInclude Include="LaunchCompass.h" />
+    <ClInclude Include="LaunchMFD.h" />
+    <ClInclude Include="localisation.h" />
+    <ClInclude Include="..\libMFD\MFDButtonPage.hpp" />
+    <ClInclude Include="MFDButtonPageLaunchMFD.hpp" />
+    <ClInclude Include="MFDPage.h" />
+    <ClInclude Include="..\libMFD\MFDTextCalculator.hpp" />
+    <ClInclude Include="MovementParams.h" />
+    <ClInclude Include="..\libMFD\MyDC.h" />
+    <ClInclude Include="PitchGuidance.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ShipVariables.h" />
+    <ClInclude Include="Stage.h" />
+    <ClInclude Include="StagingContainer.hpp" />
+    <ClInclude Include="StagingDetector.hpp" />
+    <ClInclude Include="TGTPARAM.h" />
+    <ClInclude Include="TGTPARAM_ORB.h" />
+    <ClInclude Include="..\libWin\WinAPIFileUtils.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LaunchMFD.rc" />
+  </ItemGroup>
+</Project>
