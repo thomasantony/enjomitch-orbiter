@@ -50,8 +50,6 @@ MFDData * PluginBurnTime::ConstructNewMFDData( VESSEL * vessel )
 void PluginBurnTime::UpdateClientPreStep( MFDData * data, const SimulationTimeData & timeData )
 {
     MFDDataBurnTime * dataBurnTime = static_cast<MFDDataBurnTime *>( data );
-
-    dataBurnTime->ENow=timeData.GetSimT();
     dataBurnTime->Update();
 }
 

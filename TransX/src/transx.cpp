@@ -34,6 +34,7 @@
 #include "shiplist.h"
 #include "transx.h"
 #include "defines.h"
+#include <Orbiter/SketchpadDummy.h>
 
 int TransxMFD::MfdCount=0;
 
@@ -74,6 +75,15 @@ bool TransxMFD::Update (oapi::Sketchpad *sketchpad)
 #else
 #error
 #endif
+    static bool first = true;
+    static EnjoLib::SketchpadDummy sketchpadDummy;
+    if (first)
+    {
+        // This should prevent freezes on startup
+        // due to uninitialized values which shouldn't really be displayed
+        sketchpad = &sketchpadDummy; // hence, using a dummy
+        first = false;
+    }
 
 	oapi::Pen *pen = GetDefaultPen (TransXFunction::Green); // Retrieves a default MFD pen
 	valid=viewstate->doupdate(sketchpad,W,H,this);

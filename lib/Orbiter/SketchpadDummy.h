@@ -3,6 +3,8 @@
 
 #include <OrbiterSDK.h>
 
+namespace EnjoLib
+{
 class SketchpadDummy : public oapi::Sketchpad
 {
     public:
@@ -35,5 +37,5 @@ class SketchpadDummy : public oapi::Sketchpad
     protected:
     private:
 };
-
+}
 #endif // SKETCHPADDUMMY_H

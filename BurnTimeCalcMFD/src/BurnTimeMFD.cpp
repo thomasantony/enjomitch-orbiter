@@ -152,6 +152,7 @@ BurnTimeMFD::~BurnTimeMFD ()
 
 bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 {
+	m_data->Update();
   unsigned int thrustercount = 0;
 
   Title (skp, "BurnTimeMFD");

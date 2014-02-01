@@ -181,6 +181,8 @@
 		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
 		<Unit filename="../lib/Orbiter/Engine.cpp" />
 		<Unit filename="../lib/Orbiter/Engine.hpp" />
+		<Unit filename="../lib/Orbiter/SketchpadDummy.cpp" />
+		<Unit filename="../lib/Orbiter/SketchpadDummy.h" />
 		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.cpp" />
 		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.hpp" />
 		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />

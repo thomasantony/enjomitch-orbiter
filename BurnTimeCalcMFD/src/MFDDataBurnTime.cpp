@@ -34,6 +34,7 @@ MFDDataBurnTime::~MFDDataBurnTime()
 
 void MFDDataBurnTime::Update()
 {
+    ENow=oapiGetSimTime();
     if (!IsEngaged)
     {
         dvOld = 0;
