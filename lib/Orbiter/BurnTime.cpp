@@ -102,6 +102,6 @@ double BurnTime::GetStackMass(VESSEL *vessel)
 	// Get the total mass of all the vessels in the list.
 	double stackMass = 0.0;
 	for(vector<VESSEL*>::iterator it = stack.begin(); it != stack.end(); it++)
-		stackMass += ((VESSEL*)*it)->GetMass();
+		stackMass += (*it)->GetMass();
 	return stackMass;
 }

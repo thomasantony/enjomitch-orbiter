@@ -235,16 +235,7 @@ void MFDDataBurnTime::CalcIBurn(VESSEL* vessel)
 
   // me = vessel->GetEmptyMass();
   THGROUP_TYPE thgt = groups[Sel_eng];
-  THGROUP_HANDLE thgh = vessel->GetThrusterGroupHandle (thgt);
-  if (thgh == NULL)
-  {
-	  me = 0;
-	  IBurn = 0;
-	  IBurn2 = 0;
-	  return;
-  }
-
-  THRUSTER_HANDLE th = vessel->GetGroupThruster(thgh,0);
+  THRUSTER_HANDLE th = vessel->GetGroupThruster(thgt,0);
   if (th == NULL)
   {
 	  me = 0;
@@ -265,12 +256,12 @@ void MFDDataBurnTime::CalcIBurn(VESSEL* vessel)
   if (includeRCS)
   {
     mrcs = 0;
-    if (THGROUP_HANDLE thghRCS = vessel->GetThrusterGroupHandle (THGROUP_ATT_PITCHUP))
-      if (THRUSTER_HANDLE thRCS = vessel->GetGroupThruster(thghRCS,0))
+      if (THRUSTER_HANDLE thRCS = vessel->GetGroupThruster(THGROUP_ATT_PITCHUP,0)) // Any RCS group
         if (PROPELLANT_HANDLE phRCS = vessel->GetThrusterResource(thRCS))
-            mrcs = vessel->GetPropellantMass(phRCS);
-    }
-    else
+            if (phRCS != ph) // If the selected engine type is not RCS, don't count it twice
+                mrcs = vessel->GetPropellantMass(phRCS);
+   }
+   else
       mrcs = 0;
 
   double chosenEnginesFuel = vessel->GetPropellantMass(ph);

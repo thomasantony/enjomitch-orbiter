@@ -28,8 +28,9 @@ approximation, however.
 
 CHANGES IN v2.7
 ===============
-* Resolved freeze on startup due to uninitialized variables
-* Resolved craft's "orbit freeze" when the MFD is closed and Time Acc. >= 10000 is applied
+* Resolved sporadic freeze on startup due to displaying of uninitialized variables
+* Resolved craft's "orbit freeze" bug when the MFD was closed and Time Acc. >= 10000 was applied
+* Added new button - RCS for including RCS fuel in total DV calculations
 
 CHANGES IN v2.6
 ===============
