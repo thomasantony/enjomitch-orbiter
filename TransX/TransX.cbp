@@ -179,6 +179,8 @@
 		<Unit filename="../lib/Math/VectorMath.hpp" />
 		<Unit filename="../lib/Orbiter/AngularAcc.cpp" />
 		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
+		<Unit filename="../lib/Orbiter/BurnTime.cpp" />
+		<Unit filename="../lib/Orbiter/BurnTime.hpp" />
 		<Unit filename="../lib/Orbiter/Engine.cpp" />
 		<Unit filename="../lib/Orbiter/Engine.hpp" />
 		<Unit filename="../lib/Orbiter/SketchpadDummy.cpp" />

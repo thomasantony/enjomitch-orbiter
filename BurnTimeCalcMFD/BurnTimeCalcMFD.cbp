@@ -141,6 +141,8 @@
 		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.cpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.hpp" />
+		<Unit filename="../lib/Orbiter/BurnTime.cpp" />
+		<Unit filename="../lib/Orbiter/BurnTime.hpp" />
 		<Unit filename="src/BurnTimeMFD.cpp" />
 		<Unit filename="src/BurnTimeMFD.h" />
 		<Unit filename="src/MFDButtonPageBTC.cpp" />
