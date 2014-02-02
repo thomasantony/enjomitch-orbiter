@@ -16,10 +16,10 @@ public:
   char *ButtonLabel (int bt);
   bool ConsumeButton(int bt, int event);
 
-  void PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double mult, double value, int x, int l);
-  void PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double value, int x, int l);
-  void PrintEngUnit(oapi::Sketchpad * skp, char* format, char* unitSI, char* unitUS, double multSI, double multUS, double value, int x, int l);
-  void PrintString(oapi::Sketchpad * skp, char* format, const char* value, int x, int l);
+  void PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double mult, double value, int x, int l);
+  void PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double value, int x, int l);
+  void PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* unitSI, const char* unitUS, double multSI, double multUS, double value, int x, int l);
+  void PrintString(oapi::Sketchpad * skp, const char* format, const char* value, int x, int l);
   void PrintString(oapi::Sketchpad * skp, const char* format, int x, int l);
 
 
@@ -42,6 +42,7 @@ public:
     void HandlerSwitchSI_US();
     void HandlerSelectEngine();
     void HandlerEnterExtraFuel();
+    void HandlerIncludeRCSFuel();
     void HandlerGetFromTransX();
 protected:
 

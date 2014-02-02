@@ -23,6 +23,7 @@
 #include <windows.h>
 #include <cstdio>
 #include <cmath>
+#include <string>
 #include "orbitersdk.h"
 
 #include "mfd.h"
@@ -75,10 +76,13 @@ bool TransxMFD::Update (oapi::Sketchpad *sketchpad)
 #else
 #error
 #endif
+    int linespacing=H/24;
     static bool first = true;
     static EnjoLib::SketchpadDummy sketchpadDummy;
     if (first)
     {
+        std::string init = "Initializing";
+        sketchpad->Text(0, linespacing*10, init.c_str(), init.length());
         // This should prevent freezes on startup
         // due to uninitialized values which shouldn't really be displayed
         sketchpad = &sketchpadDummy; // hence, using a dummy
@@ -91,12 +95,10 @@ bool TransxMFD::Update (oapi::Sketchpad *sketchpad)
 	sketchpad->SetPen(pen);
 	if (!valid)
 		return false;
-	int linespacing=H/24;
 
 	if (debug!=0)
 	{
 		char buffer[20];
-
 		int length=sprintf(buffer,"Debug:%g",debug);
 		sketchpad->Text(0, linespacing*22, buffer, length);
 	}

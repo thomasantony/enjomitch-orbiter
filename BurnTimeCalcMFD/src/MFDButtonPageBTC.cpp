@@ -14,7 +14,8 @@ MFDButtonPageBTC::MFDButtonPageBTC()
         {"Arm Autocirc", 0, 'C'},
         {"Select engine", 0, 'E'},
         {"Get from TransX", 0, 'G'},
-        {"Enter extra fuel", 0, 'X'}
+        {"Enter extra fuel", 0, 'X'},
+        {"Include RCS fuel", 0, 'I'}
     };
     RegisterPage(mnu1, sizeof(mnu1) / sizeof(MFDBUTTONMENU));
 
@@ -30,6 +31,7 @@ MFDButtonPageBTC::MFDButtonPageBTC()
     RegisterFunction("ENG", OAPI_KEY_E, &BurnTimeMFD::HandlerSelectEngine);
     RegisterFunction("GET", OAPI_KEY_G, &BurnTimeMFD::HandlerGetFromTransX);
     RegisterFunction("EXT", OAPI_KEY_X, &BurnTimeMFD::HandlerEnterExtraFuel);
+    RegisterFunction("RCS", OAPI_KEY_I, &BurnTimeMFD::HandlerIncludeRCSFuel);
 
 // {"DV","DT","OS","ST","RST", "MD", "ARM","BRN", "CIR","UNT","ENG","EXT"};
     static const MFDBUTTONMENU mnu2[] = {

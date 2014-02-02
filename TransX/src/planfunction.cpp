@@ -31,6 +31,7 @@
 #include "planfunction.h"
 #include "TransXFunction.h"
 #include "MessagingSender.h"
+#include <Orbiter/BurnTime.hpp>
 
 bool minorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 {
@@ -401,13 +402,13 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
 
     // Send out a message for BTC MFD to recover it
 	MessagingSender().SendDouble("dv", deltav);
-    MessagingSender().SendDouble("TBurn", timefromstamp);
+    MessagingSender().SendDouble("InstantaneousBurnTime", timefromstamp);
 	//Only display if timestamp is current
 	if (fabs(craft.gettimestamp()-oapiGetSimTime())<1)
 	{
 		TextShow(sketchpad,"T to Pe:",0,pos,timefromstamp);
 		pos+=linespacing;
-		TextShow(sketchpad,"Begin Burn:",0,pos,GetBurnStart(pV, timefromstamp, deltav));
+		TextShow(sketchpad,"Begin Burn:",0,pos,BurnTime().GetBurnStart(pV, THGROUP_MAIN, timefromstamp, deltav));
 		pos+=linespacing;
 		double angle=180/PI*acos(cosangle(planpos,craftpos));
 		TextShow(sketchpad,"Ang. to Pe:",0,pos,angle);
@@ -445,7 +446,7 @@ void slingshot::wordupdate(oapi::Sketchpad *sketchpad, int width, int height, ba
 		pos+=linespacing;
 		OBJHANDLE hcraft=base->gethcraft();
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
-		TextShow(sketchpad,"Begin Burn",0,pos,GetBurnStart(pV, timetope, (outplanpevel-craftreqvel)));
+		TextShow(sketchpad,"Begin Burn",0,pos,BurnTime().GetBurnStart(pV, THGROUP_MAIN, timetope, (outplanpevel-craftreqvel)));
 		pos+=linespacing;
 	}
 }

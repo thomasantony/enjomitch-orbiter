@@ -33,8 +33,6 @@ double length2(const VECTOR3 &vector);
 void getinvrotmatrix(VECTOR3 arot, MATRIX3 *invrotmatrix);
 MATRIX3 getinvmatrix(const MATRIX3 mat);
 double getdeterminant(const MATRIX3 mat);
-double GetBurnTime(VESSEL *vessel, double deltaV);
-double GetBurnStart(VESSEL *vessel, double instantaneousBurnTime, double deltaV);
 VECTOR3 GetRotationToTarget(VESSEL * vessel, const VECTOR3 & target);
 
 // Standard formatting function

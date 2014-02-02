@@ -14,7 +14,7 @@ class MFDDataBurnTime : public EnjoLib::MFDGoodies::MFDData
         void CalcCircular();
         void CalcApses(VESSEL* vessel);
         void CalcIBurn(VESSEL* vessel);
-        double GetStackMass(VESSEL* vessel);
+        //double GetStackMass(VESSEL* vessel);
 
         static const int numEngines;
         static const THGROUP_TYPE groups[6];
@@ -32,13 +32,13 @@ class MFDDataBurnTime : public EnjoLib::MFDGoodies::MFDData
 
       int MySoundId;
       int Sel_eng;
-      double dv, mextra;
+      double dv, mextra, mrcs;
       bool IsEngaged,IsArmed,IsCircular;
         double ECutoff,IManual,EReference;
         double TDist;
         double sOffset;
 
-
+        bool includeRCS;
 
   int dspunit; //0 - SI
             //1 - US

@@ -774,6 +774,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\lib\Orbiter\SketchpadDummy.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SketchpadDummy.h"
+					>
+				</File>
+				<File
 					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.cpp"
 					>
 				</File>

@@ -5,8 +5,9 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v1.5 (C) 2007 by kwan3217         -- ??
      BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
 	 BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
-	 BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo)
-	 BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo)
+	 BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+	 BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+	 BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
 
 
 BurnTimeCalcMFD (BTC) is a companion for TransX or any other transfer MFD that
@@ -24,6 +25,11 @@ burn.
 I've found it reliably gets me into a transfer with less than 1 degree offset
 between semi major axes using DeltaGlider and Fregat. Obviously it's only an
 approximation, however.
+
+CHANGES IN v2.7
+===============
+* Resolved freeze on startup due to uninitialized variables
+* Resolved craft's "orbit freeze" when the MFD is closed and Time Acc. >= 10000 is applied
 
 CHANGES IN v2.6
 ===============

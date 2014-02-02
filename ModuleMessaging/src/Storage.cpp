@@ -27,6 +27,7 @@
 
 #include "Storage.hpp"
 #include "IMessagingSender.hpp"
+#include <algorithm>
 
 using namespace EnjoLib;
 using namespace std;
@@ -50,7 +51,10 @@ std::string Storage::MakeID(const IMessagingSender & sender, const char * varNam
 
 std::string Storage::MakeID(const char * moduleName, const char * varName)
 {
-    return std::string() + moduleName + "-" + varName;
+    string moduleWithVar = string() + moduleName + "-" + varName;
+    // Make the ID lower case
+    std::transform(moduleWithVar.begin(), moduleWithVar.end(), moduleWithVar.begin(), ::tolower);
+    return moduleWithVar;
 }
 
 void Storage::StoreBool(const IMessagingSender & sender, const char * varName, bool var)

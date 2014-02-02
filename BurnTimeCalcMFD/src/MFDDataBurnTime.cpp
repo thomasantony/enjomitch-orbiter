@@ -1,6 +1,7 @@
 #include "MFDDataBurnTime.h"
 #include "globals.h"
 #include <OrbiterSdk.h>
+#include <Orbiter/BurnTime.hpp>
 
 const int MFDDataBurnTime::numEngines = 6;
 const THGROUP_TYPE MFDDataBurnTime::groups[numEngines]={THGROUP_MAIN,THGROUP_HOVER,THGROUP_RETRO, THGROUP_ATT_FORWARD, THGROUP_ATT_UP, THGROUP_ATT_BACK};
@@ -11,10 +12,11 @@ MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
 {
 	 mul=1.0;
 	 dv = 0.0;
-	 mextra = 0.0;
+	 mextra = mrcs = 0.0;
 	 ECutoff=0;
 	 IsEngaged=false;
 	 IsArmed=false;
+	 includeRCS = false;
 	 mode=BURNMODE_PERI;
 	 IManual=0;
 	 IsCircular=false;
@@ -159,23 +161,26 @@ void getGroupThrustParm(VESSEL* vessel, THGROUP_TYPE group, double *F, double *i
 
 }
 
+
 double RocketEqnT(double dv, double m, double F, double isp) {
 
   return ( dv * m / (2.0 * F ) ) * ( 1 + exp( -1.0 * dv / isp ) );
 }
 
+
 void MFDDataBurnTime::CalcApses(VESSEL* vessel) {
   ELEMENTS el;
-  double MJDRef;
-  OBJHANDLE Ref;
-  Ref=vessel->GetElements(el,MJDRef);
+  ORBITPARAM op;
+  OBJHANDLE Ref = vessel->GetGravityRef();
+  vessel->GetElements(Ref, el, &op);
+
   e=el.e;
   a=el.a;
   mu=oapiGetMass(Ref)*GGRAV;
   double n=sqrt((e<1?1:-1)*mu/(a*a*a));
   double M=el.L-el.omegab;
   double MJD=oapiTime2MJD(oapiGetSimTime());
-  M+=n*(MJD-MJDRef)*86400;
+
   if(e<1) {
     while(M<0)M+=2*PI;
     while(M>2*PI)M-=2*PI;
@@ -221,16 +226,16 @@ void MFDDataBurnTime::CalcCircular() {
 
 void MFDDataBurnTime::CalcIBurn(VESSEL* vessel)
 {
-
+    BurnTime bt;
   getGroupThrustParm(vessel,groups[Sel_eng],&F,&isp);
 //vessel = oapiGetFocusInterface();
   mv = vessel->GetMass();
-  ms = GetStackMass(vessel);
+  ms = bt.GetStackMass(vessel);
   //ms = vessel->GetMass();
 
   // me = vessel->GetEmptyMass();
-
-  THGROUP_HANDLE thgh = vessel->GetThrusterGroupHandle (groups[Sel_eng]);
+  THGROUP_TYPE thgt = groups[Sel_eng];
+  THGROUP_HANDLE thgh = vessel->GetThrusterGroupHandle (thgt);
   if (thgh == NULL)
   {
 	  me = 0;
@@ -257,24 +262,33 @@ void MFDDataBurnTime::CalcIBurn(VESSEL* vessel)
 	  return;
   }
 
-  mextra = mextra;
+  if (includeRCS)
+  {
+    mrcs = 0;
+    if (THGROUP_HANDLE thghRCS = vessel->GetThrusterGroupHandle (THGROUP_ATT_PITCHUP))
+      if (THRUSTER_HANDLE thRCS = vessel->GetGroupThruster(thghRCS,0))
+        if (PROPELLANT_HANDLE phRCS = vessel->GetThrusterResource(thRCS))
+            mrcs = vessel->GetPropellantMass(phRCS);
+    }
+    else
+      mrcs = 0;
 
-  mfuel = vessel->GetPropellantMass(ph) + mextra;
+  double chosenEnginesFuel = vessel->GetPropellantMass(ph);
+
+  mfuel = chosenEnginesFuel + mextra + mrcs;
 //if (mdot!=0) TTot=(mv-me)/mdot;
-  me = ms - mfuel;// + vessel->GetPropellantMaxMass(ph);
+  me = vessel->GetEmptyMass();
 
   if (mode==BURNMODE_TGT)
   {
+    double dvloc;
     if (dvcurr>dv)
-	{
-      IBurn = RocketEqnT((((dvcurr-dv)/2)+dv),ms,F,isp);
-      IBurn2 = RocketEqnT((((dvcurr-dv)/2)+dv)/2,ms,F,isp);
-	}
+	    dvloc = (dvcurr-dv)/2 + dv;
 	else
-	{
-      IBurn = RocketEqnT((((dv-dvcurr)/2)+dvcurr),ms,F,isp);
-      IBurn2 = RocketEqnT((((dv-dvcurr)/2)+dvcurr)/2,ms,F,isp);
-	}
+	    dvloc = (dv-dvcurr)/2 + dvcurr;
+
+    IBurn = RocketEqnT(dvloc,ms,F,isp);
+    IBurn2 = RocketEqnT(dvloc/2,ms,F,isp);
   }
   else
   {
@@ -283,6 +297,42 @@ void MFDDataBurnTime::CalcIBurn(VESSEL* vessel)
   }
 }
 
+void MFDDataBurnTime::ArmAutoBurn()
+{
+  switch(mode)
+  {
+    case BURNMODE_PERI:
+      IReference=IPeri;
+      break;
+    case BURNMODE_APO:
+      IReference=IApo;
+      break;
+    case BURNMODE_MAN:
+      IReference=IManual;
+      break;
+	case BURNMODE_TGT:
+
+	  if (dv == 0)
+	  {
+		  dv = 0;
+		  IReference=0;
+		  EReference=0;
+	  }
+	  else
+	  {
+
+	    IReference=(TDist-sOffset)/(dv);
+	  }
+
+	break;
+		  //HIER
+
+  }
+  IsArmed=true;
+  EReference=oapiGetSimTime()+IReference;
+}
+
+/*
 double MFDDataBurnTime::GetStackMass(VESSEL* vessel) {
   //We don't have to worry about attachments. They either
   //are compensated for in the main vessel code, or arent,
@@ -323,38 +373,4 @@ double MFDDataBurnTime::GetStackMass(VESSEL* vessel) {
   }
   return totalMass;
 }
-
-void MFDDataBurnTime::ArmAutoBurn()
-{
-  switch(mode)
-  {
-    case BURNMODE_PERI:
-      IReference=IPeri;
-      break;
-    case BURNMODE_APO:
-      IReference=IApo;
-      break;
-    case BURNMODE_MAN:
-      IReference=IManual;
-      break;
-	case BURNMODE_TGT:
-
-	  if (dv == 0)
-	  {
-		  dv = 0;
-		  IReference=0;
-		  EReference=0;
-	  }
-	  else
-	  {
-
-	    IReference=(TDist-sOffset)/(dv);
-	  }
-
-	break;
-		  //HIER
-
-  }
-  IsArmed=true;
-  EReference=oapiGetSimTime()+IReference;
-}
+*/

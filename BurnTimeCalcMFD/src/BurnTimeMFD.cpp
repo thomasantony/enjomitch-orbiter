@@ -103,7 +103,7 @@ int DisplayEngUnit(char* buffer, char* pattern,double x) {
   }
 }
 
-void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* unitSI, char* unitUS, double multSI, double multUS, double value, int x, int l) {
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* unitSI, const char* unitUS, double multSI, double multUS, double value, int x, int l) {
   char buf[256];
   char label[256];
   sprintf(label,"%s%%c%s",format,m_data->dspunit==0?unitSI:unitUS);
@@ -111,7 +111,7 @@ void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* unitSI
   skp->Text(x,line(l),buf,len);
 }
 
-void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double mult, double value, int x, int l) {
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double mult, double value, int x, int l) {
   char buf[256];
   char label[256];
   sprintf(label,"%s%%c%s",format,units);
@@ -119,7 +119,7 @@ void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units,
   skp->Text(x,line(l),buf,len);
 }
 
-void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units, double value, int x, int l) {
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double value, int x, int l) {
   char buf[256];
   char label[256];
   sprintf(label,"%s%%c%s",format,units);
@@ -127,7 +127,7 @@ void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, char* format, char* units,
   skp->Text(x,line(l),buf,len);
 }
 
-void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, char* format, const char* value, int x, int l) {
+void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, const char* value, int x, int l) {
   char buf[256];
   sprintf(buf,format,value);
   skp->Text(x,line(l),buf,strlen(buf));
@@ -167,7 +167,6 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
   int line6 = 8;
   int line7 = 9;
 
-
   int line10=10;
   int line11=11;
   int line12=12;
@@ -178,8 +177,6 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
   int line17=17;
   int line18=18;
   int line19=19;
-
-
 
   skp->SetTextColor(GRAY);
 
@@ -267,7 +264,8 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	}
 
 	skp->SetTextColor( ORANGE );
-	PrintEngUnit(skp,"Estimate Total dV:     %7.3f","m/s","ft/s",1,mToft, m_data->maxdv,5,line7);
+	std::string totalDV = std::string("Estimate Total dV") + (m_data->includeRCS ? "+RCS: " : ":     ") + "%7.3f";
+	PrintEngUnit(skp,totalDV.c_str()                ,"m/s","ft/s",1,mToft, m_data->maxdv,5,line7);
 	PrintEngUnit(skp,"Total burn time:       %7.3f","s", m_data->TTot,5,line6);
 	skp->SetTextColor( BLUE );
 	PrintEngUnit(skp,"Current vehicle mass:  %7.3f","g","lbm", 1000,gTolb,m_data->mv,5,line11);
@@ -545,11 +543,17 @@ void BurnTimeMFD::HandlerEnterExtraFuel()
 	  oapiOpenInputBox("Enter extra fuel mass in kilograms",ObjectInput,0,20, (void*)this);
 }
 
+void BurnTimeMFD::HandlerIncludeRCSFuel()
+{
+    m_data->includeRCS = ! m_data->includeRCS;
+}
+
 void BurnTimeMFD::HandlerGetFromTransX()
 {
     using namespace EnjoLib;
-    Result<double> dvRes = ModuleMessaging().GetDouble("TransX", "dv");
-    Result<double> IManualRes = ModuleMessaging().GetDouble("TransX", "TBurn");
+    ModuleMessaging mm;
+    Result<double> dvRes = mm.GetDouble("TransX", "dv");
+    Result<double> IManualRes = mm.GetDouble("TransX", "InstantaneousBurnTime");
     if (dvRes.isSuccess && IManualRes.isSuccess) // Are both values exposed?
     {
         m_data->IsArmed=m_data->IsEngaged=false;
