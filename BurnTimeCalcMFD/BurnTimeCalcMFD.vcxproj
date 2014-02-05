@@ -278,6 +278,7 @@
     <ClCompile Include="..\libMFD\multipleVesselsMFD\MFDData.cpp" />
     <ClCompile Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp" />
     <ClCompile Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp" />
+    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp" />
     <ClCompile Include="src\BurnTimeMFD.cpp" />
     <ClCompile Include="src\MFDButtonPageBTC.cpp" />
     <ClCompile Include="src\MFDDataBurnTime.cpp" />
@@ -288,6 +289,7 @@
     <ClInclude Include="..\libMFD\multipleVesselsMFD\MFDData.hpp" />
     <ClInclude Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp" />
     <ClInclude Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp" />
+    <ClInclude Include="..\lib\Orbiter\BurnTime.hpp" />
     <ClInclude Include="src\BurnTimeMFD.h" />
     <ClInclude Include="src\globals.h" />
     <ClInclude Include="src\MFDButtonPageBTC.h" />

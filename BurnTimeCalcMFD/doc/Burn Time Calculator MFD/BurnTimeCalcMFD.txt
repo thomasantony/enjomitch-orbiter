@@ -26,89 +26,6 @@ I've found it reliably gets me into a transfer with less than 1 degree offset
 between semi major axes using DeltaGlider and Fregat. Obviously it's only an
 approximation, however.
 
-CHANGES IN v2.7
-===============
-* Resolved sporadic freeze on startup due to displaying of uninitialized variables
-* Resolved craft's "orbit freeze" bug when the MFD was closed and Time Acc. >= 10000 was applied
-* Added new button - RCS for including RCS fuel in total DV calculations
-
-CHANGES IN v2.6
-===============
-* Resolved CTDs when switching the MFD on and off
-* Simultaneous multiple vessels support (can be pre-programmed!) thanks to MultipleVesselsMFD
-* Added RCS Forward, Up, and Retro "engine types"
-
-CHANGES IN v2.5
-===============
-* Communicating directly with TransX via ModuleMessaging library. Use SHIFT_G or GET button, when TransX displays DV and time.
-* Added another, extensible button page thanks to MFDButtonPage.
-
-CHANGES IN v2.4
-===============
-* EXT button, where you enter the extra fuel mass you are carrying in kg. It may be RCS or an External fuel tank or even the total. 
-* Slightly different colors for improved visuals.
-
-CHANGES IN v2.0
-===============
-* New interface for inputting vars (via inputbox)
-* Burn can be start related to the distance to a target object
-* New autoburnmode "burn by target distance" added
-
-CHANGES IN v1.5
-===============
-* Some code cleanup
-* Bug where engine group existed but was not connected to a propellant 
-  resource - FIXED
-* Works in SI or feet (for use with Space Shuttle)
-
-CHANGES IN v1.42
-===============
-* Vars will be stored by chanching View or MFD. Use "Reset" to restart
-* New Var: Rel. DeltaS distance will be indicate the relativ needed distance 
-  to get DV to Zero (Relativ to an object where DeltaV == MFD-entered DeltaV)
-
-CHANGES IN v1.41
-===============
-* CTD-Crash-Bug fixed when engine is not available at some spaceship-Add-Ons
-* MFD is now displaying if the enigine is available or not
-
-CHANGES IN v1.4
-===============
-* You can select the Engine you want to use: Main, hover or retro.
-
-CHANGES IN v1.3
-===============
-* Compiled to work with Orbiter 060504 (only!)
-* Auto Circularization (Autocirc) - Automatically calculate the timing and
-  magnitude of the burn to circularize the orbit at either periapse or 
-  apoapse.
-* Compensation for non-unity propellant resource efficiency (necessary for
-  precision maneuvers in the DeltaGlider-III)
-* Accounts for entire docked stack mass when calculating burn timing. Note
-  that this does not mean it will compensate for off-axis thrust or anything
-  like that, so moving ISS will still take effort with thrust vectoring.
-* During a burn, amount of DeltaV to go is displayed, in a continuous 
-  countdown manner
-* Manual burn time now counts down while waiting for burn start
-* Timing for a burn at an apse (and magnitude for an Autocirc) is now 
-  continually recalculated. This should help when using non-spherical gravity.
-* Documentation fix! Timing modes and SHIFT_M are documented. Sorry about that.
-
-CHANGES IN v1.2
-===============
-Many and numerous. 
-
-* Compiled to work with Orbiter 050216
-* Removed usage of MaverickTech's clever hacks, since the Orbiter API now 
-  directly supports what MavTech.cpp was needed for
-* Added Autoburn - The MFD can now automatically execute the burn. You can
-  program it to execute the burn at periapse, apoapse, or some settable
-  time in the future. It executes the burn such that half the dV is before
-  the time mark, and half is after.
-* Another variable is added, the manual delay timing. Variables are now 
-  adjusted in a manner more similar to TransX, with the -+ pair changing
-  the variable, [] changing the coarseness of the -+ change, and <> 
-  switching variables.
 
 LIMITATIONS
 ===========
@@ -117,19 +34,6 @@ BTC assumes you will be using 100% throttle for the burn.
 
 BTC cannot take MULTISTAGE burns into account. That is, you cannot change your
 empty weight during the burn.
-
-Bad Things might happen if for some reason you bring up the MFD in both
-MFD windows, or in two different spacecraft at the same time.
-
-BTC resets itself in DeltaGliderIII whenever you switch from the main panel
-to either of the other panels, and back.
-
-BTC has to poke around in the internals of the Thruster memory structure
-to get at the propellant resource handle for a thruster, to get its 
-efficiency. This has ONLY been tested against Orbiter 060504 and is
-not guaranteed to work with any later version (not as if anything
-else in this program is guaranteed). Martin, we need a new function
-vessel->GetThrusterPropResource(th);
 
 INSTALLATION
 ============
@@ -151,11 +55,14 @@ is bright yellow. When it is only the active mode, it is dim yellow. When
 it is only the current variable, it is white, and when it is neither, it
 is gray.
 
-Bring up TransX with the insertion burn screen properly configured. You will
+Bring up TransX with the Escape Plan properly configured. You will
 be given a required dV (delta-velocity) and PeT (time to pereiapsis). Bring
-up BTC. 
+up BTC.
 
-Use SHIFT_G to capture the values. If the time is negative, it will be ignored.
+Use SHIFT_G (or GET button) to capture the values. If the time is negative, 
+it will be ignored.
+
+You can also capture TransX' Manoeuvre mode variables with SHIFT_G.
 
 If you want to do an Autoburn, use SHIFT_PERIOD to switch variables. Set the 
 manual delay to something less than the current PeT shown in TransX. When
@@ -255,12 +162,12 @@ C: Calculate a circularization maneuver at the currently selected
 L: Fire the engines for the full time calculated, starting
    right now.
 
-
-(new @ 1.4)
 E: Select Engine: Main, Hover or Retro
 
-(new @ 1.4)
 U: Switch units: SI or US
+
+(new from 2.5)
+G: Get values from TransX' Escape Plan or Manoeuvre Mode
 
 ==============
 v1.1 COPYRIGHT

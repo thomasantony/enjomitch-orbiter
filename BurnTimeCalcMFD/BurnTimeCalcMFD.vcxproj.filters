@@ -7,6 +7,12 @@
     <Filter Include="MultipleVessels">
       <UniqueIdentifier>{d157aa41-39b7-4318-a937-0d4b5c751650}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EnjoLib">
+      <UniqueIdentifier>{2c3c311b-f2ee-408a-9361-541d31d00846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnjoLib\Orbiter">
+      <UniqueIdentifier>{5e3d84b1-f25b-4328-9887-d284c6f9487f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libMFD\MFDButtonPage.cpp">
@@ -25,6 +31,9 @@
     <ClCompile Include="src\MFDButtonPageBTC.cpp" />
     <ClCompile Include="src\MFDDataBurnTime.cpp" />
     <ClCompile Include="src\PluginBurnTime.cpp" />
+    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libMFD\MFDButtonPage.hpp">
@@ -44,5 +53,8 @@
     <ClInclude Include="src\MFDButtonPageBTC.h" />
     <ClInclude Include="src\MFDDataBurnTime.h" />
     <ClInclude Include="src\PluginBurnTime.h" />
+    <ClInclude Include="..\lib\Orbiter\BurnTime.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -408,6 +408,8 @@
     <ClCompile Include="..\lib\Math\SimpsonFunctor.cpp" />
     <ClCompile Include="..\lib\Math\SpaceMathBody.cpp" />
     <ClCompile Include="..\lib\Math\VectorMath.cpp" />
+    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp" />
+    <ClCompile Include="..\lib\Orbiter\SketchpadDummy.cpp" />
     <ClCompile Include="..\lib\Systems\Geo.cpp" />
     <ClCompile Include="..\lib\Systems\Point.cpp" />
     <ClCompile Include="..\lib\Systems\Spherical.cpp" />
@@ -461,6 +463,8 @@
     <ClInclude Include="..\lib\Math\SimpsonFunctor.hpp" />
     <ClInclude Include="..\lib\Math\SpaceMathBody.hpp" />
     <ClInclude Include="..\lib\Math\VectorMath.hpp" />
+    <ClInclude Include="..\lib\Orbiter\BurnTime.hpp" />
+    <ClInclude Include="..\lib\Orbiter\SketchpadDummy.h" />
     <ClInclude Include="..\lib\Systems\Geo.hpp" />
     <ClInclude Include="..\lib\Systems\Point.hpp" />
     <ClInclude Include="..\lib\Systems\Spherical.hpp" />

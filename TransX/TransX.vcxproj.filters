@@ -130,6 +130,12 @@
     <ClCompile Include="src\TransXFunction.cpp" />
     <ClCompile Include="src\transxstate.cpp" />
     <ClCompile Include="src\viewstate.cpp" />
+    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Orbiter\SketchpadDummy.cpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Math\BinSearchOpti.hpp">
@@ -253,6 +259,12 @@
     <ClInclude Include="src\TransXFunction.h" />
     <ClInclude Include="src\transxstate.h" />
     <ClInclude Include="src\viewstate.h" />
+    <ClInclude Include="..\lib\Orbiter\BurnTime.hpp">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Orbiter\SketchpadDummy.h">
+      <Filter>EnjoLib\Orbiter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\TransX.rc" />

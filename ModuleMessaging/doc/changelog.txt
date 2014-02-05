@@ -1,4 +1,4 @@
-v. 1.1 	02.02.2014
+v. 1.1 	05.02.2014
 - changed license to LGPL
 - made modules' and variables' IDs case insensitive
 - no client addons recompilation needed
