@@ -495,7 +495,7 @@ bool transxstate::doupdate(oapi::Sketchpad *sketchpad, int tw, int th,unsigned i
 	}
 	else
 	{
-		cvarfunction->processvisiblevars();//Update any visibility changes
+		cvarfunction->processvisiblevars(currview);//Update any visibility changes
 		cfunction->doupdate(sketchpad,tw,th,currview);
 	}
 	char buffer[20];

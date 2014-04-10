@@ -15,6 +15,7 @@ Autopilot::Autopilot()
 , m_pidAPSpaceX(0.8, 5)
 , m_pidAPSpaceY(m_pidAPSpaceX)
 , m_pidAPSpaceBank(1, 12)
+, m_controlledVessel(NULL)
 {
     m_isEnabled = false;
 }
@@ -31,7 +32,7 @@ void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
         bool isDVVerySmall = targetLength < 1.0; // Prevent rolling 180 degrees around
         bool isDVIncreasing = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
         if (isDVIncreasing || isDVVerySmall)
-            MECO(oapiGetFocusInterface());
+            MECO(GetVessel());
     }
     m_targetLengthPrev = targetLength;
 }
@@ -39,6 +40,11 @@ void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
 void Autopilot::Disable()
 {
     SetTargetVector(_V(0,0,0));
+}
+
+VESSEL * Autopilot::GetVessel()
+{
+    return m_controlledVessel == NULL ? NULL : oapiGetVesselInterface(m_controlledVessel);
 }
 
 void Autopilot::Update(double SimDT)
@@ -51,14 +57,17 @@ void Autopilot::Update(double SimDT)
         //sprintf(oapiDebugString(), "TransX: AUTO rotation disabled. Press SHIFT+C in target view to enable");
         return;
     }
-    VESSEL * vessel = oapiGetFocusInterface();
-    if (!vessel)
-        return;
 
     if (!IsEnabled())
     {
         Enable(true);
     }
+    VESSEL * vessel = GetVessel();
+    if (!vessel)
+        return;
+    if (vessel != oapiGetFocusInterface())
+        return; // trying to control other ship (the focused one, but the one which was programmed)
+
     vessel->DeactivateNavmode( NAVMODE_PROGRADE );
     vessel->DeactivateNavmode( NAVMODE_RETROGRADE );
     vessel->DeactivateNavmode( NAVMODE_NORMAL );
@@ -84,6 +93,7 @@ void Autopilot::Enable(bool val)
 {
     m_isEnabled = val;
     OnDisabled();
+    OnEnabled();
 }
 /*
 void Autopilot::SwitchEnabled()
@@ -96,16 +106,26 @@ bool Autopilot::IsEnabled()
 {
     return m_isEnabled;
 }
+
+void Autopilot::OnEnabled()
+{
+    if (!IsEnabled())
+        return;
+    //oapiGetVesselInterface
+    VESSEL * vessel = oapiGetFocusInterface();
+    m_controlledVessel = vessel == NULL ? NULL : vessel->GetHandle();
+}
 void Autopilot::OnDisabled()
 {
-    VESSEL * vessel = oapiGetFocusInterface();
+    if (IsEnabled())
+        return;
+
+    VESSEL * vessel = GetVessel();
     if (!vessel)
         return;
-    if (!IsEnabled())
-    {
-        vessel->SetAttitudeRotLevel( _V(0, 0, 0) );
-        vessel->ActivateNavmode( NAVMODE_KILLROT );
-    }
+
+    vessel->SetAttitudeRotLevel( _V(0, 0, 0) );
+    vessel->ActivateNavmode( NAVMODE_KILLROT );
 }
 
 VECTOR3 Autopilot::GetVesselAngularAccelerationRatio( const VESSEL * vessel )

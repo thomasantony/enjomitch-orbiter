@@ -36,7 +36,7 @@ private:
 	class basefunction *previousfunc,*nextfunc;
 	void setnextfunc(class basefunction *temp){nextfunc=temp;};
 	void setpreviousfunc(class basefunction *temp){previousfunc=temp;};
-	void switchmanoeuvremode();
+	void switchmanoeuvremode(int currview);
 	void switchadvanced();
 	void loadplan(int plan);
 	void Getmode2hypo(VECTOR3 *targetvel);
@@ -71,7 +71,7 @@ public:
 	void calculate(VECTOR3 *targetvel);
 	int calcnewview(int oldview,bool firststage);
 	bool soistatus();
-	void processvisiblevars();
+	void processvisiblevars(int currview);
 	void updateplan();//Actually changes the plan
 	void setplanstate(int plantype,int plan);//selects the type of plan to be carried out
 	void setnextplanstate(int plantype,int plan,int targettype);

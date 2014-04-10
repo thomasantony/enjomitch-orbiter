@@ -21,6 +21,8 @@ class Autopilot
         bool IsEnabled();
         VECTOR3 GetVesselAngularAccelerationRatio( const VESSEL * vessel );
         void OnDisabled();
+        void OnEnabled();
+        VESSEL * GetVessel();
 
         EnjoLib::PID m_pidAPSpaceX;
         EnjoLib::PID m_pidAPSpaceY;
@@ -30,6 +32,7 @@ class Autopilot
         double m_targetLengthPrev;
         bool m_isEnabled;
         const static EnjoLib::Vect3 m_statDeltaGliderRefRotAcc; // reference pitch, yaw and bank angular accelerations
+        OBJHANDLE m_controlledVessel;
 };
 
 #endif // AUTOPILOT_H

@@ -532,11 +532,11 @@ bool basefunction::initialisevars()
 	return true;
 }
 
-void basefunction::processvisiblevars()
+void basefunction::processvisiblevars(int currview)
 {//Deals with changes in variable visibility
 	switchadvanced();
 	switchplantype();
-	switchmanoeuvremode();
+	switchmanoeuvremode(currview);
 	autoplan();
 }
 
@@ -559,7 +559,7 @@ void basefunction::switchplantype()
 }
 
 
-void basefunction::switchmanoeuvremode()
+void basefunction::switchmanoeuvremode(int currview)
 {
 	if (m_manoeuvremode==1)
 	{
@@ -580,6 +580,12 @@ void basefunction::switchmanoeuvremode()
 		m_chplvel.setshow(false);
 		m_prograde=m_outwardvel=m_chplvel=0;
 		m_ejdate=oapiGetSimMJD();
+
+        if (currview == 1)
+        {
+            m_autocenter = false;
+            gAutopilot.Disable();
+        }
 	}
 }
 
