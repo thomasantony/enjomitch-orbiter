@@ -10,7 +10,7 @@ class Autopilot
         Autopilot();
         virtual ~Autopilot();
         void Update(double SimDT);
-        void SetTargetVector(const VECTOR3 & targetVector); // Setting _V(0,0,0) disables the AP
+        bool SetTargetVector(const VECTOR3 & targetVector); // Setting _V(0,0,0) disables the AP
         void Disable();
     protected:
     private:

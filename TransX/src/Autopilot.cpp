@@ -22,19 +22,24 @@ Autopilot::Autopilot()
 
 Autopilot::~Autopilot(){}
 
-void Autopilot::SetTargetVector(const VECTOR3 & targetVector)
+bool Autopilot::SetTargetVector(const VECTOR3 & targetVector)
 {
     m_targetVector = targetVector;
     m_targetVectorUnit = unit(targetVector);
     double targetLength = length(m_targetVector);
-    if (targetLength != 0)
+    bool consideredComplete = false;
+    if (targetLength != 0 && m_targetLengthPrev != 0)
     {
         bool isDVVerySmall = targetLength < 1.0; // Prevent rolling 180 degrees around
         bool isDVIncreasing = targetLength > m_targetLengthPrev; // dV starts increasing = burn complete
         if (isDVIncreasing || isDVVerySmall)
+        {
             MECO(GetVessel());
+            consideredComplete = true;
+        }
     }
     m_targetLengthPrev = targetLength;
+    return consideredComplete;
 }
 
 void Autopilot::Disable()

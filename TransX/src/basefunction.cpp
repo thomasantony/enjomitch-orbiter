@@ -854,7 +854,11 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
-        gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) );
+        if (gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) ))
+        {
+            const char disableTxt [] = "Disable Auto-Center when done!";
+            sketchpad->Text( 0,10*linespacing, disableTxt, strlen(disableTxt));
+        }
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		double burnStart = BurnTime().GetBurnStart(pV, THGROUP_MAIN, timeoffset, rvel);
