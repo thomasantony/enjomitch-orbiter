@@ -1,4 +1,4 @@
-TransX V 2014.01.11 (ModuleMessaging)
+﻿TransX V 2014.04.26 (Auto-Center fix)
 
 Description & License
 ---------------------
@@ -20,6 +20,8 @@ Installing
 Copy the enclosed dll file into the modules/plugin directory of your Orbiter installation. Select the module on the Modules tab of the Orbiter Launchpad, and activate it.
 You also need to download and install ModuleMessaging SDK, available here:
 http://www.orbithangar.com/searchid.php?ID=6412
+as well as Visual C++ Redistributable Packages for Visual Studio 2013:
+http://www.microsoft.com/en-us/download/details.aspx?id=40784
 
 To start the module, either select the MFD from the onscreen menu, or use Shift-J to select it.
 
@@ -91,7 +93,7 @@ Setting a variable's adjustment setting to Auto-Min serves the following purpose
 As this feature performs a numerical simulation in each frame, many original TransX' bottlenecks had to be removed to make this feature operational with high FPS.
 
 B) Auto-Center™ (Target View's crosshair auto centering):
-The Manoeuvre mode now has a new variable: Auto-Center. Switch it on to automatically center the crosshair and switch it off to disable it. 
+The Manoeuvre mode now has a new variable: Auto-Center. Switch it on to automatically center the crosshair and after you've finished the manoevre switch it off still IN THE MANOUVRE MODE to disable it - if doesn't switch off automatically. 
 WARNING: due to TransX' limitations, the selection that you make will only have an effect in the Target View!
 Additionally, the AP will automatically cut the main engines once the burn is considered complete (ie., the dV starts increasing). Once it happens, you may let the Auto-Center to realign and fix the residual error with RCS in translational mode. Also, a good technique would be to gradually decrease the thrust in the last seconds of the planned burn, as the remaining dV gets very low, which gives more margin for the Auto-Center AP to react.
 Another technique proposed by dgatsoulis: Set the burn ~1 m/s "short" with BurnTimeCalcMFD (BTC), wait for Auto-Center to converge, disable it and finish with linear translation.

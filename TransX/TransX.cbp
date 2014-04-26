@@ -79,9 +79,6 @@
 					<Add library="user32" />
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 			<Target title="Release2010-MSVC2010">
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/TransX.dll" prefix_auto="0" extension_auto="0" />
@@ -237,9 +234,6 @@
 		<Unit filename="src/Opti/OptimiserFactory.h" />
 		<Unit filename="src/Opti/VarConstraint.cpp" />
 		<Unit filename="src/Opti/VarConstraint.h" />
-		<Unit filename="src/TransX.rc">
-			<Option compilerVar="WINDRES" />
-		</Unit>
 		<Unit filename="src/TransXFunction.cpp" />
 		<Unit filename="src/TransXFunction.h" />
 		<Unit filename="src/basefunction.cpp" />
