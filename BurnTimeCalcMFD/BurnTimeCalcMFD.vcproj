@@ -456,6 +456,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="EnjoLib"
+			>
+			<Filter
+				Name="Orbiter"
+				>
+				<File
+					RelativePath="..\lib\Orbiter\BurnTime.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\BurnTime.hpp"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
 			RelativePath=".\src\BurnTimeMFD.cpp"
 			>

@@ -766,6 +766,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\lib\Orbiter\BurnTime.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\BurnTime.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\lib\Orbiter\Engine.cpp"
 					>
 				</File>
