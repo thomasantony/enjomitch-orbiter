@@ -854,7 +854,9 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
-        if (gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) ))
+        //if (gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) ))
+		gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) );
+		if (m_autocenter)
         {
             const char disableTxt [] = "Disable Auto-Center when done!";
             sketchpad->Text( 0,10*linespacing, disableTxt, strlen(disableTxt));
@@ -1097,7 +1099,8 @@ VECTOR3 basefunction::GetLineOfNodes()
    if (!currentMinor || !hmajor || !hmajtarget)
         return _V(0,0,0);
     EnjoLib::SpaceMathOrbiter smo;
-    VECTOR3 planeMinor = smo.GetPlaneAxis(currentMinor, hmajor);
-    VECTOR3 planeMajor = smo.GetPlaneAxis(hmajtarget, hmajor);
-    return crossp(planeMinor, planeMajor);
+    const VECTOR3 & planeMinor = smo.GetPlaneAxis(currentMinor, hmajor);
+    const VECTOR3 & planeMajor = smo.GetPlaneAxis(hmajtarget, hmajor);
+	const VECTOR3 & lineOfNodes = crossp(planeMinor, planeMajor);
+    return lineOfNodes;
 }
