@@ -98,6 +98,8 @@
 		<Unit filename="Math/Bisection.hpp" />
 		<Unit filename="Math/BisectionSubject.cpp" />
 		<Unit filename="Math/BisectionSubject.hpp" />
+		<Unit filename="Math/BoundSearch.cpp" />
+		<Unit filename="Math/BoundSearch.hpp" />
 		<Unit filename="Math/Constants.hpp" />
 		<Unit filename="Math/GeneralMath.cpp" />
 		<Unit filename="Math/GeneralMath.hpp" />
