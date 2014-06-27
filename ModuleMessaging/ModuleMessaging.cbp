@@ -112,9 +112,6 @@
 					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\ModuleMessaging.dll.manifest&quot; /outputresource:&quot;bin\Release\ModuleMessaging.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>

@@ -130,7 +130,7 @@
 					<Add option="/DNDEBUG" />
 					<Add option="/DORB2009" />
 					<Add option="/DLANG_EN" />
-					<Add directory="../../../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+					<Add directory="../../../../Orbiter/orbiterBETA/Orbitersdk/include" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -138,9 +138,6 @@
 					<Add directory="../../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
 					<Add directory="../../../../Orbiter/orbiterBETA/Modules" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\HUDDrawer.dll.manifest&quot; /outputresource:&quot;bin\Release\HUDDrawer.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>

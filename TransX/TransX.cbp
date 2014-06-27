@@ -118,8 +118,7 @@
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/DNDEBUG" />
-					<Add option="/DORB2009" />
-					<Add option="/DLANG_EN" />
+					<Add option="/DFIRST_INSTANCE" />
 					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="TransX/src" />
@@ -131,9 +130,32 @@
 					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\TransX.dll.manifest&quot; /outputresource:&quot;bin\Release\TransX.dll&quot;;2' />
-				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseBETARed">
+				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/TransX2.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/ReleaseBETARed/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DSECOND_INSTANCE_RED" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="TransX/src" />
+					<Add directory="lib/Orbiter" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>

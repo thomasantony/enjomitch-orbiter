@@ -107,9 +107,6 @@
 					<Add library="user32" />
 					<Add directory="../../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
 				</Linker>
-				<ExtraCommands>
-					<Add after='mt.exe /nologo /manifest &quot;bin\Release\VesselHooking.dll.manifest&quot; /outputresource:&quot;bin\Release\VesselHooking.dll&quot;;2' />
-				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
