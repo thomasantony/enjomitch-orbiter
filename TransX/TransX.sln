@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TransX", "TransX.vcproj", "{618053AC-D57F-446E-89DC-9F1367C198CC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TransX", "TransX.vcproj", "{88D7AF80-6640-432C-871E-4847C6F52B2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,18 +10,21 @@ Global
 		Release2009|Win32 = Release2009|Win32
 		Release2009Red|Win32 = Release2009Red|Win32
 		ReleaseBETA|Win32 = ReleaseBETA|Win32
+		ReleaseBETA-Red|Win32 = ReleaseBETA-Red|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug|Win32.ActiveCfg = Debug|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug|Win32.Build.0 = Debug|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug-BETA|Win32.ActiveCfg = Debug-BETA|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Debug-BETA|Win32.Build.0 = Debug-BETA|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009|Win32.ActiveCfg = Release2009|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009|Win32.Build.0 = Release2009|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009Red|Win32.ActiveCfg = Release2009Red|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.Release2009Red|Win32.Build.0 = Release2009Red|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.ReleaseBETA|Win32.ActiveCfg = ReleaseBETA|Win32
-		{618053AC-D57F-446E-89DC-9F1367C198CC}.ReleaseBETA|Win32.Build.0 = ReleaseBETA|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Debug|Win32.Build.0 = Debug|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Debug-BETA|Win32.ActiveCfg = Debug-BETA|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Debug-BETA|Win32.Build.0 = Debug-BETA|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Release2009|Win32.ActiveCfg = Release2009|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Release2009|Win32.Build.0 = Release2009|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Release2009Red|Win32.ActiveCfg = Release2009Red|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.Release2009Red|Win32.Build.0 = Release2009Red|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.ReleaseBETA|Win32.ActiveCfg = ReleaseBETA|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.ReleaseBETA|Win32.Build.0 = ReleaseBETA|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.ReleaseBETA-Red|Win32.ActiveCfg = ReleaseBETA-Red|Win32
+		{88D7AF80-6640-432C-871E-4847C6F52B2A}.ReleaseBETA-Red|Win32.Build.0 = ReleaseBETA-Red|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
