@@ -1407,6 +1407,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\MessagingSender.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\MessagingSender.h"
+			>
+		</File>
+		<File
 			RelativePath="..\libMFD\MFDButtonPage.cpp"
 			>
 		</File>

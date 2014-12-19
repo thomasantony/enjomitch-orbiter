@@ -348,6 +348,8 @@
 		<Unit filename="MFDDataLaunchMFD.hpp" />
 		<Unit filename="MFDPage.cpp" />
 		<Unit filename="MFDPage.h" />
+		<Unit filename="MessagingSender.cpp" />
+		<Unit filename="MessagingSender.h" />
 		<Unit filename="MovementParams.cpp" />
 		<Unit filename="MovementParams.h" />
 		<Unit filename="OffPlaneCorrector/OffPlaneCorrector.cpp" />

@@ -148,6 +148,7 @@ private:
     void SetError();
     void CheckErrorExcess();
 	void ReactOnShipStatus();
+	void SendModuleMessages();
 
 
     void DrawErrorAndMarks(MyDC hDC, const int status);

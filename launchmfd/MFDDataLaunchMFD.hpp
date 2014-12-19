@@ -136,6 +136,7 @@ public:
     OBJHANDLE GetTargetBody() const;
     VESSEL * GetTargetVessel() const;
     OBJHANDLE GetTargetHandle() const;
+    int GetTargetHandleIndex() const;
     bool IsTargetSet() const;
 	const ShipVariables & GetShipVariables() const;
 	ShipVariables & GetShipVariablesRW();

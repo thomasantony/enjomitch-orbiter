@@ -47,6 +47,7 @@
 #include "LaunchMFD.h"
 #include "PluginLaunchMFD.hpp"
 #include "MFDDataLaunchMFD.hpp"
+#include "MessagingSender.h"
 #include <cmath>
 #include <sstream>
 #include "localisation.h"
@@ -56,6 +57,7 @@
 #include "Math/GeneralMath.hpp"
 #include <Orbiter/SpaceMathOrbiter.hpp>
 #include "Util/CharManipulations.hpp"
+#include "Utils/Targeting.hpp"
 #include "Dialogs/DialogAlt.h"
 #include "Dialogs/DialogDistDA.h"
 #include "Dialogs/DialogTarget.h"
@@ -111,6 +113,7 @@ MFD_RETURN_TYPE LaunchMFD::Update (MyDC hDC)
 
     ReactOnShipStatus();
     ReactOnReachingOrbit(hDC);
+    SendModuleMessages();
 
     if (m_data->pageView == AZIMUTH)
     {
@@ -497,6 +500,12 @@ void LaunchMFD::ReactOnReachingOrbit(MyDC hDC)
     }
     else
         m_sound.ResetSoundOnce(CUT_ENGINES);
+}
+
+void LaunchMFD::SendModuleMessages()
+{
+    int iTgt = m_data->GetTargetHandleIndex();
+    MessagingSender().SendInt("TargetObjectIndex", iTgt);
 }
 
 void LaunchMFD::DrawErrorAndMarks(MyDC hDC, const int status)

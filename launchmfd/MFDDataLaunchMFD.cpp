@@ -183,6 +183,20 @@ OBJHANDLE MFDDataLaunchMFD::GetTargetHandle() const
         return GetTargetBody();
 }
 
+int MFDDataLaunchMFD::GetTargetHandleIndex() const
+{
+	OBJHANDLE hTgt = GetTargetHandle();
+	if (!hTgt)
+        return -1;
+    for (unsigned i = 0; i < oapiGetObjectCount(); ++i)
+    {
+        OBJHANDLE hTest = oapiGetObjectByIndex(i);
+        if (hTest == hTgt)
+            return i;
+    }
+    return -1; // Shouldn't reach here
+}
+
 VESSEL * MFDDataLaunchMFD::GetTargetVessel() const
 {
     return Targeting().GetTargetVessel( strTarget );
