@@ -1,4 +1,7 @@
-Launch MFD changelog
+﻿Launch MFD changelog
+
+v. 1.6.3 04-01-2015
+- Integration with RV_Orientation: Exposing "TargetObjectIndex" variable through ModuleMessaging, so that the RV_Orientation may automatically read it.
 
 v. 1.6.2 11-01-2014
 - Better integration with TransX: Enter "tx" or "transx" (case insensitive) in Target box, to obtain inclination and LAN from TransX' Escape Plan
