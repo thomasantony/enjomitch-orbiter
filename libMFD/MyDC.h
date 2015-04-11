@@ -8,7 +8,7 @@
     typedef HDC MyDC;
     typedef HPEN MyPEN;
 #else
-    #ifdef ORB2009
+    #if defined(ORB2009) || defined(ORB2015)
         typedef oapi::Sketchpad * MyDC;
         typedef oapi::Pen * MyPEN;
     #endif

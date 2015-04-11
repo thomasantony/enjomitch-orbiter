@@ -98,7 +98,7 @@
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/DNDEBUG" />
-					<Add option="/DORB2009" />
+					<Add option="/DORB2015" />
 					<Add option="/DLANG_EN" />
 					<Add directory="../../../../Orbiter/orbiterBETA/Orbitersdk/include" />
 				</Compiler>

@@ -41,16 +41,25 @@ using namespace std;
 #ifdef ORB2006
     #define VTABLE_SIZE		28
     #define DRAW_HUD_INDEX	11
-#else
+#endif
+#ifdef ORB2009
     #define VTABLE_SIZE		35
+    #define DRAW_HUD_INDEX	32
+#endif
+#ifdef ORB2015
+    #define VTABLE_SIZE		36
     #define DRAW_HUD_INDEX	32
 #endif
 VesselHooking::VesselHooking(OBJHANDLE hVessel, int fmodel)
     :
 #ifdef ORB2006
     VESSEL2(hVessel, fmodel)
-#else
+#endif
+#ifdef ORB2009
     VESSEL3(hVessel, fmodel)
+#endif
+#ifdef ORB2015
+    VESSEL4(hVessel, fmodel)
 #endif
 {
 }
@@ -64,10 +73,14 @@ std::vector<string> VesselHooking::moduleBlackList;
 bool VesselHooking::IsVesselCompatible( VESSEL * v )
 {
     #ifdef ORB2006
-        return v->Version() == 1;
-    #else
-        return v->Version() == 2;
-    #endif // ORB2006
+         return v->Version() == 1;
+    #endif
+    #ifdef ORB2009
+         return v->Version() == 2;
+    #endif
+    #ifdef ORB2015
+         return v->Version() == 3;
+    #endif
 }
 
 bool VesselHooking::CanDrawHUD( IDrawsHUD * mfd )
@@ -105,7 +118,7 @@ void VesselHooking::clbkDrawHUD(int mode, const HUDPAINTSPEC *hps, HDC hDC)
 void VesselHooking::OldclbkDrawHUD(int mode, const HUDPAINTSPEC *hps, HDC hDC)
 {}
 
-#ifndef ORB2006
+#if defined(ORB2009) || defined(ORB2015)
 bool VesselHooking::clbkDrawHUD (int mode, const HUDPAINTSPEC *hps, oapi::Sketchpad * skp )
 {
     // Invoke the old HUD method - this will have been hooked and so

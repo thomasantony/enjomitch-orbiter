@@ -56,8 +56,8 @@
 //#define ORB2009
 // Above defined in project settings
 
-#if !defined ORB2006 && !defined ORB2009
-	#error "Oriter version not defined. Define either ORB2006 or ORB2009"
+#if !defined ORB2006 && !defined ORB2009 && !defined ORB2015
+	#error "Oriter version not defined. Define either ORB2006 or ORB2009 or ORB2015"
 #endif
 #if !defined LANG_EN && !defined LANG_PL
 	#error "Language version not defined. Define either LANG_EN or LANG_PL in this file"
