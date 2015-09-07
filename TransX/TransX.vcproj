@@ -675,7 +675,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib ModuleMessaging.lib"
-				OutputFile="$(OrbiterDirBETA)Modules\Plugin\TransX.dll"
+				OutputFile="$(OrbiterDirBETA)Modules\Plugin\TransX2.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib"
