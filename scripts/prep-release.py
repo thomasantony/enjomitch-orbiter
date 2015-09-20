@@ -11,6 +11,8 @@ import shutil
 
 srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiterBETA"
 dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases-beta/beta-14"
+#srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiter100830"
+#dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases"
 
 class Addon:
     def __init__(self, name):
@@ -47,14 +49,14 @@ addons = []
 
 addon = Addon("BurnTimeCalcMFD-v.2.7")
 addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
-addons.append(copy.deepcopy(addon))
+#addons.append(copy.deepcopy(addon))
 
 addon = Addon("LaunchMFD-v.1.6.3-2010")
 addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
-addons.append(copy.deepcopy(addon))
+#addons.append(copy.deepcopy(addon))
 
 # Complex addons
-addon = Addon("Transx-2014.04.26-Auto-Center-fix")
+addon = Addon("TransX-2014.09.20-Brent")
 addon.AddFile1("Modules/Plugin/TransX.dll")
 addon.AddFile1("Modules/Plugin/TransX2.dll")
 addons.append(copy.deepcopy(addon))
@@ -63,13 +65,13 @@ addons.append(copy.deepcopy(addon))
 addon = Addon("ModuleMessagingSDK-v.1.1")
 addon.AddFile1("Modules/ModuleMessaging.dll")
 addon.AddFile2("Modules/ModuleMessaging.lib", "Orbitersdk/lib/ModuleMessaging.lib")
-addons.append(copy.deepcopy(addon))
+#addons.append(copy.deepcopy(addon))
 
 addon = Addon("HUDDrawerSDK-v.0.3")
 addon.AddFile1("Modules/Plugin/HUDDrawer.dll")
 addon.AddFile1("Modules/VesselHooking.dll")
 addon.AddFile2("Modules/VesselHooking.lib", "Orbitersdk/lib/VesselHooking.lib")
-addons.append(copy.deepcopy(addon))
+#addons.append(copy.deepcopy(addon))
 
 disp(addons)
 

@@ -445,7 +445,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/DEBUG"
-				Optimization="0"
+				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="$(OrbiterDir)Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;SECOND_INSTANCE_RED"
@@ -721,22 +721,6 @@
 			<Filter
 				Name="Math"
 				>
-				<File
-					RelativePath="..\lib\Math\BinSearchOpti.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BinSearchOpti.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BinSearchOptiSubject.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\BinSearchOptiSubject.hpp"
-					>
-				</File>
 				<File
 					RelativePath="..\lib\Math\Constants.hpp"
 					>
