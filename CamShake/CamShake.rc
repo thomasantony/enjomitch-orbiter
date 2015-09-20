@@ -1,0 +1,166 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Englisch (GB) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_INTERFACE DIALOGEX 0, 0, 267, 227
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Camera Shake v1.1"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Thrust effects",IDC_STATIC,7,18,255,50
+    CONTROL         "enabled",IDC_CHK_THRUST_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,28,41,8
+    LTEXT           "Component 1:",IDC_STATIC,12,39,45,8
+    LTEXT           "Component 2:",IDC_STATIC,12,54,45,8
+    LTEXT           "frequency",IDC_STATIC,57,39,32,8
+    LTEXT           "frequency",IDC_STATIC,57,54,32,8
+    LTEXT           "Hz,   amplitude",IDC_STATIC,125,39,48,8
+    LTEXT           "Hz,   amplitude",IDC_STATIC,125,54,48,8
+    LTEXT           "cm",IDC_STATIC,209,39,10,8
+    LTEXT           "cm",IDC_STATIC,209,54,10,8
+    EDITTEXT        IDC_EDIT_TH_FREQ1,92,37,29,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_TH_FREQ2,92,53,29,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_TH_AMP1,177,37,29,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_TH_AMP2,177,52,29,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "OK",IDC_BTN_OK,150,206,50,14
+    PUSHBUTTON      "Cancel",IDC_BTN_CANCEL,207,206,50,14
+    PUSHBUTTON      "Test",IDC_BTN_TEST_TH,227,28,25,35
+    GROUPBOX        "Atmospheric effects (high speed atmospheric flight, reentry)",
+                    IDC_STATIC,7,74,255,50
+    CONTROL         "enabled",IDC_CHK_ATMO_ENABLED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,82,41,10
+    LTEXT           "Component 1:",IDC_STATIC,12,94,45,8
+    LTEXT           "Component 2:",IDC_STATIC,12,109,45,8
+    LTEXT           "frequency",IDC_STATIC,57,94,32,8
+    LTEXT           "frequency",IDC_STATIC,57,109,32,8
+    LTEXT           "Hz,   amplitude",IDC_STATIC,125,94,48,8
+    LTEXT           "Hz,   amplitude",IDC_STATIC,125,109,48,8
+    LTEXT           "cm",IDC_STATIC,207,94,10,8
+    LTEXT           "cm",IDC_STATIC,207,109,10,8
+    EDITTEXT        IDC_EDIT_AT_FREQ1,92,92,29,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_AT_FREQ2,92,106,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_AT_AMP1,177,92,29,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "Test",IDC_BTN_TEST_AT,227,82,25,35
+    EDITTEXT        IDC_EDIT_AT_AMP2,177,106,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    GROUPBOX        "Ground effect (rolling on runway)",IDC_STATIC,7,128,255,
+                    64
+    CONTROL         "enabled",IDC_CHK_GROUND_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,138,41,8
+    LTEXT           "Component 1:",IDC_STATIC,12,149,45,8
+    LTEXT           "Component 2:",IDC_STATIC,12,164,45,8
+    LTEXT           "frequency",IDC_STATIC,57,149,32,8
+    LTEXT           "frequency",IDC_STATIC,57,164,32,8
+    LTEXT           "Hz,   amplitude",IDC_STATIC,125,149,48,8
+    LTEXT           "Hz,   amplitude",IDC_STATIC,125,164,48,8
+    LTEXT           "cm",IDC_STATIC,211,149,10,8
+    LTEXT           "cm",IDC_STATIC,211,164,10,8
+    EDITTEXT        IDC_EDIT_GD_FREQ1,92,146,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_GD_FREQ2,92,162,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_GD_AMP1,177,146,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "Test",IDC_BTN_TEST_GD,227,138,25,35
+    EDITTEXT        IDC_EDIT_GD_AMP2,177,162,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    LTEXT           "max. effect strength at",IDC_STATIC,18,178,71,8
+    LTEXT           "m/s",IDC_STATIC,125,178,13,8
+    EDITTEXT        IDC_EDIT_GD_MAXSPD,92,176,29,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    RTEXT           "ClassName:",IDC_STATIC,7,195,38,8
+    RTEXT           "Max Thrust:",IDC_STATIC,7,206,38,8
+    LTEXT           "ShuttlePB (Attachment parent)",IDC_STATIC_CLASSNAME,50,
+                    195,210,8
+    LTEXT           "Static",IDC_STATIC_MAXTHRUST,50,206,89,8
+    CONTROL         "no staging detection for this vessel (for vessels with variable thrust)",
+                    IDC_CHK_NOSTAGING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    5,5,225,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_INTERFACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 260
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 220
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Englisch (GB) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
