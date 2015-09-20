@@ -1,6 +1,6 @@
 #include "OptiBrent.hpp"
 #include "OptiSubject.hpp"
-#include "GeneralMath.hpp"
+#include "../GeneralMath.hpp"
 #include <cmath>
 #include <utility>
 #include "../Burkardt/BrentBurkardt.hpp"

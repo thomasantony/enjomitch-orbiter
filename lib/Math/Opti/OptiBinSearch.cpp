@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "OptiBinSearch.hpp"
 #include "OptiSubject.hpp"
-#include "GeneralMath.hpp"
+#include "../GeneralMath.hpp"
 #include <cmath>
 #include <utility>
 

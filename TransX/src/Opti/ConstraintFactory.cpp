@@ -4,7 +4,9 @@
 #include <Math/Constants.hpp>
 
 static const double precisionVel = 0.001;
+//static const double precisionVel = 0.00001;
 static const double precisionAngle = 0.000001;
+//static const double precisionAngle = 0.000001;
 
 ConstraintFactory::ConstraintFactory(basefunction * base)
 : m_base(base)

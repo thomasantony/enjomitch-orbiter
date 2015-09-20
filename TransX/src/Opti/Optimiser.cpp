@@ -1,5 +1,7 @@
 #include "Optimiser.h"
-#include <Math/BinSearchOpti.hpp>
+//#include <Math/BinSearchOpti.hpp>
+#include <Math/Opti/OptiFactory.hpp>
+#include <Math/Opti/OptiSubject.hpp>
 #include "ConstraintFactory.h"
 #include "Constraint.h"
 #include "OptiFunction.h"
@@ -28,6 +30,7 @@ Optimiser::~Optimiser()
 void Optimiser::Optimise() const
 {
 	// for (int k = 0; k < 10000; ++k) // For testing
+	//for (int k = 0; k < 10; ++k) // For testing
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i)
     {
         const VarConstraint & item = m_pArgs2Find.at(i);
@@ -38,8 +41,12 @@ void Optimiser::Optimise() const
         ConstraintFactory costrFact(m_base); // Setup constraints and precision
         Constraint cstr = costrFact.Create(item.constraintType);
         // Pass them to the binary search algorithm
-        EnjoLib::BinSearchOpti binSearch(cstr.lower, cstr.upper, cstr.precision);
-        EnjoLib::Result<double> xopt = binSearch.Run(optiFunction);
+        //EnjoLib::BinSearchOpti binSearch(cstr.lower, cstr.upper, cstr.precision);
+        //EnjoLib::Result<double> xopt = binSearch.Run(optiFunction);
+        EnjoLib::OptiType optiType = EnjoLib::BRENT;
+        optiType = EnjoLib::BIN_SEARCH;
+        std::auto_ptr<EnjoLib::IOptiAlgo> optiAlgo = EnjoLib::OptiFactory::Create(optiType, cstr.lower, cstr.upper, cstr.precision);
+        EnjoLib::Result<double> xopt = optiAlgo->Run(optiFunction);
         if (!xopt.isSuccess)
             *item.var = variableBackup;
        //    cout << "SUCCESS!" << endl;

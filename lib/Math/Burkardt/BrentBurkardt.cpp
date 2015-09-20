@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include "FuncBase.hpp"
-#include "OptiSubject.hpp"
+#include "../Opti/OptiSubject.hpp"
 
 using namespace EnjoLib;
 using namespace std;
@@ -36,7 +36,7 @@ double BrentBurkardt::local_min ( double a, double b, double t, OptiSubject & f,
     x = sa + c * ( b - a );
     double w = x;
     double v = w;
-    double e = 0.0;
+    double e = sb - x;
     double fx = f ( x );
     double fw = fx;
     double fv = fw;
@@ -50,6 +50,7 @@ double BrentBurkardt::local_min ( double a, double b, double t, OptiSubject & f,
 //  Check the stopping criterion.
 //
         if ( r8_abs ( x - m ) <= t2 - 0.5 * ( sb - sa ) )
+        //if ( r8_abs (sb - sa) <= t )
         {
             break;
         }

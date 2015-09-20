@@ -1,7 +1,8 @@
 #ifndef OPTIFUNCTION_H
 #define OPTIFUNCTION_H
 
-#include <Math/BinSearchOptiSubject.hpp>
+//#include <Math/BinSearchOptiSubject.hpp>
+#include <Math/Opti/OptiSubject.hpp>
 #include "VarConstraint.h"
 class basefunction;
 class Intercept;
@@ -23,7 +24,7 @@ class OptiFunctionBase
 };
 
 // Defines the one dimensional "Optimisation Problem"
-class OptiFunction : public OptiFunctionBase, public EnjoLib::BinSearchOptiSubject
+class OptiFunction : public OptiFunctionBase, public EnjoLib::OptiSubject
 {
     public:
         OptiFunction(VarConstraint toOpti, basefunction * base, Intercept * icept)

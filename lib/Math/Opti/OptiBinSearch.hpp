@@ -1,7 +1,7 @@
 #ifndef BINSEARCHOPTI_H
 #define BINSEARCHOPTI_H
 
-#include "../Util/Result.hpp"
+#include "../../Util/Result.hpp"
 #include "IOptiAlgo.hpp"
 
 namespace EnjoLib
