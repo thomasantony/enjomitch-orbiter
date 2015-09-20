@@ -4,6 +4,7 @@
 #include "FuncBase.hpp"
 #include "../Opti/OptiSubject.hpp"
 
+
 using namespace EnjoLib;
 using namespace std;
 
@@ -20,8 +21,8 @@ using namespace std;
 //    Original FORTRAN77 version by Richard Brent.
 //    C++ version by John Burkardt. https://people.sc.fsu.edu/~jburkardt/cpp_src/brent/brent.html
 //    Further C++ modifications by Szymon Ender "Enjo". www.enderspace.de
-double BrentBurkardt::local_min ( double a, double b, double t, OptiSubject & f,
-                                  double &x )
+Result<double> BrentBurkardt::local_min ( double a, double b, double t, int maxIter, OptiSubject & f,
+                                  double &fx )
 {
     double d = 0;
 //
@@ -33,16 +34,20 @@ double BrentBurkardt::local_min ( double a, double b, double t, OptiSubject & f,
 
     double sa = a;
     double sb = b;
-    x = sa + c * ( b - a );
+    double x = sa + c * ( b - a );
     double w = x;
     double v = w;
     double e = sb - x;
-    double fx = f ( x );
+    fx = f ( x );
     double fw = fx;
     double fv = fw;
 
-    for ( ; ; )
+    for (int i = 0; i <= maxIter; ++i)
     {
+        if (i == maxIter)
+        {
+            return Result<double>(0, false);
+        }
         double m = 0.5 * ( sa + sb ) ;
         double tol = eps * r8_abs ( x ) + t;
         double t2 = 2.0 * tol;
@@ -161,7 +166,7 @@ double BrentBurkardt::local_min ( double a, double b, double t, OptiSubject & f,
             }
         }
     }
-    return fx;
+    return Result<double>(x, true);
 }
 
 

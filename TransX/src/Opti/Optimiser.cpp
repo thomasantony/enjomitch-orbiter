@@ -30,7 +30,7 @@ Optimiser::~Optimiser()
 void Optimiser::Optimise() const
 {
 	// for (int k = 0; k < 10000; ++k) // For testing
-	//for (int k = 0; k < 10; ++k) // For testing
+	//for (int k = 0; k < 2; ++k) // For testing
     for (size_t i = 0; i < m_pArgs2Find.size(); ++i)
     {
         const VarConstraint & item = m_pArgs2Find.at(i);
@@ -44,7 +44,7 @@ void Optimiser::Optimise() const
         //EnjoLib::BinSearchOpti binSearch(cstr.lower, cstr.upper, cstr.precision);
         //EnjoLib::Result<double> xopt = binSearch.Run(optiFunction);
         EnjoLib::OptiType optiType = EnjoLib::BRENT;
-        optiType = EnjoLib::BIN_SEARCH;
+        //optiType = EnjoLib::BIN_SEARCH;
         std::auto_ptr<EnjoLib::IOptiAlgo> optiAlgo = EnjoLib::OptiFactory::Create(optiType, cstr.lower, cstr.upper, cstr.precision);
         EnjoLib::Result<double> xopt = optiAlgo->Run(optiFunction);
         if (!xopt.isSuccess)

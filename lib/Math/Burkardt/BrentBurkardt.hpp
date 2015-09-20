@@ -2,6 +2,7 @@
 #define BRENTBURKARDT_H
 
 #include <vector>
+#include "../../Util/Result.hpp"
 
 namespace EnjoLib {
 
@@ -13,7 +14,7 @@ class BrentBurkardt
     public:
         double glomin ( double a, double b, double c, double m, double e, double t,
           FuncBase & f, double &x );
-        double local_min ( double a, double b, double t, OptiSubject & f,
+        Result<double> local_min ( double a, double b, double t, int maxIter, OptiSubject & f,
           double &x );
         double local_min_rc ( double &a, double &b, int &status, double value );
         double r8_abs ( double x );

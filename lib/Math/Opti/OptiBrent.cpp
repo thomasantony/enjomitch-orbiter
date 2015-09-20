@@ -24,24 +24,9 @@ OptiBrent::OptiBrent(double minArg, double maxArg, double eps)
 
 OptiBrent::~OptiBrent(){}
 
-class func_wrapper : public FuncBase {
-  OptiSubject & subj;
-public:
-  func_wrapper( OptiSubject & f)
-  : subj(f)
-  {
-
-  }
-  virtual double operator() (double x){
-    return subj.UpdateGetValue(x);
-  }
-};
-
 Result<double> OptiBrent::Run( OptiSubject & subj ) const
 {
     BrentBurkardt bkrd;
-    double x = 0;
-    func_wrapper fun(subj);
-    bkrd.local_min(m_minArg, m_maxArg, m_eps, subj, x);
-    return Result<double>(x, true);
+    double y = 0;
+    return bkrd.local_min(m_minArg, m_maxArg, m_eps, m_maxIter, subj, y);
 }
