@@ -38,8 +38,8 @@ Constraint ConstraintFactory::Create(ConstraintType::e type)
 Constraint ConstraintFactory::CreateOutward()
 {
     // Outward velocity requires a lot of energy. Keep it small
-    const double lower = -1000;
-    const double upper = +1000;
+    const double lower = -3000;
+    const double upper = +3000;
     return Constraint(lower, upper, precisionVel);
 }
 
@@ -59,7 +59,7 @@ Constraint ConstraintFactory::CreateAngle()
 
 Constraint ConstraintFactory::CreateProgradeHohmann(basefunction * base)
 {
-    const double defaultRatioHohmann = 0.25;
+    const double defaultRatioHohmann = 0.15;
     const double hohmanDV = base->GetHohmannDV();
     const double lower = hohmanDV * (1 - defaultRatioHohmann);
     const double upper = hohmanDV * (1 + defaultRatioHohmann);

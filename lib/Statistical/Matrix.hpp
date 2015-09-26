@@ -33,13 +33,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "Vector.hpp"
-namespace EnjoLib{
-class Matrix : public std::vector<Vector>
+#include "VectorD.hpp"
+namespace EnjoLib
+{
+class Matrix : public std::vector<VectorD>
 {
     public:
-        std::string Print() const; // TODO
-        std::string PrintScilab( const char * varName ) const; // TODO
+        std::string Print() const;
+        std::string PrintScilab( const char * varName ) const;
         Matrix();
         Matrix(int n);
         Matrix(int n, int m);

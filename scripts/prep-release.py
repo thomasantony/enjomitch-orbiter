@@ -56,7 +56,7 @@ addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
 #addons.append(copy.deepcopy(addon))
 
 # Complex addons
-addon = Addon("TransX-2014.09.20-Brent")
+addon = Addon("TransX-2014.09.26-Nelder-Mead")
 addon.AddFile1("Modules/Plugin/TransX.dll")
 addon.AddFile1("Modules/Plugin/TransX2.dll")
 addons.append(copy.deepcopy(addon))

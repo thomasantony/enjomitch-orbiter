@@ -34,9 +34,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <cmath>
 #include "Statistical.hpp"
 #include "Assertions.hpp"
-#include "Vector.hpp"
+#include "VectorD.hpp"
 #include "Matrix.hpp"
+
 using namespace EnjoLib;
+
 Statistical::Statistical()
 {
 }
@@ -45,7 +47,7 @@ Statistical::~Statistical()
 {
 }
 
-double Statistical::SumMulDiffMean( const Vector & v1, const Vector & v2 ) const
+double Statistical::SumMulDiffMean( const VectorD & v1, const VectorD & v2 ) const
 {
     Assertions().SizesEqual(v1, v2, "Statistical::SumSquares");
     double mean1 = v1.Mean();
@@ -62,7 +64,7 @@ double Statistical::SumMulDiffMean( const Vector & v1, const Vector & v2 ) const
     return sumSquares;
 }
 
-double Statistical::StandardDeviation( const Vector & v ) const
+double Statistical::StandardDeviation( const VectorD & v ) const
 {
     Assertions().AtLeast2Dimensions(v,"Statistical::StandardDeviation");
     double variance = Variance(v);
@@ -71,7 +73,7 @@ double Statistical::StandardDeviation( const Vector & v ) const
     return sd;
 }
 
-double Statistical::Variance( const Vector & v ) const
+double Statistical::Variance( const VectorD & v ) const
 {
     Assertions().AtLeast2Dimensions(v,"Statistical::Variance");
     double diffMean = SumMulDiffMean(v, v);
@@ -81,7 +83,7 @@ double Statistical::Variance( const Vector & v ) const
     return var;
 }
 
-double Statistical::Covariance( const Vector & v1, const Vector & v2 ) const
+double Statistical::Covariance( const VectorD & v1, const VectorD & v2 ) const
 {
     Assertions().SizesEqual(v1, v2, "Statistical::Covariance");
     Assertions().AtLeast2Dimensions(v1,"Statistical::Covariance");
@@ -99,10 +101,10 @@ Matrix Statistical::CovarianceMatrix( const Matrix & data )
     Matrix covMat(dimensions);
     for (unsigned i = 0; i < dimensions; ++i)
     {
-        const Vector & vi = data.at(i);
+        const VectorD & vi = data.at(i);
         for (unsigned j = i; j < dimensions; ++j)
         {
-            const Vector & vj = data.at(j);
+            const VectorD & vj = data.at(j);
             double cov = Covariance(vi, vj);
             covMat.at(i).at(j) = cov;
             covMat.at(j).at(i) = cov;

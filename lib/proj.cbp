@@ -15,7 +15,12 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-std=c++11" />
+					<Add option="-pg" />
 					<Add option="-g" />
+					<Add directory="Math" />
+					<Add directory="Util" />
+					<Add directory="Statistical" />
+					<Add directory="Math/Opti" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -30,7 +35,11 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add option="-std=c++11" />
+					<Add option="-std=c++0x" />
+					<Add directory="Math" />
+					<Add directory="Util" />
+					<Add directory="Statistical" />
+					<Add directory="Math/Opti" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -45,7 +54,10 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add option="-std=c++11" />
+					<Add directory="Math" />
+					<Add directory="Util" />
+					<Add directory="Statistical" />
+					<Add directory="Math/Opti" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -61,6 +73,10 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++0x" />
+					<Add directory="Math" />
+					<Add directory="Util" />
+					<Add directory="Statistical" />
+					<Add directory="Math/Opti" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -76,8 +92,11 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add directory="Math" />
+					<Add directory="Util" />
+					<Add directory="Statistical" />
+					<Add directory="Math/Opti" />
 				</Compiler>
 			</Target>
 		</Build>
@@ -86,20 +105,30 @@
 		</Compiler>
 		<Unit filename="Math/AzimuthMath.cpp" />
 		<Unit filename="Math/AzimuthMath.hpp" />
-		<Unit filename="Math/BinSearchOpti.cpp" />
-		<Unit filename="Math/BinSearchOpti.hpp" />
+		<Unit filename="Math/BinSearchArg.cpp" />
+		<Unit filename="Math/BinSearchArg.hpp" />
+		<Unit filename="Math/BinSearchArgSubject.cpp" />
+		<Unit filename="Math/BinSearchArgSubject.hpp" />
 		<Unit filename="Math/BinSearchOpti2D.cpp" />
 		<Unit filename="Math/BinSearchOpti2D.hpp" />
 		<Unit filename="Math/BinSearchOpti2DSubject.cpp" />
 		<Unit filename="Math/BinSearchOpti2DSubject.hpp" />
-		<Unit filename="Math/BinSearchOptiSubject.cpp" />
-		<Unit filename="Math/BinSearchOptiSubject.hpp" />
 		<Unit filename="Math/Bisection.cpp" />
 		<Unit filename="Math/Bisection.hpp" />
 		<Unit filename="Math/BisectionSubject.cpp" />
 		<Unit filename="Math/BisectionSubject.hpp" />
 		<Unit filename="Math/BoundSearch.cpp" />
 		<Unit filename="Math/BoundSearch.hpp" />
+		<Unit filename="Math/Burkardt/BrentBurkardt.cpp" />
+		<Unit filename="Math/Burkardt/BrentBurkardt.hpp" />
+		<Unit filename="Math/Burkardt/FuncBase.cpp" />
+		<Unit filename="Math/Burkardt/FuncBase.hpp" />
+		<Unit filename="Math/Burkardt/MonicPoly.cpp" />
+		<Unit filename="Math/Burkardt/MonicPoly.hpp" />
+		<Unit filename="Math/Burkardt/NelderMeadBurkardt.cpp" />
+		<Unit filename="Math/Burkardt/NelderMeadBurkardt.hpp" />
+		<Unit filename="Math/Burkardt/Poly.cpp" />
+		<Unit filename="Math/Burkardt/Poly.hpp" />
 		<Unit filename="Math/Constants.hpp" />
 		<Unit filename="Math/GeneralMath.cpp" />
 		<Unit filename="Math/GeneralMath.hpp" />
@@ -107,10 +136,30 @@
 		<Unit filename="Math/GreatCircleAdvMath.hpp" />
 		<Unit filename="Math/GreatCircleMath.cpp" />
 		<Unit filename="Math/GreatCircleMath.hpp" />
+		<Unit filename="Math/IOptiAlgo.hpp" />
 		<Unit filename="Math/MaxMin.cpp" />
 		<Unit filename="Math/MaxMin.hpp" />
 		<Unit filename="Math/MaxMinPoint.cpp" />
 		<Unit filename="Math/MaxMinPoint.hpp" />
+		<Unit filename="Math/Opti/IOptiAlgo.cpp" />
+		<Unit filename="Math/Opti/IOptiAlgo.hpp" />
+		<Unit filename="Math/Opti/OptiBinSearch.cpp" />
+		<Unit filename="Math/Opti/OptiBinSearch.hpp" />
+		<Unit filename="Math/Opti/OptiBrent.cpp" />
+		<Unit filename="Math/Opti/OptiBrent.hpp" />
+		<Unit filename="Math/Opti/OptiFactory.cpp" />
+		<Unit filename="Math/Opti/OptiFactory.hpp" />
+		<Unit filename="Math/Opti/OptiMultiNelderMead.cpp" />
+		<Unit filename="Math/Opti/OptiMultiNelderMead.hpp" />
+		<Unit filename="Math/Opti/OptiMultiSubject.cpp" />
+		<Unit filename="Math/Opti/OptiMultiSubject.hpp" />
+		<Unit filename="Math/Opti/OptiSubject.cpp" />
+		<Unit filename="Math/Opti/OptiSubject.hpp" />
+		<Unit filename="Math/Opti/OptiType.cpp" />
+		<Unit filename="Math/Opti/OptiType.hpp" />
+		<Unit filename="Math/OptiBinSearch.hpp" />
+		<Unit filename="Math/OptiBrent.hpp" />
+		<Unit filename="Math/OptiSubject.hpp" />
 		<Unit filename="Math/RK4.cpp" />
 		<Unit filename="Math/RK4.hpp" />
 		<Unit filename="Math/RK4AccelerationBase.cpp" />
@@ -144,8 +193,12 @@
 		<Unit filename="Statistical/Matrix.hpp" />
 		<Unit filename="Statistical/Statistical.cpp" />
 		<Unit filename="Statistical/Statistical.hpp" />
-		<Unit filename="Statistical/Vector.cpp" />
-		<Unit filename="Statistical/Vector.hpp" />
+		<Unit filename="Statistical/VectorD.cpp" />
+		<Unit filename="Statistical/VectorD.hpp" />
+		<Unit filename="Statistical/VectorF.cpp" />
+		<Unit filename="Statistical/VectorF.hpp" />
+		<Unit filename="Statistical/VectorTpl.cpp" />
+		<Unit filename="Statistical/VectorTpl.hpp" />
 		<Unit filename="Systems/Geo.cpp" />
 		<Unit filename="Systems/Geo.hpp" />
 		<Unit filename="Systems/Point.cpp" />
@@ -163,8 +216,12 @@
 		<Unit filename="Systems/ThreeSphericals.hpp" />
 		<Unit filename="Systems/Vect3.cpp" />
 		<Unit filename="Systems/Vect3.hpp" />
+		<Unit filename="Util/Bool3State.cpp" />
+		<Unit filename="Util/Bool3State.hpp" />
 		<Unit filename="Util/CharManipulations.cpp" />
 		<Unit filename="Util/CharManipulations.hpp" />
+		<Unit filename="Util/CoutBuf.cpp" />
+		<Unit filename="Util/CoutBuf.hpp" />
 		<Unit filename="Util/EnumStringMap.cpp" />
 		<Unit filename="Util/EnumStringMap.h" />
 		<Unit filename="Util/FileUtils.cpp" />
@@ -174,6 +231,12 @@
 		<Unit filename="Util/Result.cpp" />
 		<Unit filename="Util/Result.hpp" />
 		<Unit filename="Util/StackTrace.hpp" />
+		<Unit filename="Util/TimerChrono.cpp" />
+		<Unit filename="Util/TimerChrono.hpp" />
+		<Unit filename="Util/Tokenizer.cpp" />
+		<Unit filename="Util/Tokenizer.hpp" />
+		<Unit filename="Util/Trim.cpp" />
+		<Unit filename="Util/Trim.hpp" />
 		<Unit filename="Util/ValueWithDescription.cpp" />
 		<Unit filename="Util/ValueWithDescription.hpp" />
 		<Unit filename="Util/VectorNonCopyable.cpp" />

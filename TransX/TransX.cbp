@@ -191,6 +191,8 @@
 		<Unit filename="../lib/Math/Burkardt/FuncBase.hpp" />
 		<Unit filename="../lib/Math/Burkardt/MonicPoly.cpp" />
 		<Unit filename="../lib/Math/Burkardt/MonicPoly.hpp" />
+		<Unit filename="../lib/Math/Burkardt/NelderMeadBurkardt.cpp" />
+		<Unit filename="../lib/Math/Burkardt/NelderMeadBurkardt.hpp" />
 		<Unit filename="../lib/Math/Burkardt/Poly.cpp" />
 		<Unit filename="../lib/Math/Burkardt/Poly.hpp" />
 		<Unit filename="../lib/Math/Constants.hpp" />
@@ -204,6 +206,10 @@
 		<Unit filename="../lib/Math/Opti/OptiBrent.hpp" />
 		<Unit filename="../lib/Math/Opti/OptiFactory.cpp" />
 		<Unit filename="../lib/Math/Opti/OptiFactory.hpp" />
+		<Unit filename="../lib/Math/Opti/OptiMultiNelderMead.cpp" />
+		<Unit filename="../lib/Math/Opti/OptiMultiNelderMead.hpp" />
+		<Unit filename="../lib/Math/Opti/OptiMultiSubject.cpp" />
+		<Unit filename="../lib/Math/Opti/OptiMultiSubject.hpp" />
 		<Unit filename="../lib/Math/Opti/OptiSubject.cpp" />
 		<Unit filename="../lib/Math/Opti/OptiSubject.hpp" />
 		<Unit filename="../lib/Math/Opti/OptiType.cpp" />

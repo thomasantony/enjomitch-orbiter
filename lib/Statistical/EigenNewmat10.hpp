@@ -38,7 +38,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "EigenAbstract.hpp"
 
 
-
+namespace EnjoLib
+{
 class EigenNewmat10 : public EigenAbstract
 {
     public:
@@ -51,5 +52,5 @@ class EigenNewmat10 : public EigenAbstract
     private:
         RBD_LIBRARIES::SymmetricMatrix ConvertMatrix( const Matrix & m ) const;
 };
-
+}
 #endif // EIGENNEWMAT10_H

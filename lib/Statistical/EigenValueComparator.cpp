@@ -32,7 +32,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "EigenValueComparator.hpp"
 #include "EigenValueVector.hpp"
+
 using namespace EnjoLib;
+
 EigenValueComparator::EigenValueComparator()
 {
 }

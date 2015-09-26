@@ -600,8 +600,8 @@ bool slingejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 	m_ejdate.init(vars,3,3,"Eject date",0,0,1e20,0.000005,1000000);
 	m_ejdate=oapiGetSimMJD();//Temporary default.
 
-	m_outwardangle.SetOptimiser(optiFact.Create(VarConstraint(&m_outwardangle, ConstraintType::ANGLE)));
-	m_incangle.SetOptimiser(optiFact.Create(VarConstraint(&m_incangle, ConstraintType::ANGLE)));
+	m_outwardangle.SetOptimiser(optiFact.Create(VarConstraint(&m_outwardangle, ConstraintType::ANGLE, false)));
+	m_incangle.SetOptimiser(optiFact.Create(VarConstraint(&m_incangle, ConstraintType::ANGLE, false)));
 
 	m_totalvel.sethelpstrings(
 		"Total velocity of escape","");
@@ -635,9 +635,9 @@ bool majorejectplan::init(class MFDvarhandler *vars, class basefunction *base)
 	m_outwardvel.init(vars,3,3,"Outward vel.", 0,-1e8,1e8,0.1,1000);
 	m_chplvel.init(vars,3,3,"Ch. plane vel.", 0, -1e8, 1e8, 0.1,1000);
 
-    VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN);
-    VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE);
-    VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD);
+    VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN, false);
+    VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE, false);
+    VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD, true);
     std::vector<VarConstraint> allVelocities;
     allVelocities.push_back(constrPrograde);
     allVelocities.push_back(constrChPlane);

@@ -1,5 +1,7 @@
 #include "OptiFunction.h"
 #include "../basefunction.h"
+#include "ConstraintFactory.h"
+#include "Constraint.h"
 
 double OptiFunctionBase::RecalculateGetValue()
 {
@@ -32,4 +34,65 @@ double OptiFunction::UpdateGetValue( double arg )
     *m_toOpti.var = arg; // Provide feedback to TransX's calculation functions
     double closestApproach = RecalculateGetValue(); // Get feedback FROM TransX
     return closestApproach; // Return the feedback to the binary search algorithm
+}
+
+
+double OptiMultiFunction::Get(const double * in, int n)
+{
+
+    for (int i = 0; i < n; ++i)
+    {
+        double arg = *(in + i);
+        if (fabs(arg) <= 0.1)
+            arg = 0.11; // Has to be done this way because otherwise TransX would ignore this variable
+        *(m_toOpti.at(i)).var = arg; // Provide feedback to TransX's calculation functions
+    }
+
+    double closestApproach = RecalculateGetValue(); // Get feedback FROM TransX
+
+    //penality function
+    double penalitySum = 0;
+    ConstraintFactory costrFact(m_base); // Setup constraints and precision
+    for (int i = 0; i < n; ++i)
+    {
+        const VarConstraint & item = m_toOpti.at(i);
+        Constraint cstr = costrFact.Create(item.constraintType);
+        double arg = *(in + i);
+        double diff = 0;
+        if (arg > cstr.upper)
+            diff = fabs(cstr.upper - arg);
+        else if (arg < cstr.lower)
+            diff = fabs(arg - cstr.lower);
+
+        double penality = diff * diff * diff * diff * 10e3;
+        penalitySum += penality;
+    }
+    double ret = closestApproach + penalitySum;
+
+    return ret; // Return the feedback to the binary search algorithm
+}
+
+std::vector<double> OptiMultiFunction::GetStart() const
+{
+    std::vector<double> start;
+    ConstraintFactory costrFact(m_base);
+    for (size_t i = 0; i < m_toOpti.size(); ++i)
+	{
+        //if (m_toOpti.at(i).startFrom0)
+            //start.push_back(0);
+        //else
+          //  start.push_back(*(m_toOpti.at(i)).var);
+
+		const VarConstraint & item = m_toOpti.at(i);
+        Constraint cstr = costrFact.Create(item.constraintType);
+		start.push_back((cstr.lower + cstr.upper) / 2.0);
+	}
+    return start;
+}
+std::vector<double> OptiMultiFunction::GetStep() const
+{
+    std::vector<double> step;
+    for (size_t i = 0; i < m_toOpti.size(); ++i)
+        step.push_back(10);
+    return step;
 }

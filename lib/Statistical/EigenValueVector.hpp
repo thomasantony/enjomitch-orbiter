@@ -33,22 +33,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef EIGENVALUEVECTOR_H
 #define EIGENVALUEVECTOR_H
 
-#include "Vector.hpp"
-namespace EnjoLib {
+#include "VectorD.hpp"
+namespace EnjoLib
+{
 class EigenValueVector
 {
     public:
-        EigenValueVector(double value, const Vector & vector);
+        EigenValueVector(double value, const VectorD & vector);
         virtual ~EigenValueVector();
 
         double GetValue() const;
-        const Vector & GetVector() const;
+        const VectorD & GetVector() const;
 
     protected:
     private:
 
         double m_eigenValue;
-        Vector m_eigenVector;
+        VectorD m_eigenVector;
 };
 }
 #endif // EIGENVALUEVECTOR_H

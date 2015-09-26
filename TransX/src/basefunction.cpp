@@ -515,7 +515,7 @@ bool basefunction::initialisevars()
 
 	// Manoeuvre mode Auto-Min.
 	// Doesn't work very well, as it prefers overshooting the target too much
-	/*
+    /*
 	VarConstraint constrPrograde(&m_prograde, ConstraintType::PROGRADE_HOHMANN);
     VarConstraint constrChPlane(&m_chplvel, ConstraintType::CHANGE_PLANE);
     VarConstraint constrOutward(&m_outwardvel, ConstraintType::OUTWARD);

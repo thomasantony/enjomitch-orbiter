@@ -33,8 +33,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef VECTORUTIL_H
 #define VECTORUTIL_H
 
-namespace EnjoLib {
-class Vector;
+#include <stdexcept>
+
+namespace EnjoLib
+{
+template<class T> class VectorTpl;
 class Matrix;
 
 class Assertions
@@ -42,13 +45,29 @@ class Assertions
     public:
         Assertions();
         virtual ~Assertions();
-        void SizesEqual( const Vector & v1, const Vector & v2, const char * identifier ) const;
-        void AtLeast2Dimensions( const Vector & v, const char * identifier ) const;
+        template<class T>
+        void SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier ) const;
+        template<class T>
+        void AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier ) const;
         void Square( const Matrix & m, const char * identifier ) const;
         void CanMultiply( const Matrix & m1, const Matrix & m2, const char * identifier  ) const;
 
     protected:
     private:
 };
+
+    template<class T>
+    void Assertions::SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier ) const
+    {
+        if ( v1.size() != v2.size() )
+            throw std::invalid_argument( std::string("Incompatible sizes at\n") + identifier + "()\n");
+    }
+
+    template<class T>
+    void Assertions::AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier ) const
+    {
+        if ( v.size() < 2 )
+            throw std::invalid_argument( std::string("Dimension must be at least 2\n") + identifier + "()\n");
+    }
 }
 #endif // VECTORUTIL_H

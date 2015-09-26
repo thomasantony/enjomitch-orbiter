@@ -793,6 +793,22 @@
 						>
 					</File>
 					<File
+						RelativePath="..\lib\Math\Opti\OptiMultiNelderMead.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\lib\Math\Opti\OptiMultiNelderMead.hpp"
+						>
+					</File>
+					<File
+						RelativePath="..\lib\Math\Opti\OptiMultiSubject.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\lib\Math\Opti\OptiMultiSubject.hpp"
+						>
+					</File>
+					<File
 						RelativePath="..\lib\Math\Opti\OptiSubject.cpp"
 						>
 					</File>
@@ -834,6 +850,14 @@
 					</File>
 					<File
 						RelativePath="..\lib\Math\Burkardt\MonicPoly.hpp"
+						>
+					</File>
+					<File
+						RelativePath="..\lib\Math\Burkardt\NelderMeadBurkardt.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\lib\Math\Burkardt\NelderMeadBurkardt.hpp"
 						>
 					</File>
 					<File

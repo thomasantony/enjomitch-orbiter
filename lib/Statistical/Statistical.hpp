@@ -33,8 +33,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef STATISTICAL_H
 #define STATISTICAL_H
 
-namespace EnjoLib {
-class Vector;
+#include <vector>
+
+namespace EnjoLib
+{
+class VectorD;
 class Matrix;
 
 class Statistical
@@ -43,10 +46,10 @@ class Statistical
         Statistical();
         virtual ~Statistical();
 
-        double StandardDeviation( const Vector & v ) const;
-        double Variance( const Vector & v ) const;
-        double Covariance( const Vector & v1, const Vector & v2 ) const;
-        double SumMulDiffMean( const Vector & v1, const Vector & v2 ) const;
+        double StandardDeviation( const VectorD & v ) const;
+        double Variance( const VectorD & v ) const;
+        double Covariance( const VectorD & v1, const VectorD & v2 ) const;
+        double SumMulDiffMean( const VectorD & v1, const VectorD & v2 ) const;
         Matrix CovarianceMatrix( const Matrix & data );
     protected:
     private:

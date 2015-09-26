@@ -36,7 +36,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "EigenValueComparator.hpp"
 #include "Assertions.hpp"
 #include "Matrix.hpp"
+
 using namespace EnjoLib;
+
 EigenAbstract::EigenAbstract()
 {
 }

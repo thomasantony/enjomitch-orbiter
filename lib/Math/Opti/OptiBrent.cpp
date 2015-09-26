@@ -4,7 +4,6 @@
 #include <cmath>
 #include <utility>
 #include "../Burkardt/BrentBurkardt.hpp"
-#include "../Burkardt/FuncBase.hpp"
 
 using namespace EnjoLib;
 

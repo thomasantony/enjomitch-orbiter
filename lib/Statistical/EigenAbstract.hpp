@@ -35,7 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <vector>
 #include "EigenValueVector.hpp"
-namespace EnjoLib{
+namespace EnjoLib
+{
 class Matrix;
 
 class EigenAbstract

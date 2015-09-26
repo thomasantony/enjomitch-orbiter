@@ -33,7 +33,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Matrix.hpp"
 #include <sstream>
 #include "Assertions.hpp"
+
 using namespace EnjoLib;
+
 Matrix::Matrix()
 {
 }
@@ -41,13 +43,13 @@ Matrix::Matrix()
 Matrix::Matrix(int n)
 {
     for (int i = 0; i < n; ++i)
-        push_back( Vector(n) );
+        push_back( VectorD(n) );
 }
 
 Matrix::Matrix(int n, int m)
 {
     for (int i = 0; i < n; ++i)
-        push_back( Vector(m) );
+        push_back( VectorD(m) );
 }
 
 Matrix::~Matrix()

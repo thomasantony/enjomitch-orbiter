@@ -15,6 +15,9 @@ class Optimiser
 
     protected:
     private:
+        void SingleVar() const;
+        void MultiVar() const;
+
         basefunction * m_base;
         Intercept * m_icept;
         std::vector<VarConstraint> m_pArgs2Find;

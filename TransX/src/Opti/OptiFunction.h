@@ -3,6 +3,7 @@
 
 //#include <Math/BinSearchOptiSubject.hpp>
 #include <Math/Opti/OptiSubject.hpp>
+#include <Math/Opti/OptiMultiSubject.hpp>
 #include "VarConstraint.h"
 class basefunction;
 class Intercept;
@@ -17,9 +18,10 @@ class OptiFunctionBase
         {}
     protected:
         double RecalculateGetValue();
+        basefunction * m_base;
 
     private:
-        basefunction * m_base;
+
         Intercept * m_icept;
 };
 
@@ -35,6 +37,23 @@ class OptiFunction : public OptiFunctionBase, public EnjoLib::OptiSubject
         double UpdateGetValue( double arg );
     private:
         VarConstraint m_toOpti;
+};
+
+class OptiMultiFunction : public OptiFunctionBase, public EnjoLib::OptiMultiSubject
+{
+    public:
+        OptiMultiFunction(std::vector<VarConstraint> toOpti, basefunction * base, Intercept * icept)
+        : OptiFunctionBase(base, icept)
+        , m_toOpti(toOpti)
+        {
+        }
+        double Get(const double * in, int n);
+
+        std::vector<double> GetStart() const;
+        std::vector<double> GetStep() const;
+
+    private:
+        std::vector<VarConstraint> m_toOpti;
 };
 
 #endif // OPTIFUNCTION_H

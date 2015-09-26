@@ -34,9 +34,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <stdexcept>
 
 #include "Assertions.hpp"
-#include "Vector.hpp"
+#include "VectorTpl.hpp"
 #include "Matrix.hpp"
+
 using namespace EnjoLib;
+
 Assertions::Assertions()
 {
 }
@@ -59,15 +61,18 @@ void Assertions::Square( const Matrix & m, const char * identifier ) const
             throw std::invalid_argument( std::string("Matrix not square at\n") + identifier + "()\n");
     }
 }
-
-void Assertions::SizesEqual( const Vector & v1, const Vector & v2, const char * identifier ) const
+/*
+template<class T>
+void Assertions::SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier ) const
 {
     if ( v1.size() != v2.size() )
         throw std::invalid_argument( std::string("Incompatible sizes at\n") + identifier + "()\n");
 }
 
-void Assertions::AtLeast2Dimensions( const Vector & v, const char * identifier ) const
+template<class T>
+void Assertions::AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier ) const
 {
     if ( v.size() < 2 )
         throw std::invalid_argument( std::string("Dimension must be at least 2\n") + identifier + "()\n");
 }
+*/
