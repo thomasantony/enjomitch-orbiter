@@ -56,6 +56,13 @@ There is one new graph type in the Slingshot plan in view 3. The yellow line rep
 
 The easiest way to align them is to use prograde autopilot and linear manoevreing thrusters, whilst at a considerable distance from the planet.
 
+
+Inheriting plan (EXE button):
+----------------------------
+
+If you have a couple of ships in the general vicinity of one another and one has a full TransX plan, you can transfer the plan to the other ship. Go into the other ship, click Back to prior to stage 1 and it will say "inherit plan". Click the "++" to choose the ship that already has the plan. Click EXE to transfer the plan to the ship you're in. (info from Flytandem)
+
+
 Slingshots
 ----------
 
@@ -66,6 +73,7 @@ To create a slingshot,
 Move to view 3, and you will find TransX has created a plan for you to point the slingshot wherever you like. It's quite possible that the initial parameters require you to go below the planet's surface. Change the parameters until you're not going below the surface (Pe / Pl. Rad  is greater than 1), and you're going the way you want to.
 
 If you then go back to the slingshot planet, you'll see your slingshot plan in yellow. Select view 3 for a graph to target it precisely.
+
 
 New Features/Hacks:
 ------------------

@@ -18,6 +18,7 @@
 					<Add option="/Zi" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/D_DEBUG" />
+					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/DEBUG" />
@@ -42,6 +43,7 @@
 					<Add option="/DLANG_PL" />
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -67,6 +69,7 @@
 					<Add option="/DLANG_EN" />
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -97,6 +100,7 @@
 					<Add option="/DLANG_EN" />
 					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter060929/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -122,6 +126,7 @@
 					<Add option="/DLANG_EN" />
 					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -147,6 +152,7 @@
 					<Add option="/DLANG_EN" />
 					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
@@ -352,6 +358,11 @@
 		<Unit filename="MessagingSender.h" />
 		<Unit filename="MovementParams.cpp" />
 		<Unit filename="MovementParams.h" />
+		<Unit filename="Multistage2015/Guidance.cpp" />
+		<Unit filename="Multistage2015/Multistage2015.cpp" />
+		<Unit filename="Multistage2015/Multistage2015.h" />
+		<Unit filename="Multistage2015/parser.cpp" />
+		<Unit filename="Multistage2015/peg.cpp" />
 		<Unit filename="OffPlaneCorrector/OffPlaneCorrector.cpp" />
 		<Unit filename="OffPlaneCorrector/OffPlaneCorrector.hpp" />
 		<Unit filename="OffPlaneCorrector/OffPlaneCorrectorDirectAscent.cpp" />
@@ -370,6 +381,8 @@
 		<Unit filename="PEG/PEGDirectAscentSynchro.h" />
 		<Unit filename="PEG/PEGMulti.cpp" />
 		<Unit filename="PEG/PEGMulti.h" />
+		<Unit filename="PEG/PEGMultiFred.cpp" />
+		<Unit filename="PEG/PEGMultiFred.h" />
 		<Unit filename="PEG/PEGNormal.cpp" />
 		<Unit filename="PEG/PEGNormal.h" />
 		<Unit filename="PitchGuidance.cpp" />
