@@ -234,10 +234,7 @@
 		<Unit filename="../lib/Math/MaxMin.hpp" />
 		<Unit filename="../lib/Math/MaxMinPoint.cpp" />
 		<Unit filename="../lib/Math/MaxMinPoint.hpp" />
-		<Unit filename="../lib/Math/Root/BinSearchArg.cpp" />
 		<Unit filename="../lib/Math/Root/BinSearchArg.hpp" />
-		<Unit filename="../lib/Math/Root/BinSearchArgSubject.cpp" />
-		<Unit filename="../lib/Math/Root/BinSearchArgSubject.hpp" />
 		<Unit filename="../lib/Math/Root/IRootAlgo.cpp" />
 		<Unit filename="../lib/Math/Root/IRootAlgo.hpp" />
 		<Unit filename="../lib/Math/Root/RootBisection.cpp" />

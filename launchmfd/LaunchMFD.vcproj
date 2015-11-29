@@ -705,22 +705,6 @@
 				Name="Root"
 				>
 				<File
-					RelativePath="..\lib\Math\Root\BinSearchArg.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\Root\BinSearchArg.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\Root\BinSearchArgSubject.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Math\Root\BinSearchArgSubject.hpp"
-					>
-				</File>
-				<File
 					RelativePath="..\lib\Math\Root\IRootAlgo.cpp"
 					>
 				</File>
