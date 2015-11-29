@@ -5,6 +5,8 @@
 #include "IOptiAlgo.hpp"
 #include "OptiType.hpp"
 
+#include <Util/AutoPtr.hpp>
+
 namespace EnjoLib
 {
     class OptiFactory
@@ -13,7 +15,7 @@ namespace EnjoLib
             OptiFactory();
             virtual ~OptiFactory();
 
-            static std::auto_ptr<IOptiAlgo> Create(OptiType type, double minArg, double maxArg, double eps);
+            static std::unique_ptr<IOptiAlgo> Create(OptiType type, double minArg, double maxArg, double eps);
 
         protected:
         private:

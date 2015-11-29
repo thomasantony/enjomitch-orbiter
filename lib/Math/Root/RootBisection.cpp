@@ -30,16 +30,16 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "Bisection.hpp"
-#include "BisectionSubject.hpp"
-#include "GeneralMath.hpp"
+#include "RootBisection.hpp"
+#include "RootSubject.hpp"
+#include "../GeneralMath.hpp"
 //#include <sstream>
 #include <cmath>
 
 
 using namespace EnjoLib;
 
-Bisection::Bisection( double minArg, double maxArg, double eps )
+RootBisection::RootBisection( double minArg, double maxArg, double eps )
 {
     if (minArg > maxArg)
         std::swap(minArg, maxArg);
@@ -47,50 +47,63 @@ Bisection::Bisection( double minArg, double maxArg, double eps )
     this->m_minArg = minArg;
     this->m_maxArg = maxArg;
     this->m_eps = eps;
-    // Bound binary seach should finish in log2(n) iterations. Let's allow for max 2 logs.
-	GeneralMath gm;
-    const double numSlices = gm.round( (maxArg-minArg) / eps);
-    this->m_maxIter = 2 * gm.round(gm.Log2(numSlices));
+    this->m_maxIter = GeneralMath().GetMaxIterBinSearchBound(minArg, maxArg, eps);
+    m_numIter = 0;
 }
 
-Bisection::~Bisection()
+RootBisection::~RootBisection()
 {}
 
 //#include <orbitersdk.h>
-Result<double> Bisection::Run( BisectionSubject & subj ) const
+Result<double> RootBisection::Run( RootSubject & subj ) const
 {
+    // Validation block
     GeneralMath gm;
     const double refValue = subj.GetRefValue();
-    double fmin = subj.UpdateGetValue(m_minArg, m_minArg) - refValue;
-    double fmax = subj.UpdateGetValue(m_maxArg, m_minArg) - refValue;
-    if ( gm.sign(fmin) == gm.sign(fmax) )
+    double fmin = subj.UpdateGetValue(m_minArg) - refValue;
+    double fmax = subj.UpdateGetValue(m_maxArg) - refValue;
+    int faSign = gm.sign(fmin);
+    if ( faSign == gm.sign(fmax) )
     {
         // The value for maximal argument should have been positive and was negative
         // or it should have been negative while its positive
         //sprintf(oapiDebugString(), "prevDiff = %lf", prevDiff);
         return Result<double>(m_maxArg, false);
     }
-    double arg, value;
+    // validated!
+    double mid, midValue;
     int i = 0;
     double a = m_minArg;
     double b = m_maxArg;
     bool bmaxIter = false;
     do
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)
-        arg = (a + b) / 2; // Midpoint
-        value = subj.UpdateGetValue(arg, m_minArg) - refValue;
-        if ( gm.sign(fmin) == gm.sign(value) )
+        mid = (a + b) / 2.0; // Midpoint
+        midValue = subj.UpdateGetValue(mid) - refValue;
+        int midSign = gm.sign(midValue);  // Cache the sign in a variable for reuse
+        if ( faSign == midSign )
         {
-            a = arg; // Narrow left border
-            fmin = value;
+            a = mid; // Narrow left border
+            // f(a) would need a new evaluation since "a" changes, so store the current value as next iteration's f(a)
+            faSign = midSign; // We actually only care about the current sign for the next iteration
         }
         else
-            b = arg; // Narrow right border
+        {
+            b = mid; // Narrow right border
+            // f(a) can be reused from current iteration
+        }
+
         bmaxIter = ++i == m_maxIter;
-    } while( (b-a)/2 > m_eps && ! bmaxIter ); // Continue searching, until below threshold
-    //sprintf(oapiDebugString(), "i = %d, maxi = %d, arg = %lf, value = %lf, pdiff = %lf",i, m_maxIter, arg, diff, prevDiff);
+    } while( (b-a) > m_eps && ! bmaxIter ); // Continue searching, until below threshold
+    //sprintf(oapiDebugString(), "i = %d, maxi = %d, mid = %lf, value = %lf, pdiff = %lf",i, m_maxIter, mid, diff, prevDiff);
+    m_numIter = i;
     if ( bmaxIter )
         return Result<double>(m_maxArg, false);
     else
-        return Result<double>(arg, subj.IsValid( arg, value ));
+        return Result<double>(mid, subj.IsValid( mid, midValue ));
+}
+
+int RootBisection::GetIterations() const
+{
+    return m_numIter;
 }

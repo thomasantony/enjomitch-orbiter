@@ -35,6 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define CHAR_MANIPULATIONS_HPP_INCLUDED
 
 #include <string>
+#include <sstream>
+#include <stdexcept>
 
 namespace EnjoLib
 {
@@ -49,9 +51,16 @@ public:
 	std::string ToStr(double d, unsigned precision = 2) const;
 	std::string ToStr(int i) const;
 	bool ToDouble(const std::string & in, double * d) const;
+	double ToDouble(const std::string & in) const;
+	int ToInt(const std::string & in) const;
+	bool ToInt(const std::string & in, int * i) const;
+	template <class T> bool ToNumber(const std::string & in, T * d) const;
+	template <class T> T    ToNumber(const std::string & in) const;
 
 private:
 };
+
+
 }
 
 #endif

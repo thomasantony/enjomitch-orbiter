@@ -21,6 +21,7 @@
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
+					<Add directory="Math/Opti/Root" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -34,12 +35,14 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
-					<Add option="-std=c++0x" />
+					<Add option="-march=corei7-avx" />
+					<Add option="-O3" />
+					<Add option="-std=c++11" />
 					<Add directory="Math" />
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
+					<Add directory="Math/Opti/Root" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -58,6 +61,7 @@
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
+					<Add directory="Math/Opti/Root" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -77,6 +81,7 @@
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
+					<Add directory="Math/Opti/Root" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -97,28 +102,36 @@
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
+					<Add directory="Math/Opti/Root" />
 				</Compiler>
+			</Target>
+			<Target title="Release-x64">
+				<Option output="bin/Release-x64/EnjoLib" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release-x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++0x" />
+					<Add directory="Math" />
+					<Add directory="Util" />
+					<Add directory="Statistical" />
+					<Add directory="Math/Opti" />
+					<Add directory="Math/Opti/Root" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../lib" />
 		</Compiler>
 		<Unit filename="Math/AzimuthMath.cpp" />
 		<Unit filename="Math/AzimuthMath.hpp" />
-		<Unit filename="Math/BinSearchArg.cpp" />
-		<Unit filename="Math/BinSearchArg.hpp" />
-		<Unit filename="Math/BinSearchArgSubject.cpp" />
-		<Unit filename="Math/BinSearchArgSubject.hpp" />
-		<Unit filename="Math/BinSearchOpti2D.cpp" />
-		<Unit filename="Math/BinSearchOpti2D.hpp" />
-		<Unit filename="Math/BinSearchOpti2DSubject.cpp" />
-		<Unit filename="Math/BinSearchOpti2DSubject.hpp" />
-		<Unit filename="Math/Bisection.cpp" />
-		<Unit filename="Math/Bisection.hpp" />
-		<Unit filename="Math/BisectionSubject.cpp" />
-		<Unit filename="Math/BisectionSubject.hpp" />
-		<Unit filename="Math/BoundSearch.cpp" />
-		<Unit filename="Math/BoundSearch.hpp" />
 		<Unit filename="Math/Burkardt/BrentBurkardt.cpp" />
 		<Unit filename="Math/Burkardt/BrentBurkardt.hpp" />
 		<Unit filename="Math/Burkardt/FuncBase.cpp" />
@@ -136,7 +149,6 @@
 		<Unit filename="Math/GreatCircleAdvMath.hpp" />
 		<Unit filename="Math/GreatCircleMath.cpp" />
 		<Unit filename="Math/GreatCircleMath.hpp" />
-		<Unit filename="Math/IOptiAlgo.hpp" />
 		<Unit filename="Math/MaxMin.cpp" />
 		<Unit filename="Math/MaxMin.hpp" />
 		<Unit filename="Math/MaxMinPoint.cpp" />
@@ -157,13 +169,26 @@
 		<Unit filename="Math/Opti/OptiSubject.hpp" />
 		<Unit filename="Math/Opti/OptiType.cpp" />
 		<Unit filename="Math/Opti/OptiType.hpp" />
-		<Unit filename="Math/OptiBinSearch.hpp" />
-		<Unit filename="Math/OptiBrent.hpp" />
-		<Unit filename="Math/OptiSubject.hpp" />
 		<Unit filename="Math/RK4.cpp" />
 		<Unit filename="Math/RK4.hpp" />
 		<Unit filename="Math/RK4AccelerationBase.cpp" />
 		<Unit filename="Math/RK4AccelerationBase.hpp" />
+		<Unit filename="Math/Root/BinSearchArg.cpp" />
+		<Unit filename="Math/Root/BinSearchArg.hpp" />
+		<Unit filename="Math/Root/BinSearchArgSubject.cpp" />
+		<Unit filename="Math/Root/BinSearchArgSubject.hpp" />
+		<Unit filename="Math/Root/IRootAlgo.cpp" />
+		<Unit filename="Math/Root/IRootAlgo.hpp" />
+		<Unit filename="Math/Root/RootBisection.cpp" />
+		<Unit filename="Math/Root/RootBisection.hpp" />
+		<Unit filename="Math/Root/RootBrent.cpp" />
+		<Unit filename="Math/Root/RootBrent.hpp" />
+		<Unit filename="Math/Root/RootFactory.cpp" />
+		<Unit filename="Math/Root/RootFactory.hpp" />
+		<Unit filename="Math/Root/RootSubject.cpp" />
+		<Unit filename="Math/Root/RootSubject.hpp" />
+		<Unit filename="Math/Root/RootType.cpp" />
+		<Unit filename="Math/Root/RootType.hpp" />
 		<Unit filename="Math/SimpsonFunctor.cpp" />
 		<Unit filename="Math/SimpsonFunctor.hpp" />
 		<Unit filename="Math/SolverQuartic.cpp" />
@@ -172,6 +197,14 @@
 		<Unit filename="Math/SpaceMath.hpp" />
 		<Unit filename="Math/SpaceMathBody.cpp" />
 		<Unit filename="Math/SpaceMathBody.hpp" />
+		<Unit filename="Math/Unused/BinSearchOpti2D.cpp" />
+		<Unit filename="Math/Unused/BinSearchOpti2D.hpp" />
+		<Unit filename="Math/Unused/BinSearchOpti2DSubject.cpp" />
+		<Unit filename="Math/Unused/BinSearchOpti2DSubject.hpp" />
+		<Unit filename="Math/Unused/BisectionSubject.cpp" />
+		<Unit filename="Math/Unused/BisectionSubject.hpp" />
+		<Unit filename="Math/Unused/BoundSearch.cpp" />
+		<Unit filename="Math/Unused/BoundSearch.hpp" />
 		<Unit filename="Math/VectorMath.cpp" />
 		<Unit filename="Math/VectorMath.hpp" />
 		<Unit filename="PID/DerivatorDiscrete.cpp" />
@@ -216,6 +249,7 @@
 		<Unit filename="Systems/ThreeSphericals.hpp" />
 		<Unit filename="Systems/Vect3.cpp" />
 		<Unit filename="Systems/Vect3.hpp" />
+		<Unit filename="Util/AutoPtr.hpp" />
 		<Unit filename="Util/Bool3State.cpp" />
 		<Unit filename="Util/Bool3State.hpp" />
 		<Unit filename="Util/CharManipulations.cpp" />

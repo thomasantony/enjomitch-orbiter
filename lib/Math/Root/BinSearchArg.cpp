@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "BinSearchArg.hpp"
 #include "BinSearchArgSubject.hpp"
-#include "GeneralMath.hpp"
+#include "../GeneralMath.hpp"
 //#include <sstream>
 #include <cmath>
 
@@ -47,11 +47,7 @@ BinSearchArg::BinSearchArg( double minArg, double maxArg, double eps )
     this->m_minArg = minArg;
     this->m_maxArg = maxArg;
     this->m_eps = eps;
-
-    GeneralMath gm;
-    // Bound binary seach should finish in log2(n) iterations. Let's allow for max 2 logs.
-    const double slices = gm.round( (maxArg-minArg) / eps);
-    this->m_maxIter = 2 * gm.round(gm.Log2(slices));
+    this->m_maxIter = GeneralMath().GetMaxIterBinSearchBound(minArg, maxArg, eps);
 }
 
 BinSearchArg::~BinSearchArg()

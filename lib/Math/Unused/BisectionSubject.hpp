@@ -30,35 +30,28 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef BINSEARCH_H
-#define BINSEARCH_H
+#ifndef BINSEARCHSUBJECT_H
+#define BINSEARCHSUBJECT_H
 
-#include "../Util/Result.hpp"
+#include <string>
 
 namespace EnjoLib
 {
-class BinSearchArgSubject;
-
-/// Searches for an argument of function, that produces a given reference value
-class BinSearchArg
+/// Represents a black box whose values will be queried in search for GetRefValue()
+class BisectionSubject
 {
     public:
-        /// Ctor
-        /**
-            \param minArg - starting argument
-            \param maxArg - maximal argument that will be searched
-            \param epsilon - accuracy of the I/O argument (not the function!)
-        */
-        BinSearchArg( double minArg, double maxArg, double epsilon );
-        virtual ~BinSearchArg();
-        Result<double> Run( BinSearchArgSubject & subj ) const;
+        BisectionSubject();
+        virtual ~BisectionSubject();
+        /// The value searched for.
+        virtual double GetRefValue() const = 0;
+        /// Should return the function's value for a given argument.
+        virtual double UpdateGetValue( double arg ) = 0;
+        /// Can give additional hint to the caller about validity of the result, if known.
+        virtual bool IsValid( double arg, double lastValue ) { return true; };
     protected:
     private:
-
-        double m_minArg, m_maxArg, m_eps;
-        bool m_maxArgValPositive;
-        int m_maxIter;
 };
 }
 
-#endif // BINSEARCH_H
+#endif // BINSEARCHSUBJECT_H

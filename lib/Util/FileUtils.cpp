@@ -31,6 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include <fstream>
+#include <iostream>
+#include <stdexcept>
 #include "FileUtils.hpp"
 #include "CharManipulations.hpp"
 using namespace EnjoLib;
@@ -69,4 +71,37 @@ bool FileUtils::FileExists( const std::string & fileName ) const
 {
     std::ifstream f(fileName.c_str());
         return f.is_open();
+}
+
+size_t FileUtils::GetNumLinesFile( const std::string & fileName, bool skipHeader ) const
+{
+    std::ifstream is(fileName.c_str());
+    if (!is.is_open())
+        throw std::runtime_error("File '" + fileName + "' doesn't exist");
+    return GetNumLinesFile(is, skipHeader);
+}
+
+size_t FileUtils::GetNumLinesFile( std::istream & is, bool skipHeader ) const
+{
+    size_t size = 0;
+    std::string line;
+    if (skipHeader)
+        std::getline(is, line);
+    while ( std::getline(is, line) )
+        ++size;
+    return size;
+}
+
+void FileUtils::PrintProgressBar(size_t i, size_t sz) const
+{
+    int percentPrev = int(i / (float)sz * 10);
+    int percent = int((i+1) / (float)sz * 10);
+    if (percent != percentPrev || i == 0)
+    {
+        std::cout << percent * 10 << "% ";
+        std::cout.flush();
+    }
+
+    if (i == sz - 1)
+        std::cout << "  Done!" << std::endl;
 }

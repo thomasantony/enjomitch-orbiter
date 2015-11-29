@@ -113,3 +113,13 @@ double GeneralMath::GetIn0_2PIRange( double angle ) const
     if (angle < 0) angle += 2*PI;
     return angle;
 }
+
+/**
+Bound binary seach should finish in log2(n) iterations. Let's allow for max 2 logs.
+*/
+int GeneralMath::GetMaxIterBinSearchBound(double minArg, double maxArg, double eps) const
+{
+    const double numSlices = this->round( fabs(maxArg-minArg) / eps);
+    int maxIter = 2 * this->round(this->Log2(numSlices));
+    return maxIter;
+}

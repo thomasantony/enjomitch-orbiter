@@ -5,8 +5,8 @@ namespace EnjoLib
 {
     enum OptiType
     {
-        BIN_SEARCH,
-        BRENT
+        OPTI_BIN_SEARCH,
+        OPTI_BRENT
     };
 }
 

@@ -44,7 +44,7 @@
 #include "Math/Constants.hpp"
 #include "../PEG/PEGDirectAscentOpti.h"
 #include "../localisation.h"
-#include <Math/BinSearchArg.hpp>
+#include <Math/Root/BinSearchArg.hpp>
 #include "DirectAscentOptiEngineLevel.hpp"
 
 using namespace EnjoLib;

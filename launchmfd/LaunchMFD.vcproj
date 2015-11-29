@@ -626,22 +626,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\lib\Math\BinSearchArg.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\lib\Math\BinSearchArg.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\lib\Math\BinSearchArgSubject.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\lib\Math\BinSearchArgSubject.hpp"
-				>
-			</File>
-			<File
 				RelativePath="..\lib\Math\Constants.hpp"
 				>
 			</File>
@@ -717,6 +701,74 @@
 				RelativePath="..\lib\Math\VectorMath.hpp"
 				>
 			</File>
+			<Filter
+				Name="Root"
+				>
+				<File
+					RelativePath="..\lib\Math\Root\BinSearchArg.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\BinSearchArg.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\BinSearchArgSubject.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\BinSearchArgSubject.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\IRootAlgo.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\IRootAlgo.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootBisection.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootBisection.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootBrent.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootBrent.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootFactory.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootFactory.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootSubject.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootSubject.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootType.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Root\RootType.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Systems"

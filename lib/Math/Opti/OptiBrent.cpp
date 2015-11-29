@@ -15,10 +15,7 @@ OptiBrent::OptiBrent(double minArg, double maxArg, double eps)
     this->m_minArg = minArg;
     this->m_maxArg = maxArg;
     this->m_eps = eps;
-    // Bound binary seach should finish in log2(n) iterations. Let's allow for max 2 logs.
-	GeneralMath gm;
-    const double numSlices = gm.round( (maxArg-minArg) / eps);
-    this->m_maxIter = 2 * gm.round(gm.Log2(numSlices));
+    this->m_maxIter = GeneralMath().GetMaxIterBinSearchBound(minArg, maxArg, eps);
 }
 
 OptiBrent::~OptiBrent(){}

@@ -33,14 +33,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef BINSEARCH_H
 #define BINSEARCH_H
 
-#include "../Util/Result.hpp"
+#include "../../Util/Result.hpp"
 
 namespace EnjoLib
 {
-class BisectionSubject;
+class BinSearchArgSubject;
 
 /// Searches for an argument of function, that produces a given reference value
-class Bisection
+class BinSearchArg
 {
     public:
         /// Ctor
@@ -49,9 +49,9 @@ class Bisection
             \param maxArg - maximal argument that will be searched
             \param epsilon - accuracy of the I/O argument (not the function!)
         */
-        Bisection( double minArg, double maxArg, double epsilon );
-        virtual ~Bisection();
-        Result<double> Run( BisectionSubject & subj ) const;
+        BinSearchArg( double minArg, double maxArg, double epsilon );
+        virtual ~BinSearchArg();
+        Result<double> Run( BinSearchArgSubject & subj ) const;
     protected:
     private:
 

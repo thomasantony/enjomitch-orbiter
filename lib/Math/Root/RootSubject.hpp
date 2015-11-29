@@ -30,12 +30,28 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "BisectionSubject.hpp"
+#ifndef ROOTSUBJECT_H
+#define ROOTSUBJECT_H
 
-using namespace EnjoLib;
+#include <string>
 
-BisectionSubject::BisectionSubject()
-{}
+namespace EnjoLib
+{
+/// Represents a black box whose values will be queried in search for GetRefValue()
+class RootSubject
+{
+    public:
+        RootSubject();
+        virtual ~RootSubject();
+        /// The value searched for.
+        virtual double GetRefValue() const = 0;
+        /// Should return the function's value for a given argument.
+        virtual double UpdateGetValue( double arg ) = 0;
+        /// Can give additional hint to the caller about validity of the result, if known.
+        virtual bool IsValid( double arg, double lastValue ) { return true; };
+    protected:
+    private:
+};
+}
 
-BisectionSubject::~BisectionSubject()
-{}
+#endif // BINSEARCHSUBJECT_H

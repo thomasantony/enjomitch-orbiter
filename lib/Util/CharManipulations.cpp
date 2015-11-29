@@ -33,6 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <cstdlib>
 #include <sstream>
+#include <stdexcept>
 #include "CharManipulations.hpp"
 using namespace EnjoLib;
 
@@ -85,10 +86,38 @@ std::string CharManipulations::ToStr(int i) const
 
 bool CharManipulations::ToDouble(const std::string & in, double * d) const
 {
-    *d = 0;
+    return ToNumber<double>(in, d);
+}
+
+double CharManipulations::ToDouble(const std::string & in) const
+{
+    return ToNumber<double>(in);
+}
+
+bool CharManipulations::ToInt(const std::string & in, int * i) const
+{
+    return ToNumber<int>(in, i);
+}
+
+int CharManipulations::ToInt(const std::string & in) const
+{
+    return ToNumber<int>(in);
+}
+
+template <class T> bool CharManipulations::ToNumber(const std::string & in, T * number) const
+{
+    *number = 0;
     std::istringstream ss;
     ss.str(in);
-    if ( ! (ss >> *d) )
+    if ( ! (ss >> *number) )
         return false;
     return true;
+}
+
+template <class T> T CharManipulations::ToNumber(const std::string & in) const
+{
+    T number;
+    if (!ToNumber<T>(in, &number))
+        throw std::invalid_argument("Not number - " + in);
+    return number;
 }

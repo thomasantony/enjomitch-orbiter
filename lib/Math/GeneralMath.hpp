@@ -60,6 +60,8 @@ struct GeneralMath
 	double GetIn0_2PIRange( double angle ) const;
 	/// Returns sign of argument: 1, -1 or 0, if x == 0
 	int sign( double x ) const;
+	/// Iteration limit for bound binary search
+	int GetMaxIterBinSearchBound(double minArg, double maxArg, double eps) const;
 };
 }
 

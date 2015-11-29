@@ -41,7 +41,7 @@
 #ifndef DIRECTASCENTOPTIENGINELEVEL_H
 #define DIRECTASCENTOPTIENGINELEVEL_H
 
-#include <Math/BinSearchArgSubject.hpp>
+#include <Math/Root/BinSearchArgSubject.hpp>
 #include "../PEG/PEGDirectAscentOpti.h"
 
 class MFDDataLaunchMFD;

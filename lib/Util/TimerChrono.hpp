@@ -4,7 +4,7 @@ Modified BSD License
 This file originates from:
 http://sf.net/projects/enjomitchsorbit
 
-Copyright (c) 2012, Szymon "Enjo" Ender
+Copyright (c) 2014, Szymon "Enjo" Ender
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -30,29 +30,27 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifndef FILE_UTILS_HPP_INCLUDED
-#define FILE_UTILS_HPP_INCLUDED
+#ifndef TIMERCHRONO_H
+#define TIMERCHRONO_H
 
-#include <vector>
-#include <string>
-class istream;
+#include <chrono>
 
 namespace EnjoLib
 {
-class FileUtils
+class TimerChrono
 {
-public:
-    std::vector<std::vector<std::string> > GetConfigSections( const std::string & fileName,
-            const std::string & startMarker,
-            const std::string & endMarker ) const;
-    bool FileExists( const std::string & fileName ) const;
-    size_t GetNumLinesFile( const std::string & fileName, bool skipHeader = false ) const;
-    size_t GetNumLinesFile( std::istream & is, bool skipHeader = false ) const;
-    void PrintProgressBar(size_t i, size_t sz) const;
-
-private:
-    std::vector<std::string> GetOneSection( std::istream & file, const std::string & endMarker ) const;
+    public:
+        TimerChrono();
+        virtual ~TimerChrono();
+        double ToNowSeconds() const;
+        double ToNowMilliseconds() const;
+        double ToNowMicroseconds() const;
+        long ToNowNanoseconds() const;
+    protected:
+    private:
+        typedef std::chrono::time_point<std::chrono::system_clock> TP;
+        typedef std::chrono::high_resolution_clock Clock;
+        TP m_start;
 };
 }
-
-#endif
+#endif // TIMERCHRONO_H
