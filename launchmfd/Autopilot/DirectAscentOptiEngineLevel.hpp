@@ -42,17 +42,20 @@
 #define DIRECTASCENTOPTIENGINELEVEL_H
 
 #include <Math/Root/BinSearchArgSubject.hpp>
+#include <Math/Root/RootSubject.hpp>
 #include "../PEG/PEGDirectAscentOpti.h"
 
 class MFDDataLaunchMFD;
-class DirectAscentOptiEngineLevel : public EnjoLib::BinSearchArgSubject
+class DirectAscentOptiEngineLevel : public EnjoLib::RootSubject
+//class DirectAscentOptiEngineLevel : public EnjoLib::BinSearchArgSubject
 {
     public:
         DirectAscentOptiEngineLevel( MFDDataLaunchMFD * data );
         virtual ~DirectAscentOptiEngineLevel();
 
         double GetRefValue() const;
-        double UpdateGetValue( double arg, double minArg );
+        //double UpdateGetValue( double arg, double minArg );
+        double UpdateGetValue( double arg );
         bool IsValid( double arg, double lastValue );
 
     protected:

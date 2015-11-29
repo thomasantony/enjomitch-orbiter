@@ -55,7 +55,7 @@ double DirectAscentOptiEngineLevel::GetRefValue() const
     return 0; // our DA PEG already returns a difference and we're looking for 0 value
 }
 
-double DirectAscentOptiEngineLevel::UpdateGetValue( double arg, double minArg )
+double DirectAscentOptiEngineLevel::UpdateGetValue( double arg )
 {
     m_pegDAOpti.SetEngineLevel(arg); // Set argument, for which the value will be tested
     m_pegDAOpti.SetApses( m_data->PeA, m_data->ApA );

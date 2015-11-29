@@ -47,7 +47,7 @@ class BinSearchArgSubject
         /// The value searched for.
         virtual double GetRefValue() const = 0;
         /// Should return the function's value for a given argument.
-        virtual double UpdateGetValue( double arg, double minArg ) = 0;
+        virtual double UpdateGetValue( double arg ) = 0;
         /// Can give additional hint to the caller about validity of the result, if known.
         virtual bool IsValid( double arg, double lastValue ) { return true; };
     protected:

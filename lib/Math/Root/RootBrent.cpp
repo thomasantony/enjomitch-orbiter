@@ -37,19 +37,26 @@ RootBrent::~RootBrent()
 //    Further C++ modifications by Szymon Ender "Enjo". www.enderspace.de
 Result<double> RootBrent::Run( RootSubject & subj ) const
 {
+    GeneralMath gm;
+    const double refValue = subj.GetRefValue();
     double p;
     double q;
     double r;
 
     double a = m_minArg;
     double b = m_maxArg;
+    double faTemp = subj.UpdateGetValue( a ) - refValue;
+    if (gm.sign(faTemp) == 0)
+    {
+        a = (a+b) / 2.0;
+    }
 //
 //  Make local copies of A and B.
 //
     double sa = a;
     double sb = b;
-    double fa = subj.UpdateGetValue( sa );
-    double fb = subj.UpdateGetValue( sb );
+    double fa = subj.UpdateGetValue( sa ) - refValue;
+    double fb = subj.UpdateGetValue( sb ) - refValue;
 
     double c = sa;
     double fc = fa;
@@ -140,7 +147,7 @@ Result<double> RootBrent::Run( RootSubject & subj ) const
             sb = sb - tol;
         }
 
-        fb = subj.UpdateGetValue( sb );
+        fb = subj.UpdateGetValue( sb ) - refValue;
 
         if ( ( 0.0 < fb && 0.0 < fc ) || ( fb <= 0.0 && fc <= 0.0 ) )
         {

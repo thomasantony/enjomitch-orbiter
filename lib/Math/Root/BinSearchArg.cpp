@@ -58,8 +58,8 @@ Result<double> BinSearchArg::Run( BinSearchArgSubject & subj ) const
 {
     GeneralMath gm;
     const double refValue = subj.GetRefValue();
-    double fmin = subj.UpdateGetValue(m_minArg, m_minArg) - refValue;
-    double fmax = subj.UpdateGetValue(m_maxArg, m_minArg) - refValue;
+    double fmin = subj.UpdateGetValue(m_minArg) - refValue;
+    double fmax = subj.UpdateGetValue(m_maxArg) - refValue;
     if ( gm.sign(fmin) == gm.sign(fmax) )
     {
         // The value for maximal argument should have been positive and was negative
@@ -79,7 +79,7 @@ Result<double> BinSearchArg::Run( BinSearchArgSubject & subj ) const
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)
         lastArg = arg;
         arg = (a + b) / 2; // Midpoint
-        value = subj.UpdateGetValue(arg, m_minArg) - refValue;
+        value = subj.UpdateGetValue(arg) - refValue;
         if ( gm.sign(fmax) != gm.sign(value) )
         {
             a = arg; // Narrow left border

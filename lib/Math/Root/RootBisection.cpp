@@ -35,6 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "../GeneralMath.hpp"
 //#include <sstream>
 #include <cmath>
+//#include <Orbitersdk.h>
 
 
 using namespace EnjoLib;
@@ -63,11 +64,12 @@ Result<double> RootBisection::Run( RootSubject & subj ) const
     double fmin = subj.UpdateGetValue(m_minArg) - refValue;
     double fmax = subj.UpdateGetValue(m_maxArg) - refValue;
     int faSign = gm.sign(fmin);
-    if ( faSign == gm.sign(fmax) )
+    int fbSign = gm.sign(fmax);
+    if ( faSign == fbSign )
     {
         // The value for maximal argument should have been positive and was negative
         // or it should have been negative while its positive
-        //sprintf(oapiDebugString(), "prevDiff = %lf", prevDiff);
+        //sprintf(oapiDebugString(), "dupa = %lf", fmax);
         return Result<double>(m_maxArg, false);
     }
     // validated!
@@ -75,6 +77,12 @@ Result<double> RootBisection::Run( RootSubject & subj ) const
     int i = 0;
     double a = m_minArg;
     double b = m_maxArg;
+    if (faSign == 0)
+    {
+        a = (a + b) / 2.0;
+        double fa = subj.UpdateGetValue(a) - refValue;
+        faSign = gm.sign(fa);
+    }
     bool bmaxIter = false;
     do
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)

@@ -44,8 +44,10 @@
 #include "Math/Constants.hpp"
 #include "../PEG/PEGDirectAscentOpti.h"
 #include "../localisation.h"
+#include <Math/Root/RootFactory.hpp>
 #include <Math/Root/BinSearchArg.hpp>
 #include "DirectAscentOptiEngineLevel.hpp"
+#include <memory>
 
 using namespace EnjoLib;
 
@@ -83,8 +85,14 @@ bool AutopilotDirectAscentStd::Guide( MFDDataLaunchMFD * data, double dt ) const
         // and target arrival time at ship's MECO position.
         // To achieve this, it uses a binary search.
         DirectAscentOptiEngineLevel directAscentOptiEngineLevel(data);
-        Result<double> optiEngineLevel = BinSearchArg(0, 1, 0.00002).Run(directAscentOptiEngineLevel);
-        //sprintf( oapiDebugString(), "tmeco = %.2lf, status = %d",data->pegDA.GetTMECO(), optiEngineLevel.status );
+        double epsilon = 1e-14;
+        //epsilon = 0.00002;
+        RootType rootType = ROOT_BIN_SEARCH;
+        rootType = ROOT_BRENT;
+        std::unique_ptr<IRootAlgo> algo = RootFactory::Create(rootType, 0, 1, epsilon);
+        Result<double> optiEngineLevel = algo->Run(directAscentOptiEngineLevel);
+        //Result<double> optiEngineLevel = BinSearchArg(0, 1, 0.00002).Run(directAscentOptiEngineLevel);
+        //sprintf( oapiDebugString(), "tmeco = %.2lf, status = %d, iter = %d",data->pegDA.GetTMECO(), optiEngineLevel.isSuccess, algo->GetIterations() );
         if ( ! optiEngineLevel.isSuccess ) // invalid output
             v->SetThrusterGroupLevel(mainThrusters, 1); // max power in hope for future guidance convergence
         else // all is fine! Go with engine convergence
