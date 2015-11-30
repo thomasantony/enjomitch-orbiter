@@ -85,10 +85,10 @@ bool AutopilotDirectAscentStd::Guide( MFDDataLaunchMFD * data, double dt ) const
         // and target arrival time at ship's MECO position.
         // To achieve this, it uses a binary search.
         DirectAscentOptiEngineLevel directAscentOptiEngineLevel(data);
-        double epsilon = 1e-14;
-        //epsilon = 0.00002;
-        RootType rootType = ROOT_BIN_SEARCH;
-        rootType = ROOT_BRENT;
+        //double epsilon = 1e-14;
+        double epsilon = 0.00002;
+        //RootType rootType = ROOT_BIN_SEARCH;
+        RootType rootType = ROOT_BRENT;
         std::unique_ptr<IRootAlgo> algo = RootFactory::Create(rootType, 0, 1, epsilon);
         Result<double> optiEngineLevel = algo->Run(directAscentOptiEngineLevel);
         //Result<double> optiEngineLevel = BinSearchArg(0, 1, 0.00002).Run(directAscentOptiEngineLevel);
@@ -99,8 +99,8 @@ bool AutopilotDirectAscentStd::Guide( MFDDataLaunchMFD * data, double dt ) const
         {
             double engineLevel = v->GetThrusterGroupLevel(mainThrusters);
             const double x = optiEngineLevel.value - engineLevel;
-            const double y = -data->m_pidAP.m_pidEngDA.Update(x, dt);
-            engineLevel -= y;
+            const double y = data->m_pidAP.m_pidEngDA.Update(x, dt);
+            engineLevel += y;
             v->SetThrusterGroupLevel(mainThrusters, engineLevel);
         }
     }

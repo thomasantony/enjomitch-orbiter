@@ -59,9 +59,8 @@ double DirectAscentOptiEngineLevel::UpdateGetValue( double arg )
 {
     m_pegDAOpti.SetEngineLevel(arg); // Set argument, for which the value will be tested
     m_pegDAOpti.SetApses( m_data->PeA, m_data->ApA );
-    m_pegDAOpti.Update( m_data );
-    m_pegDAOpti.Update( m_data );
-    m_pegDAOpti.Update( m_data ); // need to call Update trice!, because some variables are initialised only this way
+    for (int i = 0; i < 3; ++i)
+        m_pegDAOpti.Update( m_data ); // need to call Update trice!, because some variables are initialised only this way
     double value = m_pegDAOpti.GetDeltaT();
     //sprintf(oapiDebugString(), "arg = %lf, val = %lf, ptr = %d", arg, value, m_data->GetTargetVessel());
     return value;
