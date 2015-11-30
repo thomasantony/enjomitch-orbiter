@@ -183,8 +183,6 @@
 			<Add library="gdi32.lib" />
 			<Add library="ModuleMessaging.lib" />
 		</Linker>
-		<Unit filename="../lib/Math/BinSearchOpti.hpp" />
-		<Unit filename="../lib/Math/BinSearchOptiSubject.hpp" />
 		<Unit filename="../lib/Math/Burkardt/BrentBurkardt.cpp" />
 		<Unit filename="../lib/Math/Burkardt/BrentBurkardt.hpp" />
 		<Unit filename="../lib/Math/Burkardt/FuncBase.cpp" />

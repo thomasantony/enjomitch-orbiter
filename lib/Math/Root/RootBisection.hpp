@@ -53,7 +53,7 @@ class RootBisection : public IRootAlgo
         RootBisection( double minArg, double maxArg, double epsilon );
         virtual ~RootBisection();
         Result<double> Run( RootSubject & subj ) const;
-        int GetIterations() const;
+        int GetNumIterations() const;
     protected:
     private:
 

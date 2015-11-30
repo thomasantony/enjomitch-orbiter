@@ -1,6 +1,21 @@
 #ifndef ROOTBRENT_HPP
 #define ROOTBRENT_HPP
 
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    17 July 2011
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Richard Brent.
+//    C++ version by John Burkardt. https://people.sc.fsu.edu/~jburkardt/cpp_src/brent/brent.html
+//    Further C++ modifications by Szymon Ender "Enjo". www.enderspace.de
+
+
 #include "IRootAlgo.hpp"
 
 namespace EnjoLib
@@ -11,7 +26,7 @@ class RootBrent : public IRootAlgo
         RootBrent(double minArg, double maxArg, double epsilon);
         virtual ~RootBrent();
         Result<double> Run( RootSubject & subj ) const;
-        int GetIterations() const;
+        int GetNumIterations() const;
     protected:
     private:
         double r8_abs ( double x ) const;

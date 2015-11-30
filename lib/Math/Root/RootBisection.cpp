@@ -111,7 +111,7 @@ Result<double> RootBisection::Run( RootSubject & subj ) const
         return Result<double>(mid, subj.IsValid( mid, midValue ));
 }
 
-int RootBisection::GetIterations() const
+int RootBisection::GetNumIterations() const
 {
     return m_numIter;
 }

@@ -165,7 +165,7 @@ Result<double> RootBrent::Run( RootSubject & subj ) const
         return Result<double>(sb, subj.IsValid( sb, fb ));
 }
 
-int RootBrent::GetIterations() const
+int RootBrent::GetNumIterations() const
 {
     return m_numIter;
 }
