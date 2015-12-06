@@ -173,10 +173,6 @@
 		<Unit filename="Math/RK4.hpp" />
 		<Unit filename="Math/RK4AccelerationBase.cpp" />
 		<Unit filename="Math/RK4AccelerationBase.hpp" />
-		<Unit filename="Math/Root/BinSearchArg.cpp" />
-		<Unit filename="Math/Root/BinSearchArg.hpp" />
-		<Unit filename="Math/Root/BinSearchArgSubject.cpp" />
-		<Unit filename="Math/Root/BinSearchArgSubject.hpp" />
 		<Unit filename="Math/Root/IRootAlgo.cpp" />
 		<Unit filename="Math/Root/IRootAlgo.hpp" />
 		<Unit filename="Math/Root/RootBisection.cpp" />

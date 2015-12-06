@@ -13,18 +13,19 @@
 #include "DlgCtrl.h"
 #include "resource.h"
 #include <cstdio>
-#include "perlin.h"
 #include "inifile.h"
-#include <boost/filesystem/path.hpp>
-#include <boost/filesystem/operations.hpp>
+#include <Util/FileUtils.hpp>
+#include <Math/PerlinNoise.hpp>
+//#include <boost/filesystem/path.hpp>
+//#include <boost/filesystem/operations.hpp>
 #include <boost/lexical_cast.hpp>
 #include "OpOrbiterVessel.h"
 
-using namespace boost::filesystem;
+//using namespace boost::filesystem;
 using namespace boost;
 
 
-#define min(a, b)  (((a) < (b)) ? (a) : (b)) 
+#define min(a, b)  (((a) < (b)) ? (a) : (b))
 
 // Global parameters
 static struct {
@@ -51,17 +52,17 @@ DLLCLBK void InitModule (HINSTANCE hDLL)
 	g_Param.focus_vessel = NULL;
 	g_Param.parent_vessel = NULL;
 	g_Param.th_enabled = g_Param.at_enabled = g_Param.gd_enabled = g_Param.no_staging = FALSE;
-	
+
 	g_Param.fa_thrust[0] = 50;
 	g_Param.fa_thrust[1] = 0.001;
 	g_Param.fa_thrust[2] = 10;
 	g_Param.fa_thrust[3] = 0.004;
-	
+
 	g_Param.fa_atmos[0] = 100;
 	g_Param.fa_atmos[1] = 0.001;
 	g_Param.fa_atmos[2] = 50;
 	g_Param.fa_atmos[3] = 0.003;
-	
+
 	g_Param.gd_max_speed = 100.0;
 	g_Param.fa_ground[0] = 100;
 	g_Param.fa_ground[1] = 0.001;
@@ -97,85 +98,87 @@ DLLCLBK void opcOpenRenderViewport (HWND hWnd, DWORD w, DWORD h, BOOL fullscreen
 // Store the settings for the current vessel class
 void StoreVesselParameters()
 {
-	path config_file("Config/CamShake/CamShake.cfg");
+    EnjoLib::FileUtils fu;
+	string config_file("Config/CamShake/CamShake.cfg");
 
 	// create IniFile, if necessary
-	if (!exists(config_file))	CIniFile::Create(config_file.string());
+	if (!fu.FileExists(config_file))	CIniFile::Create(config_file);
 
 	string SectionName(g_Param.parent_vessel->GetClassName());
 
 	// write stage independent parameters
-	CIniFile::SetValue("NoStagingDetection", lexical_cast<std::string>(g_Param.no_staging), SectionName, config_file.string());
-	
+	CIniFile::SetValue("NoStagingDetection", lexical_cast<std::string>(g_Param.no_staging), SectionName, config_file);
+
 	if (g_Param.no_staging)
 		SectionName += "_NOSTAGING";
 	else
 		SectionName += "_" + lexical_cast<std::string>(int(GetMaxThrust0(g_Param.parent_vessel)));
-	
+
 	// store Thrust effect settings
-	CIniFile::SetValue("ThrustEffectEnabled", lexical_cast<std::string>(g_Param.th_enabled), SectionName, config_file.string());
-	CIniFile::SetValue("ThrustFrequency1", lexical_cast<std::string>(g_Param.fa_thrust[0]), SectionName, config_file.string());
-	CIniFile::SetValue("ThrustAmplitude1", lexical_cast<std::string>(g_Param.fa_thrust[1]), SectionName, config_file.string()); 
-	CIniFile::SetValue("ThrustFrequency2", lexical_cast<std::string>(g_Param.fa_thrust[2]), SectionName, config_file.string());
-	CIniFile::SetValue("ThrustAmplitude2", lexical_cast<std::string>(g_Param.fa_thrust[3]), SectionName, config_file.string()); 
+	CIniFile::SetValue("ThrustEffectEnabled", lexical_cast<std::string>(g_Param.th_enabled), SectionName, config_file);
+	CIniFile::SetValue("ThrustFrequency1", lexical_cast<std::string>(g_Param.fa_thrust[0]), SectionName, config_file);
+	CIniFile::SetValue("ThrustAmplitude1", lexical_cast<std::string>(g_Param.fa_thrust[1]), SectionName, config_file);
+	CIniFile::SetValue("ThrustFrequency2", lexical_cast<std::string>(g_Param.fa_thrust[2]), SectionName, config_file);
+	CIniFile::SetValue("ThrustAmplitude2", lexical_cast<std::string>(g_Param.fa_thrust[3]), SectionName, config_file);
 
 	// store atmospheric effect settings
-	CIniFile::SetValue("AtmosEffectEnabled", lexical_cast<std::string>(g_Param.at_enabled), SectionName, config_file.string());
-	CIniFile::SetValue("AtmosFrequency1", lexical_cast<std::string>(g_Param.fa_atmos[0]), SectionName, config_file.string());
-	CIniFile::SetValue("AtmosAmplitude1", lexical_cast<std::string>(g_Param.fa_atmos[1]), SectionName, config_file.string()); 
-	CIniFile::SetValue("AtmosFrequency2", lexical_cast<std::string>(g_Param.fa_atmos[2]), SectionName, config_file.string());
-	CIniFile::SetValue("AtmosAmplitude2", lexical_cast<std::string>(g_Param.fa_atmos[3]), SectionName, config_file.string()); 
+	CIniFile::SetValue("AtmosEffectEnabled", lexical_cast<std::string>(g_Param.at_enabled), SectionName, config_file);
+	CIniFile::SetValue("AtmosFrequency1", lexical_cast<std::string>(g_Param.fa_atmos[0]), SectionName, config_file);
+	CIniFile::SetValue("AtmosAmplitude1", lexical_cast<std::string>(g_Param.fa_atmos[1]), SectionName, config_file);
+	CIniFile::SetValue("AtmosFrequency2", lexical_cast<std::string>(g_Param.fa_atmos[2]), SectionName, config_file);
+	CIniFile::SetValue("AtmosAmplitude2", lexical_cast<std::string>(g_Param.fa_atmos[3]), SectionName, config_file);
 
 	// store ground effect settings
-	CIniFile::SetValue("GroundEffectEnabled", lexical_cast<std::string>(g_Param.gd_enabled), SectionName, config_file.string());
-	CIniFile::SetValue("GroundFrequency1", lexical_cast<std::string>(g_Param.fa_ground[0]), SectionName, config_file.string());
-	CIniFile::SetValue("GroundAmplitude1", lexical_cast<std::string>(g_Param.fa_ground[1]), SectionName, config_file.string()); 
-	CIniFile::SetValue("GroundFrequency2", lexical_cast<std::string>(g_Param.fa_ground[2]), SectionName, config_file.string());
-	CIniFile::SetValue("GroundAmplitude2", lexical_cast<std::string>(g_Param.fa_ground[3]), SectionName, config_file.string()); 
-	CIniFile::SetValue("GroundMaxSpeed", lexical_cast<std::string>(g_Param.gd_max_speed), SectionName, config_file.string()); 
+	CIniFile::SetValue("GroundEffectEnabled", lexical_cast<std::string>(g_Param.gd_enabled), SectionName, config_file);
+	CIniFile::SetValue("GroundFrequency1", lexical_cast<std::string>(g_Param.fa_ground[0]), SectionName, config_file);
+	CIniFile::SetValue("GroundAmplitude1", lexical_cast<std::string>(g_Param.fa_ground[1]), SectionName, config_file);
+	CIniFile::SetValue("GroundFrequency2", lexical_cast<std::string>(g_Param.fa_ground[2]), SectionName, config_file);
+	CIniFile::SetValue("GroundAmplitude2", lexical_cast<std::string>(g_Param.fa_ground[3]), SectionName, config_file);
+	CIniFile::SetValue("GroundMaxSpeed", lexical_cast<std::string>(g_Param.gd_max_speed), SectionName, config_file);
 }
 
 // Read the settings for the current vessel class (or use default settings)
 void ReadVesselParameters()
 {
-	path config_file("Config/CamShake/CamShake.cfg");
+    EnjoLib::FileUtils fu;
+	string config_file("Config/CamShake/CamShake.cfg");
 
 	// create IniFile, if necessary
-	if (!exists(config_file))	CIniFile::Create(config_file.string());
+	if (!fu.FileExists(config_file))	CIniFile::Create(config_file);
 
 	string SectionName(g_Param.parent_vessel->GetClassName());
-	
+
 	// read stage independent parameters
 	// check, if staging detection for this vessel is disabled
-	g_Param.no_staging = lexical_cast<BOOL>(CIniFile::GetValueDef("NoStagingDetection", SectionName, config_file.string(), "0"));
+	g_Param.no_staging = lexical_cast<BOOL>(CIniFile::GetValueDef("NoStagingDetection", SectionName, config_file, "0"));
 
 	if (g_Param.no_staging)
 		SectionName += "_NOSTAGING";
 	else
 		SectionName += "_" + lexical_cast<std::string>(int(GetMaxThrust0(g_Param.parent_vessel)));
 
-	
+
 	// read Thrust effect settings
-	g_Param.th_enabled = lexical_cast<BOOL>(CIniFile::GetValueDef("ThrustEffectEnabled", SectionName, config_file.string(), "0"));
-	g_Param.fa_thrust[0] = lexical_cast<double>(CIniFile::GetValueDef("ThrustFrequency1", SectionName, config_file.string(), "50"));
-	g_Param.fa_thrust[1] = lexical_cast<double>(CIniFile::GetValueDef("ThrustAmplitude1", SectionName, config_file.string(), "0.001"));
-	g_Param.fa_thrust[2] = lexical_cast<double>(CIniFile::GetValueDef("ThrustFrequency2", SectionName, config_file.string(), "10"));
-	g_Param.fa_thrust[3] = lexical_cast<double>(CIniFile::GetValueDef("ThrustAmplitude2", SectionName, config_file.string(), "0.004"));
+	g_Param.th_enabled = lexical_cast<BOOL>(CIniFile::GetValueDef("ThrustEffectEnabled", SectionName, config_file, "0"));
+	g_Param.fa_thrust[0] = lexical_cast<double>(CIniFile::GetValueDef("ThrustFrequency1", SectionName, config_file, "50"));
+	g_Param.fa_thrust[1] = lexical_cast<double>(CIniFile::GetValueDef("ThrustAmplitude1", SectionName, config_file, "0.001"));
+	g_Param.fa_thrust[2] = lexical_cast<double>(CIniFile::GetValueDef("ThrustFrequency2", SectionName, config_file, "10"));
+	g_Param.fa_thrust[3] = lexical_cast<double>(CIniFile::GetValueDef("ThrustAmplitude2", SectionName, config_file, "0.004"));
 
 	// read atmospheric effect settings
-	g_Param.at_enabled = lexical_cast<BOOL>(CIniFile::GetValueDef("AtmosEffectEnabled", SectionName, config_file.string(), "0"));
-	g_Param.fa_atmos[0] = lexical_cast<double>(CIniFile::GetValueDef("AtmosFrequency1", SectionName, config_file.string(), "100"));
-	g_Param.fa_atmos[1] = lexical_cast<double>(CIniFile::GetValueDef("AtmosAmplitude1", SectionName, config_file.string(), "0.001"));
-	g_Param.fa_atmos[2] = lexical_cast<double>(CIniFile::GetValueDef("AtmosFrequency2", SectionName, config_file.string(), "50"));
-	g_Param.fa_atmos[3] = lexical_cast<double>(CIniFile::GetValueDef("AtmosAmplitude2", SectionName, config_file.string(), "0.003"));
+	g_Param.at_enabled = lexical_cast<BOOL>(CIniFile::GetValueDef("AtmosEffectEnabled", SectionName, config_file, "0"));
+	g_Param.fa_atmos[0] = lexical_cast<double>(CIniFile::GetValueDef("AtmosFrequency1", SectionName, config_file, "100"));
+	g_Param.fa_atmos[1] = lexical_cast<double>(CIniFile::GetValueDef("AtmosAmplitude1", SectionName, config_file, "0.001"));
+	g_Param.fa_atmos[2] = lexical_cast<double>(CIniFile::GetValueDef("AtmosFrequency2", SectionName, config_file, "50"));
+	g_Param.fa_atmos[3] = lexical_cast<double>(CIniFile::GetValueDef("AtmosAmplitude2", SectionName, config_file, "0.003"));
 
 	// read ground effect settings
-	g_Param.gd_enabled = lexical_cast<BOOL>(CIniFile::GetValueDef("GroundEffectEnabled", SectionName, config_file.string(), "0"));
-	g_Param.fa_ground[0] = lexical_cast<double>(CIniFile::GetValueDef("GroundFrequency1", SectionName, config_file.string(), "100"));
-	g_Param.fa_ground[1] = lexical_cast<double>(CIniFile::GetValueDef("GroundAmplitude1", SectionName, config_file.string(), "0.001"));
-	g_Param.fa_ground[2] = lexical_cast<double>(CIniFile::GetValueDef("GroundFrequency2", SectionName, config_file.string(), "50"));
-	g_Param.fa_ground[3] = lexical_cast<double>(CIniFile::GetValueDef("GroundAmplitude2", SectionName, config_file.string(), "0.003"));
-	g_Param.gd_max_speed = lexical_cast<double>(CIniFile::GetValueDef("GroundMaxSpeed", SectionName, config_file.string(), "100"));
+	g_Param.gd_enabled = lexical_cast<BOOL>(CIniFile::GetValueDef("GroundEffectEnabled", SectionName, config_file, "0"));
+	g_Param.fa_ground[0] = lexical_cast<double>(CIniFile::GetValueDef("GroundFrequency1", SectionName, config_file, "100"));
+	g_Param.fa_ground[1] = lexical_cast<double>(CIniFile::GetValueDef("GroundAmplitude1", SectionName, config_file, "0.001"));
+	g_Param.fa_ground[2] = lexical_cast<double>(CIniFile::GetValueDef("GroundFrequency2", SectionName, config_file, "50"));
+	g_Param.fa_ground[3] = lexical_cast<double>(CIniFile::GetValueDef("GroundAmplitude2", SectionName, config_file, "0.003"));
+	g_Param.gd_max_speed = lexical_cast<double>(CIniFile::GetValueDef("GroundMaxSpeed", SectionName, config_file, "100"));
 }
 
 // Open the dialog box
@@ -197,7 +200,7 @@ void OpenDlgClbk (void *context)
 		SetDlgItemText(hDlg, IDC_EDIT_TH_FREQ2, cbuf);
 		sprintf(cbuf, "%#.2f", g_Param.fa_thrust[3] * 100);
 		SetDlgItemText(hDlg, IDC_EDIT_TH_AMP2, cbuf);
-		
+
 		CheckDlgButton(hDlg, IDC_CHK_ATMO_ENABLED, g_Param.at_enabled);
 		sprintf(cbuf, "%#.1f", g_Param.fa_atmos[0]);
 		SetDlgItemText(hDlg, IDC_EDIT_AT_FREQ1, cbuf);
@@ -243,26 +246,27 @@ DLLCLBK void opcFocusChanged(OBJHANDLE new_focus, OBJHANDLE old_focus)
 
 // Frame update
 DLLCLBK void opcPreStep (double SimT, double SimDT, double mjd)
-{	
+{
+    EnjoLib::PerlinNoise pn;
 	// If vessel is attachment: Has the parent vessel changed?
 	// Sadly, there is no callback function for this.
 	if (g_Param.parent_vessel != GetUltimateParent(g_Param.focus_vessel, g_Param.focus_vessel))
 	{
-		g_Param.focus_vessel->SetCameraOffset(g_Param.StartPos);	
+		g_Param.focus_vessel->SetCameraOffset(g_Param.StartPos);
 		g_Param.parent_vessel = GetUltimateParent(g_Param.focus_vessel, g_Param.focus_vessel);
 		g_Param.max_thrust = GetMaxThrust0(g_Param.parent_vessel);
 		ReadVesselParameters();
-		if (g_Param.hDlg) 
+		if (g_Param.hDlg)
 			EnableWindow(GetDlgItem(g_Param.hDlg, IDC_BTN_OK), false); // disable OK button
 	}
 
 	// Has the max thrust changed? This indicates the staging of a rocket which
 	// cannot be detected by relying on opcFocusChanged.
 	if (!g_Param.no_staging && GetMaxThrust0(g_Param.parent_vessel) != g_Param.max_thrust) {
-		g_Param.focus_vessel->SetCameraOffset(g_Param.StartPos);	
+		g_Param.focus_vessel->SetCameraOffset(g_Param.StartPos);
 		g_Param.max_thrust = GetMaxThrust0(g_Param.parent_vessel);
 		ReadVesselParameters();
-		if (g_Param.hDlg) 
+		if (g_Param.hDlg)
 			EnableWindow(GetDlgItem(g_Param.hDlg, IDC_BTN_OK), false); // disable OK button
 	}
 
@@ -287,7 +291,7 @@ DLLCLBK void opcPreStep (double SimT, double SimDT, double mjd)
 	if (v3Aux.x != g_Param.ShakePos.x || v3Aux.y != g_Param.ShakePos.y || v3Aux.z != g_Param.ShakePos.z)
 		g_Param.focus_vessel->GetCameraOffset(g_Param.StartPos);
 
-	
+
   	double fa_test[4];  // freq/amp pairs for thruster effects
 	// has a test of the thrust shake been requested?
 	if (g_Param.hDlg && (SendDlgItemMessage(g_Param.hDlg, IDC_BTN_TEST_TH, BM_GETSTATE, 0, 0) & BST_PUSHED))
@@ -303,11 +307,11 @@ DLLCLBK void opcPreStep (double SimT, double SimDT, double mjd)
 		if (!fa_test[0]) fa_test[1] = 0;  // no frequency, no amplitude!
 		if (!fa_test[2]) fa_test[3] = 0;  // no frequency, no amplitude!
 		g_Param.ShakePos = g_Param.StartPos;
-		g_Param.ShakePos.x = g_Param.ShakePos.x + Perlin(SimT, fa_test, 2);
-		g_Param.ShakePos.y = g_Param.ShakePos.y + Perlin(1000 + SimT, fa_test, 2);
-		g_Param.ShakePos.z = g_Param.ShakePos.z + Perlin(2000 + SimT, fa_test, 2);
+		g_Param.ShakePos.x = g_Param.ShakePos.x + pn.Perlin(SimT, fa_test, 2);
+		g_Param.ShakePos.y = g_Param.ShakePos.y + pn.Perlin(1000 + SimT, fa_test, 2);
+		g_Param.ShakePos.z = g_Param.ShakePos.z + pn.Perlin(2000 + SimT, fa_test, 2);
 		g_Param.focus_vessel->SetCameraOffset(g_Param.ShakePos);
-		return;		
+		return;
 	}
 	// or has a test of the atmospheric shake been requested?
 	else if (g_Param.hDlg && (SendDlgItemMessage(g_Param.hDlg, IDC_BTN_TEST_AT, BM_GETSTATE, 0, 0) & BST_PUSHED))
@@ -323,11 +327,11 @@ DLLCLBK void opcPreStep (double SimT, double SimDT, double mjd)
 		if (!fa_test[0]) fa_test[1] = 0;  // no frequency, no amplitude!
 		if (!fa_test[2]) fa_test[3] = 0;  // no frequency, no amplitude!
 		g_Param.ShakePos = g_Param.StartPos;
-		g_Param.ShakePos.x = g_Param.ShakePos.x + Perlin(SimT, fa_test, 2);
-		g_Param.ShakePos.y = g_Param.ShakePos.y + Perlin(1000 + SimT, fa_test, 2);
-		g_Param.ShakePos.z = g_Param.ShakePos.z + Perlin(2000 + SimT, fa_test, 2);
+		g_Param.ShakePos.x = g_Param.ShakePos.x + pn.Perlin(SimT, fa_test, 2);
+		g_Param.ShakePos.y = g_Param.ShakePos.y + pn.Perlin(1000 + SimT, fa_test, 2);
+		g_Param.ShakePos.z = g_Param.ShakePos.z + pn.Perlin(2000 + SimT, fa_test, 2);
 		g_Param.focus_vessel->SetCameraOffset(g_Param.ShakePos);
-		return;		
+		return;
 	}
 	// or has a test of the ground shake been requested?
 	else if (g_Param.hDlg && (SendDlgItemMessage(g_Param.hDlg, IDC_BTN_TEST_GD, BM_GETSTATE, 0, 0) & BST_PUSHED))
@@ -343,11 +347,11 @@ DLLCLBK void opcPreStep (double SimT, double SimDT, double mjd)
 		if (!fa_test[0]) fa_test[1] = 0;  // no frequency, no amplitude!
 		if (!fa_test[2]) fa_test[3] = 0;  // no frequency, no amplitude!
 		g_Param.ShakePos = g_Param.StartPos;
-		g_Param.ShakePos.x = g_Param.ShakePos.x + Perlin(SimT, fa_test, 2);
-		g_Param.ShakePos.y = g_Param.ShakePos.y + Perlin(1000 + SimT, fa_test, 2);
-		g_Param.ShakePos.z = g_Param.ShakePos.z + Perlin(2000 + SimT, fa_test, 2);
+		g_Param.ShakePos.x = g_Param.ShakePos.x + pn.Perlin(SimT, fa_test, 2);
+		g_Param.ShakePos.y = g_Param.ShakePos.y + pn.Perlin(1000 + SimT, fa_test, 2);
+		g_Param.ShakePos.z = g_Param.ShakePos.z + pn.Perlin(2000 + SimT, fa_test, 2);
 		g_Param.focus_vessel->SetCameraOffset(g_Param.ShakePos);
-		return;		
+		return;
 	}
 
 
@@ -363,15 +367,15 @@ DLLCLBK void opcPreStep (double SimT, double SimDT, double mjd)
 	if (!g_Param.gd_enabled || !g_Param.parent_vessel->GroundContact()) lvl_ground = 0.0;
 
 	g_Param.ShakePos = g_Param.StartPos;
-	g_Param.ShakePos.x = g_Param.ShakePos.x + lvl_thrust * Perlin(SimT, g_Param.fa_thrust, 2);
-	g_Param.ShakePos.y = g_Param.ShakePos.y + lvl_thrust * Perlin(1000 + SimT, g_Param.fa_thrust, 2);
-	g_Param.ShakePos.z = g_Param.ShakePos.z + lvl_thrust * Perlin(2000 + SimT, g_Param.fa_thrust, 2);
-	g_Param.ShakePos.x = g_Param.ShakePos.x + lvl_atmos * Perlin(3000 + SimT, g_Param.fa_atmos, 2);
-	g_Param.ShakePos.y = g_Param.ShakePos.y + lvl_atmos * Perlin(4000 + SimT, g_Param.fa_atmos, 2);
-	g_Param.ShakePos.z = g_Param.ShakePos.z + lvl_atmos * Perlin(5000 + SimT, g_Param.fa_atmos, 2);
-	g_Param.ShakePos.x = g_Param.ShakePos.x + lvl_ground * Perlin(6000 + lvl_ground * SimT, g_Param.fa_ground, 2);
-	g_Param.ShakePos.y = g_Param.ShakePos.y + lvl_ground * Perlin(7000 + lvl_ground * SimT, g_Param.fa_ground, 2);
-	g_Param.ShakePos.z = g_Param.ShakePos.z + lvl_ground * Perlin(8000 + lvl_ground * SimT, g_Param.fa_ground, 2);
+	g_Param.ShakePos.x = g_Param.ShakePos.x + lvl_thrust * pn.Perlin(SimT, g_Param.fa_thrust, 2);
+	g_Param.ShakePos.y = g_Param.ShakePos.y + lvl_thrust * pn.Perlin(1000 + SimT, g_Param.fa_thrust, 2);
+	g_Param.ShakePos.z = g_Param.ShakePos.z + lvl_thrust * pn.Perlin(2000 + SimT, g_Param.fa_thrust, 2);
+	g_Param.ShakePos.x = g_Param.ShakePos.x + lvl_atmos * pn.Perlin(3000 + SimT, g_Param.fa_atmos, 2);
+	g_Param.ShakePos.y = g_Param.ShakePos.y + lvl_atmos * pn.Perlin(4000 + SimT, g_Param.fa_atmos, 2);
+	g_Param.ShakePos.z = g_Param.ShakePos.z + lvl_atmos * pn.Perlin(5000 + SimT, g_Param.fa_atmos, 2);
+	g_Param.ShakePos.x = g_Param.ShakePos.x + lvl_ground * pn.Perlin(6000 + lvl_ground * SimT, g_Param.fa_ground, 2);
+	g_Param.ShakePos.y = g_Param.ShakePos.y + lvl_ground * pn.Perlin(7000 + lvl_ground * SimT, g_Param.fa_ground, 2);
+	g_Param.ShakePos.z = g_Param.ShakePos.z + lvl_ground * pn.Perlin(8000 + lvl_ground * SimT, g_Param.fa_ground, 2);
 	g_Param.focus_vessel->SetCameraOffset(g_Param.ShakePos);
 
 }

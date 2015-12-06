@@ -103,21 +103,3 @@ int CharManipulations::ToInt(const std::string & in) const
 {
     return ToNumber<int>(in);
 }
-
-template <class T> bool CharManipulations::ToNumber(const std::string & in, T * number) const
-{
-    *number = 0;
-    std::istringstream ss;
-    ss.str(in);
-    if ( ! (ss >> *number) )
-        return false;
-    return true;
-}
-
-template <class T> T CharManipulations::ToNumber(const std::string & in) const
-{
-    T number;
-    if (!ToNumber<T>(in, &number))
-        throw std::invalid_argument("Not number - " + in);
-    return number;
-}

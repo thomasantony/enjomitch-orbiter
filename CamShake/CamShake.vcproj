@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OrbiterDir)Orbitersdk\include"
+				AdditionalIncludeDirectories="..\..\..\lib\boost_1_59_0;..\lib;&quot;$(OrbiterDir)Orbitersdk\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -147,7 +147,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;C:\Users\Justyna\Documents\03 SZYMON\devel\lib\boost_1_59_0&quot;;&quot;$(OrbiterDir)Orbitersdk\include&quot;"
+				AdditionalIncludeDirectories="..\..\..\lib\boost_1_59_0;..\lib;&quot;$(OrbiterDir)Orbitersdk\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -247,7 +247,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(OrbiterDirBETA)Orbitersdk\include&quot;;&quot;C:\Users\Justyna\Documents\03 SZYMON\devel\lib\boost_1_59_0&quot;"
+				AdditionalIncludeDirectories="..\..\..\lib\boost_1_59_0;..\lib;&quot;$(OrbiterDir)Orbitersdk\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -345,7 +345,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OrbiterDirBETA)Orbitersdk\include"
+				AdditionalIncludeDirectories="..\..\..\lib\boost_1_59_0;..\lib;&quot;$(OrbiterDir)Orbitersdk\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -414,44 +414,80 @@
 	<References>
 	</References>
 	<Files>
+		<Filter
+			Name="lib"
+			>
+			<Filter
+				Name="Math"
+				>
+				<File
+					RelativePath="..\lib\Math\PerlinNoise.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\PerlinNoise.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Util"
+				>
+				<File
+					RelativePath="..\lib\Util\CharManipulations.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Util\CharManipulations.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Util\FileUtils.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Util\FileUtils.hpp"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
-			RelativePath=".\CamShake.cpp"
+			RelativePath=".\src\afxres.h"
 			>
 		</File>
 		<File
-			RelativePath=".\CamShake.rc"
+			RelativePath=".\src\CamShake.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\IniFile.cpp"
+			RelativePath=".\src\CamShake.rc"
 			>
 		</File>
 		<File
-			RelativePath=".\IniFile.h"
+			RelativePath=".\src\IniFile.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\OpOrbiterVessel.h"
+			RelativePath=".\src\IniFile.h"
 			>
 		</File>
 		<File
-			RelativePath=".\OpOrbiterWindows.h"
+			RelativePath=".\src\OpOrbiterVessel.h"
 			>
 		</File>
 		<File
-			RelativePath=".\perlin.h"
+			RelativePath=".\src\OpOrbiterWindows.h"
 			>
 		</File>
 		<File
-			RelativePath=".\resource.h"
+			RelativePath=".\src\resource.h"
 			>
 		</File>
 		<File
-			RelativePath=".\stdafx.cpp"
+			RelativePath=".\src\stdafx.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\stdafx.h"
+			RelativePath=".\src\stdafx.h"
 			>
 		</File>
 	</Files>
