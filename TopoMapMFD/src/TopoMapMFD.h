@@ -7,6 +7,8 @@
 #include <string>
 #include <sstream>
 
+#include "TopoMap.h"
+
 class TopoMapMFD: public MFD2
 {
 public:
@@ -31,6 +33,8 @@ protected:
 
 private:
     bool m_grey;
+
+    TopoMap m_tm;
 };
 
 #endif // !__TOPOMFD_H

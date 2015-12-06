@@ -28,8 +28,8 @@ TopoMapMFD::~TopoMapMFD ()
 // Repaint the MFD
 bool TopoMapMFD::Update (oapi::Sketchpad * skp)
 {
-    TopoMap tm;
-    tm.Draw(W, H, skp);
+    m_tm.UpdateMap(W, H);
+    m_tm.Draw(W, H, skp);
     return true;
 }
 
