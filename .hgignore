@@ -35,3 +35,4 @@ TransX/TransX.cscope_file_list
 *.sdf
 *.opensdf
 *BuildLog.htm
+*.exp
