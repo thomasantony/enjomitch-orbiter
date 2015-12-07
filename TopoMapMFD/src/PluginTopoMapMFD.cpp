@@ -1,3 +1,7 @@
+// Copyright 2015 by "Topper" - Original author: concept, calculations
+// Copyright 2015 by Szymon Ender "Enjo" (http://www.enderspace.de) - Co-developer: optimizations, putting it together
+// Released under the terms of the LGPL v3: http://www.gnu.org/licenses/lgpl.txt
+
 #include "PluginTopoMapMFD.h"
 #include "TopoMapMFD.h"
 
