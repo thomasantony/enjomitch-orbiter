@@ -617,30 +617,38 @@
 		<Filter
 			Name="libMFD"
 			>
-			<File
-				RelativePath="..\..\libMFD\MFDButtonPage.cpp"
+			<Filter
+				Name="Utils"
 				>
-			</File>
-			<File
-				RelativePath="..\..\libMFD\MFDButtonPage.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\libMFD\MFDTextCalculator.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\libMFD\MFDTextCalculator.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\libMFD\MyDC.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\libMFD\MyDC.h"
-				>
-			</File>
+				<File
+					RelativePath="..\..\libMFD\Utils\MFDButtonPage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libMFD\Utils\mfdbuttonpage.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libMFD\Utils\MFDTextCalculator.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libMFD\Utils\MFDTextCalculator.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libMFD\Utils\MyDC.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\libMFD\Utils\MyDC.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Utils"
+			>
 		</Filter>
 		<File
 			RelativePath=".\globals.h"

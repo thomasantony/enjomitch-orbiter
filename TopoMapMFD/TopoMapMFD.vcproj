@@ -673,14 +673,70 @@
 		<Filter
 			Name="libMFD"
 			>
-			<File
-				RelativePath="..\libMFD\MFDButtonPage.cpp"
+			<Filter
+				Name="Utils"
 				>
-			</File>
-			<File
-				RelativePath="..\libMFD\MFDButtonPage.hpp"
+				<File
+					RelativePath="..\libMFD\Utils\MFDButtonPage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\mfdbuttonpage.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\Pens.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\Pens.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="lib"
+			>
+			<Filter
+				Name="Math"
 				>
-			</File>
+				<File
+					RelativePath="..\lib\Math\Colors.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\Colors.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\GeneralMath.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Math\GeneralMath.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Systems"
+				>
+				<File
+					RelativePath="..\lib\Systems\Geo.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Systems\Geo.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Systems\Point.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Systems\Point.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

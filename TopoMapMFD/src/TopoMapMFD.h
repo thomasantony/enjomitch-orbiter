@@ -6,13 +6,16 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <Utils/Pens.h>
 
 #include "TopoMap.h"
+
+class PluginTopoMapMFD;
 
 class TopoMapMFD: public MFD2
 {
 public:
-    TopoMapMFD (DWORD w, DWORD h, VESSEL * vessel);
+    TopoMapMFD (DWORD w, DWORD h, VESSEL * vessel, PluginTopoMapMFD * plugin);
     ~TopoMapMFD ();
     char *ButtonLabel (int bt);
     int ButtonMenu (const MFDBUTTONMENU **menu) const;
@@ -27,14 +30,19 @@ public:
 
     void SwitchButtonsPage();
     void SwitchRGBGrey();
+    void RefreshIncrement();
+    void RefreshDecrement();
     void DoNothing();
 
 protected:
 
 private:
-    bool m_grey;
+    void DrawEllipse(oapi::Sketchpad * skp, int r, Pens::LineStyle penName);
 
+    PluginTopoMapMFD * m_plugin;
     TopoMap m_tm;
+    static bool m_rgb;
+    Pens m_pens;
 };
 
 #endif // !__TOPOMFD_H

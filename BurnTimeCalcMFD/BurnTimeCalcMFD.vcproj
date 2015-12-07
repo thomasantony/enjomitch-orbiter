@@ -419,14 +419,18 @@
 		<Filter
 			Name="libMFD"
 			>
-			<File
-				RelativePath="..\libMFD\MFDButtonPage.cpp"
+			<Filter
+				Name="Utils"
 				>
-			</File>
-			<File
-				RelativePath="..\libMFD\MFDButtonPage.hpp"
-				>
-			</File>
+				<File
+					RelativePath="..\libMFD\Utils\MFDButtonPage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\mfdbuttonpage.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="MultipleVessels"

@@ -31,7 +31,7 @@
 #include "HUDDrawerMFD.h"
 #include "MFDButtonPageHUDDrawer.h"
 #include "../VesselHooking/VesselHooking.hpp"
-#include <MFDTextCalculator.hpp>
+#include <Utils/MFDTextCalculator.hpp>
 
 using namespace EnjoLib;
 using namespace EnjoLib::MFDGoodies;

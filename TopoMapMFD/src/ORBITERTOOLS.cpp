@@ -1,6 +1,6 @@
 #include "ORBITERTOOLS.h"
 
-double ORBITERTOOLS::getFlightVectorHeading(VESSEL *v)
+double ORBITERTOOLS::getFlightVectorHeading(const VESSEL *v)
 {
     VECTOR3 shipAirspeedVector;
     v->GetHorizonAirspeedVector(shipAirspeedVector);
@@ -11,9 +11,10 @@ double ORBITERTOOLS::getFlightVectorHeading(VESSEL *v)
     return vector;
 }
 
-void ORBITERTOOLS::pointRadialDistance(double lat1, double lon1, double bearing, double distance, VESSEL * v, double *lat2, double *lon2)
+EnjoLib::Geo ORBITERTOOLS::pointRadialDistance(const EnjoLib::Geo & g, double bearing, double distance, const VESSEL * v)
 {
     double rdistance = distance / oapiGetSize(v->GetGravityRef());
-    * lat2 = asin(sin(lat1) * cos(rdistance) + cos(lat1) * sin (rdistance) * cos(bearing) );
-    * lon2 = lon1 + atan2( sin (bearing) * sin (rdistance) * cos (lat1), cos (rdistance) - sin(lat1) * sin (* lat2 ));
+    double lat2 = asin(sin(g.lat) * cos(rdistance) + cos(g.lat) * sin (rdistance) * cos(bearing) );
+    double lon2 = g.lon + atan2( sin (bearing) * sin (rdistance) * cos (g.lat), cos (rdistance) - sin(g.lat) * sin ( lat2 ));
+    return EnjoLib::Geo(lat2, lon2);
 }

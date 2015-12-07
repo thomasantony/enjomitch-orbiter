@@ -43,7 +43,7 @@
 #pragma once
 
 #include "Orbitersdk.h"
-#include "MyDC.h"
+#include <Utils/MyDC.h>
 #include "globals.h"
 #include <string>
 

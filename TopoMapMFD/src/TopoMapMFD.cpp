@@ -4,32 +4,55 @@
 #include "Orbitersdk.h"
 #include "TopoMapMFD.h"
 #include "MFDButtonPageTopoMFD.h"
+#include "PluginTopoMapMFD.h"
 #include "TopoMap.h"
+#include <Utils/MyDC.h>
 #include <cmath>
 #include <sstream>
 
 MFDButtonPageTopoMFD gButtonPage;
+extern PluginTopoMapMFD * gp_plugin;
 
 using namespace EnjoLib;
 using namespace EnjoLib::MFDGoodies;
+
+bool TopoMapMFD::m_rgb = false;
+//bool TopoMapMFD::m_rgb = true;
+
 // Constructor
-TopoMapMFD::TopoMapMFD (DWORD w, DWORD h, VESSEL *vessel)
+TopoMapMFD::TopoMapMFD (DWORD w, DWORD h, VESSEL *vessel, PluginTopoMapMFD * plugin)
     : MFD2 (w, h, vessel)
+    , m_tm(w, h)
+    , m_plugin(plugin)
 {
-    m_grey = true;
+    m_plugin->SetTopoMap(&m_tm);
 }
 
 // Destructor
 TopoMapMFD::~TopoMapMFD ()
 {
     // Add MFD cleanup code here
+    m_plugin->SetTopoMap(NULL);
+}
+
+void TopoMapMFD::DrawEllipse(oapi::Sketchpad * skp, int r, Pens::LineStyle penName)
+{
+    MFDSetPen(skp, m_pens.GetPen(penName));
+    skp->Ellipse(W/2 - r, H/2 - r, W/2 + r, H/2 + r);
 }
 
 // Repaint the MFD
 bool TopoMapMFD::Update (oapi::Sketchpad * skp)
 {
-    m_tm.UpdateMap(W, H);
-    m_tm.Draw(W, H, skp);
+    m_tm.SetRGB(m_rgb);
+    m_tm.Draw(skp);
+    Title(skp, "Topographic Map MFD");
+
+    DrawEllipse(skp, 2, Pens::Green);
+    DrawEllipse(skp, 3, Pens::Red);
+    const int x = 2;
+    MFDTextOut(skp, x, 20, GREEN, "Refresh lines = %d", m_tm.GetRefreshLines());
+    MFDTextOut(skp, x, 30, RED,   "Refresh lines = %d", m_tm.GetRefreshLines());
     return true;
 }
 
@@ -71,7 +94,15 @@ void TopoMapMFD::DoNothing()
 }
 void TopoMapMFD::SwitchRGBGrey()
 {
-    m_grey = ! m_grey;
+    m_rgb = ! m_rgb;
+}
+void TopoMapMFD::RefreshIncrement()
+{
+    m_tm.RefreshIncrement();
+}
+void TopoMapMFD::RefreshDecrement()
+{
+    m_tm.RefreshDecrement();
 }
 
 // MFD message parser
@@ -82,7 +113,7 @@ int TopoMapMFD::MsgProc (UINT msg, UINT mfd, WPARAM wparam, LPARAM lparam)
     case OAPI_MSG_MFD_OPENED:
         // Our new MFD mode has been selected, so we create the MFD and
         // return a pointer to it.
-        return (int) new TopoMapMFD (LOWORD(wparam), HIWORD(wparam), (VESSEL*)lparam);
+        return (int) new TopoMapMFD (LOWORD(wparam), HIWORD(wparam), (VESSEL*)lparam, gp_plugin);
     }
     return 0;
 }

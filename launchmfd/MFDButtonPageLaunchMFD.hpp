@@ -42,7 +42,7 @@
 #ifndef MFDBUTTONPAGELAUNCHMFD_H
 #define MFDBUTTONPAGELAUNCHMFD_H
 
-#include "MFDButtonPage.hpp"
+#include <Utils/MFDButtonPage.hpp>
 #include "LaunchMFD.h"
 
 class MFDButtonPageLaunchMFD : public EnjoLib::MFDGoodies::MFDButtonPage<LaunchMFD>

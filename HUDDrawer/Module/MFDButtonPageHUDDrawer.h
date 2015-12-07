@@ -31,7 +31,7 @@
 #ifndef MFDBUTTONPAGEHUDDRAWER_H
 #define MFDBUTTONPAGEHUDDRAWER_H
 
-#include <MFDButtonPage.hpp>
+#include <Utils/MFDButtonPage.hpp>
 #include "HUDDrawerMFD.h"
 
 class MFDButtonPageHUDDrawer : public EnjoLib::MFDGoodies::MFDButtonPage<HUDDrawerMFD>

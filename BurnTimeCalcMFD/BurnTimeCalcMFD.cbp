@@ -130,8 +130,8 @@
 			<Add library="gdi32.lib" />
 			<Add library="ModuleMessaging.lib" />
 		</Linker>
-		<Unit filename="../libMFD/MFDButtonPage.cpp" />
-		<Unit filename="../libMFD/MFDButtonPage.hpp" />
+		<Unit filename="../libMFD/Utils/MFDButtonPage.cpp" />
+		<Unit filename="../libMFD/Utils/mfdbuttonpage.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.cpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.cpp" />

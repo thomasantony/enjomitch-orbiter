@@ -62,7 +62,7 @@
 #include "Dialogs/DialogDistDA.h"
 #include "Dialogs/DialogTarget.h"
 #include "Dialogs/DialogPID.h"
-#include <MFDTextCalculator.hpp>
+#include <Utils/MFDTextCalculator.hpp>
 
 using namespace EnjoLib;
 using namespace EnjoLib::MFDGoodies;

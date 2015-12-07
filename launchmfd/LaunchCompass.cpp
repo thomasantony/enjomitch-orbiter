@@ -51,7 +51,7 @@
 #include "globals.h"
 #include "Math/MaxMin.hpp"
 #include "Math/GeneralMath.hpp"
-#include <MFDTextCalculator.hpp>
+#include <Utils/MFDTextCalculator.hpp>
 
 using namespace EnjoLib;
 using namespace EnjoLib::MFDGoodies;

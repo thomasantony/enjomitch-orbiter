@@ -33,7 +33,7 @@
 
 #include <OrbiterSDK.h>
 #include "globals.h"
-#include <MyDC.h>
+#include <Utils/MyDC.h>
 
 class HUDDrawerMFD : public MY_MFD
 {

@@ -2,7 +2,7 @@
 #define HUDDRAWER_H
 
 #include <EnjoLib/IDrawsHUD.hpp>
-#include "MyDC.h"
+#include <Utils/MyDC.h>
 #include "HUDCompass.h"
 
 class MFDDataLaunchMFD;

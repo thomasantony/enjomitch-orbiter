@@ -1,12 +1,8 @@
 #include "PluginTopoMapMFD.h"
 #include "TopoMapMFD.h"
 
-PluginTopoMapMFD * gp_plugin;
-static int g_MFDmode; // identifier for new MFD mode
-
 PluginTopoMapMFD::PluginTopoMapMFD(HINSTANCE hDLL)
 : oapi::Module(hDLL)
-, m_tm(NULL)
 {
     //ctor
 }
@@ -16,13 +12,8 @@ PluginTopoMapMFD::~PluginTopoMapMFD()
     //dtor
 }
 
-void PluginTopoMapMFD::clbkPreStep (double simt, double simdt, double mjd)
-{
-    if (!m_tm)
-        return;
-    m_tm->UpdateMap();
-}
-
+PluginTopoMapMFD * gp_plugin;
+static int g_MFDmode; // identifier for new MFD mode
 // ==============================================================
 // API interface
 

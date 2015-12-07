@@ -42,7 +42,7 @@
 #include "MFDDataLaunchMFD.hpp"
 #include "Util/ValueWithDescription.hpp"
 #include <Orbiter/SpaceMathOrbiter.hpp>
-#include <MFDTextCalculator.hpp>
+#include <Utils/MFDTextCalculator.hpp>
 #include <MFDSound++/Sound.hpp>
 #include "Sound/SoundSampleIDEnum.hpp"
 #include "localisation.h"

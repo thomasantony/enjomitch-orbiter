@@ -83,7 +83,7 @@ double GeneralMath::Log2( double n ) const
 double GeneralMath::LinearInterpol( double x, const Point & p1, const Point & p2 ) const
 {
     // y = ax + b
-    Point pDiff = p2 - p1;
+    const Point & pDiff = p2 - p1;
     if ( pDiff.x == 0 )
         return p1.y;
 

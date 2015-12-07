@@ -43,7 +43,7 @@
 #pragma once
 
 #include <Orbitersdk.h>
-#include "MyDC.h"
+#include <Utils/MyDC.h>
 
 #define MoveToExFloat(hdc, x, y, lppoint)	MoveToEx(hdc, (int)(x + 0.5), (int)(y + 0.5), lppoint)
 #define LineToFloat(hdc, x, y)				LineTo(hdc, (int)(x + 0.5), (int)(y + 0.5))

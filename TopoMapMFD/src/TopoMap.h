@@ -7,24 +7,30 @@
 class TopoMap
 {
     public:
-        TopoMap();
+        TopoMap(int width, int height);
         virtual ~TopoMap();
-        void Draw(int width, int height, oapi::Sketchpad *skp) const;
-        void UpdateMap(int width, int height);
+        void Draw(oapi::Sketchpad *skp);
+        void UpdateMap();
+        void SetRGB(bool rgb) {m_rgb = rgb;};
+        void RefreshIncrement();
+        void RefreshDecrement();
+        int GetRefreshLines() const { return m_numLinesPerRefresh; };
 
-        struct Coords
-        {
-            Coords(){}
-           Coords(int x, int y) : x(x), y(y) {}
-           int x, y;
-        };
-        typedef std::multimap<int, Coords> ElevMap;
-        void CalcMap(int width, int height, ElevMap * emap) const;
     protected:
     private:
+        TopoMap(const TopoMap &) {}
+        TopoMap & operator=(const TopoMap & other) {}
 
-        double m_prevTime;
-        ElevMap m_map;
+        int W, H;
+        int m_lineRefreshed;
+        bool m_rgb;
+        SURFHANDLE m_surface;
+        double highest;
+        double lowest;
+        static int m_numLinesPerRefresh;
+        static const int c_maxLinesPerRefresh;
+        static const double c_zoomMax, c_zoomMin;
+
 };
 
 #endif // TOPOMAP_H

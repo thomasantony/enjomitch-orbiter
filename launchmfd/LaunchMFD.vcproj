@@ -931,50 +931,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="MultipleVessels"
-			>
-			<File
-				RelativePath="..\libMFD\multipleVesselsMFD\MFDData.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libMFD\multipleVesselsMFD\MFDData.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MFDDataLaunchMFD.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MFDDataLaunchMFD.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginLaunchMFD.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PluginLaunchMFD.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="Visual"
 			>
 			<File
@@ -1042,27 +998,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Utils\FileUtilsOrbiter.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\FileUtilsOrbiter.hpp"
-				>
-			</File>
-			<File
 				RelativePath="..\lib\Util\NonCopyable.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\lib\Util\NonCopyable.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\Pens.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Utils\Pens.h"
 				>
 			</File>
 			<File
@@ -1374,6 +1314,260 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="libMFD"
+			>
+			<Filter
+				Name="MultipleVessels"
+				>
+				<File
+					RelativePath="..\libMFD\multipleVesselsMFD\MFDData.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\multipleVesselsMFD\MFDData.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MFDDataLaunchMFD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MFDDataLaunchMFD.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\PluginLaunchMFD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\PluginLaunchMFD.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Utils"
+				>
+				<File
+					RelativePath="..\libMFD\Utils\FileUtilsOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\FileUtilsOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MFDButtonPage.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2006|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="ReleaseBETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009_PL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug-BETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\mfdbuttonpage.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MFDTextCalculator.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2006|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="ReleaseBETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009_PL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug-BETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MFDTextCalculator.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MyDC.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2006|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="ReleaseBETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009_PL|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug-BETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MyDC.h"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\Pens.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\Pens.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
 		<File
 			RelativePath=".\BODYPHYS.cpp"
 			>
@@ -1451,14 +1645,6 @@
 			>
 		</File>
 		<File
-			RelativePath="..\libMFD\MFDButtonPage.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\libMFD\MFDButtonPage.hpp"
-			>
-		</File>
-		<File
 			RelativePath=".\MFDButtonPageLaunchMFD.cpp"
 			>
 		</File>
@@ -1475,27 +1661,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\libMFD\MFDTextCalculator.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\libMFD\MFDTextCalculator.hpp"
-			>
-		</File>
-		<File
 			RelativePath=".\MovementParams.cpp"
 			>
 		</File>
 		<File
 			RelativePath=".\MovementParams.h"
-			>
-		</File>
-		<File
-			RelativePath="..\libMFD\MyDC.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\libMFD\MyDC.h"
 			>
 		</File>
 		<File

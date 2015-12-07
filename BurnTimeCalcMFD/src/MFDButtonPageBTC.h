@@ -1,7 +1,7 @@
 #ifndef MFDBUTTONPAGEBTC_H
 #define MFDBUTTONPAGEBTC_H
 
-#include <MFDButtonPage.hpp>
+#include <Utils/MFDButtonPage.hpp>
 #include "BurnTimeMFD.h"
 
 class MFDButtonPageBTC : public EnjoLib::MFDGoodies::MFDButtonPage<BurnTimeMFD>

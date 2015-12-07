@@ -1,121 +1,108 @@
 #include "TopoMap.h"
 #include "ORBITERTOOLS.h"
+#include <Math/GeneralMath.hpp>
+#include <Math/Colors.hpp>
+#include <Systems/Point.hpp>
 
-TopoMap::TopoMap(){m_prevTime = 0;}
-TopoMap::~TopoMap(){}
+int TopoMap::m_numLinesPerRefresh = 2;
+const int TopoMap::c_maxLinesPerRefresh = 64;
+const double TopoMap::c_zoomMin = 200;
+const double TopoMap::c_zoomMax = 5000;
 
-void TopoMap::UpdateMap(int width, int height)
+TopoMap::TopoMap(int width, int height)
 {
-    if (m_prevTime == 0)
-    {
-        m_prevTime = oapiGetSysTime();
-        CalcMap(width, height, &m_map);
+    W = width;
+    H = height;
+    m_rgb = false;
+    m_lineRefreshed = 0;
+    m_surface = oapiCreateSurface(W, H);
+    oapiColourFill (m_surface, 0);
+    highest = 5000;
+    lowest = -5000;
+}
+TopoMap::~TopoMap()
+{
+    oapiDestroySurface(m_surface);
+}
+
+void TopoMap::Draw(oapi::Sketchpad *skp)
+{
+    oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H);
+}
+
+void TopoMap::RefreshIncrement()
+{
+    m_numLinesPerRefresh *= 2;
+    if (m_numLinesPerRefresh > c_maxLinesPerRefresh)
+        m_numLinesPerRefresh = c_maxLinesPerRefresh;
+}
+
+void TopoMap::RefreshDecrement()
+{
+    m_numLinesPerRefresh /= 2;
+    if (m_numLinesPerRefresh < 1)
+        m_numLinesPerRefresh = 1;
+}
+
+void TopoMap::UpdateMap()
+{
+    using namespace EnjoLib;
+    const VESSEL * v = oapiGetFocusInterface();
+    const OBJHANDLE surfRef = v->GetSurfaceRef();
+    if (!surfRef)
         return;
-    }
-    if (oapiGetSysTime() - m_prevTime < 5)
-        return; // Don't calculate more often than n seconds
-    m_prevTime = oapiGetSysTime();
-    CalcMap(width, height, &m_map);
-}
 
-void TopoMap::CalcMap(int width, int height, TopoMap::ElevMap * yoMap) const
-{
-    static double highest = 5000;
-    static double lowest = -5000;
-    VESSEL*v = oapiGetFocusInterface();
     double lng_Vessel, lat_Vessel, rad;
     v->GetEquPos(lng_Vessel,lat_Vessel,rad);
-    double heading = ORBITERTOOLS::getFlightVectorHeading(v);
-    const double zoom = 500;
+    const double alt = rad - oapiGetSize(v->GetSurfaceRef());
+    double zoom = alt / 11.0;
+    if (zoom > c_zoomMax)
+        zoom = c_zoomMax;
+    else
+    if (zoom < c_zoomMin)
+        zoom = c_zoomMin;
+    //const double zoom = 500;
+    //sprintf(oapiDebugString(), "Zoom = %lf", zoom);
+    const double heading = ORBITERTOOLS::getFlightVectorHeading(v);
 
-    for (int x=-width/2; x<width/2; x++)
+    const int xMin = (int)ceil(-W/2.0);
+    const int xMax = (int)floor(W/2.0);
+    const int yMin = (int)ceil(-H/2.0);
+    const int yMax = (int)floor(H/2.0);
+
+    const Geo vesGeo(lat_Vessel,lng_Vessel);
+    if (m_lineRefreshed >= W)
     {
-        double lng_left, lat_left;
-        ORBITERTOOLS::pointRadialDistance(lat_Vessel,lng_Vessel,heading+PI05,x*zoom,v,&lat_left,&lng_left);
-        for (int y=-height/2; y<height/2; y++)
-        {
-            double lng_pixel, lat_pixel;
-            ORBITERTOOLS::pointRadialDistance(lat_left,lng_left,heading,y*zoom,v,&lat_pixel,&lng_pixel);
-            double elevation = oapiSurfaceElevation(v->GetGravityRef(),lng_pixel,lat_pixel);
-            if (elevation > highest) highest = elevation;
-            if (elevation < lowest) lowest = elevation;
-            double elevation255 = ((elevation + (0 - lowest)) / ( highest - lowest)) * 255;
-            int elevation255Int = int(elevation255);
-            yoMap->insert(std::pair<int, Coords>(elevation255Int, Coords(x,y)));
-        }
+        m_lineRefreshed = 0;
     }
-}
-
-#define NEW
-
-#ifdef NEW
-void TopoMap::Draw(int width, int height, oapi::Sketchpad *skp) const
-{
-    int elevation255Prev = -1;
-    oapi::Pen * elevationPen = NULL;
-    int numSwitches = 0;
-    for (ElevMap::const_iterator it = m_map.begin(); it != m_map.end(); ++it)
+    for (int i = 0, x=xMin + m_lineRefreshed; x<xMax; x++, m_lineRefreshed++, i++)
     {
-        const int elevation255Curr = it->first;
-        if (elevation255Curr != elevation255Prev || elevation255Prev == -1)
+        const Geo left = ORBITERTOOLS::pointRadialDistance(vesGeo,heading+PI05,x*zoom,v);
+        for (int y=yMin; y<yMax; y++)
         {
-            numSwitches++;
-            // Time to change or initlialize Pen
-            if (elevationPen)
+            const Geo pixel = ORBITERTOOLS::pointRadialDistance(left,heading,y*zoom,v);
+            const double elevation = oapiSurfaceElevation(v->GetSurfaceRef(),pixel.lon,pixel.lat);
+            if (elevation > highest) highest = elevation;
+            if (elevation < lowest)  lowest =  elevation;
+            const double f = 255;
+            const double elevation255 = ((elevation + (0 - lowest)) / ( highest - lowest)) * f;
+            DWORD col;
+            if (!m_rgb)
+                col = RGB(elevation255,elevation255,elevation255);
+            else
             {
-                oapiReleasePen(elevationPen);
+                const double v = (f - elevation255)/f;
+                const Colors::COLOUR rgbCol = Colors().GreyToRGB(v, 0, 1);
+                col = RGB(rgbCol.r * f, rgbCol.g * f, rgbCol.b * f);
             }
-            elevationPen = oapiCreatePen(1, 1, RGB(elevation255Curr,elevation255Curr,elevation255Curr));
-            skp->SetPen(elevationPen);
-            elevation255Prev = elevation255Curr;
+            const int xx = x+xMax;
+            const int yy = H-(y+yMax);
+            oapiColourFill (m_surface, col, xx, yy, 1, 1);
         }
-        // Obtain x and y from the Coords structure
-        const int x = it->second.x;
-        const int y = it->second.y;
-        //skp->MoveTo(x,y);
-        //skp->LineTo(x,y+1); // Note here *
-        skp->MoveTo(x+width/2,height-(y+height/2));
-        skp->LineTo(x+width/2,height-(y+height/2)+1);
-
+        if (i == m_numLinesPerRefresh)
+		{
+			m_lineRefreshed++;
+            break;
+		}
     }
-    if (elevationPen) // In case the multimap had no elements, the Pen remains NULL
-    {
-        oapiReleasePen(elevationPen);
-    }
-    sprintf(oapiDebugString(), "Num switches = %d", numSwitches);
 }
-#else
-void TopoMap::Draw(int width, int height, oapi::Sketchpad *skp) const
-{
-    static double highest = 5000;
-    static double lowest = -5000;
-    VESSEL*v = oapiGetFocusInterface();
-    double lng_Vessel, lat_Vessel, rad;
-    v->GetEquPos(lng_Vessel,lat_Vessel,rad);
-    double heading = ORBITERTOOLS::getFlightVectorHeading(v);
-    const double zoom = 500;
-    int numSwitches = 0;
-    for (int x=-width/2; x<width/2; x++)
-    {
-        double lng_left, lat_left;
-        ORBITERTOOLS::pointRadialDistance(lat_Vessel,lng_Vessel,heading+PI05,x*zoom,v,&lat_left,&lng_left);
-        skp->MoveTo(x+width/2,0);
-        for (int y=-height/2; y<height/2; y++)
-        {
-            numSwitches++;
-            double lng_pixel, lat_pixel;
-            ORBITERTOOLS::pointRadialDistance(lat_left,lng_left,heading,y*zoom,v,&lat_pixel,&lng_pixel);
-            double elevation = oapiSurfaceElevation(v->GetGravityRef(),lng_pixel,lat_pixel);
-            oapi::Pen *elevationPen;
-            if (elevation > highest) highest = elevation;
-            if (elevation < lowest) lowest = elevation;
-            double elevation255 = ((elevation + (0 - lowest)) / ( highest - lowest)) * 255;
-            elevationPen = oapiCreatePen(1, 1, RGB(elevation255,elevation255,elevation255));
-            skp->SetPen(elevationPen);
-            skp->LineTo(x+width/2, height-(y+height/2));
-            oapiReleasePen(elevationPen);
-        }
-    }
-    sprintf(oapiDebugString(), "Num switches = %d", numSwitches);
-}
-#endif

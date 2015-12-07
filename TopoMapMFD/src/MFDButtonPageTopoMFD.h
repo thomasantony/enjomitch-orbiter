@@ -1,7 +1,7 @@
 #ifndef MFDBUTTONPAGETOPOMFD_H
 #define MFDBUTTONPAGETOPOMFD_H
 
-#include "MFDButtonPage.hpp"
+#include <Utils/MFDButtonPage.hpp>
 #include "TopoMapMFD.h"
 
 class MFDButtonPageTopoMFD : public EnjoLib::MFDGoodies::MFDButtonPage<TopoMapMFD>
