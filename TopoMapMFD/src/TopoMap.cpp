@@ -10,7 +10,7 @@
 
 int TopoMap::m_numLinesPerRefresh = 2;
 const int TopoMap::c_maxLinesPerRefresh = 64;
-const double TopoMap::c_zoomMin = 200;
+const double TopoMap::c_zoomMin = 500;
 const double TopoMap::c_zoomMax = 5000;
 
 TopoMap::TopoMap(int width, int height)

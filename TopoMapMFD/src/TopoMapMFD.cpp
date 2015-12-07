@@ -11,6 +11,7 @@
 #include "PluginTopoMapMFD.h"
 #include "TopoMap.h"
 #include <Utils/MyDC.h>
+#include <Utils/MFDTextCalculator.hpp>
 #include <cmath>
 #include <sstream>
 
@@ -54,9 +55,11 @@ bool TopoMapMFD::Update (oapi::Sketchpad * skp)
 
     DrawEllipse(skp, 2, Pens::Green);
     DrawEllipse(skp, 3, Pens::Red);
-    const int x = 2;
-    MFDTextOut(skp, x, 20, GREEN, "Refresh lines = %d", m_tm.GetRefreshLines());
-    MFDTextOut(skp, x, 30, RED,   "Refresh lines = %d", m_tm.GetRefreshLines());
+    MFDTextCalculator mcalc(W, H);
+    const int x = 1;
+    int y = 2;
+    MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), GREEN, "Refresh lines = %d", m_tm.GetRefreshLines());
+    MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), RED,   "Refresh lines = %d", m_tm.GetRefreshLines());
     return true;
 }
 
