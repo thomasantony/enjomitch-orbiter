@@ -215,7 +215,8 @@
 		<Unit filename="../lib/Util/CharManipulations.hpp" />
 		<Unit filename="src/MFDButtonPageTopoMFD.cpp" />
 		<Unit filename="src/MFDButtonPageTopoMFD.h" />
-		<Unit filename="src/OGCI.cpp" />
+		<Unit filename="src/OGCImy.cpp" />
+		<Unit filename="src/OGCImy.h" />
 		<Unit filename="src/ORBITERTOOLS.cpp" />
 		<Unit filename="src/ORBITERTOOLS.h" />
 		<Unit filename="src/PluginTopoMapMFD.cpp" />
