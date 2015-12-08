@@ -630,7 +630,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\OGCI.cpp"
+				RelativePath=".\src\OGCImy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\OGCImy.h"
 				>
 			</File>
 			<File

@@ -20,7 +20,7 @@
 #define __OGCI_CPP
 
 #include <windows.h>
-#include "OGCI.h"
+#include "OGCImy.h"
 
 HMODULE ogciHandle = NULL;
 
@@ -110,7 +110,7 @@ void ogciSketchBlt(oapi::Sketchpad *pSkp, SURFHANDLE hSrc, int tx, int ty)
 {
 	if (_ogciSketchBlt) _ogciSketchBlt(pSkp, hSrc, tx, ty);
 
-	else 
+	else
 	{
 		int a = 2;
 		int b = a + 2;
@@ -125,6 +125,12 @@ void ogciSketchBltEx(oapi::Sketchpad *pSkp, SURFHANDLE hSrc, LPRECT s, LPRECT t,
 void ogciSketchRotateBlt(oapi::Sketchpad *pSkp, SURFHANDLE hSrc, LPRECT s, int tcx, int tcy, int w, int h, float angle, float alpha, VECTOR3 *color)
 {
 	if (_ogciSketchRotateBlt) _ogciSketchRotateBlt(pSkp, hSrc, s, tcx, tcy, w, h, angle, alpha, color);
+}
+
+SURFHANDLE  ogciCreateSurfaceEx(DWORD  width, DWORD  height, DWORD  attrib)
+{
+    if (_ogciCreateSurfaceEx) return _ogciCreateSurfaceEx(width, height, attrib);
+    return NULL;
 }
 
 #endif

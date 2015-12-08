@@ -14,7 +14,7 @@
 #include <Utils/MFDTextCalculator.hpp>
 #include <cmath>
 #include <sstream>
-#include <OGCI.h>
+#include "OGCImy.h"
 
 MFDButtonPageTopoMFD gButtonPage;
 extern PluginTopoMapMFD * gp_plugin;
@@ -31,7 +31,7 @@ TopoMapMFD::TopoMapMFD (DWORD w, DWORD h, VESSEL *vessel, PluginTopoMapMFD * plu
     , m_tm(w, h)
     , m_plugin(plugin)
 {
-    ogciInitialize();
+
     m_plugin->SetTopoMap(&m_tm);
 }
 

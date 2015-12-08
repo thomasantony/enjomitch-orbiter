@@ -7,34 +7,46 @@
 #include <Math/GeneralMath.hpp>
 #include <Math/Colors.hpp>
 #include <Systems/Point.hpp>
-#include <OGCI.h>
+#include "OGCImy.h"
 
 int TopoMap::m_numLinesPerRefresh = 2;
+//int TopoMap::m_numLinesPerRefresh = 16;
 const int TopoMap::c_maxLinesPerRefresh = 64;
 const double TopoMap::c_zoomMin = 500;
 const double TopoMap::c_zoomMax = 5000;
 
 TopoMap::TopoMap(int width, int height)
 {
+    if (!ogciEnabled())
+        ogciInitialize();
     W = width;
     H = height;
+	if (W%2 != 0) // W and H must be even, or the surface doesn't get redrawn.
+		W--;
+	if (H%2 != 0)
+		H--;
     m_rgb = false;
     m_lineRefreshed = 0;
-    m_surface = oapiCreateSurface(W, H);
-    oapiColourFill (m_surface, 0);
+
     highest = 5000;
     lowest = -5000;
+    //m_surface = oapiCreateSurface(W, H);
+    m_surface = ogciCreateSurfaceEx(W, H, OAPISURFACE_TEXTURE|OAPISURFACE_RENDERTARGET); // Using Jarmo's stuff
+    if (m_surface)
+        oapiColourFill (m_surface, 0);
 }
 TopoMap::~TopoMap()
 {
-    oapiDestroySurface(m_surface);
+    if (m_surface)
+        oapiDestroySurface(m_surface);
 }
 
 void TopoMap::Draw(oapi::Sketchpad *skp)
 {
-
-    ogciSketchBlt(skp, m_surface, 0, 0);
-    //oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H);
+    if (!m_surface)
+        return;
+    ogciSketchBlt(skp, m_surface, 0, 0); // Jarmo's blitting
+    //oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H); // No effect, as the DC is locked.
 }
 
 void TopoMap::RefreshIncrement()
@@ -53,6 +65,8 @@ void TopoMap::RefreshDecrement()
 
 void TopoMap::UpdateMap()
 {
+	if (!m_surface)
+		return;
     using namespace EnjoLib;
     const VESSEL * v = oapiGetFocusInterface();
     const OBJHANDLE surfRef = v->GetSurfaceRef();
@@ -102,8 +116,12 @@ void TopoMap::UpdateMap()
                 const Colors::COLOUR rgbCol = Colors().GreyToRGB(v, 0, 1);
                 col = RGB(rgbCol.r * f, rgbCol.g * f, rgbCol.b * f);
             }
-            const int xx = x+xMax;
-            const int yy = H-(y+yMax);
+            int xx = x+xMax;
+            int yy = H-(y+yMax) - 1;
+            if (xx>W-1) xx=W-1;
+            if (yy>H-1) yy=H-1;
+            if (xx<0) xx=0;
+            if (yy<0) yy=0;
             oapiColourFill (m_surface, col, xx, yy, 1, 1);
         }
         if (i == m_numLinesPerRefresh)
