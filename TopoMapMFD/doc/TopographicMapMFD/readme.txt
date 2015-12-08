@@ -1,4 +1,11 @@
 ===================
+ABOUT
+===================
+
+Displays a topographic map in grayscale and RGB.
+
+
+===================
 COMPATIBILITY NOTES
 ===================
 
@@ -6,9 +13,9 @@ Warning: This MFD is experimental and works only for Orbiter BETA 2015!
 Currently, only Jarmonik's DX9 client (for Orbiter BETA) is supported.
 
 
-======
+===================
 USAGE
-======
+===================
 
 - Enable the MFD with Shift+P.
 - Switch between RGB and Greayscale modes with Shift+R. You will notice that the greyscale mode is more sensitive.
