@@ -7,6 +7,7 @@
 #include <Math/GeneralMath.hpp>
 #include <Math/Colors.hpp>
 #include <Systems/Point.hpp>
+#include <OGCI.h>
 
 int TopoMap::m_numLinesPerRefresh = 2;
 const int TopoMap::c_maxLinesPerRefresh = 64;
@@ -31,7 +32,9 @@ TopoMap::~TopoMap()
 
 void TopoMap::Draw(oapi::Sketchpad *skp)
 {
-    oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H);
+
+    ogciSketchBlt(skp, m_surface, 0, 0);
+    //oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H);
 }
 
 void TopoMap::RefreshIncrement()

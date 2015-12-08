@@ -4,6 +4,7 @@
 
 #include "PluginTopoMapMFD.h"
 #include "TopoMapMFD.h"
+#include <OGCI.h>
 
 PluginTopoMapMFD * gp_plugin;
 static int g_MFDmode; // identifier for new MFD mode
@@ -12,7 +13,7 @@ PluginTopoMapMFD::PluginTopoMapMFD(HINSTANCE hDLL)
 : oapi::Module(hDLL)
 , m_tm(NULL)
 {
-    //ctor
+    
 }
 
 PluginTopoMapMFD::~PluginTopoMapMFD()

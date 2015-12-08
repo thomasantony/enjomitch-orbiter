@@ -630,6 +630,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\OGCI.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\ORBITERTOOLS.cpp"
 				>
 			</File>
@@ -682,6 +686,22 @@
 				</File>
 				<File
 					RelativePath="..\libMFD\Utils\mfdbuttonpage.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MFDTextCalculator.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MFDTextCalculator.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MyDC.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Utils\MyDC.h"
 					>
 				</File>
 				<File
