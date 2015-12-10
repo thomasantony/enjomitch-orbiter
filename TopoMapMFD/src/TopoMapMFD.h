@@ -36,6 +36,10 @@ public:
     void SwitchRGBGrey();
     void RefreshIncrement();
     void RefreshDecrement();
+    void ZoomAutoSwitch();
+    void ZoomMaximal();
+    void ZoomIn();
+    void ZoomOut();
     void DoNothing();
 
 protected:

@@ -60,8 +60,27 @@ bool TopoMapMFD::Update (oapi::Sketchpad * skp)
     MFDTextCalculator mcalc(W, H);
     const int x = 1;
     int y = 2;
-    MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), GREEN, "Refresh lines = %d", m_tm.GetRefreshLines());
-    MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), RED,   "Refresh lines = %d", m_tm.GetRefreshLines());
+    std::ostringstream ossLines; ossLines << "Refresh lines = " << m_tm.GetRefreshLines();
+    std::ostringstream ossZoom;  ossZoom  << "Zoom level = " << int(m_tm.GetZoom()) << " " << (m_tm.IsZoomAuto() ? "Auto" : "");
+    if (m_rgb)
+    {
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), BLUE,  ossLines.str().c_str());
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), RED,   ossLines.str().c_str());
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), GREEN, ossLines.str().c_str());
+        y++;
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), BLUE,  ossZoom.str().c_str());
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), RED,   ossZoom.str().c_str());
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), GREEN, ossZoom.str().c_str());
+
+    }
+    else
+    {
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), BLUE,  ossLines.str().c_str());
+        y+=3;
+        MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), BLUE,  ossZoom.str().c_str());
+    }
+
+
     return true;
 }
 
@@ -112,6 +131,22 @@ void TopoMapMFD::RefreshIncrement()
 void TopoMapMFD::RefreshDecrement()
 {
     m_tm.RefreshDecrement();
+}
+void TopoMapMFD::ZoomAutoSwitch()
+{
+    m_tm.ZoomAutoSwitch();
+}
+void TopoMapMFD::ZoomMaximal()
+{
+    m_tm.ZoomMaximal();
+}
+void TopoMapMFD::ZoomIn()
+{
+    m_tm.ZoomIn();
+}
+void TopoMapMFD::ZoomOut()
+{
+    m_tm.ZoomOut();
 }
 
 // MFD message parser

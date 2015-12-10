@@ -10,21 +10,23 @@
 #include "OGCImy.h"
 
 int TopoMap::m_numLinesPerRefresh = 2;
-//int TopoMap::m_numLinesPerRefresh = 16;
+//int TopoMap::m_numLinesPerRefresh = 8; // testing
 const int TopoMap::c_maxLinesPerRefresh = 64;
 const double TopoMap::c_zoomMin = 500;
 const double TopoMap::c_zoomMax = 5000;
+const double TopoMap::c_zoomIncr = 1.025;
+//const double TopoMap::c_zoomIncr = 10; // testing
+bool TopoMap::m_zoomAuto = true;
+double TopoMap::m_zoom = c_zoomMin;
 
 TopoMap::TopoMap(int width, int height)
 {
     if (!ogciEnabled())
         ogciInitialize();
-    W = width;
-    H = height;
-	if (W%2 != 0) // W and H must be even, or the surface doesn't get redrawn.
-		W--;
-	if (H%2 != 0)
-		H--;
+    W = width; H = height;
+    // W and H must be even, or the surface doesn't get redrawn.
+	if (W%2 != 0) W--;
+	if (H%2 != 0) H--;
     m_rgb = false;
     m_lineRefreshed = 0;
 
@@ -63,6 +65,15 @@ void TopoMap::RefreshDecrement()
         m_numLinesPerRefresh = 1;
 }
 
+void TopoMap::SetZoomInRange()
+{
+    if (m_zoom > c_zoomMax)
+        m_zoom = c_zoomMax;
+    else
+    if (m_zoom < c_zoomMin)
+        m_zoom = c_zoomMin;
+}
+
 void TopoMap::UpdateMap()
 {
 	if (!m_surface)
@@ -75,13 +86,13 @@ void TopoMap::UpdateMap()
 
     double lng_Vessel, lat_Vessel, rad;
     v->GetEquPos(lng_Vessel,lat_Vessel,rad);
-    const double alt = rad - oapiGetSize(v->GetSurfaceRef());
-    double zoom = alt / 11.0;
-    if (zoom > c_zoomMax)
-        zoom = c_zoomMax;
-    else
-    if (zoom < c_zoomMin)
-        zoom = c_zoomMin;
+    if (m_zoomAuto)
+    {
+        const double alt = rad - oapiGetSize(v->GetSurfaceRef());
+        const double zoom = alt / 11.0;
+        m_zoom = zoom;
+    }
+    SetZoomInRange();
     //const double zoom = 500;
     //sprintf(oapiDebugString(), "Zoom = %lf", zoom);
     const double heading = ORBITERTOOLS::getFlightVectorHeading(v);
@@ -98,10 +109,10 @@ void TopoMap::UpdateMap()
     }
     for (int i = 0, x=xMin + m_lineRefreshed; x<xMax; x++, m_lineRefreshed++, i++)
     {
-        const Geo left = ORBITERTOOLS::pointRadialDistance(vesGeo,heading+PI05,x*zoom,v);
+        const Geo left = ORBITERTOOLS::pointRadialDistance(vesGeo,heading+PI05,x*m_zoom,v);
         for (int y=yMin; y<yMax; y++)
         {
-            const Geo pixel = ORBITERTOOLS::pointRadialDistance(left,heading,y*zoom,v);
+            const Geo pixel = ORBITERTOOLS::pointRadialDistance(left,heading,y*m_zoom,v);
             const double elevation = oapiSurfaceElevation(v->GetSurfaceRef(),pixel.lon,pixel.lat);
             if (elevation > highest) highest = elevation;
             if (elevation < lowest)  lowest =  elevation;
@@ -118,10 +129,8 @@ void TopoMap::UpdateMap()
             }
             int xx = x+xMax;
             int yy = H-(y+yMax) - 1;
-            if (xx>W-1) xx=W-1;
-            if (yy>H-1) yy=H-1;
-            if (xx<0) xx=0;
-            if (yy<0) yy=0;
+            if (xx>W-1) xx=W-1; if (xx<0) xx=0;
+            if (yy>H-1) yy=H-1; if (yy<0) yy=0;
             oapiColourFill (m_surface, col, xx, yy, 1, 1);
         }
         if (i == m_numLinesPerRefresh)
@@ -130,4 +139,24 @@ void TopoMap::UpdateMap()
             break;
 		}
     }
+}
+
+void TopoMap::ZoomAutoSwitch()
+{
+    m_zoomAuto = ! m_zoomAuto;
+}
+void TopoMap::ZoomIn()
+{
+    m_zoomAuto = false;
+    m_zoom /= c_zoomIncr;
+}
+void TopoMap::ZoomOut()
+{
+    m_zoomAuto = false;
+    m_zoom *= c_zoomIncr;
+}
+void TopoMap::ZoomMaximal()
+{
+    m_zoomAuto = false;
+    m_zoom = c_zoomMin;
 }
