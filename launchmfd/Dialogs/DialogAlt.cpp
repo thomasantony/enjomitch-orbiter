@@ -4,7 +4,7 @@
 #include <MFDSound++/Sound.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include <Math/MaxMin.hpp>
-#include <EnjoLib/ModuleMessaging.hpp>
+#include <EnjoLib/ModuleMessagingExt.hpp>
 #include <algorithm>
 
 using namespace EnjoLib;
@@ -19,10 +19,10 @@ bool DialogAlt::clbk(void *id, char *str, void *usrdata)
 
     if (input == "tx" || input == "transx")
     {
-        Result<double> rad = ModuleMessaging().GetDouble("TransX", "PeRadius");
-        if (rad.isSuccess)
+        double rad = 0;
+        if (ModuleMessagingExt().ModMsgGet("TransX", "PeRadius", &rad))
         {
-            PeA = rad.value - oapiGetSize(data->hRef);
+            PeA = rad - oapiGetSize(data->hRef);
             if (PeA < 0) return false;
             data->PeA = data->ApA = PeA;
             cLaunchMFD->GetSound().PlaySound(ALTITUDE_SET);

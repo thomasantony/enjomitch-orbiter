@@ -13,7 +13,7 @@ MFDButtonPageBTC::MFDButtonPageBTC()
         {"Arm Autoburn", 0, 'A'},
         {"Arm Autocirc", 0, 'C'},
         {"Select engine", 0, 'E'},
-        {"Get from TransX", 0, 'G'},
+        {"Get from BS/TX", 0, 'G'},
         {"Enter extra fuel", 0, 'X'},
         {"Include RCS fuel", 0, 'I'}
     };
@@ -29,7 +29,7 @@ MFDButtonPageBTC::MFDButtonPageBTC()
     RegisterFunction("ARM", OAPI_KEY_A, &BurnTimeMFD::HandlerAutoBurn);
     RegisterFunction("CIR", OAPI_KEY_C, &BurnTimeMFD::HandlerAimAutoCirc);
     RegisterFunction("ENG", OAPI_KEY_E, &BurnTimeMFD::HandlerSelectEngine);
-    RegisterFunction("GET", OAPI_KEY_G, &BurnTimeMFD::HandlerGetFromTransX);
+    RegisterFunction("GET", OAPI_KEY_G, &BurnTimeMFD::HandlerGetFromOtherMFD);
     RegisterFunction("EXT", OAPI_KEY_X, &BurnTimeMFD::HandlerEnterExtraFuel);
     RegisterFunction("RCS", OAPI_KEY_I, &BurnTimeMFD::HandlerIncludeRCSFuel);
 

@@ -9,10 +9,10 @@ import os
 import copy
 import shutil
 
-srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiterBETA"
-dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases-beta"
-#srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiter100830"
-#dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases"
+#srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiterBETA"
+#dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases-beta"
+srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiter100830"
+dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases"
 
 class Addon:
     def __init__(self, name):
@@ -47,23 +47,24 @@ addons = []
 #addon.AddFile1("Modules/Plugin/AbsoluteKillrot.dll")
 #addons.append(copy.deepcopy(addon))
 
-addon = Addon("TopographicMapMFD-v.0.4")
+addon = Addon("TopographicMapMFD-v.0.5")
 addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
+#addons.append(copy.deepcopy(addon))
+
+addon = Addon("BurnTimeCalcMFD-v.2.9.2")
+addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("BurnTimeCalcMFD-v.2.7")
-addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
-#addons.append(copy.deepcopy(addon))
-
-addon = Addon("LaunchMFD-v.1.6.3-2010")
+#addon = Addon("LaunchMFD-v.1.6.4-2010")
+addon = Addon("LaunchMFD-v.1.6.4-2010-pl")
 addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
-#addons.append(copy.deepcopy(addon))
+addons.append(copy.deepcopy(addon))
 
 # Complex addons
-addon = Addon("TransX-2015.09.26-Nelder-Mead")
+addon = Addon("TransX-2016.04.04-MMExt")
 addon.AddFile1("Modules/Plugin/TransX.dll")
 addon.AddFile1("Modules/Plugin/TransX2.dll")
-#addons.append(copy.deepcopy(addon))
+addons.append(copy.deepcopy(addon))
 
 # Libraries
 addon = Addon("ModuleMessagingSDK-v.1.1")

@@ -8,7 +8,7 @@ MessagingSender::~MessagingSender()
 {
 }
 
-const char * MessagingSender::GetModuleName() const
+const char * MessagingSender::ModuleMessagingGetModuleName() const
 {
     return "LaunchMFD";
 }

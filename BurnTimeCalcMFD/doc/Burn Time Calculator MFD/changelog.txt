@@ -4,11 +4,29 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v1.4x(C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
      BurnTimeCalcMFD v1.5 (C) 2007 by kwan3217         -- ??
      BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
-	 BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
-	 BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-	 BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-	 BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-	 
+     BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
+     BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.8 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
+     BurnTimeCalcMFD v2.9 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
+
+CHANGES IN v2.9
+===============
+* Fixed text overwrite issue when in Target Mode and using invalid engine (i.e. doors closed or no propellant)
+* Fixed bug when using invalid engine and docked (burns instantly complete, instead of stating invalid engine)	 
+
+CHANGES IN v2.8
+===============
+* Interconnected BurnTimeCalc with BaseSync MFD for plane change and retro burns. GET button now auto-selects
+    TransX or BaseSync if either is running, or prompts user if both are running.
+* Miscellaneous display mods (removed space between number and symbol when the scale unit is x1,
+     put the Selected Engine Not Available in red, with advice to check doors and fuel, consistent 
+     capitalization and decimal point alignment, etc.)
+* Replaced periapse and apoapse text with periapsis and apoapsis.
+* Put version number on MFD title, similar to BaseSyncMFD.
+* Updated the LGPL license text to version 3 in sourcecode and lgpl.txt
+
 	 
 CHANGES IN v2.7
 ===============

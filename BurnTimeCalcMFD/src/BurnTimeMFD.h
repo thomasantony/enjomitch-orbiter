@@ -22,41 +22,38 @@ public:
   void PrintString(oapi::Sketchpad * skp, const char* format, const char* value, int x, int l);
   void PrintString(oapi::Sketchpad * skp, const char* format, int x, int l);
 
-
-
-    MFDDataBurnTime * GetData();
+  MFDDataBurnTime * GetData();
   MFDDataBurnTime * m_data;
 
+  //Button page handlers
+  void HandlerSwitchButtonPage();
+  void HandlerTargetOrDV();
+  void HandlerTimeOfManoeuvre();
+  void HandlerOffsetDistance();
+  void HandlerTargetForDistanceCalc();
+  void HandlerReset();
+  void HandlerChangeMode();
+  void HandlerAutoBurn();
+  void HandlerBurnNow();
+  void HandlerAimAutoCirc();
+  void HandlerSwitchSI_US();
+  void HandlerSelectEngine();
+  void HandlerEnterExtraFuel();
+  void HandlerIncludeRCSFuel();
+  void HandlerGetFromOtherMFD();
 
-    //Button page handlers
-    void HandlerSwitchButtonPage();
-    void HandlerTargetOrDV();
-    void HandlerTimeOfManoeuvre();
-    void HandlerOffsetDistance();
-    void HandlerTargetForDistanceCalc();
-    void HandlerReset();
-    void HandlerChangeMode();
-    void HandlerAutoBurn();
-    void HandlerBurnNow();
-    void HandlerAimAutoCirc();
-    void HandlerSwitchSI_US();
-    void HandlerSelectEngine();
-    void HandlerEnterExtraFuel();
-    void HandlerIncludeRCSFuel();
-    void HandlerGetFromTransX();
+  bool GetFromTransX(double *dV, double *IBT);
+  bool GetFromBaseSync(double *dV, double *IBT);
+  void SetOtherMFDBurnVars(bool TransX, const double dV, double IBT);
+
 protected:
-
   VESSEL *messel;
   int height;
-
-
 
 private:
   //static int Sel_eng;
 	void writemenu(oapi::Sketchpad * skp);
   int line( int );
-
-
 };
 
 #endif // BURNTIMEMFD_H_INCLUDED

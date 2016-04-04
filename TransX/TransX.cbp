@@ -181,7 +181,7 @@
 			<Add library="kernel32.lib" />
 			<Add library="user32.lib" />
 			<Add library="gdi32.lib" />
-			<Add library="ModuleMessaging.lib" />
+			<Add library="ModuleMessagingExt.lib" />
 		</Linker>
 		<Unit filename="../lib/Math/Burkardt/BrentBurkardt.cpp" />
 		<Unit filename="../lib/Math/Burkardt/BrentBurkardt.hpp" />

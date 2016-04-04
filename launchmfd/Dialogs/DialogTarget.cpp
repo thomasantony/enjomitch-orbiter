@@ -5,7 +5,7 @@
 #include <MFDSound++/Sound.hpp>
 #include <Orbiter/SpaceMathKOST.hpp>
 #include <Math/GeneralMath.hpp>
-#include <EnjoLib/ModuleMessaging.hpp>
+#include <EnjoLib/ModuleMessagingExt.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include "../Utils/Targeting.hpp"
 
@@ -33,11 +33,11 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
     // Perhaps targeting TransX' settings?
     else if (tgtLowerCase == "tx" || tgtLowerCase == "transx")
     {
-        Result<double> incl = ModuleMessaging().GetDouble("TransX", "Incl");
-        Result<double> lan = ModuleMessaging().GetDouble("TransX", "LAN");
-        if (incl.isSuccess && lan.isSuccess)
+        double incl = 0, lan = 0;
+        if (ModuleMessagingExt().ModMsgGet("TransX", "Incl", &incl) &&
+            ModuleMessagingExt().ModMsgGet("TransX", "LAN", &lan))
         {
-            tgt = UpdateProbe( data, incl.value, lan.value, FRAME_ECL );
+            tgt = UpdateProbe( data, incl, lan, FRAME_ECL );
             dispTarget = "TransX";
         }
         else

@@ -505,7 +505,7 @@ void LaunchMFD::ReactOnReachingOrbit(MyDC hDC)
 void LaunchMFD::SendModuleMessages()
 {
     int iTgt = m_data->GetTargetHandleIndex();
-    MessagingSender().SendInt("TargetObjectIndex", iTgt);
+    MessagingSender().ModMsgPut("TargetObjectIndex", iTgt);
 }
 
 void LaunchMFD::DrawErrorAndMarks(MyDC hDC, const int status)

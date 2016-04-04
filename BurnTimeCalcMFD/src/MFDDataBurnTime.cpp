@@ -10,23 +10,25 @@ const char MFDDataBurnTime::group_names[numEngines][7]={"Main","Hover","Retro","
 MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
 : MFDData(vessel)
 {
-	 mul=1.0;
-	 dv = 0.0;
-	 mextra = mrcs = 0.0;
-	 ECutoff=0;
-	 IsEngaged=false;
-	 IsArmed=false;
-	 includeRCS = false;
-	 mode=BURNMODE_PERI;
-	 IManual=0;
-	 IsCircular=false;
-	 Sel_eng = 0;
-	 dspunit=0;
-	 TDist=0;
-     sOffset=500;
-
-     inputmode = 0;
-     IndexCenterObj = 0;;
+  mul=1.0;
+  dv = 0.0;
+  mextra = mrcs = 0.0;
+  ECutoff=0;
+  IsEngaged=false;
+  IsArmed=false;
+  includeRCS = false;
+  mode=BURNMODE_PERI;
+  IManual=0;
+  IsCircular=false;
+  Sel_eng = 0;
+  dspunit=0;
+  TDist=0;
+  sOffset=500;
+  inputmode = 0;
+  IndexCenterObj = 0;
+  BS_burn = NULL;
+  otherMFDsel = 0;
+  BSori = 0;
 }
 
 MFDDataBurnTime::~MFDDataBurnTime()
@@ -47,7 +49,7 @@ void MFDDataBurnTime::Update()
   if(IsArmed)
   {
     if (mode==BURNMODE_MAN)
-	{
+    {
       IManual=EReference-ENow;
     }
 	if (mode==BURNMODE_TGT)
@@ -243,7 +245,7 @@ void MFDDataBurnTime::CalcIBurn(VESSEL* vessel)
 	  IBurn2 = 0;
 	  return;
   }
-  PROPELLANT_HANDLE ph = vessel->GetThrusterResource(th);
+  ph = vessel->GetThrusterResource(th);
   //double mvvirt = ms - vessel->GetPropellantMass(ph) + vessel->GetPropellantMaxMass(ph);
   if (ph == NULL)
   {

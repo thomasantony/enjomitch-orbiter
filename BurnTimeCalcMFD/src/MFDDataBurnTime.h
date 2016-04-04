@@ -6,55 +6,59 @@
 
 class MFDDataBurnTime : public EnjoLib::MFDGoodies::MFDData
 {
-    public:
-        MFDDataBurnTime(VESSEL * vessel);
-        virtual ~MFDDataBurnTime();
-        void Update();
-        void ArmAutoBurn();
-        void CalcCircular();
-        void CalcApses(VESSEL* vessel);
-        void CalcIBurn(VESSEL* vessel);
-        //double GetStackMass(VESSEL* vessel);
+public:
+  MFDDataBurnTime(VESSEL * vessel);
+  virtual ~MFDDataBurnTime();
+  void Update();
+  void ArmAutoBurn();
+  void CalcCircular();
+  void CalcApses(VESSEL* vessel);
+  void CalcIBurn(VESSEL* vessel);
+  //double GetStackMass(VESSEL* vessel);
 
-        static const int numEngines;
-        static const THGROUP_TYPE groups[6];
-        static const char group_names[6][7];
+  static const int numEngines;
+  static const THGROUP_TYPE groups[6];
+  static const char group_names[6][7];
 
-        double mu,a,e,IPeri,IApo,Rperi,Rapo,EArmed,IReference,mfuel;
+  double mu,a,e,IPeri,IApo,Rperi,Rapo,EArmed,IReference,mfuel;
 
-      double mv,ms,me,isp,F,Eff;
+  double mv,ms,me,isp,F,Eff;
+  PROPELLANT_HANDLE ph;
+  double IBurn,IBurn2,mul;
+  int mode; //0 - IBurn-zero=IPeri
+            //1 - IBurn-zero=IApo
+            //2 - IBurn-zero=manual countdownm
+            //3 - By Target distance
 
-      double IBurn,IBurn2,mul;
-      int mode; //0 - IBurn-zero=IPeri
-                //1 - IBurn-zero=IApo
-                //2 - IBurn-zero=manual countdownm
-                //3 - By Target distance
+  int MySoundId;
+  int Sel_eng;
+  double dv, mextra, mrcs;
+  bool IsEngaged,IsArmed,IsCircular;
+  double ECutoff,IManual,EReference;
+  double TDist;
+  double sOffset;
 
-      int MySoundId;
-      int Sel_eng;
-      double dv, mextra, mrcs;
-      bool IsEngaged,IsArmed,IsCircular;
-        double ECutoff,IManual,EReference;
-        double TDist;
-        double sOffset;
+  bool includeRCS;
 
-        bool includeRCS;
+  int dspunit;  //0 - SI
+                //1 - US
 
-  int dspunit; //0 - SI
-            //1 - US
+  double dvcurr, dvOld;
+  double ENow;
+  double mdot;
+  double mfinal,msfinal,msempty;
+  double maxdv;
+  double TTot;
 
-            double dvcurr, dvOld;
-      double ENow;
-      double mdot;
-      double mfinal,msfinal,msempty;
-      double maxdv;
-      double TTot;
+  int inputmode;
+  int IndexCenterObj;
 
-      int inputmode;
-        int IndexCenterObj;
+  const struct BaseSyncExportBurnStruct *BS_burn;
+  int BSori;
+  int otherMFDsel; // 0 = none, 1 = TX, 2 = BS
 
-    protected:
-    private:
+protected:
+private:
 
 
 };

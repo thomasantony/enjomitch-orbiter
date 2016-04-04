@@ -128,7 +128,7 @@
 			<Add library="kernel32.lib" />
 			<Add library="user32.lib" />
 			<Add library="gdi32.lib" />
-			<Add library="ModuleMessaging.lib" />
+			<Add library="ModuleMessagingExt.lib" />
 		</Linker>
 		<Unit filename="../libMFD/Utils/MFDButtonPage.cpp" />
 		<Unit filename="../libMFD/Utils/mfdbuttonpage.hpp" />

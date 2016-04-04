@@ -185,7 +185,7 @@
 			<Add library="gdi32.lib" />
 			<Add library="OrbiterSoundSDK40.lib" />
 			<Add library="VesselHooking.lib" />
-			<Add library="ModuleMessaging.lib" />
+			<Add library="ModuleMessagingExt.lib" />
 		</Linker>
 		<Unit filename="../KOST_Orbiter/kost.h" />
 		<Unit filename="../KOST_Orbiter/kost_constants.h" />

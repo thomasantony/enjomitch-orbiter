@@ -4,11 +4,12 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v1.4x(C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
      BurnTimeCalcMFD v1.5 (C) 2007 by kwan3217         -- ??
      BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
-	 BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
-	 BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-	 BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-	 BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-
+     BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
+     BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.8 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
+     BurnTimeCalcMFD v2.9 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
 
 BurnTimeCalcMFD (BTC) is a companion for TransX or any other transfer MFD that
 gives you your required dV for transfer orbit insertion, and time to periapsis
@@ -59,10 +60,14 @@ Bring up TransX with the Escape Plan properly configured. You will
 be given a required dV (delta-velocity) and PeT (time to pereiapsis). Bring
 up BTC.
 
-Use SHIFT_G (or GET button) to capture the values. If the time is negative, 
-it will be ignored.
-
-You can also capture TransX' Manoeuvre mode variables with SHIFT_G.
+Use SHIFT_G (or GET button) to capture the values from either TransX or BaseSync.
+From TransX, you get the maneuver data, and from BaseSync you either get the Plane
+Change data or the Deorbit data, accoring to which screen you are in on BaseSync.
+If neither source is available, then nothing happens. If both sources are available,
+then the user is prompted to enter 1 for TransX or 2 for BaseSync. If the time is
+zero or negative, or the dV is zero, then the data is ignored. If the countrown is
+disarmed (i.e. the countdown stops), then it reverts to a manual burn until you
+re-get the data (as obviously the time would not reflect the right burn otherwise).
 
 If you want to do an Autoburn, use SHIFT_PERIOD to switch variables. Set the 
 manual delay to something less than the current PeT shown in TransX. When
@@ -207,3 +212,11 @@ v1.5 COPYRIGHT
 Version 1.5, the code, modules and configurations are copyright 2008
 Chris Jeppesen and continue to be under the terms of the GNU LGPL (see
 enclosed LGPL.TXT).
+
+==============
+v2.x COPYRIGHT
+==============
+
+Version 2.x (all version 2 version), the code, modules and configurations
+are copyright 2007-2016 by the authors above, and continue to be under the
+terms of the GNU LGPL (see enclosed LGPL.TXT).
