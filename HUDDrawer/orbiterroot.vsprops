@@ -6,6 +6,11 @@
 	>
 	<UserMacro
 		Name="OrbiterDir"
+		Value="..\..\..\..\orbiter\orbiter2016\"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="OrbiterDir2010"
 		Value="..\..\..\..\orbiter\orbiter100830\"
 		PerformEnvironmentSet="true"
 	/>

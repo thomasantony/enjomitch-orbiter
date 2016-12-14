@@ -222,7 +222,7 @@ void TextShow(oapi::Sketchpad *sketchpad,const char *label, int wpos, int hpos, 
 }
 
 // Find length of vector
-double length2(const VECTOR3 &vector)
+double length2my(const VECTOR3 &vector)
 {
 	return vector.x*vector.x+vector.y*vector.y+vector.z*vector.z;
 }
