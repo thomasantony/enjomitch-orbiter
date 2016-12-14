@@ -48,10 +48,10 @@ class Addon:
         
 def distribute(addons, version):
     for addon in addons:
-        print addon.name
+        print (addon.name)
         pathAddon = os.path.join(dstDir, addon.name)
         for fileSrc, fileDst in zip(addon.filesSrc, addon.filesDst):
-            print "{0} -> {1}".format(fileSrc, fileDst)
+            print ("{0} -> {1}".format(fileSrc, fileDst))
             src = os.path.join(srcDir, fileSrc)
             dst = os.path.join(pathAddon, fileDst)
             shutil.copy(src, dst)
@@ -72,7 +72,7 @@ def distribute(addons, version):
         #shutil.move(zipfPath, addon.name + ".zip")
         os.chdir(cwdPrev)
         #sys.exit()
-        print ""
+        print ("")
 
 
 def zipdir(path, ziph):
@@ -98,8 +98,11 @@ addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
 addons.append(copy.deepcopy(addon))
 
 addon = Addon("LaunchMFD-v.1.6.4")
-#addon = Addon("LaunchMFD-v.1.6.4-pl")
 addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
+addons.append(copy.deepcopy(addon))
+
+addon = Addon("LaunchMFD-v.1.6.4-pl")
+addon.AddFile1("Modules/Plugin/LaunchMFD_pl.dll")
 addons.append(copy.deepcopy(addon))
 
 # Complex addons
