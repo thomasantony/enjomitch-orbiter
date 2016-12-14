@@ -94,6 +94,8 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+
+#include "Graph.h"
 //#include <EnjoLib/ModuleMessaging.hpp>
 #include "EnjoLib/ModuleMessagingExt.hpp"
 #include "BaseSyncExports.hpp"
@@ -197,6 +199,9 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
   unsigned int thrustercount = 0;
 
   Title (skp, "BurnTimeMFD v2.9");
+
+  Graph graph(0,0,W,H);
+  graph.vectorpointdisplay(skp, m_data->tgtOrientation, pV);
 
   int line1 = 1;
   int line8 = 2;
@@ -399,6 +404,8 @@ bool ObjectInput (void *id, char *str, void *usrdata)
     } else {
       BaseSync = btcMFD->GetFromBaseSync(&dV, &IBT);
     }
+
+
 
     if (!TransX && !BaseSync) {
       // Data currently invalid ... default back to manual burn
@@ -665,11 +672,46 @@ void BurnTimeMFD::HandlerIncludeRCSFuel()
     m_data->includeRCS = ! m_data->includeRCS;
 }
 
+void BurnTimeMFD::HandlerAutopilot()
+{
+    m_data->autopilot.SetTargetVector(m_data->tgtOrientation);
+}
+
+void BurnTimeMFD::HandlerAutopilotDisable()
+{
+    m_data->autopilot.Disable();
+}
+
 void BurnTimeMFD::HandlerGetFromOtherMFD()
 {
+    {
+        using namespace EnjoLib;
+        ModuleMessagingExt mm;
+        double dvRes = 0, IManualRes = 0;
+        if (mm.ModMsgGet("LagrangeMFD", "InstantaneousBurnTime", &IManualRes))
+        {
+            if (mm.ModMsgGet("LagrangeMFD", "TargetVelocity", &m_data->tgtOrientation))
+            {
+                dvRes = length(m_data->tgtOrientation);
+                sprintf(oapiDebugString(), "Got all from LagrangeMFD. Now let's Rock'n'Roll!");
+                SetOtherMFDBurnVars(true, dvRes, IManualRes);
+                return;
+            }
+        }
+        else
+        {
+            m_data->tgtOrientation = _V(0, 250, 250);
+            dvRes = length(m_data->tgtOrientation);
+            IManualRes = 100;
+            SetOtherMFDBurnVars(true, dvRes, IManualRes);
+            sprintf(oapiDebugString(), "It looks like some data is missing. Setting artificial data");
+        }
+    }
     double dV_TransX, IBT_TransX;
     double dV_BaseSync, IBT_BaseSync;
     bool TransX, BaseSync;
+
+
 
     TransX = GetFromTransX(&dV_TransX, &IBT_TransX);
     BaseSync = GetFromBaseSync(&dV_BaseSync, &IBT_BaseSync);

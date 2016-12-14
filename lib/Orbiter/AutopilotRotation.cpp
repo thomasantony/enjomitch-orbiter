@@ -1,14 +1,14 @@
 #include <orbitersdk.h>
-#include "Autopilot.h"
-#include "mfd.h"
+#include "AutopilotRotation.hpp"
 #include <Orbiter/AngularAcc.hpp>
+#include <Orbiter/SpaceMathOrbiter.hpp>
 #include <Orbiter/SystemsConverterOrbiter.hpp>
 #include <Orbiter/VesselCapabilities.hpp>
 
 using namespace EnjoLib;
-const Vect3 Autopilot::m_statDeltaGliderRefRotAcc(0.125, 0.066, 0.189);
+const Vect3 AutopilotRotation::m_statDeltaGliderRefRotAcc(0.125, 0.066, 0.189);
 
-Autopilot::Autopilot()
+AutopilotRotation::AutopilotRotation()
 : m_targetVector(_V(0,0,0))
 , m_targetVectorUnit(_V(0,0,0))
 , m_targetLengthPrev(0)
@@ -20,9 +20,9 @@ Autopilot::Autopilot()
     m_isEnabled = false;
 }
 
-Autopilot::~Autopilot(){}
+AutopilotRotation::~AutopilotRotation(){}
 
-bool Autopilot::SetTargetVector(const VECTOR3 & targetVector)
+bool AutopilotRotation::SetTargetVector(const VECTOR3 & targetVector)
 {
     m_targetVector = targetVector;
     m_targetVectorUnit = unit(targetVector);
@@ -42,17 +42,17 @@ bool Autopilot::SetTargetVector(const VECTOR3 & targetVector)
     return consideredComplete;
 }
 
-void Autopilot::Disable()
+void AutopilotRotation::Disable()
 {
     SetTargetVector(_V(0,0,0));
 }
 
-VESSEL * Autopilot::GetVessel()
+VESSEL * AutopilotRotation::GetVessel()
 {
     return m_controlledVessel == NULL ? NULL : oapiGetVesselInterface(m_controlledVessel);
 }
 
-void Autopilot::Update(double SimDT)
+void AutopilotRotation::Update(double SimDT)
 {
     bool isZeroVector = m_targetVector.x + m_targetVector.y + m_targetVector.z == 0;
     if (isZeroVector)
@@ -81,7 +81,7 @@ void Autopilot::Update(double SimDT)
     vessel->DeactivateNavmode( NAVMODE_HOLDALT );
     //sprintf(oapiDebugString(), "TransX: AUTO rotation ENABLED!");
 
-    const VECTOR3 & angleToTarget = GetRotationToTarget(vessel, m_targetVectorUnit);
+    const VECTOR3 & angleToTarget = SpaceMathOrbiter().GetRotationToTarget(vessel, m_targetVectorUnit);
     const VECTOR3 & accRatio = GetVesselAngularAccelerationRatio(vessel);
 
     const double inputBank = (vessel->GetBank() - PI/2.0) / PI; // Targeting 90* = PI/2, like the Prograde autopilot
@@ -94,25 +94,25 @@ void Autopilot::Update(double SimDT)
     vessel->SetAttitudeRotLevel( 0, y );
 }
 
-void Autopilot::Enable(bool val)
+void AutopilotRotation::Enable(bool val)
 {
     m_isEnabled = val;
     OnDisabled();
     OnEnabled();
 }
 /*
-void Autopilot::SwitchEnabled()
+void AutopilotRotation::SwitchEnabled()
 {
     m_isEnabled = !m_isEnabled;
     OnDisabled();
 }
 */
-bool Autopilot::IsEnabled()
+bool AutopilotRotation::IsEnabled()
 {
     return m_isEnabled;
 }
 
-void Autopilot::OnEnabled()
+void AutopilotRotation::OnEnabled()
 {
     if (!IsEnabled())
         return;
@@ -120,7 +120,7 @@ void Autopilot::OnEnabled()
     VESSEL * vessel = oapiGetFocusInterface();
     m_controlledVessel = vessel == NULL ? NULL : vessel->GetHandle();
 }
-void Autopilot::OnDisabled()
+void AutopilotRotation::OnDisabled()
 {
     if (IsEnabled())
         return;
@@ -137,7 +137,7 @@ void Autopilot::OnDisabled()
     vessel->ActivateNavmode( NAVMODE_KILLROT );
 }
 
-VECTOR3 Autopilot::GetVesselAngularAccelerationRatio( const VESSEL * vessel )
+VECTOR3 AutopilotRotation::GetVesselAngularAccelerationRatio( const VESSEL * vessel )
 {
     VECTOR3 accRatio;
     //if ( m_rotationRatioNeeded )
@@ -156,12 +156,12 @@ VECTOR3 Autopilot::GetVesselAngularAccelerationRatio( const VESSEL * vessel )
     return accRatio;
 }
 
-void Autopilot::MECO(VESSEL * vessel)
+void AutopilotRotation::MECO(VESSEL * vessel)
 {
     MainEngineOn(vessel, 0);
 }
 
-void Autopilot::MainEngineOn( VESSEL * vessel, double level )
+void AutopilotRotation::MainEngineOn( VESSEL * vessel, double level )
 {
     THGROUP_HANDLE h = VesselCapabilities().GetMainEnginesHandle(vessel);
     if ( h == NULL )

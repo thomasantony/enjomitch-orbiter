@@ -24,7 +24,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="/debug" />
-					<Add option="/DEBUG" />
 					<Add option="/INCREMENTAL:NO" />
 					<Add library="user32" />
 				</Linker>
@@ -227,6 +226,8 @@
 		<Unit filename="../lib/Math/VectorMath.hpp" />
 		<Unit filename="../lib/Orbiter/AngularAcc.cpp" />
 		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
+		<Unit filename="../lib/Orbiter/AutopilotRotation.cpp" />
+		<Unit filename="../lib/Orbiter/AutopilotRotation.hpp" />
 		<Unit filename="../lib/Orbiter/BurnTime.cpp" />
 		<Unit filename="../lib/Orbiter/BurnTime.hpp" />
 		<Unit filename="../lib/Orbiter/Engine.cpp" />
@@ -266,8 +267,6 @@
 		<Unit filename="../lib/Systems/Vect3.hpp" />
 		<Unit filename="../lib/Util/Result.cpp" />
 		<Unit filename="../lib/Util/Result.hpp" />
-		<Unit filename="src/Autopilot.cpp" />
-		<Unit filename="src/Autopilot.h" />
 		<Unit filename="src/BodyCache.cpp" />
 		<Unit filename="src/BodyCache.h" />
 		<Unit filename="src/BodyProvider.cpp" />

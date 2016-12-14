@@ -3,6 +3,7 @@
 
 #include <multipleVesselsMFD/MFDData.hpp>
 #include <Orbitersdk.h>
+#include <Orbiter/AutopilotRotation.hpp>
 
 class MFDDataBurnTime : public EnjoLib::MFDGoodies::MFDData
 {
@@ -19,6 +20,8 @@ public:
   static const int numEngines;
   static const THGROUP_TYPE groups[6];
   static const char group_names[6][7];
+
+  VECTOR3 tgtOrientation;
 
   double mu,a,e,IPeri,IApo,Rperi,Rapo,EArmed,IReference,mfuel;
 
@@ -56,6 +59,7 @@ public:
   const struct BaseSyncExportBurnStruct *BS_burn;
   int BSori;
   int otherMFDsel; // 0 = none, 1 = TX, 2 = BS
+  AutopilotRotation autopilot;
 
 protected:
 private:

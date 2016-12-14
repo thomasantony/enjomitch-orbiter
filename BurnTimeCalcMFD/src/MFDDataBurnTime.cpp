@@ -29,6 +29,7 @@ MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
   BS_burn = NULL;
   otherMFDsel = 0;
   BSori = 0;
+  tgtOrientation = _V(0,0,0);
 }
 
 MFDDataBurnTime::~MFDDataBurnTime()

@@ -38,7 +38,9 @@ MFDButtonPageBTC::MFDButtonPageBTC()
         {"Switch buttons page", 0, 'B'},
         {"Set Target for", "distance calculation", 'S'},
         {"Enter offset distance", "to target", 'O'},
-        {"Switch SI / US", "unit system", 'U'}
+        {"Switch SI / US", "unit system", 'U'},
+        {"Enable rot. AP", "", 'A'},
+        {"Disable rot. AP", "", 'D'}
     };
     RegisterPage(mnu2, sizeof(mnu2) / sizeof(MFDBUTTONMENU));
 
@@ -46,6 +48,9 @@ MFDButtonPageBTC::MFDButtonPageBTC()
     RegisterFunction("ST",  OAPI_KEY_S, &BurnTimeMFD::HandlerTargetForDistanceCalc);
     RegisterFunction("OS",  OAPI_KEY_O, &BurnTimeMFD::HandlerOffsetDistance);
     RegisterFunction("UNT", OAPI_KEY_U, &BurnTimeMFD::HandlerSwitchSI_US);
+    RegisterFunction("AP",  OAPI_KEY_A, &BurnTimeMFD::HandlerAutopilot);
+    RegisterFunction("DAP", OAPI_KEY_D, &BurnTimeMFD::HandlerAutopilotDisable);
+
 }
 
 MFDButtonPageBTC::~MFDButtonPageBTC()
@@ -53,6 +58,6 @@ MFDButtonPageBTC::~MFDButtonPageBTC()
 
 bool MFDButtonPageBTC::SearchForKeysInOtherPages() const
 {
-    return true;
+    return false;
 }
 

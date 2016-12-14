@@ -27,12 +27,12 @@
 #include "shiplist.h"
 #include <list>
 #include "defines.h"
-#include "Autopilot.h"
+#include <Orbiter/AutopilotRotation.hpp>
 
 using namespace std;
 
 static int mode;
-Autopilot gAutopilot;
+AutopilotRotation gAutopilot;
 
 // ==============================================================
 // API interface

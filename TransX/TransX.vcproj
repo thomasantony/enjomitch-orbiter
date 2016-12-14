@@ -1304,11 +1304,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\src\Autopilot.cpp"
+			RelativePath="..\lib\Orbiter\AutopilotRotation.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\src\Autopilot.h"
+			RelativePath="..\lib\Orbiter\AutopilotRotation.hpp"
 			>
 		</File>
 		<File

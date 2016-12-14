@@ -567,11 +567,51 @@
 				Name="Orbiter"
 				>
 				<File
+					RelativePath="..\lib\Orbiter\AngularAcc.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\AngularAcc.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\AutopilotRotation.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\AutopilotRotation.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\lib\Orbiter\BurnTime.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\lib\Orbiter\BurnTime.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\VesselCapabilities.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\VesselCapabilities.hpp"
 					>
 				</File>
 			</Filter>
@@ -585,7 +625,39 @@
 			>
 		</File>
 		<File
+			RelativePath="..\lib\PID\DerivatorDiscrete.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\PID\DerivatorDiscrete.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Geo.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Geo.hpp"
+			>
+		</File>
+		<File
 			RelativePath=".\src\globals.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\Graph.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\Graph.h"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\PID\IntegratorDiscrete.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\PID\IntegratorDiscrete.hpp"
 			>
 		</File>
 		<File
@@ -605,11 +677,59 @@
 			>
 		</File>
 		<File
+			RelativePath="..\lib\PID\PID.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\PID\PID.hpp"
+			>
+		</File>
+		<File
 			RelativePath=".\src\PluginBurnTime.cpp"
 			>
 		</File>
 		<File
 			RelativePath=".\src\PluginBurnTime.h"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Point.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Point.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Spherical.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Spherical.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\SystemsConverter.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\SystemsConverter.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Vect3.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Systems\Vect3.hpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Math\VectorMath.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\lib\Math\VectorMath.hpp"
 			>
 		</File>
 	</Files>

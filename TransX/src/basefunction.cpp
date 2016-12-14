@@ -32,12 +32,12 @@
 #include <Orbiter/SpaceMathOrbiter.hpp>
 #include <Orbiter/BurnTime.hpp>
 #include "MessagingSender.h"
-#include "Autopilot.h"
+#include <Orbiter/AutopilotRotation.hpp>
 
 using namespace EnjoLib;
 
 extern double debug;
-extern Autopilot gAutopilot;
+extern AutopilotRotation gAutopilot;
 
 basefunction::basefunction(class transxstate *tstate, class basefunction *tpreviousfunc, OBJHANDLE thmajor, OBJHANDLE thminor,OBJHANDLE thcraft)
 : TransXFunction(tstate, thmajor, thminor,thcraft)
@@ -867,6 +867,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
             sketchpad->Text( 0,10*linespacing, disableTxt, strlen(disableTxt));
         }
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
+		sprintf(oapiDebugString(), "tgt = (%.2lf, %.2lf, %.2lf) , diff = (%.2lf, %.2lf, %.2lf)", targetvel.x, targetvel.y, targetvel.z, (targetvel-craftvel).x, (targetvel-craftvel).y, (targetvel-craftvel).z);
 		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
 		double burnStart = BurnTime().GetBurnStart(pV, THGROUP_MAIN, timeoffset, rvel);
 		MessagingSender().ModMsgPut("dv", rvel - 4.0); // Subtracting that few m/s works better for Auto-Center, as it won't turn around then

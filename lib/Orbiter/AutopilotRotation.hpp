@@ -4,11 +4,11 @@
 #include <Systems/Vect3.hpp>
 #include <PID/PID.hpp>
 
-class Autopilot
+class AutopilotRotation
 {
     public:
-        Autopilot();
-        virtual ~Autopilot();
+        AutopilotRotation();
+        virtual ~AutopilotRotation();
         void Update(double SimDT);
         bool SetTargetVector(const VECTOR3 & targetVector); // Setting _V(0,0,0) disables the AP
         void Disable();

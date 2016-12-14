@@ -23,7 +23,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="/debug" />
-					<Add option="/DEBUG" />
 					<Add option="/INCREMENTAL:NO" />
 					<Add library="user32" />
 				</Linker>
@@ -132,8 +131,6 @@
 			<Add library="gdi32.lib" />
 			<Add library="ModuleMessagingExt.lib" />
 		</Linker>
-		<Unit filename="../lib/Orbiter/BurnTime.cpp" />
-		<Unit filename="../lib/Orbiter/BurnTime.hpp" />
 		<Unit filename="../libMFD/Utils/MFDButtonPage.cpp" />
 		<Unit filename="../libMFD/Utils/mfdbuttonpage.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.cpp" />
@@ -142,8 +139,40 @@
 		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.cpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.hpp" />
+		<Unit filename="../lib/Math/VectorMath.cpp" />
+		<Unit filename="../lib/Math/VectorMath.hpp" />
+		<Unit filename="../lib/Orbiter/AngularAcc.cpp" />
+		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
+		<Unit filename="../lib/Orbiter/AutopilotRotation.cpp" />
+		<Unit filename="../lib/Orbiter/AutopilotRotation.hpp" />
+		<Unit filename="../lib/Orbiter/BurnTime.cpp" />
+		<Unit filename="../lib/Orbiter/BurnTime.hpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.cpp" />
+		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.hpp" />
+		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />
+		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.hpp" />
+		<Unit filename="../lib/Orbiter/VesselCapabilities.cpp" />
+		<Unit filename="../lib/Orbiter/VesselCapabilities.hpp" />
+		<Unit filename="../lib/PID/DerivatorDiscrete.cpp" />
+		<Unit filename="../lib/PID/DerivatorDiscrete.hpp" />
+		<Unit filename="../lib/PID/IntegratorDiscrete.cpp" />
+		<Unit filename="../lib/PID/IntegratorDiscrete.hpp" />
+		<Unit filename="../lib/PID/PID.cpp" />
+		<Unit filename="../lib/PID/PID.hpp" />
+		<Unit filename="../lib/Systems/Geo.cpp" />
+		<Unit filename="../lib/Systems/Geo.hpp" />
+		<Unit filename="../lib/Systems/Point.cpp" />
+		<Unit filename="../lib/Systems/Point.hpp" />
+		<Unit filename="../lib/Systems/Spherical.cpp" />
+		<Unit filename="../lib/Systems/Spherical.hpp" />
+		<Unit filename="../lib/Systems/SystemsConverter.cpp" />
+		<Unit filename="../lib/Systems/SystemsConverter.hpp" />
+		<Unit filename="../lib/Systems/Vect3.cpp" />
+		<Unit filename="../lib/Systems/Vect3.hpp" />
 		<Unit filename="src/BurnTimeMFD.cpp" />
 		<Unit filename="src/BurnTimeMFD.h" />
+		<Unit filename="src/Graph.cpp" />
+		<Unit filename="src/Graph.h" />
 		<Unit filename="src/MFDButtonPageBTC.cpp" />
 		<Unit filename="src/MFDButtonPageBTC.h" />
 		<Unit filename="src/MFDDataBurnTime.cpp" />
