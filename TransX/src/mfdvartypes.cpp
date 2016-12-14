@@ -23,6 +23,7 @@
 #include <windows.h>
 #include <cstdio>
 #include <cmath>
+#include <string>
 #include "orbitersdk.h"
 #include "mfd.h"
 #include "mfdvartypes.h"
@@ -30,6 +31,7 @@
 #include "basefunction.h"
 #include "shiplist.h"
 #include "Opti/Optimiser.h"
+#include <EnjoLib/ModuleMessagingExt.hpp>
 
 liststring::liststring(bool manageme) : listelement(manageme)
 {
@@ -473,6 +475,9 @@ void MFDvarfloat::showadjustment(oapi::Sketchpad *sketchpad, int width, int line
 	case AutoMin:
 		length=sprintf(buffer,"Auto-Min™");
 		break;
+    case AutoGet:
+		length=sprintf(buffer,"Auto-Get™");
+		break;
 	case Reset:
 		length=sprintf(buffer,"Reset");
 		break;
@@ -537,6 +542,39 @@ void MFDvarfloat::Optimise()
         m_opti->Optimise();
 }
 
+// Get variable's value from other tool
+void MFDvarfloat::AutoGetVars()
+{
+    //std::string nameStr(name);
+    EnjoLib::ModuleMessagingExt mmg;
+
+
+    if (mmg.ModMsgGet("LagrangeMFD", name, &value))
+    {
+        sprintf(oapiDebugString(), "Getting var %s at %.2lf from LagrangeMFD", name, oapiGetSysTime());
+    }
+    else
+    if (mmg.ModMsgGet("LaunchMFD", name, &value))
+    {
+        sprintf(oapiDebugString(), "Getting var %s at %.2lf from LaunchMFD", name, oapiGetSysTime());
+    }
+    else
+    {
+        sprintf(oapiDebugString(), "Var %s not available at %.2lf", name, oapiGetSysTime());
+    }
+    /*
+    if (nameStr == "Prograde vel.")
+        *this = -2590.86549759;
+    if (nameStr == "Eject date")
+        *this = 52490.7738725;
+    if (nameStr == "Outward vel.")
+        *this = 0;
+    if (nameStr == "Ch. plane vel.")
+        *this = -1457.85001214;
+    */
+
+}
+
 double MFDvarfloat::GetAdjuster()
 {
     switch (adjMode){
@@ -567,6 +605,9 @@ bool MFDvarfloat::IsAdjusterSpecialCase()
     {
 	    case AutoMin:
             Optimise();
+            return true;
+        case AutoGet:
+            AutoGetVars();
             return true;
         case Reset:
             value=defaultvalue;

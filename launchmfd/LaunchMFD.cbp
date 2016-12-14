@@ -7,7 +7,7 @@
 		<Option compiler="msvc8" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../Orbiter/orbiter2016/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Debug/" />
 				<Option type="3" />
 				<Option compiler="msvc10" />
@@ -113,7 +113,7 @@
 				<Option output="../../../Orbiter/orbiter100830/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010-MSVC2010/" />
 				<Option type="3" />
-				<Option compiler="msvc10" />
+				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -135,9 +135,9 @@
 					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
 			</Target>
-			<Target title="ReleaseBETA">
-				<Option output="../../../Orbiter/orbiterBETA/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
-				<Option object_output="obj/ReleaseBETA/" />
+			<Target title="Release2016">
+				<Option output="../../../Orbiter/orbiter2016/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2016/" />
 				<Option type="3" />
 				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
@@ -148,17 +148,45 @@
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/DNDEBUG" />
-					<Add option="/DORB2009" />
+					<Add option="/DORB2016" />
 					<Add option="/DLANG_EN" />
-					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/include" />
-					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include/lua" />
+					<Add directory="../../../Orbiter/orbiter2016/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="launchmfd/PEG" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
 					<Add library="user32" />
-					<Add directory="../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
-					<Add directory="../../../Orbiter/orbiter100830/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter2016/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+				</Linker>
+			</Target>
+			<Target title="Release2016_PL">
+				<Option output="../../../Orbiter/orbiter2016/Modules/Plugin/LaunchMFD.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2016_PL/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2016" />
+					<Add option="/DLANG_PL" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include/lua" />
+					<Add directory="../../../Orbiter/orbiter2016/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
+					<Add directory="launchmfd/PEG" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter2016/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 				</Linker>
 			</Target>
 		</Build>

@@ -5,9 +5,9 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v1.5 (C) 2007 by kwan3217         -- ??
      BurnTimeCalcMFD v2.0 (C) 2007 by Thomas Hagemeyer -- thomas.hg@web.de
      BurnTimeCalcMFD v2.4 (C) 2013 by Dimitris Gatsoulis (dgatsoulis)
-     BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-     BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
-     BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- ender-sz@go2.pl
+     BurnTimeCalcMFD v2.5 (C) 2014 by Szymon Ender (Enjo) -- www.enderspace.de
+     BurnTimeCalcMFD v2.6 (C) 2014 by Szymon Ender (Enjo) -- www.enderspace.de
+     BurnTimeCalcMFD v2.7 (C) 2014 by Szymon Ender (Enjo) -- www.enderspace.de
      BurnTimeCalcMFD v2.8 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
      BurnTimeCalcMFD v2.9 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
 

@@ -259,12 +259,12 @@ double MFDDataLaunchMFD::GetAutomaticAlt(OBJHANDLE hRef)
         const ATMCONST * atm = oapiGetPlanetAtmConstants(hRef);
         if (atm)
         {
-#ifdef ORB2009
-            alt = 0.03453 * oapiGetSize(hRef); // gives 220 km for Earth
-#else
+#ifdef ORB2006
             // old atmospheric model
             // 20 km above the atmosphere
             alt = atm->altlimit + 20e3;
+#else
+            alt = 0.03453 * oapiGetSize(hRef); // gives 220 km for Earth
 #endif
         }
     }
@@ -295,6 +295,11 @@ void MFDDataLaunchMFD::SwitchAutopilot( AutopilotType type )
         m_pidAP.Reset();
         // Disable automatic control
         GetVessel()->SetAttitudeRotLevel ( _V(0, 0, 0) );
+        // Orbiter 2016 workaround for non working SetAttitudeRotLevel():
+        GetVessel()->SetAttitudeRotLevel(0, 0);
+        GetVessel()->SetAttitudeRotLevel(1, 0);
+        GetVessel()->SetAttitudeRotLevel(2, 0);
+
         GetVessel()->ActivateNavmode( NAVMODE_KILLROT );
 
         GetVessel()->SetControlSurfaceLevel( AIRCTRL_RUDDERTRIM, 0 );

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Topo">
+      <UniqueIdentifier>{6043044e-90ab-4052-971c-56c7df932605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libMFD">
+      <UniqueIdentifier>{a5818cf9-579e-4fd6-bfa7-82eb587b5e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libMFD\Utils">
+      <UniqueIdentifier>{a0132794-911d-4f63-a60f-9853cb632f25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{aa5c68fb-6210-4c8d-b077-a3cb2356b2ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Math">
+      <UniqueIdentifier>{352167fe-65b6-498d-8beb-768e6ae18d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Systems">
+      <UniqueIdentifier>{f93922d1-0c8b-424d-a010-17acae20e066}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\afxres.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MFDButtonPageTopoMFD.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGCImy.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ORBITERTOOLS.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PluginTopoMapMFD.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TopoMap.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TopoMapMFD.h">
+      <Filter>Topo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\mfdbuttonpage.hpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\MFDTextCalculator.hpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\MyDC.h">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\Pens.h">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Colors.hpp">
+      <Filter>lib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\GeneralMath.hpp">
+      <Filter>lib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Geo.hpp">
+      <Filter>lib\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Systems\Point.hpp">
+      <Filter>lib\Systems</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MFDButtonPageTopoMFD.cpp">
+      <Filter>Topo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ORBITERTOOLS.cpp">
+      <Filter>Topo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginTopoMapMFD.cpp">
+      <Filter>Topo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TopoMap.cpp">
+      <Filter>Topo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TopoMapMFD.cpp">
+      <Filter>Topo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\MFDButtonPage.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\MFDTextCalculator.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\MyDC.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\Pens.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Colors.cpp">
+      <Filter>lib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\GeneralMath.cpp">
+      <Filter>lib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Geo.cpp">
+      <Filter>lib\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Systems\Point.cpp">
+      <Filter>lib\Systems</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\TopoMapMFD.rc">
+      <Filter>Topo</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

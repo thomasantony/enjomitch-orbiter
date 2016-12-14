@@ -83,6 +83,7 @@ public:
 	virtual void restoreself(FILEHANDLE scn);
 	void handlesfornextfunction(OBJHANDLE *thmajor, OBJHANDLE *thminor);
 	class plan *getplanpointer(){return planpointer;};
+	mapfunction * getmappointer(){return mappointer;}
 	const OrbitElements & getcraftorbit(){return craft;};
 	const OrbitElements & getpassforwardorbit();
 	void getcraftorbitattarget(OrbitElements *tcraft);

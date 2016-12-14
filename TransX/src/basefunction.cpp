@@ -21,6 +21,7 @@
 #define STRICT
 
 #include "orbitersdk.h"
+#include "orbiterapi.h"
 #include "basefunction.h"
 #include "transxstate.h"
 #include "TransXFunction.h"
@@ -32,6 +33,8 @@
 #include <Orbiter/BurnTime.hpp>
 #include "MessagingSender.h"
 #include "Autopilot.h"
+
+using namespace EnjoLib;
 
 extern double debug;
 extern Autopilot gAutopilot;
@@ -717,6 +720,7 @@ void basefunction::calculate(VECTOR3 *targetvel)
 			previousfunc->getcraftorbitattarget(&craft);
 		}
 	}
+
 	//Calculate the plan update
 	if (planpointer!=NULL)
 	{

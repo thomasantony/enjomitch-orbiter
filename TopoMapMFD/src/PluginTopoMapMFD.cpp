@@ -4,7 +4,7 @@
 
 #include "PluginTopoMapMFD.h"
 #include "TopoMapMFD.h"
-#include "OGCImy.h"
+//#include "OGCImy.h"
 
 PluginTopoMapMFD * gp_plugin;
 static int g_MFDmode; // identifier for new MFD mode

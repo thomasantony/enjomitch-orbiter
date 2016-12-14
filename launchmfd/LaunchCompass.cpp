@@ -68,12 +68,10 @@ static int mode;
 		AngleArc(hDC, x, y, (int)radius, 0, 360);
 	}
 #else
-	#ifdef ORB2009
-		void Circle(oapi::Sketchpad * skp, int x, int y, double radius)
-		{
-			skp->Ellipse((int)(x - radius), (int)(y - radius), (int)(x + radius), (int)(y + radius));
-		}
-	#endif
+    void Circle(oapi::Sketchpad * skp, int x, int y, double radius)
+    {
+        skp->Ellipse((int)(x - radius), (int)(y - radius), (int)(x + radius), (int)(y + radius));
+    }
 #endif
 
 

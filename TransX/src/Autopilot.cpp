@@ -130,6 +130,10 @@ void Autopilot::OnDisabled()
         return;
 
     vessel->SetAttitudeRotLevel( _V(0, 0, 0) );
+    // Orbiter 2016 workaround for non working SetAttitudeRotLevel():
+    GetVessel()->SetAttitudeRotLevel(0, 0);
+    GetVessel()->SetAttitudeRotLevel(1, 0);
+    GetVessel()->SetAttitudeRotLevel(2, 0);
     vessel->ActivateNavmode( NAVMODE_KILLROT );
 }
 

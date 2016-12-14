@@ -98,6 +98,8 @@ LaunchMFD::~LaunchMFD ()
     // Add MFD cleanup code here
 }
 
+#include "MessagingSender.h"
+
 // Repaint the MFD
 MFD_RETURN_TYPE LaunchMFD::Update (MyDC hDC)
 {

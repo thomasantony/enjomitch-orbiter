@@ -14,7 +14,7 @@
 #include <Utils/MFDTextCalculator.hpp>
 #include <cmath>
 #include <sstream>
-#include "OGCImy.h"
+//#include "OGCImy.h"
 
 MFDButtonPageTopoMFD gButtonPage;
 extern PluginTopoMapMFD * gp_plugin;

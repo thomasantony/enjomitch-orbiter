@@ -113,6 +113,7 @@ protected:
 		Hyper,
 		Micro,
 		AutoMin,
+		AutoGet,
 		Reset
 	};
 
@@ -125,6 +126,7 @@ protected:
 	AdjustMode adjMode;
     void Optimise();
     bool HasOptimiser();
+    void AutoGetVars();
     double GetAdjuster();
     bool IsAdjusterSpecialCase();
 

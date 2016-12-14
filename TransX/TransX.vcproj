@@ -1002,6 +1002,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\lib\Orbiter\UtilOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Orbiter\UtilOrbiter.hpp"
+					>
+				</File>
+				<File
 					RelativePath="..\lib\Orbiter\VesselCapabilities.cpp"
 					>
 				</File>

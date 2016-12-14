@@ -7,7 +7,7 @@
 		<Option compiler="msvc8" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../../Orbiter/orbiterBETA/OrbiterSDK/lib/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../Orbiter/orbiter2016/Orbitersdk/Modules/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Debug/" />
 				<Option type="3" />
 				<Option compiler="msvc8" />
@@ -29,7 +29,7 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="Release2010">
-				<Option output="../../../../Orbiter/orbiter100830/OrbiterSDK/lib/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../Orbiter/orbiter100830/Modules/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2010/" />
 				<Option type="3" />
 				<Option compiler="msvc8" />
@@ -55,7 +55,7 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="Release2006">
-				<Option output="../../../../Orbiter/orbiter060929/OrbiterSDK/lib/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../../Orbiter/orbiter060929/Modules/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
 				<Option object_output="obj/Release2006/" />
 				<Option type="3" />
 				<Option compiler="msvc8" />
@@ -85,27 +85,28 @@
 					<Add after='mt.exe /nologo /manifest &quot;bin\Release\VesselHooking.dll.manifest&quot; /outputresource:&quot;bin\Release\VesselHooking.dll&quot;;2' />
 				</ExtraCommands>
 			</Target>
-			<Target title="ReleaseBETA">
-				<Option output="../../../../Orbiter/orbiterBETA/OrbiterSDK/lib/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
-				<Option object_output="obj/ReleaseBETA/" />
+			<Target title="Release2016">
+				<Option output="../../../../Orbiter/orbiter2016/Modules/VesselHooking.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2016/" />
 				<Option type="3" />
 				<Option compiler="msvc8" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="/MD" />
+					<Add option="/TP" />
 					<Add option="/Ot" />
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/DNDEBUG" />
-					<Add option="/DORB2015" />
+					<Add option="/DORB2016" />
 					<Add option="/DLANG_EN" />
-					<Add directory="../../../../Orbiter/orbiterBETA/Orbitersdk/include" />
+					<Add directory="../../../../Orbiter/orbiter2016/Orbitersdk/include" />
 				</Compiler>
 				<Linker>
 					<Add option="/INCREMENTAL:NO" />
 					<Add library="user32" />
-					<Add directory="../../../../Orbiter/orbiterBETA/Orbitersdk/lib" />
+					<Add directory="../../../../Orbiter/orbiter2016/Orbitersdk/lib" />
 				</Linker>
 			</Target>
 		</Build>

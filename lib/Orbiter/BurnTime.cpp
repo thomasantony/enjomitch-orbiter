@@ -22,11 +22,8 @@
 
 using namespace std;
 
-BurnTime::BurnTime()
-{}
-
-BurnTime::~BurnTime()
-{}
+BurnTime::BurnTime(){}
+BurnTime::~BurnTime(){}
 
 double BurnTime::GetBurnStart(VESSEL *vessel, THGROUP_TYPE thGroupType, double instantaneousBurnTime, double deltaV)
 {

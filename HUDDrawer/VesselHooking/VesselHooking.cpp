@@ -46,7 +46,7 @@ using namespace std;
     #define VTABLE_SIZE		35
     #define DRAW_HUD_INDEX	32
 #endif
-#ifdef ORB2015
+#ifdef ORB2016
     #define VTABLE_SIZE		36
     #define DRAW_HUD_INDEX	32
 #endif
@@ -58,7 +58,7 @@ VesselHooking::VesselHooking(OBJHANDLE hVessel, int fmodel)
 #ifdef ORB2009
     VESSEL3(hVessel, fmodel)
 #endif
-#ifdef ORB2015
+#ifdef ORB2016
     VESSEL4(hVessel, fmodel)
 #endif
 {
@@ -78,7 +78,7 @@ bool VesselHooking::IsVesselCompatible( VESSEL * v )
     #ifdef ORB2009
          return v->Version() == 2;
     #endif
-    #ifdef ORB2015
+    #ifdef ORB2016
          return v->Version() == 3;
     #endif
 }
@@ -118,7 +118,7 @@ void VesselHooking::clbkDrawHUD(int mode, const HUDPAINTSPEC *hps, HDC hDC)
 void VesselHooking::OldclbkDrawHUD(int mode, const HUDPAINTSPEC *hps, HDC hDC)
 {}
 
-#if defined(ORB2009) || defined(ORB2015)
+#if defined(ORB2009) || defined(ORB2016)
 bool VesselHooking::clbkDrawHUD (int mode, const HUDPAINTSPEC *hps, oapi::Sketchpad * skp )
 {
     // Invoke the old HUD method - this will have been hooked and so
@@ -216,6 +216,8 @@ void VesselHooking::OnMFDDestruction( IDrawsHUD * mfd )
 vector<VesselHooking::Drawer> VesselHooking::GetDrawersList()
 {
     vector<VesselHooking::Drawer> moduleList;
+    if (vecHUDrawers.empty())
+        return moduleList;
     vector<string> moduleIDList;
     // Add to the module list only non-empty string identifiers of the currently registered modules
     for (VEC_HUD_DRAWERS::const_iterator it = vecHUDrawers.begin(); it != vecHUDrawers.end(); ++it)

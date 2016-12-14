@@ -30,3 +30,13 @@ Released under the terms of the LGPL v3: http://www.gnu.org/licenses/lgpl.txt
 Latest sources on-line at: http://sf.net/p/enjomitchsorbit
 
 Many thanks to Jarmonik for helping in a smooth integration with his client!
+
+
+===================
+LEGAL
+===================
+
+Copyright 2015    by "Topper" - Original author: concept, calculations
+Copyright 2015-16 by Szymon Ender "Enjo" (http://www.enderspace.de) - Co-developer: optimizations, putting it together
+
+Released under the terms of the LGPL v3: http://www.gnu.org/licenses/lgpl.txt

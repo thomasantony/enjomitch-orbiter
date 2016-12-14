@@ -51,7 +51,7 @@ VESSEL2
 #ifdef ORB2009
 VESSEL3
 #endif
-#ifdef ORB2015
+#ifdef ORB2016
 VESSEL4
 #endif
 {
@@ -107,7 +107,7 @@ private:
         virtual bool clbkLoadVC (int id) {return 0;};
         virtual bool clbkVCMouseEvent (int id, int event, VECTOR3 &p) {return 0;};
         virtual bool clbkVCRedrawEvent (int id, int event, SURFHANDLE surf) {return 0;};
-    #if defined(ORB2009) || defined(ORB2015)
+    #if defined(ORB2009) || defined(ORB2016)
         virtual bool clbkPanelMouseEvent (int id, int event, int mx, int my, void *context) {return true;}
         virtual bool clbkPanelRedrawEvent (int id, int event, SURFHANDLE surf, void *context) {return true;}
         virtual int  clbkGeneric (int msgid=0, int prm=0, void *context=NULL) {return 0;}
@@ -118,7 +118,7 @@ private:
         virtual void clbkRenderHUD (int mode, const HUDPAINTSPEC *hps, SURFHANDLE hDefaultTex) {}
         virtual void clbkGetRadiationForce (const VECTOR3 &mflux, VECTOR3 &F, VECTOR3 &pos) {}
     #endif
-    #if defined(ORB2015)
+    #if defined(ORB2016)
         virtual int clbkNavProcess (int mode) {return 0;};
     #endif
         virtual void OldclbkSetClassCaps (FILEHANDLE cfg) {};
@@ -150,7 +150,7 @@ private:
         virtual bool OldclbkVCMouseEvent (int id, int event, VECTOR3 &p) {return 0;};
         virtual bool OldclbkVCRedrawEvent (int id, int event, SURFHANDLE surf) {return 0;};
 
-    #if defined(ORB2009) || defined(ORB2015)
+    #if defined(ORB2009) || defined(ORB2016)
         virtual bool OldclbkPanelMouseEvent (int id, int event, int mx, int my, void *context) {return true;}
         virtual bool OldclbkPanelRedrawEvent (int id, int event, SURFHANDLE surf, void *context) {return true;}
         virtual int  OldclbkGeneric (int msgid=0, int prm=0, void *context=NULL) {return 0;}
@@ -159,7 +159,7 @@ private:
         virtual void OldclbkRenderHUD (int mode, const HUDPAINTSPEC *hps, SURFHANDLE hDefaultTex) {}
         virtual void OldclbkGetRadiationForce (const VECTOR3 &mflux, VECTOR3 &F, VECTOR3 &pos) {}
 	#endif
-    #if defined(ORB2015)
+    #if defined(ORB2016)
         virtual int OldclbkNavProcess (int mode) {return 0;}
     #endif
 	private:

@@ -36,3 +36,6 @@ TransX/TransX.cscope_file_list
 *.opensdf
 *BuildLog.htm
 *.exp
+*UpgradeLog.htm
+TopoMapMFD/debug/TopoMapMFD.tlog/*
+*.layout*

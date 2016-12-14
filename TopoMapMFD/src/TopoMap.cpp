@@ -7,7 +7,9 @@
 #include <Math/GeneralMath.hpp>
 #include <Math/Colors.hpp>
 #include <Systems/Point.hpp>
-#include "OGCImy.h"
+#include "gcAPI.h"
+#include "Sketchpad2.h"
+
 
 int TopoMap::m_numLinesPerRefresh = 2;
 //int TopoMap::m_numLinesPerRefresh = 8; // testing
@@ -21,8 +23,8 @@ double TopoMap::m_zoom = c_zoomMin;
 
 TopoMap::TopoMap(int width, int height)
 {
-    if (!ogciEnabled())
-        ogciInitialize();
+    if (!gcEnabled())
+        gcInitialize();
     W = width; H = height;
     // W and H must be even, or the surface doesn't get redrawn.
 	if (W%2 != 0) W--;
@@ -32,8 +34,8 @@ TopoMap::TopoMap(int width, int height)
 
     highest = 5000;
     lowest = -5000;
-    //m_surface = oapiCreateSurface(W, H);
-    m_surface = ogciCreateSurfaceEx(W, H, OAPISURFACE_TEXTURE|OAPISURFACE_RENDERTARGET); // Using Jarmo's stuff
+    m_surface = oapiCreateSurface(W, H);
+    //m_surface = ogciCreateSurfaceEx(W, H, OAPISURFACE_TEXTURE|OAPISURFACE_RENDERTARGET); // Using Jarmo's stuff
     if (m_surface)
         oapiColourFill (m_surface, 0);
 }
@@ -47,8 +49,12 @@ void TopoMap::Draw(oapi::Sketchpad *skp)
 {
     if (!m_surface)
         return;
-    ogciSketchBlt(skp, m_surface, 0, 0); // Jarmo's blitting
+    //ogciSketchBlt(skp, m_surface, 0, 0); // Jarmo's blitting
     //oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H); // No effect, as the DC is locked.
+    //oapiBlt(m_surface, 0, 0, 0, 0, W, H); // No effect, as the DC is locked.
+    Sketchpad2  skp2 (skp->GetSurface());
+    skp2.CopyRect(m_surface, NULL, 0, 0);
+
 }
 
 void TopoMap::RefreshIncrement()

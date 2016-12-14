@@ -6,13 +6,30 @@ Created on Mon Sep 07 06:56:59 2015
 """
 
 import os
+#import sys
+import zipfile
 import copy
 import shutil
+import glob
+import platform
 
-#srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiterBETA"
-#dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases-beta"
-srcDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/orbiter/orbiter100830"
-dstDir = "C:/Users/Justyna/Documents/03 SZYMON/devel/releases"
+version = 2016
+#version = 2010
+
+dirPrefixLinux = '/home/enjo/devel/devel-orb/'
+dirPrefixWindows = 'C:/Users/Justyna/Documents/03 SZYMON/devel/'
+
+if platform.system() == "Linux":
+    dirPrefix = dirPrefixLinux
+else:
+    dirPrefix = dirPrefixWindows
+
+if version == 2016:
+    srcDir = dirPrefix + "Orbiter/orbiter2016"
+elif version == 2010:
+    srcDir = dirPrefix + "Orbiter/orbiter100830"
+    
+dstDir = dirPrefix + "releases-{0}".format(version)
 
 class Addon:
     def __init__(self, name):
@@ -29,15 +46,40 @@ class Addon:
         self.filesSrc.append(src)
         self.filesDst.append(dst)
         
-def disp(addons):
+def distribute(addons, version):
     for addon in addons:
         print addon.name
+        pathAddon = os.path.join(dstDir, addon.name)
         for fileSrc, fileDst in zip(addon.filesSrc, addon.filesDst):
             print "{0} -> {1}".format(fileSrc, fileDst)
             src = os.path.join(srcDir, fileSrc)
-            dst = os.path.join(dstDir, addon.name, fileDst)
+            dst = os.path.join(pathAddon, fileDst)
             shutil.copy(src, dst)
+        
+        for fl in glob.glob(pathAddon + "/*.zip"):
+            # Remove previous zip files
+            os.remove(fl)
+            print("Removed " + fl)
+        
+        cwdPrev = os.getcwd()
+        os.chdir(pathAddon)
+        zipfPath = pathAddon + "-" + str(version) + ".zip"
+        zipf = zipfile.ZipFile(zipfPath, 'w', zipfile.ZIP_DEFLATED)
+        print("Zipping file " + zipfPath + " in " + pathAddon)
+        zipdir(".", zipf)
+        zipf.close()
+        
+        #shutil.move(zipfPath, addon.name + ".zip")
+        os.chdir(cwdPrev)
+        #sys.exit()
         print ""
+
+
+def zipdir(path, ziph):
+    # ziph is zipfile handle
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
 
         
 addons = []
@@ -47,16 +89,16 @@ addons = []
 #addon.AddFile1("Modules/Plugin/AbsoluteKillrot.dll")
 #addons.append(copy.deepcopy(addon))
 
-addon = Addon("TopographicMapMFD-v.0.5")
-addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
+#addon = Addon("TopographicMapMFD-v.0.5")
+#addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
 #addons.append(copy.deepcopy(addon))
 
 addon = Addon("BurnTimeCalcMFD-v.2.9.2")
 addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-#addon = Addon("LaunchMFD-v.1.6.4-2010")
-addon = Addon("LaunchMFD-v.1.6.4-2010-pl")
+addon = Addon("LaunchMFD-v.1.6.4")
+#addon = Addon("LaunchMFD-v.1.6.4-pl")
 addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
 addons.append(copy.deepcopy(addon))
 
@@ -72,12 +114,13 @@ addon.AddFile1("Modules/ModuleMessaging.dll")
 addon.AddFile2("Modules/ModuleMessaging.lib", "Orbitersdk/lib/ModuleMessaging.lib")
 #addons.append(copy.deepcopy(addon))
 
-addon = Addon("HUDDrawerSDK-v.0.3")
+addon = Addon("HUDDrawerSDK-v.0.4")
 addon.AddFile1("Modules/Plugin/HUDDrawer.dll")
 addon.AddFile1("Modules/VesselHooking.dll")
 addon.AddFile2("Modules/VesselHooking.lib", "Orbitersdk/lib/VesselHooking.lib")
-#addons.append(copy.deepcopy(addon))
+addons.append(copy.deepcopy(addon))
 
-disp(addons)
+distribute(addons, version)
+print("Ready!")
 
 

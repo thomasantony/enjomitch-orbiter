@@ -30,6 +30,10 @@
 #include "viewstate.h"
 #include "shiplist.h"
 #include "transxstate.h"
+#include <Orbiter/UtilOrbiter.hpp>
+#include "MessagingSender.h"
+
+using namespace EnjoLib;
 
 MFDvarhandler *transxstate::GetVarhandler(unsigned int curvarfunction)
 {
@@ -503,6 +507,21 @@ bool transxstate::doupdate(oapi::Sketchpad *sketchpad, int tw, int th,unsigned i
 	sketchpad->Text(tw/2,0,buffer,length);
 	length=sprintf(buffer,"Vars Stage %i",curvarfunction);
 	sketchpad->Text(tw/2,4*linespacing,buffer,length);
+
+	// Send info about current bodies
+    if (curfunction - 1 < baselist.size())
+    {
+        basefunction * baseFunc = baselist[curfunction - 1];
+        mapfunction * mapptr = baseFunc->getmappointer();
+        if (mapptr)
+        {
+            OBJHANDLE hmajor = baseFunc->gethmajor();
+            OBJHANDLE currBody = mapptr->getcurrbody(oapiGetFocusObject());
+            MessagingSender().ModMsgPut("CurrentBodyIndex", UtilOrbiter().GetHandleIndex(currBody)); // Body orbited
+            MessagingSender().ModMsgPut("StageMajorIndex",   UtilOrbiter().GetHandleIndex(hmajor));  // Currently viewed body
+        }
+    }
+
 	return true;
 }
 

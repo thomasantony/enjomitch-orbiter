@@ -3,5 +3,5 @@
 
 BODYPHYS::BODYPHYS()
 {
-    mass = radius = sidDay = cutoffAlt = pressure0 = 0;
+    mass = radius = sidDay = cutoffAlt = pressure0 = 0; 
 }

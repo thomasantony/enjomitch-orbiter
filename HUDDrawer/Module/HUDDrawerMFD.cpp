@@ -67,18 +67,26 @@ MFD_RETURN_TYPE HUDDrawerMFD::Update ( MyDC myDC )
 
 void HUDDrawerMFD::OnPrevItem()
 {
+    const std::vector<VesselHooking::Drawer> & drawers = VesselHooking::GetDrawersList();
+    if (drawers.empty())
+        return;
     if ( --iSelected < 0 )
-        iSelected = VesselHooking::GetDrawersList().size() - 1;
+        iSelected = drawers.size() - 1;
 }
 
 void HUDDrawerMFD::OnNextItem()
 {
-    iSelected = ++iSelected % VesselHooking::GetDrawersList().size();
+    const std::vector<VesselHooking::Drawer> & drawers = VesselHooking::GetDrawersList();
+    if (drawers.empty())
+        return;
+    iSelected = ++iSelected % drawers.size();
 }
 
 void HUDDrawerMFD::OnModItem()
 {
     const std::vector<VesselHooking::Drawer> & drawers = VesselHooking::GetDrawersList();
+    if (drawers.empty())
+        return;
     if (iSelected < (int)drawers.size())
     {
         VesselHooking::Drawer drawer = drawers.at(iSelected);
