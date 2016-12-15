@@ -15,6 +15,7 @@ class Graph
 
     private:
         DWORD ixstart, iystart, ixend, iyend, windowsize;//window parameters
+        oapi::Pen * penGrey, * penGreen;
 };
 
 #endif // GRAPH_H

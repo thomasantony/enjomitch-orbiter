@@ -13,6 +13,7 @@ class DataSourceDummy : public DataSourceBase
         bool GetFromMM(MFDDataBurnTime * data);
         double GetIBT() const { return m_ibt; }
         double GetDV() const { return m_dv; }
+        VECTOR3 GetVelVec() const { return _V(0, 250, 250); }
 
     protected:
 

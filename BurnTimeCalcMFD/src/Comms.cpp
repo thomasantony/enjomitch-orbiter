@@ -19,7 +19,6 @@ Comms::~Comms(){}
 
 bool Comms::ParseInput(char * str, MFDDataBurnTime * data)
 {
-    sprintf(oapiDebugString(), "Str = %s", str);
     if (strlen(str) != 1) return false;
     istringstream issId;
     issId.str(str);

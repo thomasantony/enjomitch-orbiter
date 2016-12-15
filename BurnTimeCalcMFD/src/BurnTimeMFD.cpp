@@ -89,8 +89,6 @@
 #include "Comms.h"
 #include "InputBox.h"
 
-#include "Graph.h"
-
 #define mToft 1.0/0.3048
 #define gTolb 1.0/0.45359237
 #define mpersToftpers 1.0/9.80665
@@ -175,6 +173,7 @@ void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, int x, 
 BurnTimeMFD::BurnTimeMFD (DWORD w, DWORD h, VESSEL *vessel, PluginBurnTime * plugin)
  : MFD2 (w, h, vessel)
  , m_data(dynamic_cast<MFDDataBurnTime *>(plugin->AssociateMFDData(vessel)))
+ , m_graph(0,0,W,H)
  {
   height = (int)h;
   if (m_data->mul==0) m_data->mul=1.0;
@@ -191,8 +190,8 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 
   Title (skp, "BurnTimeMFD v2.9");
 
-  Graph graph(0,0,W,H);
-  graph.vectorpointdisplay(skp, m_data->velVector, pV);
+
+  m_graph.vectorpointdisplay(skp, m_data->velVector, pV);
 
   int line1 = 1;
   int line8 = 2;

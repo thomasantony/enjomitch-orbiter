@@ -1,7 +1,7 @@
 #include "Graph.h"
 #include <Orbiter/SpaceMathOrbiter.hpp>
 
-Graph::~Graph(){}
+
 Graph::Graph(DWORD xstart, DWORD ystart, DWORD xend, DWORD yend)
 : ixstart(xstart)
 , iystart(ystart)
@@ -11,6 +11,16 @@ Graph::Graph(DWORD xstart, DWORD ystart, DWORD xend, DWORD yend)
 {
 	DWORD temp=iyend-iystart;
 	if (temp<windowsize) windowsize=temp;
+
+	penGrey = oapiCreatePen(1, 1, RGB(0xE0, 0xE0, 0xE0));
+	penGreen = oapiCreatePen(1, 1, RGB(0x00, 0xEE, 0x00));
+
+}
+
+Graph::~Graph()
+{
+    oapiReleasePen(penGrey);
+    oapiReleasePen(penGreen);
 }
 
 double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &target, VESSEL *vessel) const
@@ -19,6 +29,7 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
     if (length(target) == 0)
         return 0;
 	//TransXFunction::SelectDefaultPen(sketchpad,TransXFunction::Grey);
+	sketchpad->SetPen(penGrey);
 
 	const int rings = 3;
 	const int width = (ixend - ixstart),
@@ -54,7 +65,8 @@ double Graph::vectorpointdisplay(oapi::Sketchpad *sketchpad, const VECTOR3 &targ
 	int xpos = int(offsetsize * xang + width / 2 + ixstart);
 	int ypos = int(offsetsize * yang + height / 2 + iystart);
 
-	//TransXFunction::SelectDefaultPen(sketchpad,TransXFunction::Green);
+	sketchpad->SetPen(penGreen);
+
 	const int crossSize = 5;
 	sketchpad->MoveTo(xpos - crossSize, ypos - crossSize);
 	sketchpad->LineTo(xpos + crossSize, ypos + crossSize);

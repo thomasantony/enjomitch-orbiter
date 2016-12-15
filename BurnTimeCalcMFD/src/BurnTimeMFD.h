@@ -2,6 +2,7 @@
 #define BURNTIMEMFD_H_INCLUDED
 
 #include <orbitersdk.h>
+#include "Graph.h"
 
 class MFDDataBurnTime;
 class PluginBurnTime;
@@ -52,6 +53,7 @@ private:
   //static int Sel_eng;
 	void writemenu(oapi::Sketchpad * skp);
   int line( int );
+  Graph m_graph;
 };
 
 #endif // BURNTIMEMFD_H_INCLUDED
