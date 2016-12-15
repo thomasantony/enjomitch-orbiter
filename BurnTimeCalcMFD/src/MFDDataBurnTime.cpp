@@ -3,6 +3,11 @@
 #include <OrbiterSdk.h>
 #include <Orbiter/BurnTime.hpp>
 
+#include "DataSourceTransX.h"
+#include "DataSourceBaseSync.h"
+#include "DataSourceLagrange.h"
+#include "DataSourceDummy.h"
+
 const int MFDDataBurnTime::numEngines = 6;
 const THGROUP_TYPE MFDDataBurnTime::groups[numEngines]={THGROUP_MAIN,THGROUP_HOVER,THGROUP_RETRO, THGROUP_ATT_FORWARD, THGROUP_ATT_UP, THGROUP_ATT_BACK};
 const char MFDDataBurnTime::group_names[numEngines][7]={"Main","Hover","Retro","RCS FW","RCS UP","RCS RE"};
@@ -29,12 +34,18 @@ MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
   BS_burn = NULL;
   otherMFDsel = 0;
   BSori = 0;
-  tgtOrientation = _V(0,0,0);
+  velVector = _V(0,0,0);
+
+    m_dataSources.push_back(new DataSourceTransX());
+    m_dataSources.push_back(new DataSourceBaseSync());
+    m_dataSources.push_back(new DataSourceLagrange());
+    m_dataSources.push_back(new DataSourceDummy());
 }
 
 MFDDataBurnTime::~MFDDataBurnTime()
 {
-    //dtor
+    for (unsigned i = 0; i < m_dataSources.size(); ++i)
+        delete m_dataSources.at(i);
 }
 
 void MFDDataBurnTime::Update()

@@ -44,10 +44,6 @@ public:
   void HandlerAutopilot();
   void HandlerAutopilotDisable();
 
-  bool GetFromTransX(double *dV, double *IBT);
-  bool GetFromBaseSync(double *dV, double *IBT);
-  void SetOtherMFDBurnVars(bool TransX, const double dV, double IBT);
-
 protected:
   VESSEL *messel;
   int height;

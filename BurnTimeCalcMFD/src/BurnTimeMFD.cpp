@@ -77,14 +77,6 @@
 #define BRIGHTERGRAY RGB(200, 200, 200)
 #define ORANGE RGB(255, 130, 0)
 
-#define INPUTMODE_NONE 0
-#define INPUTMODE_DV 1
-#define INPUTMODE_TARGET 2
-#define INPUTMODE_OFFSET 3
-#define INPUTMODE_TIME 4
-#define INPUTMODE_EXTRA 5
-#define INPUTMODE_MFDSEL 6
-
 #include "BurnTimeMFD.h"
 #include "MFDButtonPageBTC.h"
 #include <windows.h>
@@ -94,11 +86,10 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include "Comms.h"
+#include "InputBox.h"
 
 #include "Graph.h"
-//#include <EnjoLib/ModuleMessaging.hpp>
-#include "EnjoLib/ModuleMessagingExt.hpp"
-#include "BaseSyncExports.hpp"
 
 #define mToft 1.0/0.3048
 #define gTolb 1.0/0.45359237
@@ -201,7 +192,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
   Title (skp, "BurnTimeMFD v2.9");
 
   Graph graph(0,0,W,H);
-  graph.vectorpointdisplay(skp, m_data->tgtOrientation, pV);
+  graph.vectorpointdisplay(skp, m_data->velVector, pV);
 
   int line1 = 1;
   int line8 = 2;
@@ -300,7 +291,9 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	}
 
 	skp->SetTextColor( (m_data->inputmode==INPUTMODE_DV)?YELLOW:GRAY );
-  if (m_data->mode == BURNMODE_MAN) {
+  /*if (m_data->mode == BURNMODE_MAN)
+  {
+     // Yuck! This should be visible through the source MFDs, not here!
     switch (m_data->otherMFDsel) {
     case 0:
       PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
@@ -324,7 +317,8 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
       }
       break;
     }
-  } else {
+    } else */
+  {
     PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
   }
 
@@ -361,7 +355,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	PrintEngUnit(skp,"Mass Flow Rate:        %7.3f","g/s","lbm/s", 1000,gTolb, m_data->mdot,5,line15);
 	PrintEngUnit(skp,"Eng Thrust:            %7.3f","N","lbf",1,NTolbf, m_data->F,5,line16);
 	PrintEngUnit(skp,"Eng Isp:               %7.3f","m/s","ft/s",1,mpersToftpers, m_data->isp,5,line17);
-	PrintEngUnit(skp,"Eng Acc:               %7.3f","m/s²","ft/s²",1,mperssqToftperssq,m_data->F/m_data->ms,5,line18);
+	PrintEngUnit(skp,"Eng Acc:               %7.3f","m/sÂ²","ft/sÂ²",1,mperssqToftperssq,m_data->F/m_data->ms,5,line18);
   }
   return true;
 }
@@ -380,167 +374,6 @@ int BurnTimeMFD::MsgProc (UINT msg, UINT mfinald, WPARAM wparam, LPARAM lparam)
 MFDDataBurnTime * BurnTimeMFD::GetData()
 {
     return m_data;
-}
-
-
-bool ObjectInput (void *id, char *str, void *usrdata)
-{
-  if ( str[0] == 0) return true;
-	BurnTimeMFD * btcMFD = (BurnTimeMFD*)usrdata;
-    MFDDataBurnTime * data = btcMFD->GetData();
-
-	if (data->inputmode == INPUTMODE_MFDSEL ) {
-    using namespace EnjoLib;
-    if (strlen(str) != 1) return false;
-    bool TransX = (*str == '1');
-    bool BaseSync = (*str == '2');
-    if (!TransX && !BaseSync) return false;
-
-    double dV;
-    double IBT;
-
-    if (TransX) {
-      TransX = btcMFD->GetFromTransX(&dV, &IBT);
-    } else {
-      BaseSync = btcMFD->GetFromBaseSync(&dV, &IBT);
-    }
-
-
-
-    if (!TransX && !BaseSync) {
-      // Data currently invalid ... default back to manual burn
-      data->mode = BURNMODE_MAN;
-      data->otherMFDsel = 0;
-      return true;
-    }
-    btcMFD->SetOtherMFDBurnVars(TransX, dV, IBT);
-    return true;
-  }
-
-
-	std::string SearchString(str);
-	OBJHANDLE hFObj = oapiGetObjectByName(str);
-	//Auslesen des letzten Zeichens und Bestimmen des Expondentens (read last char to check for exponent letter)
-	std::string InputUnits =  "yzafpnum_kMGTPEZY;";
-	std::string RightChar = std::string(SearchString.substr(SearchString.length()-1,SearchString.length()));
-	std::string numbers = "0123456789;";
-	//Überprüfe ob der String eine Zahl ist... (check if the string is a number)
-
-
-	if (data->inputmode != INPUTMODE_TARGET )
-	{
-		for (unsigned int laufNumber=0; laufNumber<SearchString.length()-1;laufNumber++)
-		{
-			if
-			(
-				SearchString.substr(laufNumber,1) != "." &&
-				SearchString.substr(laufNumber,1) != "0" &&
-				SearchString.substr(laufNumber,1) != "1" &&
-				SearchString.substr(laufNumber,1) != "2" &&
-				SearchString.substr(laufNumber,1) != "3" &&
-				SearchString.substr(laufNumber,1) != "4" &&
-				SearchString.substr(laufNumber,1) != "5" &&
-				SearchString.substr(laufNumber,1) != "6" &&
-				SearchString.substr(laufNumber,1) != "7" &&
-				SearchString.substr(laufNumber,1) != "8" &&
-				SearchString.substr(laufNumber,1) != "9"
-
-			) return false;
-		}
-		double MyExp=-24;
-		int lauf = 0 ;
-		while (InputUnits.substr(lauf,1)!=";")
-		{
-			if (InputUnits.substr(lauf,1) == RightChar.substr(0,1)) break;
-			lauf++;
-			MyExp +=3;
-		}
-		// Wenn kein Einheitenfaktor gefunden wurde...  (if an exponent factor is found)
-		if (InputUnits.substr(lauf,1)==";")
-		{
-			if (RightChar != "0" && atoi(RightChar.c_str()) == 0) return false;
-			if (data->inputmode==INPUTMODE_OFFSET )
-			{
-				data->sOffset = atof(SearchString.c_str());
-				if (data->dspunit == 1) data->sOffset = data->sOffset  * 0.3048;
-			}
-			else if (data->inputmode==INPUTMODE_DV )
-			{
-				data->dv = atof(SearchString.c_str());
-				if (data->dspunit == 1) data->dv = data->dv * 0.3048;
-			}
-			else if (data->inputmode==INPUTMODE_EXTRA )
-			{
-				data->mextra = atof(SearchString.c_str());
-				if (data->dspunit == 1) data->mextra = data->mextra * 0.45359237;
-			}
-			else if (data->inputmode==INPUTMODE_TIME )
-      {
-        data->EReference = oapiGetSimTime()+atof(SearchString.c_str());
-        data->IManual = atof(SearchString.c_str());
-      }
-		}
-		else
-		{
-			if (data->inputmode==INPUTMODE_EXTRA )
-			{
-				data->mextra = atof(SearchString.c_str());
-				if (data->dspunit == 1) data->mextra = data->mextra * 0.45359237;
-			}
-			if (data->inputmode==INPUTMODE_OFFSET )
-			{
-				data->sOffset = atof(SearchString.c_str()) * pow(10,MyExp);
-				if (data->dspunit == 1) data->sOffset = data->sOffset * 0.3048;
-			}
-			else if (data->inputmode==INPUTMODE_DV )
-			{
-				data->dv = atof(SearchString.c_str()) * pow(10,MyExp);
-				if (data->dspunit == 1) data->dv = data->dv * 0.3048;
-			}
-			else data->IManual = atof(SearchString.c_str()) * pow(10,MyExp);
-			//sprintf(oapiDebugString(),"v1:%f  v2:%f ",atof(SearchString.c_str()),pow(10,MyExp));
-		}
-		data->inputmode=INPUTMODE_NONE;
-		return true;
-	}
-	else
-	{
-		// Checking if string is equal
-		std::transform(SearchString.begin(), SearchString.end(), SearchString.begin(), std::tolower);
-		for (unsigned int i=0;i<oapiGetObjectCount();i++)
-		{
-			OBJHANDLE hSObj = oapiGetObjectByIndex(i);
-			char name[255];
-			oapiGetObjectName(hSObj,name,255);
-			std::string strname(name);
-			std::transform(strname.begin(), strname.end(), strname.begin(), std::tolower);
-			if (strname == SearchString)
-			{
-			   data->IndexCenterObj = i;
-			   data->inputmode=INPUTMODE_NONE;
-			   return true;
-			}
-		}
-		//checking if string is a part of the entered value
-		for (unsigned int i = 0; i < oapiGetObjectCount();i++)
-		{
-			char ObjectNameCharStr[255];
-			OBJHANDLE hobj = oapiGetObjectByIndex(i);
-			oapiGetObjectName (hobj,ObjectNameCharStr,255);
-			std::string StrObjectName(ObjectNameCharStr);
-			std::transform(StrObjectName.begin(), StrObjectName.end(), StrObjectName.begin(), std::tolower);
-			size_t pos;
-
-			pos = StrObjectName.find(SearchString);
-			if (pos != std::string::npos)
-			{
-			   data->IndexCenterObj = i;
-			   data->inputmode=INPUTMODE_NONE;
-			   return true;
-			}
-		}
-		return false;
-	}
 }
 
 bool BurnTimeMFD::ConsumeKeyBuffered (DWORD key)
@@ -674,7 +507,7 @@ void BurnTimeMFD::HandlerIncludeRCSFuel()
 
 void BurnTimeMFD::HandlerAutopilot()
 {
-    m_data->autopilot.SetTargetVector(m_data->tgtOrientation);
+    m_data->autopilot.SetTargetVector(m_data->velVector);
 }
 
 void BurnTimeMFD::HandlerAutopilotDisable()
@@ -684,118 +517,9 @@ void BurnTimeMFD::HandlerAutopilotDisable()
 
 void BurnTimeMFD::HandlerGetFromOtherMFD()
 {
-    {
-        using namespace EnjoLib;
-        ModuleMessagingExt mm;
-        double dvRes = 0, IManualRes = 0;
-        if (mm.ModMsgGet("LagrangeMFD", "InstantaneousBurnTime", &IManualRes))
-        {
-            if (mm.ModMsgGet("LagrangeMFD", "TargetVelocity", &m_data->tgtOrientation))
-            {
-                dvRes = length(m_data->tgtOrientation);
-                sprintf(oapiDebugString(), "Got all from LagrangeMFD. Now let's Rock'n'Roll!");
-                SetOtherMFDBurnVars(true, dvRes, IManualRes);
-                return;
-            }
-        }
-        else
-        {
-            m_data->tgtOrientation = _V(0, 250, 250);
-            dvRes = length(m_data->tgtOrientation);
-            IManualRes = 100;
-            SetOtherMFDBurnVars(true, dvRes, IManualRes);
-            sprintf(oapiDebugString(), "It looks like some data is missing. Setting artificial data");
-        }
-    }
-    double dV_TransX, IBT_TransX;
-    double dV_BaseSync, IBT_BaseSync;
-    bool TransX, BaseSync;
-
-
-
-    TransX = GetFromTransX(&dV_TransX, &IBT_TransX);
-    BaseSync = GetFromBaseSync(&dV_BaseSync, &IBT_BaseSync);
-
-    if (TransX && BaseSync) { // 2 valid data sources ... ask user to choose
-      m_data->inputmode=INPUTMODE_MFDSEL;
-      bool ObjectInput (void *id, char *str, void *usrdata);
-      oapiOpenInputBox("Enter 1 for TransX or 2 for BaseSync",ObjectInput,0,20, (void*)this);
-      return;
-    }
-
-    if (!TransX && !BaseSync) {
-      // no data exposed
-      return;
-    }
-
-    if (TransX) {
-      SetOtherMFDBurnVars(true, dV_TransX, IBT_TransX);
-    } else {
-      SetOtherMFDBurnVars(false, dV_BaseSync, IBT_BaseSync);
-    }
+    if (Comms().HandlerGetFromOtherMFD(this, m_data))
+        HandlerAutoBurn();
 }
-
-bool BurnTimeMFD::GetFromTransX(double *dV, double *IBT) {
-    using namespace EnjoLib;
-    ModuleMessagingExt mm;
-    double dvRes = 0, IManualRes = 0;
-    if (mm.ModMsgGet("TransX", "dv", &dvRes) &&
-        mm.ModMsgGet("TransX", "InstantaneousBurnTime", &IManualRes)) {
-        // Receiving TransX
-      *dV = dvRes;
-      *IBT = IManualRes;
-      return true;
-    } else {
-      *dV = 0;
-      *IBT = 0;
-      return false;
-    }
-}
-
-
-bool BurnTimeMFD::GetFromBaseSync(double *dV, double *IBT) {
-    using namespace EnjoLib;
-    ModuleMessagingExt mmext;
-    bool receivingBS = false;
-
-    if (m_data->BS_burn != NULL) {
-      receivingBS = m_data->BS_burn->dataValid;
-    } else {
-      receivingBS = mmext.ModMsgGetByRef("BaseSyncMFD","BaseSyncBurn",1,&(m_data->BS_burn));
-      if (receivingBS) receivingBS = m_data->BS_burn->dataValid;
-    }
-
-    if (receivingBS) {
-      *dV = m_data->BS_burn->dV;
-      *IBT = m_data->BS_burn->tToInstBurn;
-      m_data->BSori = m_data->BS_burn->orientation;
-      return true;
-    } else {
-      *dV = 0;
-      *IBT = 0;
-      return false;
-    }
-}
-
-
-void BurnTimeMFD::SetOtherMFDBurnVars(bool TransX, double dV, double IBT) {
-    m_data->IsArmed=m_data->IsEngaged=false;
-    m_data->mode = BURNMODE_MAN;
-    if (abs(dV) > 1e-5 && IBT > 0) { // We're not interested in negative times or zero dV's
-      if (TransX) {
-        m_data->otherMFDsel = 1;
-      } else {
-        m_data->otherMFDsel = 2;
-      }
-      m_data->dv = abs(dV);
-      m_data->IManual = IBT;
-      HandlerAutoBurn();
-    } else {
-      m_data->otherMFDsel = 0;
-    }
-}
-
-
 
 int BurnTimeMFD::line( int i ) {
   return (int)((float)i*((float)height/20.0));

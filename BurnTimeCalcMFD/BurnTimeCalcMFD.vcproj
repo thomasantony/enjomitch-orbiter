@@ -625,6 +625,54 @@
 			>
 		</File>
 		<File
+			RelativePath=".\src\Comms.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\Comms.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceBase.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceBase.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceBaseSync.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceBaseSync.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceDummy.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceDummy.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceLagrange.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceLagrange.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceTransX.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceTransX.h"
+			>
+		</File>
+		<File
 			RelativePath="..\lib\PID\DerivatorDiscrete.cpp"
 			>
 		</File>
@@ -650,6 +698,14 @@
 		</File>
 		<File
 			RelativePath=".\src\Graph.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\InputBox.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\InputBox.h"
 			>
 		</File>
 		<File

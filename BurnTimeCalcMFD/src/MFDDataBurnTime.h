@@ -4,6 +4,8 @@
 #include <multipleVesselsMFD/MFDData.hpp>
 #include <Orbitersdk.h>
 #include <Orbiter/AutopilotRotation.hpp>
+#include <vector>
+#include "DataSourceBase.h"
 
 class MFDDataBurnTime : public EnjoLib::MFDGoodies::MFDData
 {
@@ -21,7 +23,7 @@ public:
   static const THGROUP_TYPE groups[6];
   static const char group_names[6][7];
 
-  VECTOR3 tgtOrientation;
+  VECTOR3 velVector;
 
   double mu,a,e,IPeri,IApo,Rperi,Rapo,EArmed,IReference,mfuel;
 
@@ -60,6 +62,8 @@ public:
   int BSori;
   int otherMFDsel; // 0 = none, 1 = TX, 2 = BS
   AutopilotRotation autopilot;
+
+    std::vector<DataSourceBase*> m_dataSources;
 
 protected:
 private:
