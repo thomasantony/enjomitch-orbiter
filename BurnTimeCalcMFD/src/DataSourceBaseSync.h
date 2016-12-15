@@ -14,6 +14,7 @@ class DataSourceBaseSync : public DataSourceBase
         bool GetFromMM(MFDDataBurnTime * data);
         double GetIBT() const { return m_ibt; }
         double GetDV() const { return m_dv; }
+        std::string GetDisplayStringDV(MFDDataBurnTime * data) const;
 
     protected:
 

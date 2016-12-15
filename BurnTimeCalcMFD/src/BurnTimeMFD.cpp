@@ -188,7 +188,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	m_data->Update();
   unsigned int thrustercount = 0;
 
-  Title (skp, "BurnTimeMFD v2.9");
+  Title (skp, "BurnTimeMFD v3.0");
 
 
   m_graph.vectorpointdisplay(skp, m_data->velVector, pV);
@@ -225,20 +225,16 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 
   if (m_data->mode == BURNMODE_MAN)
   {
-    switch (m_data->otherMFDsel) {
-    case 0:
-      skp->SetTextColor(((m_data->inputmode==INPUTMODE_TIME )?YELLOW:GRAY));
-      PrintEngUnit(skp,"Time to Manual Start:  %7.3f","s", m_data->IManual, 5, line8 );
-      break;
-    case 1:
-      skp->SetTextColor(YELLOW);
-      PrintEngUnit(skp,"TransX Burn Time:      %7.3f","s", m_data->IManual, 5, line8 );
-      break;
-    case 2:
-      skp->SetTextColor(YELLOW);
-      PrintEngUnit(skp,"BaseSync Burn Time:    %7.3f","s", m_data->IManual, 5, line8 );
-      break;
-    }
+      if (m_data->otherMFDsel < 0)
+      {
+          skp->SetTextColor(((m_data->inputmode==INPUTMODE_TIME )?YELLOW:GRAY));
+          PrintEngUnit(skp,"Time to Manual Start:  %7.3f","s", m_data->IManual, 5, line8 );
+      }
+      else
+      {
+          skp->SetTextColor(YELLOW);
+          PrintEngUnit(skp,m_data->m_dataSources.at(m_data->otherMFDsel)->GetDisplayStringBT(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->IManual, 5, line8 );
+      }
   }
 
   if (m_data->mode == BURNMODE_TGT && m_data->maxdv!=0 && m_data->ph != NULL)
@@ -290,36 +286,21 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	}
 
 	skp->SetTextColor( (m_data->inputmode==INPUTMODE_DV)?YELLOW:GRAY );
-  /*if (m_data->mode == BURNMODE_MAN)
-  {
-     // Yuck! This should be visible through the source MFDs, not here!
-    switch (m_data->otherMFDsel) {
-    case 0:
-      PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
-      break;
-    case 1:
-    	skp->SetTextColor(YELLOW);
-      PrintEngUnit(skp,"TransX DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
-      break;
-    case 2:
-    	skp->SetTextColor(YELLOW);
-      switch (m_data->BSori) {
-      case -1:
-        PrintEngUnit(skp,"BaseSync Nml- dV:      %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
-        break;
-      case 0:
-        PrintEngUnit(skp,"BaseSync Retro dV:     %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
-        break;
-      case 1:
-        PrintEngUnit(skp,"BaseSync Nml+ dV:      %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
-        break;
-      }
-      break;
+    if (m_data->mode == BURNMODE_MAN)
+    {
+        if (m_data->otherMFDsel < 0)
+            PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
+        else
+        {
+            skp->SetTextColor( YELLOW );
+            PrintEngUnit(skp,m_data->m_dataSources.at(m_data->otherMFDsel)->GetDisplayStringDV(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
+        }
+
     }
-    } else */
-  {
-    PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
-  }
+    else
+    {
+        PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
+    }
 
 	skp->SetTextColor( (m_data->inputmode==INPUTMODE_EXTRA)?YELLOW:BLUE );
 	PrintEngUnit(skp,"Extra Fuel Mass:       %7.3f","g","lbm", 1000,gTolb,m_data->mextra,5,line19);
@@ -389,7 +370,7 @@ void BurnTimeMFD::HandlerTargetOrDV()
 {
     m_data->inputmode=INPUTMODE_DV;
     m_data->mode = BURNMODE_MAN;
-    m_data->otherMFDsel = 0;
+    m_data->otherMFDsel = -1;
     bool ObjectInput (void *id, char *str, void *usrdata);
     oapiOpenInputBox("Enter dV + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
 }
@@ -398,7 +379,7 @@ void BurnTimeMFD::HandlerTimeOfManoeuvre()
 {
    m_data->inputmode=INPUTMODE_TIME;
    m_data->mode = BURNMODE_MAN;
-   m_data->otherMFDsel = 0;
+   m_data->otherMFDsel = -1;
    bool ObjectInput (void *id, char *str, void *usrdata);
    oapiOpenInputBox("Enter dT + yzafpnum kMGTPEZY.",ObjectInput,0,20, (void*)this);
 }
@@ -426,7 +407,7 @@ void BurnTimeMFD::HandlerReset()
 	  m_data->IsEngaged=false;
 	  m_data->IsArmed=false;
 	  m_data->mode=BURNMODE_PERI;
-    m_data->otherMFDsel = 0;
+        m_data->otherMFDsel = -1;
 	  m_data->IManual=0;
 	  m_data->IsCircular=false;
 }
@@ -443,7 +424,7 @@ void BurnTimeMFD::HandlerAutoBurn()
       if(m_data->IsArmed)
       {
         m_data->IsArmed=false;
-        m_data->otherMFDsel = 0;
+        m_data->otherMFDsel = -1;
         return;
       }
       if(m_data->IsEngaged)

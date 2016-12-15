@@ -60,7 +60,7 @@ public:
 
   const struct BaseSyncExportBurnStruct *BS_burn;
   int BSori;
-  int otherMFDsel; // 0 = none, 1 = TX, 2 = BS
+  int otherMFDsel;
   AutopilotRotation autopilot;
 
     std::vector<DataSourceBase*> m_dataSources;

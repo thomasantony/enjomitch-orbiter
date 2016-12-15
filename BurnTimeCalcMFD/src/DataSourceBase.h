@@ -2,6 +2,7 @@
 #define DATASOURCEBASE_H
 
 #include <OrbiterAPI.h>
+#include <string>
 class MFDDataBurnTime;
 class DataSourceBase
 {
@@ -14,6 +15,8 @@ class DataSourceBase
         virtual double GetIBT() const = 0;
         virtual double GetDV() const { return length(GetVelVec()); }
         virtual VECTOR3 GetVelVec() const { return _V(0, 0, 0); }
+        virtual std::string GetDisplayStringDV(MFDDataBurnTime * data) const;
+        virtual std::string GetDisplayStringBT(MFDDataBurnTime * data) const;
     protected:
 
     private:

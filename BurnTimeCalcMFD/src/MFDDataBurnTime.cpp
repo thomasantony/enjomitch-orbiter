@@ -32,7 +32,7 @@ MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
   inputmode = 0;
   IndexCenterObj = 0;
   BS_burn = NULL;
-  otherMFDsel = 0;
+  otherMFDsel = -1;
   BSori = 0;
   velVector = _V(0,0,0);
 

@@ -30,7 +30,7 @@ bool Comms::ParseInput(char * str, MFDDataBurnTime * data)
     if (sourceId < 0 || sourceId >= int(data->m_dataSources.size()))
         return false;
 
-    return SetOtherMFDBurnVars(data->m_dataSources.at(sourceId), data);
+    return SetOtherMFDBurnVars(data->m_dataSources.at(sourceId), sourceId, data);
 }
 
 
@@ -45,7 +45,7 @@ bool Comms::HandlerGetFromOtherMFD(BurnTimeMFD * btcMFD, MFDDataBurnTime * data)
     if (foundIDs.empty())  // no data exposed
         return false;
     if (foundIDs.size() == 1)  // no disambiguation
-        return SetOtherMFDBurnVars(data->m_dataSources.at(foundIDs.at(0)), data);
+        return SetOtherMFDBurnVars(data->m_dataSources.at(foundIDs.at(0)), foundIDs.at(0), data);
     // Disambiguation. Let the user choose the source
     ostringstream ossChoice;
     ossChoice << "Choose source:";
@@ -60,29 +60,20 @@ bool Comms::HandlerGetFromOtherMFD(BurnTimeMFD * btcMFD, MFDDataBurnTime * data)
 }
 
 
-bool Comms::SetOtherMFDBurnVars(const DataSourceBase * source, MFDDataBurnTime * data)
+bool Comms::SetOtherMFDBurnVars(const DataSourceBase * source, int sourceId, MFDDataBurnTime * data)
 {
     data->IsArmed=data->IsEngaged=false;
     data->mode = BURNMODE_MAN;
     double dv = fabs(source->GetDV());
-    if (dv > 1e-5 && source->GetIBT() > 0) { // We're not interested in negative times or zero dV's
-        /*
-      if (TransX) {
-        m_data->otherMFDsel = 1;
-      } else {
-        m_data->otherMFDsel = 2;
-      }
-      */
-      data->velVector = source->GetVelVec();
-      data->dv = dv;
-      data->IManual = source->GetIBT();
-      //HandlerAutoBurn();
-      return true;
+    if (dv > 1e-5 && source->GetIBT() > 0)
+    { // We're not interested in negative times or zero dV's
+        data->otherMFDsel = sourceId;
+        data->velVector = source->GetVelVec();
+        data->dv = dv;
+        data->IManual = source->GetIBT();
+        //HandlerAutoBurn();
+        return true;
     }
-    /*
-    else {
-      m_data->otherMFDsel = 0;
-    }
-    */
+    data->otherMFDsel = -1;
     return false;
 }

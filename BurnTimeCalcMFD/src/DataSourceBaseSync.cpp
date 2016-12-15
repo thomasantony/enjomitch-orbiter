@@ -33,3 +33,17 @@ bool DataSourceBaseSync::GetFromMM(MFDDataBurnTime * data)
       return false;
     }
 }
+
+std::string DataSourceBaseSync::GetDisplayStringDV(MFDDataBurnTime * data) const
+{
+    switch (data->BSori)
+    {
+        case -1:
+            return("BaseSync Nml- dV:      %7.3f");
+        case 0:
+            return("BaseSync Retro dV:      %7.3f");
+        case 1:
+            return("BaseSync Nml+ dV:      %7.3f");
+    }
+    return "BaseSync inv. orient.  %7.3f";
+}
