@@ -23,6 +23,7 @@ class AutopilotRotation
         void OnDisabled();
         void OnEnabled();
         VESSEL * GetVessel();
+        void SetRot0();
 
         EnjoLib::PID m_pidAPSpaceX;
         EnjoLib::PID m_pidAPSpaceY;

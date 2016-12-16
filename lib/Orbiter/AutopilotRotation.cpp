@@ -73,6 +73,13 @@ void AutopilotRotation::Update(double SimDT)
     if (vessel != oapiGetFocusInterface())
         return; // trying to control other ship (the focused one, but the one which was programmed)
 
+    if (oapiGetTimeAcceleration() > 100)
+    {
+        SetRot0(); // Adds stability
+        return;
+    }
+
+
     vessel->DeactivateNavmode( NAVMODE_PROGRADE );
     vessel->DeactivateNavmode( NAVMODE_RETROGRADE );
     vessel->DeactivateNavmode( NAVMODE_NORMAL );
@@ -129,12 +136,20 @@ void AutopilotRotation::OnDisabled()
     if (!vessel)
         return;
 
+    SetRot0();
+    vessel->ActivateNavmode( NAVMODE_KILLROT );
+}
+
+void AutopilotRotation::SetRot0()
+{
+    VESSEL * vessel = GetVessel();
+    if (!vessel)
+        return;
     vessel->SetAttitudeRotLevel( _V(0, 0, 0) );
     // Orbiter 2016 workaround for non working SetAttitudeRotLevel():
     GetVessel()->SetAttitudeRotLevel(0, 0);
     GetVessel()->SetAttitudeRotLevel(1, 0);
     GetVessel()->SetAttitudeRotLevel(2, 0);
-    vessel->ActivateNavmode( NAVMODE_KILLROT );
 }
 
 VECTOR3 AutopilotRotation::GetVesselAngularAccelerationRatio( const VESSEL * vessel )
