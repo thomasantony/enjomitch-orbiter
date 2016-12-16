@@ -12,13 +12,13 @@ class AutopilotRotation
         void Update(double SimDT);
         bool SetTargetVector(const VECTOR3 & targetVector); // Setting _V(0,0,0) disables the AP
         void Disable();
+        bool IsEnabled() const;
     protected:
     private:
         void MECO(VESSEL * vessel);
         void MainEngineOn( VESSEL * vessel, double level );
         void Enable(bool val);
         //void SwitchEnabled();
-        bool IsEnabled();
         VECTOR3 GetVesselAngularAccelerationRatio( const VESSEL * vessel );
         void OnDisabled();
         void OnEnabled();

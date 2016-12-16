@@ -114,7 +114,7 @@ void AutopilotRotation::SwitchEnabled()
     OnDisabled();
 }
 */
-bool AutopilotRotation::IsEnabled()
+bool AutopilotRotation::IsEnabled() const
 {
     return m_isEnabled;
 }
@@ -157,8 +157,8 @@ VECTOR3 AutopilotRotation::GetVesselAngularAccelerationRatio( const VESSEL * ves
     VECTOR3 accRatio;
     //if ( m_rotationRatioNeeded )
     {
-        VECTOR3 refMaxAngAcc = SystemsConverterOrbiter(m_statDeltaGliderRefRotAcc).GetVECTOR3();
-        VECTOR3 currMaxAngAcc = AngularAcc().GetMaxAngAcc( vessel );
+        const VECTOR3 & refMaxAngAcc = SystemsConverterOrbiter(m_statDeltaGliderRefRotAcc).GetVECTOR3();
+        const VECTOR3 & currMaxAngAcc = AngularAcc().GetMaxAngAcc( vessel );
         accRatio.x = refMaxAngAcc.x / currMaxAngAcc.x;
         accRatio.y = refMaxAngAcc.y / currMaxAngAcc.y;
         accRatio.z = refMaxAngAcc.z / currMaxAngAcc.z;
