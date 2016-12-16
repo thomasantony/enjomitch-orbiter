@@ -12,7 +12,7 @@ Graph::Graph(DWORD xstart, DWORD ystart, DWORD xend, DWORD yend)
 	DWORD temp=iyend-iystart;
 	if (temp<windowsize) windowsize=temp;
 
-	penGrey = oapiCreatePen(1, 1, RGB(0xE0, 0xE0, 0xE0));
+	penGrey = oapiCreatePen(1, 1, RGB(0x50, 0x50, 0x50));
 	penGreen = oapiCreatePen(1, 1, RGB(0x00, 0xEE, 0x00));
 
 }
