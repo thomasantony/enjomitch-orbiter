@@ -41,7 +41,7 @@ std::string DataSourceBaseSync::GetDisplayStringDV(MFDDataBurnTime * data) const
         case -1:
             return("BaseSync Nml- dV:      %7.3f");
         case 0:
-            return("BaseSync Retro dV:      %7.3f");
+            return("BaseSync Retro dV:     %7.3f");
         case 1:
             return("BaseSync Nml+ dV:      %7.3f");
     }

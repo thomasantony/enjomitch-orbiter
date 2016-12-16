@@ -15,26 +15,26 @@ const char MFDDataBurnTime::group_names[numEngines][7]={"Main","Hover","Retro","
 MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
 : MFDData(vessel)
 {
-  mul=1.0;
-  dv = 0.0;
-  mextra = mrcs = 0.0;
-  ECutoff=0;
-  IsEngaged=false;
-  IsArmed=false;
-  includeRCS = false;
-  mode=BURNMODE_PERI;
-  IManual=0;
-  IsCircular=false;
-  Sel_eng = 0;
-  dspunit=0;
-  TDist=0;
-  sOffset=500;
-  inputmode = 0;
-  IndexCenterObj = 0;
-  BS_burn = NULL;
-  otherMFDsel = -1;
-  BSori = 0;
-  velVector = _V(0,0,0);
+    mul=1.0;
+    dv = 0.0;
+    mextra = mrcs = 0.0;
+    ECutoff=0;
+    IsEngaged=false;
+    IsArmed=false;
+    includeRCS = false;
+    mode=BURNMODE_PERI;
+    IManual=0;
+    IsCircular=false;
+    Sel_eng = 0;
+    dspunit=0;
+    TDist=0;
+    sOffset=500;
+    inputmode = 0;
+    IndexCenterObj = 0;
+    BS_burn = NULL;
+    otherMFDsel = -1;
+    BSori = 0;
+    velVector = _V(0,0,0);
 
     m_dataSources.push_back(new DataSourceTransX());
     m_dataSources.push_back(new DataSourceBaseSync());
@@ -132,6 +132,7 @@ void MFDDataBurnTime::Update()
   {
 	vessel->SetThrusterGroupLevel(groups[Sel_eng],0);
     IsEngaged=false;
+    autopilot.Disable();
     dv=0;
 	IManual = 0;
   }
@@ -140,6 +141,7 @@ void MFDDataBurnTime::Update()
   {
     vessel->SetThrusterGroupLevel(groups[Sel_eng],0);
     IsEngaged=false;
+    autopilot.Disable();
     dv=0;
   }
 
@@ -335,6 +337,16 @@ void MFDDataBurnTime::ArmAutoBurn()
   }
   IsArmed=true;
   EReference=oapiGetSimTime()+IReference;
+  autopilot.SetTargetVector(velVector);
+}
+
+const DataSourceBase * MFDDataBurnTime::GetCurrentSource() const // Can return NULL
+{
+    if (otherMFDsel < 0)
+        return NULL;
+    if (otherMFDsel >= int(m_dataSources.size()))
+        return NULL;
+    return m_dataSources.at(otherMFDsel);
 }
 
 /*

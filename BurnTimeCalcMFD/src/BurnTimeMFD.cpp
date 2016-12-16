@@ -223,9 +223,10 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
     PrintEngUnit(skp,"Time to Apoapsis:      %7.3f","s", m_data->IApo, 5, line8 );
   }
 
+  const DataSourceBase * otherSrc = m_data->GetCurrentSource();
   if (m_data->mode == BURNMODE_MAN)
   {
-      if (m_data->otherMFDsel < 0)
+      if (otherSrc == NULL)
       {
           skp->SetTextColor(((m_data->inputmode==INPUTMODE_TIME )?YELLOW:GRAY));
           PrintEngUnit(skp,"Time to Manual Start:  %7.3f","s", m_data->IManual, 5, line8 );
@@ -233,7 +234,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
       else
       {
           skp->SetTextColor(YELLOW);
-          PrintEngUnit(skp,m_data->m_dataSources.at(m_data->otherMFDsel)->GetDisplayStringBT(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->IManual, 5, line8 );
+          PrintEngUnit(skp, otherSrc->GetDisplayStringBT(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->IManual, 5, line8 );
       }
   }
 
@@ -288,14 +289,14 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	skp->SetTextColor( (m_data->inputmode==INPUTMODE_DV)?YELLOW:GRAY );
     if (m_data->mode == BURNMODE_MAN)
     {
-        if (m_data->otherMFDsel < 0)
-            PrintEngUnit(skp,"Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
+
+        if (otherSrc == NULL)
+            PrintEngUnit(skp, "Target DeltaV:         %7.3f","m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
         else
         {
             skp->SetTextColor( YELLOW );
-            PrintEngUnit(skp,m_data->m_dataSources.at(m_data->otherMFDsel)->GetDisplayStringDV(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
+            PrintEngUnit(skp, otherSrc->GetDisplayStringDV(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->dv, 5, line1 );
         }
-
     }
     else
     {

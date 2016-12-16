@@ -18,6 +18,7 @@ public:
   void CalcApses(VESSEL* vessel);
   void CalcIBurn(VESSEL* vessel);
   //double GetStackMass(VESSEL* vessel);
+  const DataSourceBase * GetCurrentSource() const; // Can return NULL
 
   static const int numEngines;
   static const THGROUP_TYPE groups[6];
@@ -62,6 +63,8 @@ public:
   int BSori;
   int otherMFDsel;
   AutopilotRotation autopilot;
+
+
 
     std::vector<DataSourceBase*> m_dataSources;
 
