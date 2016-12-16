@@ -403,6 +403,7 @@ void minorejectplan::wordupdate(oapi::Sketchpad *sketchpad, int width, int heigh
     // Send out a message for BTC MFD to recover it
 	MessagingSender().ModMsgPut("dv", deltav);
     MessagingSender().ModMsgPut("InstantaneousBurnTime", timefromstamp);
+    MessagingSender().ModMsgPut("TargetVelocity", _V(0,0,0));
 	//Only display if timestamp is current
 	if (fabs(craft.gettimestamp()-oapiGetSimTime())<1)
 	{

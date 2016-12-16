@@ -859,19 +859,20 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VECTOR3 craftpos,craftvel;
 		craft.timetovectors(timeoffset,&deltavel);//New eccentricity insensitive timetovectors
 		deltavel.getposvel(&craftpos,&craftvel);
-        //if (gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) ))
-		gAutopilot.SetTargetVector( m_autocenter ? targetvel-craftvel : _V(0,0,0) );
+		VECTOR3 diffTgtVel = targetvel-craftvel;
+        //if (gAutopilot.SetTargetVector( m_autocenter ? diffTgtVel : _V(0,0,0) ))
+		gAutopilot.SetTargetVector( m_autocenter ? diffTgtVel : _V(0,0,0) );
 		if (m_autocenter)
         {
             const char disableTxt [] = "Disable Auto-Center when done!";
             sketchpad->Text( 0,10*linespacing, disableTxt, strlen(disableTxt));
         }
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
-		//sprintf(oapiDebugString(), "tgt = (%.2lf, %.2lf, %.2lf) , diff = (%.2lf, %.2lf, %.2lf)", targetvel.x, targetvel.y, targetvel.z, (targetvel-craftvel).x, (targetvel-craftvel).y, (targetvel-craftvel).z);
-		double rvel=graph.vectorpointdisplay(sketchpad, targetvel-craftvel, state->GetMFDpointer(), pV, false);
+		double rvel=graph.vectorpointdisplay(sketchpad, diffTgtVel, state->GetMFDpointer(), pV, false);
 		double burnStart = BurnTime().GetBurnStart(pV, THGROUP_MAIN, timeoffset, rvel);
 		MessagingSender().ModMsgPut("dv", rvel - 4.0); // Subtracting that few m/s works better for Auto-Center, as it won't turn around then
 		MessagingSender().ModMsgPut("InstantaneousBurnTime", timeoffset);
+		MessagingSender().ModMsgPut("TargetVelocity", diffTgtVel);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);
 		TextShow(sketchpad,"T to Mnvre: ",0,19*linespacing,timeoffset);
 		TextShow(sketchpad,"Begin Burn: ",0,20*linespacing,burnStart);
