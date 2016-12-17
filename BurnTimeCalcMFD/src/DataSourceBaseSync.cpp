@@ -28,8 +28,7 @@ bool DataSourceBaseSync::GetFromMM(MFDDataBurnTime * data)
       data->BSori = data->BS_burn->orientation;
       return true;
     } else {
-      m_dv = 0;
-      m_ibt = 0;
+        *this = DataSourceBaseSync(); // Reinitialize
       return false;
     }
 }

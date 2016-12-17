@@ -18,8 +18,7 @@ bool DataSourceLagrange::GetFromMM(MFDDataBurnTime * data)
         // Received LagrangeMFD
       return true;
     } else {
-      m_vel = _V(0, 0, 0);
-      m_ibt = 0;
+      *this = DataSourceLagrange(); // Reinitialize
       return false;
     }
 }

@@ -21,9 +21,6 @@ bool DataSourceTransX::GetFromMM(MFDDataBurnTime * data)
             return true;
         }
     }
-
-    m_dv = 0;
-    m_ibt = 0;
-    m_vel = _V(0, 0, 0);
+    *this = DataSourceTransX(); // Reinitialize
     return false;
 }

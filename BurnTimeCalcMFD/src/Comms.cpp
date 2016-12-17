@@ -3,7 +3,7 @@
 #include "globals.h"
 //#include <EnjoLib/ModuleMessaging.hpp>
 #include <EnjoLib/ModuleMessagingExt.hpp>
-#include <BaseSyncExports.hpp>
+
 #include "MFDDataBurnTime.h"
 
 #include <string>

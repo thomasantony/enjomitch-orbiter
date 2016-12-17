@@ -649,6 +649,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\src\DataSourceBaseSyncSimple.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\DataSourceBaseSyncSimple.h"
+			>
+		</File>
+		<File
 			RelativePath=".\src\DataSourceDummy.cpp"
 			>
 		</File>

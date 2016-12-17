@@ -18,8 +18,7 @@ bool DataSourceDummy::GetFromMM(MFDDataBurnTime * data)
         data->velVector = GetVelVec(); // Testing
       return true;
     } else {
-      m_dv = 0;
-      m_ibt = 0;
+      *this = DataSourceDummy(); // Reinitialize
       return false;
     }
 }

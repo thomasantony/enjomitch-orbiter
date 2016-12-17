@@ -5,6 +5,7 @@
 
 #include "DataSourceTransX.h"
 #include "DataSourceBaseSync.h"
+#include "DataSourceBaseSyncSimple.h"
 #include "DataSourceLagrange.h"
 #include "DataSourceDummy.h"
 
@@ -37,7 +38,8 @@ MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
     velVector = _V(0,0,0);
 
     m_dataSources.push_back(new DataSourceTransX());
-    m_dataSources.push_back(new DataSourceBaseSync());
+    m_dataSources.push_back(new DataSourceBaseSyncSimple());
+    //m_dataSources.push_back(new DataSourceBaseSync());
     m_dataSources.push_back(new DataSourceLagrange());
     m_dataSources.push_back(new DataSourceDummy());
 }

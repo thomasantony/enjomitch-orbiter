@@ -34,7 +34,7 @@ public:
   double IBurn,IBurn2,mul;
   int mode; //0 - IBurn-zero=IPeri
             //1 - IBurn-zero=IApo
-            //2 - IBurn-zero=manual countdownm
+            //2 - IBurn-zero=manual countdown
             //3 - By Target distance
 
   int MySoundId;
