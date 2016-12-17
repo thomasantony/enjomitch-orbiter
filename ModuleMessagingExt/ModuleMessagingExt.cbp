@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ModuleMessagingExt" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc8" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../Orbiter/orbiter2016/Modules/ModuleMessagingExt.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MDd" />
+					<Add option="/Zi" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="/DEBUG" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Modules" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Debug\ModuleMessagingExt.dll.manifest&quot; /outputresource:&quot;bin\Debug\ModuleMessagingExt.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2010">
+				<Option output="../../../Orbiter/orbiter100830/Modules/ModuleMessagingExt.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2010/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2009" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/include" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter100830/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter100830/Modules" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\ModuleMessagingExt.dll.manifest&quot; /outputresource:&quot;bin\Release\ModuleMessagingExt.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2006">
+				<Option output="../../../Orbiter/orbiter060929/Modules/ModuleMessagingExt.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2006/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/TP" />
+					<Add option="/EHc" />
+					<Add option="/EHs" />
+					<Add option="/Gy" />
+					<Add option="/GF" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2006" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/include" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter060929/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter060929/Modules" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\Release\ModuleMessagingExt.dll.manifest&quot; /outputresource:&quot;bin\Release\ModuleMessagingExt.dll&quot;;2' />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release2016">
+				<Option output="../../../Orbiter/orbiter2016/Modules/ModuleMessagingExt.dll" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Release2016/" />
+				<Option type="3" />
+				<Option compiler="msvc8" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/Ot" />
+					<Add option="/O2" />
+					<Add option="/DBUILD_DLL" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DORB2016" />
+					<Add option="/DLANG_EN" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include" />
+				</Compiler>
+				<Linker>
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="user32" />
+					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/lib" />
+					<Add directory="../../../Orbiter/orbiter2016/Modules" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/TP" />
+			<Add option="/EHc" />
+			<Add option="/EHs" />
+			<Add option="/GR" />
+			<Add option="/Gy" />
+			<Add option="/GF" />
+			<Add option="/W3" />
+			<Add option="/EHsc" />
+			<Add directory="../lib" />
+			<Add directory="../../libMFD" />
+		</Compiler>
+		<Linker>
+			<Add option="/NODEFAULTLIB:LIBCMT" />
+			<Add library="VesselHooking.lib" />
+			<Add library="orbiter.lib" />
+			<Add library="orbitersdk.lib" />
+			<Add library="kernel32.lib" />
+			<Add library="user32.lib" />
+			<Add library="gdi32.lib" />
+		</Linker>
+		<Unit filename="src/ModuleMessagingExt.cpp" />
+		<Unit filename="src/ModuleMessagingExt.hpp" />
+		<Unit filename="src/ModuleMessagingExtBase.cpp" />
+		<Unit filename="src/ModuleMessagingExtBase.hpp" />
+		<Unit filename="src/ModuleMessagingExtPut.cpp" />
+		<Unit filename="src/ModuleMessagingExtPut.hpp" />
+		<Unit filename="src/ModuleMessagingExtStor.cpp" />
+		<Unit filename="src/ModuleMessagingExtStor.hpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
