@@ -2,32 +2,38 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="libMFD">
-      <UniqueIdentifier>{fceb4975-e26f-45c5-adf5-34d6fe83734f}</UniqueIdentifier>
+      <UniqueIdentifier>{13923729-02ec-4728-84ff-6257933988c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libMFD\Utils">
+      <UniqueIdentifier>{955955bf-95ac-413e-bf1c-a60efff6abee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{422d28c1-20f6-43b8-a06a-219fabc75662}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\libMFD\MFDButtonPage.cpp">
-      <Filter>libMFD</Filter>
+    <ClCompile Include="..\..\libMFD\Utils\MFDButtonPage.cpp">
+      <Filter>libMFD\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libMFD\MFDTextCalculator.cpp">
-      <Filter>libMFD</Filter>
+    <ClCompile Include="..\..\libMFD\Utils\MFDTextCalculator.cpp">
+      <Filter>libMFD\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libMFD\MyDC.cpp">
-      <Filter>libMFD</Filter>
+    <ClCompile Include="..\..\libMFD\Utils\MyDC.cpp">
+      <Filter>libMFD\Utils</Filter>
     </ClCompile>
     <ClCompile Include="HUDDrawer.cpp" />
     <ClCompile Include="HUDDrawerMFD.cpp" />
     <ClCompile Include="MFDButtonPageHUDDrawer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\libMFD\MFDButtonPage.hpp">
-      <Filter>libMFD</Filter>
+    <ClInclude Include="..\..\libMFD\Utils\mfdbuttonpage.hpp">
+      <Filter>libMFD\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libMFD\MFDTextCalculator.hpp">
-      <Filter>libMFD</Filter>
+    <ClInclude Include="..\..\libMFD\Utils\MFDTextCalculator.hpp">
+      <Filter>libMFD\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libMFD\MyDC.h">
-      <Filter>libMFD</Filter>
+    <ClInclude Include="..\..\libMFD\Utils\MyDC.h">
+      <Filter>libMFD\Utils</Filter>
     </ClInclude>
     <ClInclude Include="globals.h" />
     <ClInclude Include="HUDDrawer.hpp" />

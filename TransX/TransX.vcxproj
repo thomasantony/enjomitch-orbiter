@@ -21,6 +21,18 @@
       <Configuration>Release2009</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2016Red|Win32">
+      <Configuration>Release2016Red</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2016|Win32">
+      <Configuration>Release2016</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseBETA-Red|Win32">
+      <Configuration>ReleaseBETA-Red</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="ReleaseBETA|Win32">
       <Configuration>ReleaseBETA</Configuration>
       <Platform>Win32</Platform>
@@ -31,6 +43,21 @@
     <RootNamespace>TransX</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2016Red|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA-Red|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Red|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
@@ -64,33 +91,54 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2016Red|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA-Red|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Red|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2009Red|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug-BETA|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2009|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\Debug\</OutDir>
@@ -122,6 +170,21 @@
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA-Red|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2016Red|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -133,7 +196,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(OrbiterDir)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -152,10 +215,10 @@
       <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TransX.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/TransX.pdb</ProgramDatabaseFile>
@@ -181,7 +244,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\orbiter\orbiter100830\Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -201,10 +264,10 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TransX.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -228,15 +291,15 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\orbiter\orbiterBETA\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>.\Release2009/TransX.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release2009/</AssemblerListingLocation>
-      <ObjectFileName>.\Release2009/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release2009/</ProgramDataBaseFileName>
+      <AssemblerListingLocation>.\ReleaseBETA/</AssemblerListingLocation>
+      <ObjectFileName>.\ReleaseBETA/</ObjectFileName>
+      <ProgramDataBaseFileName>.\ReleaseBETA/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -248,10 +311,10 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\orbiter\orbiterBETA\Modules\Plugin\TransX.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDirBETA)Modules\Plugin\TransX.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\orbiter\orbiterBETA\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -273,8 +336,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiterBETA\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>.\Debug/TransX.pch</PrecompiledHeaderOutputFile>
@@ -292,10 +355,10 @@
       <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\orbiter\orbiterBETA\Modules\Plugin\TransX.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDirBETA)Modules\Plugin\TransX.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/TransX.pdb</ProgramDatabaseFile>
@@ -321,7 +384,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\orbiter\orbiter100830\Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;SECOND_INSTANCE_RED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -341,10 +404,10 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX2.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TransX2.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -366,7 +429,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;..\..\..\orbiter\orbiter100830\Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(OrbiterDir)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;SECOND_INSTANCE_RED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -385,10 +448,10 @@
       <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\orbiter\orbiter100830\Modules\Plugin\TransX2.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TransX2.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\..\orbiter\orbiter100830\Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;..\..\..\orbiter\orbiter100830\Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug-Red/TransX.pdb</ProgramDatabaseFile>
@@ -401,70 +464,178 @@
       <OutputFile>.\Debug/TransX.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA-Red|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\Modules/TransX.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;SECOND_INSTANCE_RED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release2009/TransX.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\ReleaseBETARed/</AssemblerListingLocation>
+      <ObjectFileName>.\ReleaseBETARed/</ObjectFileName>
+      <ProgramDataBaseFileName>.\ReleaseBETARed/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDirBETA)Modules\Plugin\TransX2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\Modules/TransX.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\Modules/TransX.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release2009/TransX.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release2009/</AssemblerListingLocation>
+      <ObjectFileName>.\Release2009/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release2009/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TransX.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\Modules/TransX.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2016Red|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\Modules/TransX.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;SECOND_INSTANCE_RED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release2009Red/TransX.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release2009Red/</AssemblerListingLocation>
+      <ObjectFileName>.\Release2009Red/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release2009Red/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TransX2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\Modules/TransX.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\lib\Math\BinSearchOpti.cpp" />
-    <ClCompile Include="..\lib\Math\BinSearchOptiSubject.cpp" />
-    <ClCompile Include="..\lib\Math\GeneralMath.cpp" />
-    <ClCompile Include="..\lib\Math\SimpsonFunctor.cpp" />
-    <ClCompile Include="..\lib\Math\SpaceMathBody.cpp" />
-    <ClCompile Include="..\lib\Math\VectorMath.cpp" />
-    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp" />
-    <ClCompile Include="..\lib\Orbiter\SketchpadDummy.cpp" />
-    <ClCompile Include="..\lib\Systems\Geo.cpp" />
-    <ClCompile Include="..\lib\Systems\Point.cpp" />
-    <ClCompile Include="..\lib\Systems\Spherical.cpp" />
-    <ClCompile Include="..\lib\Systems\StateVect3.cpp" />
-    <ClCompile Include="..\lib\Systems\SystemsConverter.cpp" />
-    <ClCompile Include="..\lib\Systems\ThreeSphericals.cpp" />
-    <ClCompile Include="..\lib\Systems\Vect3.cpp" />
-    <ClCompile Include="..\lib\Util\Result.cpp" />
-    <ClCompile Include="..\lib\Orbiter\AngularAcc.cpp" />
-    <ClCompile Include="..\lib\Orbiter\Engine.cpp" />
-    <ClCompile Include="..\lib\Orbiter\SpaceMathOrbiter.cpp" />
-    <ClCompile Include="..\lib\Orbiter\SystemsConverterOrbiter.cpp" />
-    <ClCompile Include="..\lib\Orbiter\VesselCapabilities.cpp" />
-    <ClCompile Include="..\lib\PID\DerivatorDiscrete.cpp" />
-    <ClCompile Include="..\lib\PID\IntegratorDiscrete.cpp" />
-    <ClCompile Include="..\lib\PID\PID.cpp" />
-    <ClCompile Include="src\Opti\Constraint.cpp" />
-    <ClCompile Include="src\Opti\ConstraintFactory.cpp" />
-    <ClCompile Include="src\Opti\OptiFunction.cpp" />
-    <ClCompile Include="src\Opti\Optimiser.cpp" />
-    <ClCompile Include="src\Opti\OptimiserFactory.cpp" />
-    <ClCompile Include="src\Opti\VarConstraint.cpp" />
-    <ClCompile Include="src\Autopilot.cpp" />
-    <ClCompile Include="src\basefunction.cpp" />
-    <ClCompile Include="src\BodyCache.cpp" />
-    <ClCompile Include="src\BodyProvider.cpp" />
-    <ClCompile Include="src\doublelink.cpp" />
-    <ClCompile Include="src\globals.cpp" />
-    <ClCompile Include="src\graph.cpp" />
-    <ClCompile Include="src\intercept.cpp" />
-    <ClCompile Include="src\mapfunction.cpp" />
-    <ClCompile Include="src\MessagingSender.cpp" />
-    <ClCompile Include="src\mfdfunction.cpp" />
-    <ClCompile Include="src\mfdvarhandler.cpp" />
-    <ClCompile Include="src\mfdvariable.cpp" />
-    <ClCompile Include="src\mfdvartypes.cpp" />
-    <ClCompile Include="src\orbitelements.cpp" />
-    <ClCompile Include="src\parser.cpp" />
-    <ClCompile Include="src\planfunction.cpp" />
-    <ClCompile Include="src\shiplist.cpp" />
-    <ClCompile Include="src\transx.cpp" />
-    <ClCompile Include="src\TransXFunction.cpp" />
-    <ClCompile Include="src\transxstate.cpp" />
-    <ClCompile Include="src\viewstate.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\lib\Math\BinSearchOpti.hpp" />
-    <ClInclude Include="..\lib\Math\BinSearchOptiSubject.hpp" />
+    <ClInclude Include="..\lib\Math\Burkardt\BrentBurkardt.hpp" />
+    <ClInclude Include="..\lib\Math\Burkardt\FuncBase.hpp" />
+    <ClInclude Include="..\lib\Math\Burkardt\MonicPoly.hpp" />
+    <ClInclude Include="..\lib\Math\Burkardt\NelderMeadBurkardt.hpp" />
+    <ClInclude Include="..\lib\Math\Burkardt\Poly.hpp" />
     <ClInclude Include="..\lib\Math\Constants.hpp" />
     <ClInclude Include="..\lib\Math\GeneralMath.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\IOptiAlgo.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiBinSearch.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiBrent.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiFactory.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiMultiNelderMead.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiMultiSubject.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiSubject.hpp" />
+    <ClInclude Include="..\lib\Math\Opti\OptiType.hpp" />
     <ClInclude Include="..\lib\Math\SimpsonFunctor.hpp" />
     <ClInclude Include="..\lib\Math\SpaceMathBody.hpp" />
     <ClInclude Include="..\lib\Math\VectorMath.hpp" />
+    <ClInclude Include="..\lib\Orbiter\AngularAcc.hpp" />
+    <ClInclude Include="..\lib\Orbiter\AutopilotRotation.hpp" />
     <ClInclude Include="..\lib\Orbiter\BurnTime.hpp" />
+    <ClInclude Include="..\lib\Orbiter\Engine.hpp" />
     <ClInclude Include="..\lib\Orbiter\SketchpadDummy.h" />
+    <ClInclude Include="..\lib\Orbiter\SpaceMathOrbiter.hpp" />
+    <ClInclude Include="..\lib\Orbiter\SystemsConverterOrbiter.hpp" />
+    <ClInclude Include="..\lib\Orbiter\UtilOrbiter.hpp" />
+    <ClInclude Include="..\lib\Orbiter\VesselCapabilities.hpp" />
+    <ClInclude Include="..\lib\PID\DerivatorDiscrete.hpp" />
+    <ClInclude Include="..\lib\PID\IntegratorDiscrete.hpp" />
+    <ClInclude Include="..\lib\PID\PID.hpp" />
     <ClInclude Include="..\lib\Systems\Geo.hpp" />
     <ClInclude Include="..\lib\Systems\Point.hpp" />
     <ClInclude Include="..\lib\Systems\Spherical.hpp" />
@@ -475,22 +646,6 @@
     <ClInclude Include="..\lib\Systems\Vect3.hpp" />
     <ClInclude Include="..\lib\Util\Result.hpp" />
     <ClInclude Include="..\lib\Util\StackTrace.hpp" />
-    <ClInclude Include="..\lib\Orbiter\AngularAcc.hpp" />
-    <ClInclude Include="..\lib\Orbiter\Engine.hpp" />
-    <ClInclude Include="..\lib\Orbiter\SpaceMathOrbiter.hpp" />
-    <ClInclude Include="..\lib\Orbiter\SystemsConverterOrbiter.hpp" />
-    <ClInclude Include="..\lib\Orbiter\VesselCapabilities.hpp" />
-    <ClInclude Include="..\lib\PID\DerivatorDiscrete.hpp" />
-    <ClInclude Include="..\lib\PID\IntegratorDiscrete.hpp" />
-    <ClInclude Include="..\lib\PID\PID.hpp" />
-    <ClInclude Include="src\Opti\Constraint.h" />
-    <ClInclude Include="src\Opti\ConstraintFactory.h" />
-    <ClInclude Include="src\Opti\ConstraintType.h" />
-    <ClInclude Include="src\Opti\OptiFunction.h" />
-    <ClInclude Include="src\Opti\Optimiser.h" />
-    <ClInclude Include="src\Opti\OptimiserFactory.h" />
-    <ClInclude Include="src\Opti\VarConstraint.h" />
-    <ClInclude Include="src\Autopilot.h" />
     <ClInclude Include="src\basefunction.h" />
     <ClInclude Include="src\BodyCache.h" />
     <ClInclude Include="src\BodyProvider.h" />
@@ -506,6 +661,13 @@
     <ClInclude Include="src\mfdvarhandler.h" />
     <ClInclude Include="src\mfdvariable.h" />
     <ClInclude Include="src\mfdvartypes.h" />
+    <ClInclude Include="src\Opti\Constraint.h" />
+    <ClInclude Include="src\Opti\ConstraintFactory.h" />
+    <ClInclude Include="src\Opti\ConstraintType.h" />
+    <ClInclude Include="src\Opti\OptiFunction.h" />
+    <ClInclude Include="src\Opti\Optimiser.h" />
+    <ClInclude Include="src\Opti\OptimiserFactory.h" />
+    <ClInclude Include="src\Opti\VarConstraint.h" />
     <ClInclude Include="src\orbitelements.h" />
     <ClInclude Include="src\parser.h" />
     <ClInclude Include="src\planfunction.h" />
@@ -517,13 +679,73 @@
     <ClInclude Include="src\viewstate.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="src\TransX.rc" />
+    <ClCompile Include="..\lib\Math\Burkardt\BrentBurkardt.cpp" />
+    <ClCompile Include="..\lib\Math\Burkardt\FuncBase.cpp" />
+    <ClCompile Include="..\lib\Math\Burkardt\MonicPoly.cpp" />
+    <ClCompile Include="..\lib\Math\Burkardt\NelderMeadBurkardt.cpp" />
+    <ClCompile Include="..\lib\Math\Burkardt\Poly.cpp" />
+    <ClCompile Include="..\lib\Math\GeneralMath.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\IOptiAlgo.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiBinSearch.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiBrent.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiFactory.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiMultiNelderMead.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiMultiSubject.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiSubject.cpp" />
+    <ClCompile Include="..\lib\Math\Opti\OptiType.cpp" />
+    <ClCompile Include="..\lib\Math\SimpsonFunctor.cpp" />
+    <ClCompile Include="..\lib\Math\SpaceMathBody.cpp" />
+    <ClCompile Include="..\lib\Math\VectorMath.cpp" />
+    <ClCompile Include="..\lib\Orbiter\AngularAcc.cpp" />
+    <ClCompile Include="..\lib\Orbiter\AutopilotRotation.cpp" />
+    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp" />
+    <ClCompile Include="..\lib\Orbiter\Engine.cpp" />
+    <ClCompile Include="..\lib\Orbiter\SketchpadDummy.cpp" />
+    <ClCompile Include="..\lib\Orbiter\SpaceMathOrbiter.cpp" />
+    <ClCompile Include="..\lib\Orbiter\SystemsConverterOrbiter.cpp" />
+    <ClCompile Include="..\lib\Orbiter\UtilOrbiter.cpp" />
+    <ClCompile Include="..\lib\Orbiter\VesselCapabilities.cpp" />
+    <ClCompile Include="..\lib\PID\DerivatorDiscrete.cpp" />
+    <ClCompile Include="..\lib\PID\IntegratorDiscrete.cpp" />
+    <ClCompile Include="..\lib\PID\PID.cpp" />
+    <ClCompile Include="..\lib\Systems\Geo.cpp" />
+    <ClCompile Include="..\lib\Systems\Point.cpp" />
+    <ClCompile Include="..\lib\Systems\Spherical.cpp" />
+    <ClCompile Include="..\lib\Systems\StateVect3.cpp" />
+    <ClCompile Include="..\lib\Systems\SystemsConverter.cpp" />
+    <ClCompile Include="..\lib\Systems\ThreeSphericals.cpp" />
+    <ClCompile Include="..\lib\Systems\Vect3.cpp" />
+    <ClCompile Include="..\lib\Util\Result.cpp" />
+    <ClCompile Include="src\basefunction.cpp" />
+    <ClCompile Include="src\BodyCache.cpp" />
+    <ClCompile Include="src\BodyProvider.cpp" />
+    <ClCompile Include="src\doublelink.cpp" />
+    <ClCompile Include="src\globals.cpp" />
+    <ClCompile Include="src\graph.cpp" />
+    <ClCompile Include="src\intercept.cpp" />
+    <ClCompile Include="src\mapfunction.cpp" />
+    <ClCompile Include="src\MessagingSender.cpp" />
+    <ClCompile Include="src\mfdfunction.cpp" />
+    <ClCompile Include="src\mfdvarhandler.cpp" />
+    <ClCompile Include="src\mfdvariable.cpp" />
+    <ClCompile Include="src\mfdvartypes.cpp" />
+    <ClCompile Include="src\Opti\Constraint.cpp" />
+    <ClCompile Include="src\Opti\ConstraintFactory.cpp" />
+    <ClCompile Include="src\Opti\OptiFunction.cpp" />
+    <ClCompile Include="src\Opti\Optimiser.cpp" />
+    <ClCompile Include="src\Opti\OptimiserFactory.cpp" />
+    <ClCompile Include="src\Opti\VarConstraint.cpp" />
+    <ClCompile Include="src\orbitelements.cpp" />
+    <ClCompile Include="src\parser.cpp" />
+    <ClCompile Include="src\planfunction.cpp" />
+    <ClCompile Include="src\shiplist.cpp" />
+    <ClCompile Include="src\transx.cpp" />
+    <ClCompile Include="src\TransXFunction.cpp" />
+    <ClCompile Include="src\transxstate.cpp" />
+    <ClCompile Include="src\viewstate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModuleMessaging\ModuleMessaging.vcxproj">
-      <Project>{e3a18a39-a133-407e-8fbd-1d96fcfc1d5c}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
+    <ResourceCompile Include="src\TransX.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

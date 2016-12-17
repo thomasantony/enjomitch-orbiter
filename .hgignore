@@ -43,3 +43,5 @@ ModuleMessagingExt/.git/*
 BaseSyncMFD/.git/*
 *.gitignore
 */.gitattributes
+Backup*
+UpgradeLog*.htm

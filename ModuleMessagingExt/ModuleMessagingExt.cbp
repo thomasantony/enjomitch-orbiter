@@ -66,10 +66,6 @@
 				<Compiler>
 					<Add option="/MD" />
 					<Add option="/TP" />
-					<Add option="/EHc" />
-					<Add option="/EHs" />
-					<Add option="/Gy" />
-					<Add option="/GF" />
 					<Add option="/Ot" />
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />

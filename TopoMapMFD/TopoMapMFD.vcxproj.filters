@@ -2,22 +2,22 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Topo">
-      <UniqueIdentifier>{6043044e-90ab-4052-971c-56c7df932605}</UniqueIdentifier>
+      <UniqueIdentifier>{8a812192-2a51-40f0-85f6-370bfc719766}</UniqueIdentifier>
     </Filter>
     <Filter Include="libMFD">
-      <UniqueIdentifier>{a5818cf9-579e-4fd6-bfa7-82eb587b5e63}</UniqueIdentifier>
+      <UniqueIdentifier>{abe14f43-e5cb-43dc-a705-f3e8c104a8dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="libMFD\Utils">
-      <UniqueIdentifier>{a0132794-911d-4f63-a60f-9853cb632f25}</UniqueIdentifier>
+      <UniqueIdentifier>{780a7195-37a4-47ec-861c-9cc7e4f9f200}</UniqueIdentifier>
     </Filter>
     <Filter Include="lib">
-      <UniqueIdentifier>{aa5c68fb-6210-4c8d-b077-a3cb2356b2ed}</UniqueIdentifier>
+      <UniqueIdentifier>{0911abc3-587d-4fb1-b8d3-056ee7540909}</UniqueIdentifier>
     </Filter>
     <Filter Include="lib\Math">
-      <UniqueIdentifier>{352167fe-65b6-498d-8beb-768e6ae18d4c}</UniqueIdentifier>
+      <UniqueIdentifier>{17adb123-06f5-4952-84c1-de409c3e9e74}</UniqueIdentifier>
     </Filter>
     <Filter Include="lib\Systems">
-      <UniqueIdentifier>{f93922d1-0c8b-424d-a010-17acae20e066}</UniqueIdentifier>
+      <UniqueIdentifier>{1003e15e-9440-417f-aa44-fe3ecf7ddc8e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MFDButtonPageTopoMFD.cpp">
+      <Filter>Topo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGCImy.cpp">
       <Filter>Topo</Filter>
     </ClCompile>
     <ClCompile Include="src\ORBITERTOOLS.cpp">

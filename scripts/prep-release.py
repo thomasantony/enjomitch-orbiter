@@ -6,15 +6,18 @@ Created on Mon Sep 07 06:56:59 2015
 """
 
 import os
-#import sys
+import sys
 import zipfile
 import copy
 import shutil
 import glob
 import platform
 
+import sys
+
 version = 2016
 #version = 2010
+version = 2006
 
 dirPrefixLinux = '/home/enjo/devel/devel-orb/'
 dirPrefixWindows = 'C:/Users/Justyna/Documents/03 SZYMON/devel/'
@@ -28,6 +31,8 @@ if version == 2016:
     srcDir = dirPrefix + "Orbiter/orbiter2016"
 elif version == 2010:
     srcDir = dirPrefix + "Orbiter/orbiter100830"
+elif version == 2006:
+    srcDir = dirPrefix + "Orbiter/orbiter060929"
     
 dstDir = dirPrefix + "releases-{0}".format(version)
 
@@ -49,29 +54,33 @@ class Addon:
 def distribute(addons, version):
     for addon in addons:
         print (addon.name)
-        pathAddon = os.path.join(dstDir, addon.name)
-        for fileSrc, fileDst in zip(addon.filesSrc, addon.filesDst):
-            print ("{0} -> {1}".format(fileSrc, fileDst))
-            src = os.path.join(srcDir, fileSrc)
-            dst = os.path.join(pathAddon, fileDst)
-            shutil.copy(src, dst)
-        
-        for fl in glob.glob(pathAddon + "/*.zip"):
-            # Remove previous zip files
-            os.remove(fl)
-            print("Removed " + fl)
-        
-        cwdPrev = os.getcwd()
-        os.chdir(pathAddon)
-        zipfPath = pathAddon + "-" + str(version) + ".zip"
-        zipf = zipfile.ZipFile(zipfPath, 'w', zipfile.ZIP_DEFLATED)
-        print("Zipping file " + zipfPath + " in " + pathAddon)
-        zipdir(".", zipf)
-        zipf.close()
-        
-        #shutil.move(zipfPath, addon.name + ".zip")
-        os.chdir(cwdPrev)
-        #sys.exit()
+        try:
+            pathAddon = os.path.join(dstDir, addon.name)
+            for fileSrc, fileDst in zip(addon.filesSrc, addon.filesDst):
+                print ("{0} -> {1}".format(fileSrc, fileDst))
+                src = os.path.join(srcDir, fileSrc)
+                dst = os.path.join(pathAddon, fileDst)
+                shutil.copy(src, dst)
+            
+            for fl in glob.glob(pathAddon + "/*.zip"):
+                # Remove previous zip files
+                os.remove(fl)
+                print("Removed " + fl)
+            
+            cwdPrev = os.getcwd()
+            os.chdir(pathAddon)
+            zipfPath = pathAddon + "-" + str(version) + ".zip"
+            zipf = zipfile.ZipFile(zipfPath, 'w', zipfile.ZIP_DEFLATED)
+            print("Zipping file " + zipfPath + " in " + pathAddon)
+            zipdir(".", zipf)
+            zipf.close()
+            
+            #shutil.move(zipfPath, addon.name + ".zip")
+            os.chdir(cwdPrev)
+            #sys.exit()
+        except Exception as e:
+            print(e)
+            print("!!!! FAILED !!!!")
         print ("")
 
 
@@ -116,6 +125,11 @@ addon = Addon("ModuleMessagingSDK-v.1.1")
 addon.AddFile1("Modules/ModuleMessaging.dll")
 addon.AddFile2("Modules/ModuleMessaging.lib", "Orbitersdk/lib/ModuleMessaging.lib")
 #addons.append(copy.deepcopy(addon))
+
+addon = Addon("ModuleMessagingExt-v1.2")
+addon.AddFile1("Modules/ModuleMessagingExt.dll")
+addon.AddFile2("Modules/ModuleMessagingExt.lib", "Orbitersdk/lib/ModuleMessagingExt.lib")
+addons.append(copy.deepcopy(addon))
 
 addon = Addon("HUDDrawerSDK-v.0.4")
 addon.AddFile1("Modules/Plugin/HUDDrawer.dll")

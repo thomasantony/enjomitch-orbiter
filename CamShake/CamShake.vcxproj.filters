@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lib">
+      <UniqueIdentifier>{ad03788b-10fc-4b77-bb96-91245b3666a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Math">
+      <UniqueIdentifier>{518618d3-7c64-4c36-b357-cd16972b6252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Util">
+      <UniqueIdentifier>{21e26188-ff29-4383-926a-d2257649c62d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\Math\PerlinNoise.cpp">
+      <Filter>lib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\CharManipulations.cpp">
+      <Filter>lib\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Util\FileUtils.cpp">
+      <Filter>lib\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CamShake.cpp" />
+    <ClCompile Include="src\IniFile.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\Math\PerlinNoise.hpp">
+      <Filter>lib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\CharManipulations.hpp">
+      <Filter>lib\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Util\FileUtils.hpp">
+      <Filter>lib\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\afxres.h" />
+    <ClInclude Include="src\IniFile.h" />
+    <ClInclude Include="src\OpOrbiterVessel.h" />
+    <ClInclude Include="src\OpOrbiterWindows.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\CamShake.rc" />
+  </ItemGroup>
+</Project>

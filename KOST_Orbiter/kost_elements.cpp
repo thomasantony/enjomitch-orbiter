@@ -386,7 +386,7 @@ void kostElements2StateVector2(
 		{v2 = mu*(2.0/kostAbsv(&(state->pos)) + 1.0/fabs(elements->a));}
 
 	/* calc components of velocity vector perpendicular and parallel to radius vector:
-	
+
 	perpendicular:
 	vPro = (|h|/|pos|) * normal(h x pos)
 
@@ -430,7 +430,7 @@ int kostElements2StateVector(
 	*/
 
 	/* Returns number of iterations if successful, returns 0 otherwise. */
-	
+
 	/* Pseudocode
 	 *
 	 * get true anomaly
@@ -444,7 +444,7 @@ int kostElements2StateVector(
 	ret = kostGetTrueAnomaly(mu, elements, &trueAnomaly, maxRelativeError, maxIterations);
 
 	/* calc state vectors */
-	kostElements2StateVector2(mu, elements, state, trueAnomaly);	
+	kostElements2StateVector2(mu, elements, state, trueAnomaly);
 
 	return ret;
 }
@@ -501,7 +501,7 @@ void kostStateVector2Elements(
 		Calculate how large the orthogonal component
 		should be to make e significantly different
 		from 1.0:
-		
+
 		|v_ortho| = sqrt(epsilon*mu / |r|)
 		*/
 		v_ortho_size = sqrt(KOST_VERYSMALL * mu / absr);
@@ -522,7 +522,7 @@ void kostStateVector2Elements(
 	absn = kostAbsv(&n);
 
 	E = 0.5*kostAbs2v(&vel) - mu / absr;
-	if (E == 0.0) 
+	if (E == 0.0)
 		E = KOST_VERYSMALL;
 
 	/*
@@ -682,7 +682,7 @@ void kostStateVector2Elements(
 		if(tmp <= 1.0)
 			{params->EcA = 0.0;}
 		else
-			{params->EcA = acosh(tmp);}
+			{params->EcA = kost_acosh(tmp);}
 	}
 	else if(isCircular)
 	{
@@ -737,7 +737,7 @@ void kostStateVector2Elements(
 
 	fabs is for supporting hyperbola
 	*/
-	params->T = 
+	params->T =
 		M_TWOPI * sqrt(fabs(elements->a*elements->a*elements->a/mu));
 
 	/*

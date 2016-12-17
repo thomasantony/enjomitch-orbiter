@@ -9,6 +9,14 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2006|Win32">
+      <Configuration>Release2006</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2009_PL|Win32">
+      <Configuration>Release2009_PL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release2009|Win32">
       <Configuration>Release2009</Configuration>
       <Platform>Win32</Platform>
@@ -23,9 +31,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>BurnTimeMFD</ProjectName>
-    <ProjectGuid>{618053AC-D57F-446E-89DC-9F1367C198CC}</ProjectGuid>
-    <RootNamespace>BurnTimeMFD</RootNamespace>
+    <ProjectGuid>{AA57F7A4-411D-417D-8200-FE1230319935}</ProjectGuid>
+    <RootNamespace>TopoMapMFD</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'" Label="Configuration">
@@ -38,12 +45,22 @@
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2009_PL|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2009|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2006|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
@@ -66,12 +83,22 @@
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
     <Import Project="orbiterroot.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2009_PL|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
     <Import Project="orbiterroot.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2009|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="orbiterroot.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2006|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
     <Import Project="orbiterroot.props" />
@@ -90,12 +117,22 @@
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2006|Win32'">
+    <OutDir>.\..\..\..\Modules\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2009|Win32'">
     <OutDir>$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2009_PL|Win32'">
     <OutDir>$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
@@ -116,23 +153,22 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/BurnTimeMFD.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/TopoMapMFD.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/BurnTimeMFD.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Debug/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
       <ObjectFileName>.\Debug/</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
       <WarningLevel>Level1</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -140,20 +176,67 @@
       <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\BurnTimeMFD.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/BurnTimeMFD.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\Debug/TopoMapMFD.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>.\Debug/BurnTimeMFD.lib</ImportLibrary>
+      <ImportLibrary>.\Debug/TopoMapMFD.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/BurnTimeMFD.bsc</OutputFile>
+      <OutputFile>.\Debug/TopoMapMFD.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2006|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\Modules/TopoMapMFD.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(OrbiterDir2006)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2006)Orbitersdk\include;..\lib;..\libWin;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2006;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release2006/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release2006/</AssemblerListingLocation>
+      <ObjectFileName>.\Release2006/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release2006/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK35.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir2006)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OrbiterDir2006)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2006)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\Modules/TopoMapMFD.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2009|Win32'">
@@ -162,25 +245,25 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\..\..\..\Modules/BurnTimeMFD.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\..\..\Modules/TopoMapMFD.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;FIRST_INSTANCE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\Release2009/BurnTimeMFD.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release2009/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release2009/</AssemblerListingLocation>
       <ObjectFileName>.\Release2009/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release2009/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -189,8 +272,8 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\BurnTimeMFD.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -200,7 +283,7 @@
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\..\..\Modules/BurnTimeMFD.bsc</OutputFile>
+      <OutputFile>.\..\..\..\Modules/TopoMapMFD.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseBETA|Win32'">
@@ -209,25 +292,25 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\..\..\..\Modules/BurnTimeMFD.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\..\..\Modules/TopoMapMFD.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\Release2009/BurnTimeMFD.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release2009/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release2009/</AssemblerListingLocation>
       <ObjectFileName>.\Release2009/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release2009/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4290;4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -236,8 +319,8 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDirBETA)Modules\Plugin\BurnTimeMFD.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDirBETA)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -247,80 +330,34 @@
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\..\..\Modules/BurnTimeMFD.bsc</OutputFile>
+      <OutputFile>.\..\..\..\Modules/TopoMapMFD.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-BETA|Win32'">
-    <Midl>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/BurnTimeMFD.tlb</TypeLibraryName>
-      <HeaderFileName />
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/BurnTimeMFD.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
-      <WarningLevel>Level1</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0809</Culture>
-      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDirBETA)\Modules\Plugin\BurnTimeMFD.dll</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/BurnTimeMFD.pdb</ProgramDatabaseFile>
-      <SubSystem>Windows</SubSystem>
-      <ImportLibrary>.\Debug/BurnTimeMFD.lib</ImportLibrary>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Bscmake>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/BurnTimeMFD.bsc</OutputFile>
-    </Bscmake>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2009_PL|Win32'">
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\..\..\..\Modules/BurnTimeMFD.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\..\..\Modules/TopoMapMFD.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_PL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\Release2009/BurnTimeMFD.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release2009/</AssemblerListingLocation>
-      <ObjectFileName>.\Release2009/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release2009/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\Release2009_PL/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release2009_PL/</AssemblerListingLocation>
+      <ObjectFileName>.\Release2009_PL/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release2009_PL/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DisableSpecificWarnings>4290;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4290;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -329,8 +366,8 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;ModuleMessagingExt.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\BurnTimeMFD.dll</OutputFile>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -340,77 +377,137 @@
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\..\..\..\Modules/BurnTimeMFD.bsc</OutputFile>
+      <OutputFile>.\..\..\..\Modules/TopoMapMFD.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-BETA|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/TopoMapMFD.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level1</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDirBETA)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/TopoMapMFD.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>.\Debug/TopoMapMFD.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/TopoMapMFD.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2016|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\..\..\..\Modules/TopoMapMFD.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2016;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release2009/TopoMapMFD.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release2009/</AssemblerListingLocation>
+      <ObjectFileName>.\Release2009/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release2009/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4290;4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\..\..\..\Modules/TopoMapMFD.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\libMFD\multipleVesselsMFD\MFDData.cpp" />
-    <ClCompile Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp" />
-    <ClCompile Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp" />
-    <ClCompile Include="..\libMFD\Utils\MFDButtonPage.cpp" />
-    <ClCompile Include="..\lib\Math\VectorMath.cpp" />
-    <ClCompile Include="..\lib\Orbiter\AngularAcc.cpp" />
-    <ClCompile Include="..\lib\Orbiter\AutopilotRotation.cpp" />
-    <ClCompile Include="..\lib\Orbiter\BurnTime.cpp" />
-    <ClCompile Include="..\lib\Orbiter\SpaceMathOrbiter.cpp" />
-    <ClCompile Include="..\lib\Orbiter\SystemsConverterOrbiter.cpp" />
-    <ClCompile Include="..\lib\Orbiter\VesselCapabilities.cpp" />
-    <ClCompile Include="..\lib\PID\DerivatorDiscrete.cpp" />
-    <ClCompile Include="..\lib\PID\IntegratorDiscrete.cpp" />
-    <ClCompile Include="..\lib\PID\PID.cpp" />
-    <ClCompile Include="..\lib\Systems\Geo.cpp" />
-    <ClCompile Include="..\lib\Systems\Point.cpp" />
-    <ClCompile Include="..\lib\Systems\Spherical.cpp" />
-    <ClCompile Include="..\lib\Systems\SystemsConverter.cpp" />
-    <ClCompile Include="..\lib\Systems\Vect3.cpp" />
-    <ClCompile Include="src\BurnTimeMFD.cpp" />
-    <ClCompile Include="src\Comms.cpp" />
-    <ClCompile Include="src\DataSourceBase.cpp" />
-    <ClCompile Include="src\DataSourceBaseSync.cpp" />
-    <ClCompile Include="src\DataSourceBaseSyncSimple.cpp" />
-    <ClCompile Include="src\DataSourceDummy.cpp" />
-    <ClCompile Include="src\DataSourceLagrange.cpp" />
-    <ClCompile Include="src\DataSourceTransX.cpp" />
-    <ClCompile Include="src\Graph.cpp" />
-    <ClCompile Include="src\InputBox.cpp" />
-    <ClCompile Include="src\MFDButtonPageBTC.cpp" />
-    <ClCompile Include="src\MFDDataBurnTime.cpp" />
-    <ClCompile Include="src\PluginBurnTime.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\libMFD\multipleVesselsMFD\MFDData.hpp" />
-    <ClInclude Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp" />
-    <ClInclude Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp" />
     <ClInclude Include="..\libMFD\Utils\mfdbuttonpage.hpp" />
-    <ClInclude Include="..\lib\Math\VectorMath.hpp" />
-    <ClInclude Include="..\lib\Orbiter\AngularAcc.hpp" />
-    <ClInclude Include="..\lib\Orbiter\AutopilotRotation.hpp" />
-    <ClInclude Include="..\lib\Orbiter\BurnTime.hpp" />
-    <ClInclude Include="..\lib\Orbiter\SpaceMathOrbiter.hpp" />
-    <ClInclude Include="..\lib\Orbiter\SystemsConverterOrbiter.hpp" />
-    <ClInclude Include="..\lib\Orbiter\VesselCapabilities.hpp" />
-    <ClInclude Include="..\lib\PID\DerivatorDiscrete.hpp" />
-    <ClInclude Include="..\lib\PID\IntegratorDiscrete.hpp" />
-    <ClInclude Include="..\lib\PID\PID.hpp" />
+    <ClInclude Include="..\libMFD\Utils\MFDTextCalculator.hpp" />
+    <ClInclude Include="..\libMFD\Utils\MyDC.h" />
+    <ClInclude Include="..\libMFD\Utils\Pens.h" />
+    <ClInclude Include="..\lib\Math\Colors.hpp" />
+    <ClInclude Include="..\lib\Math\GeneralMath.hpp" />
     <ClInclude Include="..\lib\Systems\Geo.hpp" />
     <ClInclude Include="..\lib\Systems\Point.hpp" />
-    <ClInclude Include="..\lib\Systems\Spherical.hpp" />
-    <ClInclude Include="..\lib\Systems\SystemsConverter.hpp" />
-    <ClInclude Include="..\lib\Systems\Vect3.hpp" />
-    <ClInclude Include="src\BurnTimeMFD.h" />
-    <ClInclude Include="src\Comms.h" />
-    <ClInclude Include="src\DataSourceBase.h" />
-    <ClInclude Include="src\DataSourceBaseSync.h" />
-    <ClInclude Include="src\DataSourceBaseSyncSimple.h" />
-    <ClInclude Include="src\DataSourceDummy.h" />
-    <ClInclude Include="src\DataSourceLagrange.h" />
-    <ClInclude Include="src\DataSourceTransX.h" />
-    <ClInclude Include="src\globals.h" />
-    <ClInclude Include="src\Graph.h" />
-    <ClInclude Include="src\InputBox.h" />
-    <ClInclude Include="src\MFDButtonPageBTC.h" />
-    <ClInclude Include="src\MFDDataBurnTime.h" />
-    <ClInclude Include="src\PluginBurnTime.h" />
+    <ClInclude Include="src\afxres.h" />
+    <ClInclude Include="src\MFDButtonPageTopoMFD.h" />
+    <ClInclude Include="src\OGCImy.h" />
+    <ClInclude Include="src\ORBITERTOOLS.h" />
+    <ClInclude Include="src\PluginTopoMapMFD.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\TopoMap.h" />
+    <ClInclude Include="src\TopoMapMFD.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libMFD\Utils\MFDButtonPage.cpp" />
+    <ClCompile Include="..\libMFD\Utils\MFDTextCalculator.cpp" />
+    <ClCompile Include="..\libMFD\Utils\MyDC.cpp" />
+    <ClCompile Include="..\libMFD\Utils\Pens.cpp" />
+    <ClCompile Include="..\lib\Math\Colors.cpp" />
+    <ClCompile Include="..\lib\Math\GeneralMath.cpp" />
+    <ClCompile Include="..\lib\Systems\Geo.cpp" />
+    <ClCompile Include="..\lib\Systems\Point.cpp" />
+    <ClCompile Include="src\MFDButtonPageTopoMFD.cpp" />
+    <ClCompile Include="src\OGCImy.cpp" />
+    <ClCompile Include="src\ORBITERTOOLS.cpp" />
+    <ClCompile Include="src\PluginTopoMapMFD.cpp" />
+    <ClCompile Include="src\TopoMap.cpp" />
+    <ClCompile Include="src\TopoMapMFD.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\TopoMapMFD.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

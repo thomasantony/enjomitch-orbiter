@@ -2,59 +2,62 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Math">
-      <UniqueIdentifier>{519ea1a6-e2a6-4415-bd6b-c6fadfd3a4f5}</UniqueIdentifier>
+      <UniqueIdentifier>{d53a9da0-09dd-46e5-bf14-8464d28c0332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Root">
+      <UniqueIdentifier>{f7df6fd0-e13c-425b-9631-314dd77f5fc4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Systems">
-      <UniqueIdentifier>{68cd526b-67bb-4dbf-bd90-45339b754db6}</UniqueIdentifier>
+      <UniqueIdentifier>{a0ee1f08-e23c-491e-852a-80f17bc413df}</UniqueIdentifier>
     </Filter>
     <Filter Include="Autopilot">
-      <UniqueIdentifier>{042b9671-468c-4854-91b5-e78fe2c0d290}</UniqueIdentifier>
+      <UniqueIdentifier>{fece1625-ab60-4840-8b3d-6196a4005edc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sound">
-      <UniqueIdentifier>{4a87079d-6b13-4d09-a6ff-b8a37ffb1b6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MultipleVessels">
-      <UniqueIdentifier>{c2b75c96-e324-4158-a20f-e5ff4def1e9b}</UniqueIdentifier>
+      <UniqueIdentifier>{2e8c5e7a-f8b3-4296-ae3e-3f31a0bb4311}</UniqueIdentifier>
     </Filter>
     <Filter Include="Visual">
-      <UniqueIdentifier>{9fa63192-9fc8-4693-b7b7-7c2d0d6ecd48}</UniqueIdentifier>
+      <UniqueIdentifier>{895f3603-1564-4474-921c-71227a1d6916}</UniqueIdentifier>
     </Filter>
     <Filter Include="PID">
-      <UniqueIdentifier>{8a4650e2-fd5e-4cb5-898a-8528b7cc4791}</UniqueIdentifier>
+      <UniqueIdentifier>{ba8cca2c-909f-4b5f-b75d-a43828fa79f1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utils">
-      <UniqueIdentifier>{b20e851e-f738-458c-ad07-0414c95cae01}</UniqueIdentifier>
+      <UniqueIdentifier>{4f51b316-d57c-422c-8039-e64ecf0413ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="HUDDrawer">
-      <UniqueIdentifier>{bec905a0-9882-4af6-8217-e760d635b562}</UniqueIdentifier>
+      <UniqueIdentifier>{1350a634-5925-4af7-b42b-1cfad6a9288e}</UniqueIdentifier>
     </Filter>
     <Filter Include="OffPlaneCorrector">
-      <UniqueIdentifier>{b668e37b-e375-4031-ad44-c8860b0c31ab}</UniqueIdentifier>
+      <UniqueIdentifier>{abea74f2-a4cc-4b25-bfb4-7dfa095bff99}</UniqueIdentifier>
     </Filter>
     <Filter Include="PEG">
-      <UniqueIdentifier>{73b857cc-8cbd-4fa4-b7b8-1ddd4ea87dc9}</UniqueIdentifier>
+      <UniqueIdentifier>{8791c5ad-f344-41c0-8a6b-f5315ec3ca81}</UniqueIdentifier>
     </Filter>
     <Filter Include="OrbiterLib">
-      <UniqueIdentifier>{667a927a-f9aa-4a02-a4f4-04a0cad5ee50}</UniqueIdentifier>
+      <UniqueIdentifier>{61ae7aa8-f1ad-4b6d-98b7-ac5020b43962}</UniqueIdentifier>
     </Filter>
     <Filter Include="KOST_Orbiter">
-      <UniqueIdentifier>{e1ff6178-037a-4969-83a5-424737c53df2}</UniqueIdentifier>
+      <UniqueIdentifier>{3dd69956-f034-4e26-9bdb-b77c4ee6cb62}</UniqueIdentifier>
     </Filter>
     <Filter Include="Dialogs">
-      <UniqueIdentifier>{8fb3718b-14bd-4fb4-80b4-3fddbc825531}</UniqueIdentifier>
+      <UniqueIdentifier>{309cc8fb-5573-4c8f-a39b-293c7da0b0be}</UniqueIdentifier>
     </Filter>
     <Filter Include="HUD">
-      <UniqueIdentifier>{584a404d-296c-4da0-9a0f-a52f15a0729f}</UniqueIdentifier>
+      <UniqueIdentifier>{fc0fc1bb-913e-4d82-85f3-38ee724d68cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libMFD">
+      <UniqueIdentifier>{1918dbb9-1dc6-45ca-8919-155681c8ac53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libMFD\MultipleVessels">
+      <UniqueIdentifier>{0a5ce584-e600-4e53-a6d8-5b094cb8266d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libMFD\Utils">
+      <UniqueIdentifier>{ac927584-eaa7-4a46-b8d9-3463dc0276ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\lib\Math\AzimuthMath.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\Math\BinSearchArg.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\Math\BinSearchArgSubject.cpp">
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Math\GeneralMath.cpp">
@@ -83,6 +86,24 @@
     </ClCompile>
     <ClCompile Include="..\lib\Math\VectorMath.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Root\IRootAlgo.cpp">
+      <Filter>Math\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Root\RootBisection.cpp">
+      <Filter>Math\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Root\RootBrent.cpp">
+      <Filter>Math\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Root\RootFactory.cpp">
+      <Filter>Math\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Root\RootSubject.cpp">
+      <Filter>Math\Root</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Math\Root\RootType.cpp">
+      <Filter>Math\Root</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Systems\Geo.cpp">
       <Filter>Systems</Filter>
@@ -141,21 +162,6 @@
     <ClCompile Include="Sound\SoundMapLaunchMFD.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\libMFD\multipleVesselsMFD\MFDData.cpp">
-      <Filter>MultipleVessels</Filter>
-    </ClCompile>
-    <ClCompile Include="MFDDataLaunchMFD.cpp">
-      <Filter>MultipleVessels</Filter>
-    </ClCompile>
-    <ClCompile Include="PluginLaunchMFD.cpp">
-      <Filter>MultipleVessels</Filter>
-    </ClCompile>
-    <ClCompile Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp">
-      <Filter>MultipleVessels</Filter>
-    </ClCompile>
-    <ClCompile Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp">
-      <Filter>MultipleVessels</Filter>
-    </ClCompile>
     <ClCompile Include="..\lib\Visual\Canvas.cpp">
       <Filter>Visual</Filter>
     </ClCompile>
@@ -177,13 +183,7 @@
     <ClCompile Include="..\lib\Util\FileUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\FileUtilsOrbiter.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\lib\Util\NonCopyable.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\Pens.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Util\Result.cpp">
@@ -282,6 +282,36 @@
     <ClCompile Include="HUD\HUDDrawer.cpp">
       <Filter>HUD</Filter>
     </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\MFDData.cpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="MFDDataLaunchMFD.cpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="PluginLaunchMFD.cpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.cpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.cpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\FileUtilsOrbiter.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\MFDButtonPage.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\MFDTextCalculator.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\MyDC.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libMFD\Utils\Pens.cpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="BODYPHYS.cpp" />
     <ClCompile Include="BODYPHYS_ORB.cpp" />
     <ClCompile Include="DirectAscentPage.cpp" />
@@ -289,12 +319,10 @@
     <ClCompile Include="GreatCircle.cpp" />
     <ClCompile Include="LaunchCompass.cpp" />
     <ClCompile Include="LaunchMFD.cpp" />
-    <ClCompile Include="..\libMFD\MFDButtonPage.cpp" />
+    <ClCompile Include="MessagingSender.cpp" />
     <ClCompile Include="MFDButtonPageLaunchMFD.cpp" />
     <ClCompile Include="MFDPage.cpp" />
-    <ClCompile Include="..\libMFD\MFDTextCalculator.cpp" />
     <ClCompile Include="MovementParams.cpp" />
-    <ClCompile Include="..\libMFD\MyDC.cpp" />
     <ClCompile Include="PitchGuidance.cpp" />
     <ClCompile Include="ShipVariables.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -306,12 +334,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Math\AzimuthMath.hpp">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\Math\BinSearchArg.hpp">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\Math\BinSearchArgSubject.hpp">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Math\Constants.hpp">
@@ -343,6 +365,24 @@
     </ClInclude>
     <ClInclude Include="..\lib\Math\VectorMath.hpp">
       <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Root\IRootAlgo.hpp">
+      <Filter>Math\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Root\RootBisection.hpp">
+      <Filter>Math\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Root\RootBrent.hpp">
+      <Filter>Math\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Root\RootFactory.hpp">
+      <Filter>Math\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Root\RootSubject.hpp">
+      <Filter>Math\Root</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Math\Root\RootType.hpp">
+      <Filter>Math\Root</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Systems\Geo.hpp">
       <Filter>Systems</Filter>
@@ -410,21 +450,6 @@
     <ClInclude Include="Sound\SoundSampleIDEnum.hpp">
       <Filter>Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\libMFD\multipleVesselsMFD\MFDData.hpp">
-      <Filter>MultipleVessels</Filter>
-    </ClInclude>
-    <ClInclude Include="MFDDataLaunchMFD.hpp">
-      <Filter>MultipleVessels</Filter>
-    </ClInclude>
-    <ClInclude Include="PluginLaunchMFD.hpp">
-      <Filter>MultipleVessels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp">
-      <Filter>MultipleVessels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp">
-      <Filter>MultipleVessels</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\Visual\Canvas.hpp">
       <Filter>Visual</Filter>
     </ClInclude>
@@ -446,13 +471,7 @@
     <ClInclude Include="..\lib\Util\FileUtils.hpp">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\FileUtilsOrbiter.hpp">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\Util\NonCopyable.hpp">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Pens.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Util\Result.hpp">
@@ -569,6 +588,36 @@
     <ClInclude Include="HUD\HUDDrawer.hpp">
       <Filter>HUD</Filter>
     </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\MFDData.hpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="MFDDataLaunchMFD.hpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginLaunchMFD.hpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\PluginMultipleVessels.hpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\multipleVesselsMFD\SimulationTimeData.hpp">
+      <Filter>libMFD\MultipleVessels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\FileUtilsOrbiter.hpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\mfdbuttonpage.hpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\MFDTextCalculator.hpp">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\MyDC.h">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libMFD\Utils\Pens.h">
+      <Filter>libMFD\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="BODYPHYS.h" />
     <ClInclude Include="BODYPHYS_ORB.h" />
     <ClInclude Include="DirectAscentPage.hpp" />
@@ -578,12 +627,10 @@
     <ClInclude Include="LaunchCompass.h" />
     <ClInclude Include="LaunchMFD.h" />
     <ClInclude Include="localisation.h" />
-    <ClInclude Include="..\libMFD\MFDButtonPage.hpp" />
+    <ClInclude Include="MessagingSender.h" />
     <ClInclude Include="MFDButtonPageLaunchMFD.hpp" />
     <ClInclude Include="MFDPage.h" />
-    <ClInclude Include="..\libMFD\MFDTextCalculator.hpp" />
     <ClInclude Include="MovementParams.h" />
-    <ClInclude Include="..\libMFD\MyDC.h" />
     <ClInclude Include="PitchGuidance.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShipVariables.h" />
