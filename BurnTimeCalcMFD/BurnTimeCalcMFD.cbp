@@ -177,6 +177,8 @@
 		<Unit filename="src/DataSourceBase.h" />
 		<Unit filename="src/DataSourceBaseSync.cpp" />
 		<Unit filename="src/DataSourceBaseSync.h" />
+		<Unit filename="src/DataSourceBaseSyncSimple.cpp" />
+		<Unit filename="src/DataSourceBaseSyncSimple.h" />
 		<Unit filename="src/DataSourceDummy.cpp" />
 		<Unit filename="src/DataSourceDummy.h" />
 		<Unit filename="src/DataSourceLagrange.cpp" />
