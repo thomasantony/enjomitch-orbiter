@@ -192,7 +192,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
   Title (skp, "BurnTimeMFD v3.0");
 
 
-  m_graph.vectorpointdisplay(skp, m_data->velVector, pV);
+  //m_graph.vectorpointdisplay(skp, m_data->velVector, pV);
 
   int line1 = 1;
   int line8 = 2;
@@ -487,6 +487,7 @@ void BurnTimeMFD::HandlerIncludeRCSFuel()
     m_data->includeRCS = ! m_data->includeRCS;
 }
 
+/*
 void BurnTimeMFD::HandlerAutopilot()
 {
     m_data->autopilot.SetTargetVector(m_data->velVector);
@@ -496,6 +497,7 @@ void BurnTimeMFD::HandlerAutopilotDisable()
 {
     m_data->autopilot.Disable();
 }
+*/
 
 void BurnTimeMFD::HandlerGetFromOtherMFD()
 {

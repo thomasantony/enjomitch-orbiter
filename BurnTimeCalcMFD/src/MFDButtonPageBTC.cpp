@@ -48,8 +48,8 @@ MFDButtonPageBTC::MFDButtonPageBTC()
     RegisterFunction("ST",  OAPI_KEY_S, &BurnTimeMFD::HandlerTargetForDistanceCalc);
     RegisterFunction("OS",  OAPI_KEY_O, &BurnTimeMFD::HandlerOffsetDistance);
     RegisterFunction("UNT", OAPI_KEY_U, &BurnTimeMFD::HandlerSwitchSI_US);
-    RegisterFunction("AP",  OAPI_KEY_A, &BurnTimeMFD::HandlerAutopilot);
-    RegisterFunction("DAP", OAPI_KEY_D, &BurnTimeMFD::HandlerAutopilotDisable);
+    //RegisterFunction("AP",  OAPI_KEY_A, &BurnTimeMFD::HandlerAutopilot);
+    //RegisterFunction("DAP", OAPI_KEY_D, &BurnTimeMFD::HandlerAutopilotDisable);
 
 }
 
@@ -58,6 +58,6 @@ MFDButtonPageBTC::~MFDButtonPageBTC()
 
 bool MFDButtonPageBTC::SearchForKeysInOtherPages() const
 {
-    return false;
+    return true;
 }
 

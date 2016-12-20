@@ -870,8 +870,7 @@ void basefunction::doupdate(oapi::Sketchpad *sketchpad,int tw, int th,int viewmo
 		VESSEL *pV=oapiGetVesselInterface(hcraft);
 		double rvel=graph.vectorpointdisplay(sketchpad, diffTgtVel, state->GetMFDpointer(), pV, false);
 		double burnStart = BurnTime().GetBurnStart(pV, THGROUP_MAIN, timeoffset, rvel);
-		//MessagingSender().ModMsgPut("dv", rvel - 4.0); // Subtracting that few m/s works better for Auto-Center, as it won't turn around then
-		MessagingSender().ModMsgPut("dv", rvel); // BTC currently uses a fixed direction.
+		MessagingSender().ModMsgPut("dv", rvel - 4.0); // Subtracting that few m/s works better for Auto-Center, as it won't turn around then
 		MessagingSender().ModMsgPut("InstantaneousBurnTime", timeoffset);
 		MessagingSender().ModMsgPut("TargetVelocity", diffTgtVel);
 		TextShow(sketchpad,"Delta V: ",0,18*linespacing,rvel);

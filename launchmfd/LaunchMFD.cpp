@@ -106,9 +106,9 @@ MFD_RETURN_TYPE LaunchMFD::Update (MyDC hDC)
     if ( m_data == NULL )
         return MFD_RETURN_VALUE( false );
 
-    MessagingSender mm;
-    mm.ModMsgPut("InstantaneousBurnTime", 50.0);
-    mm.ModMsgPut("dv", 50.0);
+    //MessagingSender mm; // Testing BTC
+    //mm.ModMsgPut("InstantaneousBurnTime", 50.0);
+    //mm.ModMsgPut("dv", 50.0);
 
     // Sound can be connected only within Update
     m_sound.Connect( "LaunchMFD_Enjo, lol!" ); // A unique identifier

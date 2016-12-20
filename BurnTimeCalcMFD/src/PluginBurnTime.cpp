@@ -51,7 +51,7 @@ void PluginBurnTime::UpdateClientPreStep( MFDData * data, const SimulationTimeDa
 {
     MFDDataBurnTime * dataBurnTime = static_cast<MFDDataBurnTime *>( data );
     dataBurnTime->Update();
-    dataBurnTime->autopilot.Update(timeData.GetSimDT());
+    //dataBurnTime->autopilot.Update(timeData.GetSimDT());
 }
 
 void PluginBurnTime::UpdateClientPostStep( MFDData * data, const SimulationTimeData & timeData )

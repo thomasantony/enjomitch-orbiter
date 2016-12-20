@@ -42,8 +42,8 @@ public:
   void HandlerEnterExtraFuel();
   void HandlerIncludeRCSFuel();
   void HandlerGetFromOtherMFD();
-  void HandlerAutopilot();
-  void HandlerAutopilotDisable();
+  //void HandlerAutopilot();
+  //void HandlerAutopilotDisable();
 
 protected:
   VESSEL *messel;

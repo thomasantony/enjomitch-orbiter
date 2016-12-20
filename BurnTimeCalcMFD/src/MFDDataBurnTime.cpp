@@ -52,7 +52,7 @@ MFDDataBurnTime::~MFDDataBurnTime()
 
 void MFDDataBurnTime::Update()
 {
-    ReGetDataFromSource(); // confusing
+    //ReGetDataFromSource(); // confusing
     ArmAutopilot();
     ENow=oapiGetSimTime();
     if (!IsEngaged)
@@ -377,7 +377,7 @@ void MFDDataBurnTime::ArmAutopilot()
 {
     if (GetTimeToIgnition() < 350)
     {
-        autopilot.SetTargetVector(velVector);
+        //autopilot.SetTargetVector(velVector);
     }
 }
 
