@@ -965,7 +965,7 @@ void SyncMFD::Update(HDC hDC)
 		ModMsgPutByRef("BaseSyncMode", 1, mode);
 		ModMsgPutByRef("BaseSyncSolution", 2, sol);
 		ModMsgPutByRef("BaseSyncDeorbit", 4, deo);
-		//ModMsgPutByRef("BaseSyncBurn", 1, burn);
+		ModMsgPutByRef("BaseSyncBurn", 1, burn); // To be removed after BTC synchronization
 		if (burn.dataValid)
         {
             ModMsgPut("dv", burn.dV);

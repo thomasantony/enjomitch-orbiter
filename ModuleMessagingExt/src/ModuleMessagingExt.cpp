@@ -7,8 +7,8 @@
 //
 // Copyright  (C) 2014-2016 Szymon "Enjo" Ender and Andrew "ADSWNJ" Stokes
 //
-//                         All rights reserved 
-// 
+//                         All rights reserved
+//
 // ModuleMessagingExt is free software: you can redistribute it
 // and/or modify it under the terms of the GNU Lesser General Public
 // License as published by the Free Software Foundation, either version
@@ -24,7 +24,7 @@
 // <http://www.gnu.org/licenses/>.
 // ==============================================================
 
-#include <OrbiterSdk.h> 
+#include <OrbiterSdk.h>
 #include "ModuleMessagingExt.hpp"
 #include "ModuleMessagingExtStor.hpp"
 #include <string>
@@ -38,6 +38,39 @@ ModuleMessagingExt::ModuleMessagingExt()
 ModuleMessagingExt::~ModuleMessagingExt()
 {}
 
+bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, bool* value, const VESSEL* myVessel, const int iVer)
+{
+	return (iVer == 1) ? ModuleMessagingExtStor::Get(moduleName, varName, value, myVessel) : false;
+}
+bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, int* value, const VESSEL* myVessel, const int iVer)
+{
+	return (iVer == 1) ? ModuleMessagingExtStor::Get(moduleName, varName, value, myVessel) : false;
+}
+bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, double* value, const VESSEL* myVessel, const int iVer)
+{
+	return (iVer == 1) ? ModuleMessagingExtStor::Get(moduleName, varName, value, myVessel) : false;
+}
+bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, VECTOR3* value, const VESSEL* myVessel, const int iVer)
+{
+	return (iVer == 1) ? ModuleMessagingExtStor::Get(moduleName, varName, value, myVessel) : false;
+}
+bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, MATRIX3* value, const VESSEL* myVessel, const int iVer)
+{
+	return (iVer == 1) ? ModuleMessagingExtStor::Get(moduleName, varName, value, myVessel) : false;
+}
+bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, MATRIX4* value, const VESSEL* myVessel, const int iVer)
+{
+	return (iVer == 1) ? ModuleMessagingExtStor::Get(moduleName, varName, value, myVessel) : false;
+}
+bool ModuleMessagingExt::ModMsgGetBasePtr(const char* moduleName, const char* varName, const int structVer, const unsigned int structSize,
+									  	  const ModuleMessagingExtBase** structBasePtr, const VESSEL* myVessel, const int iVer)
+{
+	if (iVer != 1) return false;
+	if (!ModuleMessagingExtStor::Get(moduleName, varName, structBasePtr, myVessel)) return false;
+	if (!(*structBasePtr)->IsCorrectVersion(structVer)) return false;
+	if (!(*structBasePtr)->IsCorrectSize(structSize)) return false;
+	return true;
+}
 
 bool ModuleMessagingExt::ModMsgGet(const char* moduleName, const char* varName, bool* value, const VESSEL* myVessel, const int iVer) const
 {

@@ -20,6 +20,8 @@ public:
   //double GetStackMass(VESSEL* vessel);
   DataSourceBase * GetCurrentSource(); // Can return NULL
   void ReGetDataFromSource();
+  double GetTimeToIgnition() const;
+  void ArmAutopilot();
 
   static const int numEngines;
   static const THGROUP_TYPE groups[6];

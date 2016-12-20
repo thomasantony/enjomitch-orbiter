@@ -186,6 +186,7 @@ BurnTimeMFD::~BurnTimeMFD ()
 bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 {
 	m_data->Update();
+	//m_data->ReGetDataFromSource(); // confusing
   unsigned int thrustercount = 0;
 
   Title (skp, "BurnTimeMFD v3.0");
@@ -234,7 +235,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
       else
       {
           skp->SetTextColor(YELLOW);
-          PrintEngUnit(skp, otherSrc->GetDisplayStringBT(m_data).c_str(),"m/s","ft/s",1,mToft, m_data->IManual, 5, line8 );
+          PrintEngUnit(skp, otherSrc->GetDisplayStringBT(m_data).c_str(),"s", m_data->IManual, 5, line8 );
       }
   }
 
@@ -276,7 +277,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	  {
 	    PrintEngUnit(skp,"Autoburn Armed:        %7.3f","s", m_data->IBurn,5,line3);
 	  }
-	  PrintEngUnit(skp,"Time to Ignition:      %7.3f","s", m_data->EReference-m_data->ENow-m_data->IBurn2,5,line4);
+	  PrintEngUnit(skp,"Time to Ignition:      %7.3f","s", m_data->GetTimeToIgnition(),5,line4);
 	}
 	else
 	{

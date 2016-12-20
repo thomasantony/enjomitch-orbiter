@@ -105,6 +105,34 @@ namespace EnjoLib
 		virtual ~ModuleMessagingExt();
 
 		bool ModMsgGet( const char* moduleName, const char* varName, bool* value,
+						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+		bool ModMsgGet( const char* moduleName, const char* varName, int* value,
+						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+		bool ModMsgGet( const char* moduleName, const char* varName, double* value,
+						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+		bool ModMsgGet( const char* moduleName, const char* varName, VECTOR3* value,
+						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+		bool ModMsgGet( const char* moduleName, const char* varName, MATRIX3* value,
+						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+		bool ModMsgGet( const char* moduleName, const char* varName, MATRIX4* value,
+						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+
+        template<class T>
+		bool ModMsgGetByRef(const char* moduleName, const char* structName, int structVer,
+							const T** structPtr, const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1)
+		{
+			if (iVer!=1)
+                return false;
+			const ModuleMessagingExtBase *structBasePtr;
+			if (false ==ModMsgGetBasePtr(moduleName, structName, structVer, sizeof(T), &structBasePtr, myVessel, iVer))
+                return false;
+			*structPtr = dynamic_cast<const T*>(structBasePtr);
+            if (*structPtr == NULL) // Is type compliant?
+                return false;
+			return true; // Passed all safety checks
+		}
+
+		bool ModMsgGet( const char* moduleName, const char* varName, bool* value,
 						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1) const;
 		bool ModMsgGet( const char* moduleName, const char* varName, int* value,
 						const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1) const;
@@ -133,6 +161,10 @@ namespace EnjoLib
 		}
 	protected:
 	private:
+	    bool ModMsgGetBasePtr(const char* moduleName, const char* varName, const int structVer,
+							  const unsigned int structSize, const ModuleMessagingExtBase** value,
+							  const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1);
+
 		bool ModMsgGetBasePtr(const char* moduleName, const char* varName, const int structVer,
 							  const unsigned int structSize, const ModuleMessagingExtBase** value,
 							  const VESSEL* myVessel = oapiGetFocusInterface(), const int iVer = 1) const;

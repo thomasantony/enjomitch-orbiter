@@ -10,5 +10,5 @@ std::string DataSourceBase::GetDisplayStringDV(MFDDataBurnTime * data) const
 
 std::string DataSourceBase::GetDisplayStringBT(MFDDataBurnTime * data) const
 {
-    return std::string(GetName()) + " Burn Time:   %7.3f";
+    return std::string(GetName()) + " T to Mnvre:  %7.3f";
 }

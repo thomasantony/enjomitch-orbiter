@@ -52,7 +52,8 @@ MFDDataBurnTime::~MFDDataBurnTime()
 
 void MFDDataBurnTime::Update()
 {
-    ReGetDataFromSource();
+    ReGetDataFromSource(); // confusing
+    ArmAutopilot();
     ENow=oapiGetSimTime();
     if (!IsEngaged)
     {
@@ -340,7 +341,7 @@ void MFDDataBurnTime::ArmAutoBurn()
   }
   IsArmed=true;
   EReference=oapiGetSimTime()+IReference;
-  autopilot.SetTargetVector(velVector);
+  ArmAutopilot();
 }
 
 DataSourceBase * MFDDataBurnTime::GetCurrentSource() // Can return NULL
@@ -363,6 +364,19 @@ void MFDDataBurnTime::ReGetDataFromSource()
     if (dvFabs > 1e-5)
     {
         velVector = source->GetVelVec();
+        ArmAutopilot();
+    }
+}
+
+double MFDDataBurnTime::GetTimeToIgnition() const
+{
+    return EReference-ENow-IBurn2;
+}
+
+void MFDDataBurnTime::ArmAutopilot()
+{
+    if (GetTimeToIgnition() < 350)
+    {
         autopilot.SetTargetVector(velVector);
     }
 }
