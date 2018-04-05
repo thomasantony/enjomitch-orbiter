@@ -17,7 +17,7 @@ import sys
 
 version = 2016
 #version = 2010
-version = 2006
+#version = 2006
 
 dirPrefixLinux = '/home/enjo/devel/devel-orb/'
 dirPrefixWindows = 'C:/Users/Justyna/Documents/03 SZYMON/devel/'
@@ -33,6 +33,9 @@ elif version == 2010:
     srcDir = dirPrefix + "Orbiter/orbiter100830"
 elif version == 2006:
     srcDir = dirPrefix + "Orbiter/orbiter060929"
+else:
+    print("Version not provided!")
+    sys.exit()
     
 dstDir = dirPrefix + "releases-{0}".format(version)
 
@@ -102,23 +105,28 @@ addons = []
 #addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
 #addons.append(copy.deepcopy(addon))
 
-addon = Addon("BurnTimeCalcMFD-v.2.9.2")
+addon = Addon("BurnTimeCalcMFD-v.3.0.0")
 addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("LaunchMFD-v.1.6.4")
+addon = Addon("LaunchMFD-v.1.6.5")
 addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("LaunchMFD-v.1.6.4-pl")
+addon = Addon("LaunchMFD-v.1.6.5-pl")
 addon.AddFile1("Modules/Plugin/LaunchMFD_pl.dll")
 addons.append(copy.deepcopy(addon))
 
 # Complex addons
-addon = Addon("TransX-2016.04.04-MMExt")
+addon = Addon("TransX-2018.04.05-MMExt2")
 addon.AddFile1("Modules/Plugin/TransX.dll")
 addon.AddFile1("Modules/Plugin/TransX2.dll")
 addons.append(copy.deepcopy(addon))
+
+distribute(addons, version)
+print("Ready!")
+
+sys.exit()
 
 # Libraries
 addon = Addon("ModuleMessagingSDK-v.1.1")
@@ -137,7 +145,6 @@ addon.AddFile1("Modules/VesselHooking.dll")
 addon.AddFile2("Modules/VesselHooking.lib", "Orbitersdk/lib/VesselHooking.lib")
 addons.append(copy.deepcopy(addon))
 
-distribute(addons, version)
-print("Ready!")
+
 
 

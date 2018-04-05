@@ -118,7 +118,7 @@ void slingshot::calculate(class MFDvarhandler *vars,basefunction *base)
 				eventtime=0;
 				ejecttime=nextplan->geteventtime();//Get from future variable if nothing else
 			}
-			ejectvelocity2=length2(ejectvector);
+			ejectvelocity2=length2my(ejectvector);
 		}
 		else
 			return;
@@ -300,7 +300,7 @@ void encounterplan::graphupdate(oapi::Sketchpad *sketchpad,Graph *graph,basefunc
 	VECTOR3 v2 = mul(majrot, v1);
 	baseposition = mul(oblrot, v2);
 
-	double distance2=length2(baseposition);
+	double distance2=length2my(baseposition);
 	double radius2=radius*radius;
 	if (radius2*1.5>distance2)
 	{
@@ -726,7 +726,7 @@ void majejectplan::calculate(class MFDvarhandler *vars,basefunction *base)
 
 	//derive the velocity vector described by the variables
 	calcejectvector(rmin.getplanevector(),minorvel,escvel);//Calculates ejectvector
-	double ejectvector2=length2(ejectvector);
+	double ejectvector2=length2my(ejectvector);
 	if (ejectvector2<1) return;
 	if (fabs(ejectvector2-escvel*escvel)*20<escvel*escvel && craftinrmin.isvalid())
 		planorbit.minortomajorinit(craftinrmin,rmin,soisize);

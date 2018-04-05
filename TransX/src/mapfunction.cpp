@@ -78,9 +78,9 @@ OBJHANDLE mapfunction::getcurrbody(OBJHANDLE vessel)//Finds current body for cur
 		else
 			oapiGetGlobalPos(body->parent->bodyhandle,&parentpos);
 		relvector=parentpos-bodypos;
-		bodyfromparent2=length2(relvector);
+		bodyfromparent2=length2my(relvector);
 		relvector=currentpos-bodypos;
-		distance2=length2(relvector);
+		distance2=length2my(relvector);
 		if (distance2<body->gravbodyratio2*bodyfromparent2 || body == m_bodyProvider.GetSun())//In this soi
 		{
 			currentsoi=body;

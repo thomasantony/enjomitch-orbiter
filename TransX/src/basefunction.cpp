@@ -99,13 +99,13 @@ bool basefunction::soistatus()
 	double soi=mappointer->getsoisize(hmajor);
 	VECTOR3 posvector;
 	oapiGetRelativePos(hmajor,hcraft,&posvector);
-	if (soi*soi*4<length2(posvector)) return false;
+	if (soi*soi*4<length2my(posvector)) return false;
 
 	//Check that we're not too far inside target SOI
 	if (hmajtarget==NULL) return true;
 	soi=mappointer->getsoisize(hmajtarget);
 	oapiGetRelativePos(hmajtarget,hcraft,&posvector);
-	if (soi*soi>length2(posvector)) return false;
+	if (soi*soi>length2my(posvector)) return false;
 	return true;
 }
 
@@ -672,7 +672,7 @@ void basefunction::calculate(VECTOR3 *targetvel)
 		oapiGetRelativeVel(hcraft,hmajor,&vel);
 		oapiGetRelativePos(hcraft,hmajor,&pos);
 		double distance=length(pos);
-		double velenergy=length2(vel)*0.5;
+		double velenergy=length2my(vel)*0.5;
 		double overallenergy=-GRAVITY*oapiGetMass(hmajor)/distance+velenergy;
 		craft.init(hmajor, hcraft);
 		if (hminor==NULL)

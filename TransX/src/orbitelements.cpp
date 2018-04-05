@@ -122,7 +122,7 @@ void OrbitElements::majortominorinit(OBJHANDLE target, OBJHANDLE object, const I
 	//Get position and velocity of object relative to target
 	VECTOR3 minorpos,minorvel;
 	closestapproach.getrelpos(&minorpos);
-	double pos2=length2(minorpos);
+	double pos2=length2my(minorpos);
 	if (pos2>soisize*soisize)//outside SOI, no intercept
 	{
 		setinvalid();
@@ -142,7 +142,7 @@ void OrbitElements::majortominorinit(OBJHANDLE target, OBJHANDLE object, const I
 	if (object!=NULL)//can be a legal call
 	{
 		oapiGetRelativePos(object, target,&currvector);
-		double actdistance2=length2(currvector);
+		double actdistance2=length2my(currvector);
 		if (actdistance2<backradius) backradius=actdistance2;
 		backradius-=dotp(minorpos,minorpos);//Make allowance for distance of closest approach
 	}

@@ -253,7 +253,7 @@ void Intercept::updateintercept(const OrbitElements &craft, const OrbitElements 
 	alphatime.getposvel(&betaposa,&betavela);
 	betatime.getposvel(&betaposb,&betavelb);
 
-	bool abetter=(length2(betaposa-alphaposa)<length2(betaposb-alphaposb)); //Picks best on grounds of distance
+	bool abetter=(length2my(betaposa-alphaposa)<length2my(betaposb-alphaposb)); //Picks best on grounds of distance
 	if (timea<timeoffset)
 	{
 		if (craftorbitsahead<0.3)
@@ -270,7 +270,7 @@ void Intercept::updateintercept(const OrbitElements &craft, const OrbitElements 
 		//a is better
 		iceptradius=(length(betaposa)+iceptradius)/2;// Takes average of new and old as this converges better
 		itimeintercept=timea;
-		if (length2(betaposa-alphaposa)*9<length2(alphaposa))
+		if (length2my(betaposa-alphaposa)*9<length2my(alphaposa))
 		{
 			iceptmethod=2;
 			icepttimeoffset=timea;
@@ -285,7 +285,7 @@ void Intercept::updateintercept(const OrbitElements &craft, const OrbitElements 
 		//b is better
 		iceptradius=(length(betaposb)+iceptradius)/2;
 		itimeintercept=timeb;
-		if (length2(betaposb-alphaposb)*9<length2(alphaposb))
+		if (length2my(betaposb-alphaposb)*9<length2my(alphaposb))
 		{
 			iceptmethod=2;
 			icepttimeoffset=timeb;

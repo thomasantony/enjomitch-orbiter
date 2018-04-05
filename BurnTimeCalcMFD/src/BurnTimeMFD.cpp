@@ -42,6 +42,7 @@
 // Version 3.0 by Enjo (Copyright (c) 2018)
 //    Liberated from a direct linkage against ModuleMessagingExt. Now using dynamic linkage via LoadLibraryA
 //    Created resource files, thus moving the MFD away from Misc to MFD modes in Orbiter Launchpad
+//    Created extensible OOD communication classes
 
 // Released under the terms of the LGPL: http://www.gnu.org/licenses/lgpl.txt
 /*

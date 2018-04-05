@@ -222,14 +222,14 @@ void TextShow(oapi::Sketchpad *sketchpad,const char *label, int wpos, int hpos, 
 }
 
 // Find length of vector
-double length2my(const VECTOR3 &vector)
+double length2my(const VECTOR3 &v)
 {
-	return vector.x*vector.x+vector.y*vector.y+vector.z*vector.z;
+	return v.x*v.x + v.y*v.y + v.z*v.z;
 }
 
 double cosangle(const VECTOR3 &veca,const VECTOR3 &vecb)
 {
-	return dotp(veca,vecb)/sqrt(length2(veca)*length2(vecb));
+	return dotp(veca,vecb)/sqrt(length2my(veca)*length2my(vecb));
 }
 
 void getinvrotmatrix(VECTOR3 arot, MATRIX3 *invrotmatrix)//arot not really a vector - see arot defn from vessel struct
