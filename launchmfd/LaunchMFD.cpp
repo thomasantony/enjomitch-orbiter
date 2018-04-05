@@ -47,7 +47,6 @@
 #include "LaunchMFD.h"
 #include "PluginLaunchMFD.hpp"
 #include "MFDDataLaunchMFD.hpp"
-#include "MessagingSender.h"
 #include <cmath>
 #include <sstream>
 #include "localisation.h"
@@ -110,8 +109,6 @@ MFD_RETURN_TYPE LaunchMFD::Update (MyDC hDC)
     //mm.ModMsgPut("InstantaneousBurnTime", 50.0);
     //mm.ModMsgPut("dv", 50.0);
 
-    // Sound can be connected only within Update
-    m_sound.Connect( "LaunchMFD_Enjo, lol!" ); // A unique identifier
     // Update all ship's variables
     m_data->Update();
     m_data->peg.GetTargetPitch(); // Get TMECO
@@ -211,7 +208,7 @@ void LaunchMFD::SwitchMode()
 void LaunchMFD::SwitchHUD()
 {
     m_data->hud = ! m_data->hud;
-    m_sound.PlaySound( m_data->hud ? HUD_ENABLED : HUD_DISABLED );
+    m_sound.PlayWave( m_data->hud ? HUD_ENABLED : HUD_DISABLED );
 }
 
 void LaunchMFD::SwitchAutopilot()
@@ -240,7 +237,7 @@ void LaunchMFD::SwitchAzimuth()
 void LaunchMFD::SwitchSound()
 {
     m_beep = ! m_beep;
-    if ( m_beep ) m_sound.PlaySound(BEEP_ENABLED);
+    if ( m_beep ) m_sound.PlayWave(BEEP_ENABLED);
 }
 void LaunchMFD::SwitchGreatCircleUse()
 {
@@ -278,7 +275,7 @@ void LaunchMFD::IncreaseInclination()
     if ( incl > PI - fabs(lat) )   incl = PI - fabs(lat) - SMALL_DOUBLE;
     if ( m_data->tgt_set )
     {
-        m_sound.PlaySound(TARGET_MANUAL);
+        m_sound.PlayWave(TARGET_MANUAL);
         m_data->tgt_set = false;
     }
     m_data->SetTargetStr( MANUAL, MANUAL );
@@ -291,7 +288,7 @@ void LaunchMFD::DecreaseInclination()
     if ( incl < fabs(lat) )     incl = fabs(lat) + SMALL_DOUBLE;
     if ( m_data->tgt_set )
     {
-        m_sound.PlaySound(TARGET_MANUAL);
+        m_sound.PlayWave(TARGET_MANUAL);
         m_data->tgt_set = false;
     }
     m_data->SetTargetStr( MANUAL, MANUAL );
@@ -482,18 +479,18 @@ void LaunchMFD::CheckErrorExcess()
     {
         if (m_data->CutEngines == false && m_data->launched)
         {
-            if( m_beep ) m_sound.PlaySoundOnce(BEEP);
+            if( m_beep ) m_sound.PlayWaveOnce(BEEP);
         }
     }
-    else m_sound.ResetSoundOnce(BEEP);
+    else m_sound.ResetWaveOnce(BEEP);
 }
 
 void LaunchMFD::ReactOnShipStatus()
 {
     if ( m_data->half_ov_reached )
-        m_sound.PlaySoundOnce(HALF_ORBITAL_VEL);
+        m_sound.PlayWaveOnce(HALF_ORBITAL_VEL);
     if ( ! m_data->launched )
-        m_sound.ResetSoundOnce(HALF_ORBITAL_VEL);
+        m_sound.ResetWaveOnce(HALF_ORBITAL_VEL);
 }
 
 void LaunchMFD::ReactOnReachingOrbit(MyDC hDC)
@@ -502,16 +499,16 @@ void LaunchMFD::ReactOnReachingOrbit(MyDC hDC)
     {
         MFDTextCalculator c(W, H);
         MFDTextOut(hDC, 0, c.Y(12), RED, CUT_YOUR_ENGINES);
-        m_sound.PlaySoundOnce(CUT_ENGINES);
+        m_sound.PlayWaveOnce(CUT_ENGINES);
     }
     else
-        m_sound.ResetSoundOnce(CUT_ENGINES);
+        m_sound.ResetWaveOnce(CUT_ENGINES);
 }
 
 void LaunchMFD::SendModuleMessages()
 {
     int iTgt = m_data->GetTargetHandleIndex();
-    MessagingSender().ModMsgPut("TargetObjectIndex", iTgt);
+    m_mext.Put("TargetObjectIndex", iTgt);
 }
 
 void LaunchMFD::DrawErrorAndMarks(MyDC hDC, const int status)

@@ -68,7 +68,7 @@ bool DialogPID::clbkPIDTuningXY(void *id, char *str, void *usrdata)
         else
             data->m_pidAP.SetSpaceXY( PID(kp, kd, ki ) );
 
-        cLaunchMFD->GetSound().PlaySound(TARGET_MANUAL);
+        cLaunchMFD->GetSound().PlayWave(TARGET_MANUAL);
     }
     else return (false);
 
@@ -88,7 +88,7 @@ bool DialogPID::clbkPIDTuningBank(void *id, char *str, void *usrdata)
         else
             data->m_pidAP.SetSpaceBank( PID(kp, kd, ki) );
 
-        cLaunchMFD->GetSound().PlaySound(TARGET_MANUAL);
+        cLaunchMFD->GetSound().PlayWave(TARGET_MANUAL);
     }
     else return (false);
 

@@ -1,5 +1,4 @@
 #include "DataSourceDummy.h"
-#include <EnjoLib/ModuleMessagingExt.hpp>
 #include "MFDDataBurnTime.h"
 
 using namespace EnjoLib;
@@ -11,9 +10,8 @@ DataSourceDummy::DataSourceDummy()
 
 bool DataSourceDummy::GetFromMM(MFDDataBurnTime * data)
 {
-    ModuleMessagingExt mm;
-    if (mm.ModMsgGet(GetName(), "dv", &m_dv) &&
-        mm.ModMsgGet(GetName(), "InstantaneousBurnTime", &m_ibt)) {
+	if (data->m_mmextBas.Get(GetName(), "dv", &m_dv) &&
+        data->m_mmextBas.Get(GetName(), "InstantaneousBurnTime", &m_ibt)) {
         // Received Dummy (Launch MFD)
         data->velVector = GetVelVec(); // Testing
       return true;

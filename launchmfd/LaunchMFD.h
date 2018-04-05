@@ -50,6 +50,7 @@
 #include "globals.h"
 #include "Utils/Pens.h"
 #include "HUD/HUDDrawer.hpp"
+#include "MessagingSender.h"
 
 #include <vector>
 #include <string>
@@ -109,6 +110,7 @@ public:
      - for example, in callbacks. */
     MFDDataLaunchMFD * GetData();
     const MFDDataLaunchMFD * GetData() const;
+    const MessagingSender & GetMMExt() const { return m_mext; }
 
     void WriteStatus (FILEHANDLE scn) const;
     void ReadStatus (FILEHANDLE scn);
@@ -175,6 +177,7 @@ private:
     const static double MAX_ERROR;
 
     Pens m_pens;
+	MessagingSender m_mext;
 };
 
 #endif // !__LAUNCHMFD_H

@@ -1,7 +1,5 @@
 #include "DataSourceLagrange.h"
-#include <EnjoLib/ModuleMessagingExt.hpp>
-
-using namespace EnjoLib;
+#include "MFDDataBurnTime.h"
 
 DataSourceLagrange::DataSourceLagrange()
 : m_ibt(0)
@@ -12,9 +10,8 @@ DataSourceLagrange::DataSourceLagrange()
 
 bool DataSourceLagrange::GetFromMM(MFDDataBurnTime * data)
 {
-    ModuleMessagingExt mm;
-    if (mm.ModMsgGet(GetName(), "TargetVelocity", &m_vel) &&
-        mm.ModMsgGet(GetName(), "InstantaneousBurnTime", &m_ibt)) {
+    if (data->m_mmextBas.Get(GetName(), "TargetVelocity", &m_vel) &&
+        data->m_mmextBas.Get(GetName(), "InstantaneousBurnTime", &m_ibt)) {
         // Received LagrangeMFD
       return true;
     } else {

@@ -73,7 +73,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDir)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -175,7 +175,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK35.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDir2006)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -275,7 +275,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDir)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -375,7 +375,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDirBETA)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -475,7 +475,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDir)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -571,7 +571,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDirBETA)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -673,7 +673,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDir)Modules\Plugin\LaunchMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -773,7 +773,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessagingExt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib VesselHooking.lib"
 				OutputFile="$(OrbiterDir)Modules\Plugin\LaunchMFD_pl.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

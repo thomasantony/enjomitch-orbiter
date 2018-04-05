@@ -35,10 +35,10 @@ namespace MFDGoodies
 {
 /// Sound class
 /**
-A handy C++ wrapper over Dan's MFD sound library.
+A minimalistic sound playing wrapper over Windows API
 The sound is played by passing SoundSampleIDEnum to PlaySound().
 The sound samples for this class should be defined in SoundMap.
-\warning To enable the sound, you need to call Connect() from MyMFD::Update() method!
+\warning You need to link your project against winmm.lib
 */
 class Sound
 {
@@ -51,17 +51,15 @@ public:
     /// Destructor
     virtual ~Sound();
 
-    void Reinit();
-
     /// Plays sound sample
     /** Plays a given sound only if the object hasn't been instructed not to play the sound
     by calling SetUseSound() with false argument.
     \param sample - sound sample defined in enum and mapped to file in SoundMap
     */
-    void PlaySound( const int sample );
-    void PlaySoundOnce( const int sample );
-    void ResetSoundOnce( const int sample );
-    void ResetSoundsOnce();
+    void PlayWave( const int sample );
+    void PlayWaveOnce( const int sample );
+    void ResetWaveOnce( const int sample );
+    void ResetWavesOnce();
 
     /// Sets sound to using or not using
     /** Sets sound to using or not using
@@ -73,22 +71,10 @@ public:
     /** A convenience method created, so that you don't need to store the choice externally */
     void SwitchUseSound();
 
-    /// Connect the MFD to OrbitrSound system
-    /** To actually enable the sound, this method must be called from MyMFD::Update().
-    It's internals are executed only once.
-    \param uniqueName - a unique ID of your MFD. Can be anything that you think is unique enough
-    */
-    void Connect( const char * uniqueName );
-
 private:
 	bool IsUsingSound();
-
-    const static int m_maxSlotID;
     const SoundMap & m_soundMap;
     std::map<int, bool> m_soundPlayOnceFlags;
-    int m_soundSystemID;
-    int m_numReinited;
-    int m_currentlyLoadedSampleOnLastSlot;
     bool m_useSoundUser;
 };
 }

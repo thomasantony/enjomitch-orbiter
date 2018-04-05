@@ -27,6 +27,7 @@
 #define SOUNDMAP_HPP_INCLUDED
 
 #include <map>
+#include <string>
 
 namespace EnjoLib
 {
@@ -37,7 +38,7 @@ namespace MFDGoodies
 You need to derive from this class and put your mapping in constructor.
 Then you need to store the derived map and pass it to Sound.
 */
-class SoundMap : public std::map<int, char *>
+	class SoundMap : public std::map<int, const char *>
 {
 public:
     /// Default constructor

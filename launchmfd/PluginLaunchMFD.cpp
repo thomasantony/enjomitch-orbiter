@@ -125,7 +125,6 @@ PluginLaunchMFD::~PluginLaunchMFD()
 void PluginLaunchMFD::InitClient()
 {
     m_isFuelLimited = CfgCheckIsFuelLimited();
-    m_sound.Reinit();
     m_sound.SetUseSound( CfgCkeckVariable("USE_SOUND") );
 }
 

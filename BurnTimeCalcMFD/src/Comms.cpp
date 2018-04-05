@@ -2,7 +2,7 @@
 
 #include "globals.h"
 //#include <EnjoLib/ModuleMessaging.hpp>
-#include <EnjoLib/ModuleMessagingExt.hpp>
+//#include <EnjoLib/ModuleMessagingExt.hpp>
 
 #include "MFDDataBurnTime.h"
 

@@ -1,7 +1,5 @@
 #include "DataSourceTransX.h"
-#include <EnjoLib/ModuleMessagingExt.hpp>
-
-using namespace EnjoLib;
+#include "MFDDataBurnTime.h"
 
 DataSourceTransX::DataSourceTransX()
 : m_ibt(0)
@@ -11,12 +9,11 @@ DataSourceTransX::DataSourceTransX()
 
 bool DataSourceTransX::GetFromMM(MFDDataBurnTime * data)
 {
-    ModuleMessagingExt mm;
-    if (mm.ModMsgGet(GetName(), "InstantaneousBurnTime", &m_ibt))
+    if (data->m_mmextBas.Get(GetName(), "InstantaneousBurnTime", &m_ibt))
     {
-        if (mm.ModMsgGet(GetName(), "dv", &m_dv))
+        if (data->m_mmextBas.Get(GetName(), "dv", &m_dv))
         {
-            mm.ModMsgGet(GetName(), "TargetVelocity", &m_vel); // Try getting the target vector as well
+            data->m_mmextBas.Get(GetName(), "TargetVelocity", &m_vel); // Try getting the target vector as well
         // Received TransX
             return true;
         }

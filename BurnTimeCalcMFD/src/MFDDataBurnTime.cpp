@@ -12,6 +12,8 @@
 const int MFDDataBurnTime::numEngines = 6;
 const THGROUP_TYPE MFDDataBurnTime::groups[numEngines]={THGROUP_MAIN,THGROUP_HOVER,THGROUP_RETRO, THGROUP_ATT_FORWARD, THGROUP_ATT_UP, THGROUP_ATT_BACK};
 const char MFDDataBurnTime::group_names[numEngines][7]={"Main","Hover","Retro","RCS FW","RCS UP","RCS RE"};
+const MMExt2::Advanced MFDDataBurnTime::m_mmextAdv("BTC");
+const MMExt2::Basic    MFDDataBurnTime::m_mmextBas("BTC");
 
 MFDDataBurnTime::MFDDataBurnTime(VESSEL * vessel)
 : MFDData(vessel)

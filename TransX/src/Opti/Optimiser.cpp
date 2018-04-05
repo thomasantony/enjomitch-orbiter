@@ -53,7 +53,7 @@ void Optimiser::SingleVar() const
         //EnjoLib::BinSearchOpti binSearch(cstr.lower, cstr.upper, cstr.precision);
         //EnjoLib::Result<double> xopt = binSearch.Run(optiFunction);
         EnjoLib::OptiType optiType = EnjoLib::OPTI_BRENT;
-        optiType = EnjoLib::OPTI_BIN_SEARCH;
+        //optiType = EnjoLib::OPTI_BIN_SEARCH;
         std::auto_ptr<EnjoLib::IOptiAlgo> optiAlgo = EnjoLib::OptiFactory::Create(optiType, cstr.lower, cstr.upper, cstr.precision);
         EnjoLib::Result<double> xopt = optiAlgo->Run(optiFunction);
         if (!xopt.isSuccess)

@@ -3,6 +3,8 @@
 
 #include <multipleVesselsMFD/MFDData.hpp>
 #include <Orbitersdk.h>
+#include <MMExt2_Advanced.hpp>
+#include <MMExt2_Basic.hpp>
 #include <Orbiter/AutopilotRotation.hpp>
 #include <vector>
 #include "DataSourceBase.h"
@@ -70,6 +72,9 @@ public:
 
 
     std::vector<DataSourceBase*> m_dataSources;
+
+	static const MMExt2::Advanced m_mmextAdv;
+	static const MMExt2::Basic	 m_mmextBas;
 
 protected:
 private:

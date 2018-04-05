@@ -1,7 +1,6 @@
 #include "DataSourceBaseSync.h"
 #include "MFDDataBurnTime.h"
 #include "BaseSyncExports.hpp"
-#include <EnjoLib/ModuleMessagingExt.hpp>
 
 using namespace EnjoLib;
 
@@ -12,13 +11,12 @@ DataSourceBaseSync::DataSourceBaseSync()
 
 bool DataSourceBaseSync::GetFromMM(MFDDataBurnTime * data)
 {
-    ModuleMessagingExt mmext;
     bool receivingBS = false;
 
     if (data->BS_burn != NULL) {
       receivingBS = data->BS_burn->dataValid;
     } else {
-      receivingBS = mmext.ModMsgGetByRef(GetName(),"BaseSyncBurn",1,&(data->BS_burn));
+		receivingBS = data->m_mmextAdv.GetMMStruct(GetName(), "BaseSyncBurn", &data->BS_burn, BASESYNC_EXPORT_BURN_VER, sizeof(BaseSyncExportBurnStruct));
       if (receivingBS) receivingBS = data->BS_burn->dataValid;
     }
 

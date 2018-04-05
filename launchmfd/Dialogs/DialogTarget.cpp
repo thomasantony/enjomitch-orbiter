@@ -5,7 +5,8 @@
 #include <MFDSound++/Sound.hpp>
 #include <Orbiter/SpaceMathKOST.hpp>
 #include <Math/GeneralMath.hpp>
-#include <EnjoLib/ModuleMessagingExt.hpp>
+//#include <EnjoLib/ModuleMessagingExt.hpp>
+//#include "../MessagingSender.h"
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include "../Utils/Targeting.hpp"
 
@@ -34,8 +35,8 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
     else if (tgtLowerCase == "tx" || tgtLowerCase == "transx")
     {
         double incl = 0, lan = 0;
-        if (ModuleMessagingExt().ModMsgGet("TransX", "Incl", &incl) &&
-            ModuleMessagingExt().ModMsgGet("TransX", "LAN", &lan))
+        if (cLaunchMFD->GetMMExt().Get("TransX", "Incl", &incl) &&
+            cLaunchMFD->GetMMExt().Get("TransX", "LAN", &lan))
         {
             tgt = UpdateProbe( data, incl, lan, FRAME_ECL );
             dispTarget = "TransX";
@@ -91,7 +92,7 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
                 }
                 data->GetTgtParam().incl = manIncl * RAD;
                 data->SetTargetStr( MANUAL, MANUAL );
-                cLaunchMFD->GetSound().PlaySound(TARGET_MANUAL);
+                cLaunchMFD->GetSound().PlayWave(TARGET_MANUAL);
                 data->tgt_set = true;
                 return(true);
             }
@@ -113,12 +114,12 @@ bool DialogTarget::clbk(void *id, char *str, void *usrdata)
         if ( fabs(lat) < elopTgt.el.i ) // All fine
         {
             SetTarget(data, hTgt, elopTgt.el.i, dispTarget);
-            cLaunchMFD->GetSound().PlaySound(TARGET_SELECTED);
+            cLaunchMFD->GetSound().PlayWave(TARGET_SELECTED);
             data->m_isTgtLowInclination = false;
         }
         else // Target's inclination is lower than your latitude. We'll try to target a similar dummy
         {
-            cLaunchMFD->GetSound().PlaySound(TARGET_INCL_LOWER_THAN_LAT);
+            cLaunchMFD->GetSound().PlayWave(TARGET_INCL_LOWER_THAN_LAT);
             EnjoLib::GeneralMath gm;
             // Increase the absolute value of latitude, to set it as new inclination,
             // which is as close to your latitude as possible.

@@ -106,13 +106,13 @@ vector< const ValueWithDescription > DirectAscentPage::PrepareData(MFDDataLaunch
             if ( ! data->m_daSynchroOrbit && data->peg.IsValid() )
                 vars.push_back( ValueWithDescription( GUIDANCE_HAS_CONVERGED, true) );
 
-            m_sound.ResetSoundOnce( BEEP_DA );
+            m_sound.ResetWaveOnce( BEEP_DA );
         }
         else
         {
             const double & dt = data->pegDA.GetDeltaT();
             if ( 0 < dt && dt < 10 )
-                m_sound.PlaySoundOnce( BEEP_DA );
+                m_sound.PlayWaveOnce( BEEP_DA );
         }
     }
     return vars;

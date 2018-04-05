@@ -31,7 +31,7 @@
 #include "basefunction.h"
 #include "shiplist.h"
 #include "Opti/Optimiser.h"
-#include <EnjoLib/ModuleMessagingExt.hpp>
+//#include <EnjoLib/ModuleMessagingExt.hpp>
 
 liststring::liststring(bool manageme) : listelement(manageme)
 {

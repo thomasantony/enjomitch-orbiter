@@ -4,7 +4,7 @@
 #include <MFDSound++/Sound.hpp>
 #include "../Sound/SoundSampleIDEnum.hpp"
 #include <Math/MaxMin.hpp>
-#include <EnjoLib/ModuleMessagingExt.hpp>
+//#include <EnjoLib/ModuleMessagingExt.hpp>
 #include <algorithm>
 
 using namespace EnjoLib;
@@ -20,12 +20,12 @@ bool DialogAlt::clbk(void *id, char *str, void *usrdata)
     if (input == "tx" || input == "transx")
     {
         double rad = 0;
-        if (ModuleMessagingExt().ModMsgGet("TransX", "PeRadius", &rad))
+        if (cLaunchMFD->GetMMExt().Get("TransX", "PeRadius", &rad))
         {
             PeA = rad - oapiGetSize(data->hRef);
             if (PeA < 0) return false;
             data->PeA = data->ApA = PeA;
-            cLaunchMFD->GetSound().PlaySound(ALTITUDE_SET);
+            cLaunchMFD->GetSound().PlayWave(ALTITUDE_SET);
         }
         else
             return false;
@@ -36,13 +36,13 @@ bool DialogAlt::clbk(void *id, char *str, void *usrdata)
         MaxMin<double> maxMinApses(PeA,ApA);
         data->PeA = maxMinApses.GetMin() * 1000;
         data->ApA = maxMinApses.GetMax() * 1000;
-        cLaunchMFD->GetSound().PlaySound(ALTITUDE_SET);
+        cLaunchMFD->GetSound().PlayWave(ALTITUDE_SET);
     }
     else if (sscanf_s(str, "%lf",&PeA) == 1)
     {
         if (PeA < 0) return false;
         data->PeA = data->ApA = PeA * 1000;
-        cLaunchMFD->GetSound().PlaySound(ALTITUDE_SET);
+        cLaunchMFD->GetSound().PlayWave(ALTITUDE_SET);
     }
     else if (!_strnicmp(str, "a", 1))
     {
@@ -50,7 +50,7 @@ bool DialogAlt::clbk(void *id, char *str, void *usrdata)
         if (alt != 0)
         {
             data->PeA = data->ApA = alt;
-            cLaunchMFD->GetSound().PlaySound(ALTITUDE_AUTO);
+            cLaunchMFD->GetSound().PlayWave(ALTITUDE_AUTO);
         }
         else return (false);
     }
@@ -66,7 +66,7 @@ bool DialogAlt::clbk(void *id, char *str, void *usrdata)
         v->GetElements(NULL, e, &op, 0,FRAME_EQU);
         double rad = data->GetMovParams().m_rad;
         data->PeA = data->ApA = (op.PeD + op.ApD) / 2 - rad;
-        cLaunchMFD->GetSound().PlaySound(ALTITUDE_SET);
+        cLaunchMFD->GetSound().PlayWave(ALTITUDE_SET);
     }
     else return (false);
 

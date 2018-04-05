@@ -1,7 +1,5 @@
 #include "DataSourceBaseSyncSimple.h"
-#include <EnjoLib/ModuleMessagingExt.hpp>
-
-using namespace EnjoLib;
+#include "MFDDataBurnTime.h"
 
 DataSourceBaseSyncSimple::DataSourceBaseSyncSimple()
 : m_ibt(0)
@@ -11,10 +9,9 @@ DataSourceBaseSyncSimple::DataSourceBaseSyncSimple()
 
 bool DataSourceBaseSyncSimple::GetFromMM(MFDDataBurnTime * data)
 {
-    ModuleMessagingExt mm;
-    if (mm.ModMsgGet(GetName(), "dv", &m_dv) &&
-        mm.ModMsgGet(GetName(), "InstantaneousBurnTime", &m_ibt) &&
-        mm.ModMsgGet(GetName(), "Orientation", &m_orientation)
+    if (data->m_mmextBas.Get(GetName(), "dv", &m_dv) &&
+        data->m_mmextBas.Get(GetName(), "InstantaneousBurnTime", &m_ibt) &&
+        data->m_mmextBas.Get(GetName(), "Orientation", &m_orientation)
         ) {
         // Got everything
       return true;
