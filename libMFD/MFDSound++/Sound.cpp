@@ -58,13 +58,13 @@ void Sound::SwitchUseSound()
     m_useSoundUser = ! m_useSoundUser;
 }
 
-bool Sound::IsUsingSound()
+bool Sound::IsUsingSound() const
 {
     // Do we have a go for using sound from user?
     return m_useSoundUser;
 }
 
-void Sound::PlayWave(const int sample)
+void Sound::PlayWave(const int sample) const
 {
     if ( ! IsUsingSound() ) // Don't play amything, if instructed so
         return;
@@ -90,8 +90,7 @@ void Sound::PlayWave(const int sample)
 void Sound::PlayWaveOnce( const int sample )
 {
     if (m_soundPlayOnceFlags.empty())
-        for (SoundMap::const_iterator it = m_soundMap.begin(); it != m_soundMap.end(); ++it)
-            m_soundPlayOnceFlags[it->first] = false;
+        InitPlayOnceFlags();
 
     std::map<int, bool>::iterator it = m_soundPlayOnceFlags.find(sample);
     if ( it == m_soundPlayOnceFlags.end() )
@@ -99,8 +98,8 @@ void Sound::PlayWaveOnce( const int sample )
     else
     {
         if ( ! it->second )
-            PlayWave( sample );
-        it->second = true;
+            PlayWave( sample ); // Play only once
+        it->second = true;      // set the flag not to play any more until unset
     }
 }
 
@@ -115,5 +114,11 @@ void Sound::ResetWavesOnce()
 {
     for (std::map<int, bool>::iterator it = m_soundPlayOnceFlags.begin(); it != m_soundPlayOnceFlags.end(); ++it)
         it->second = false;
+}
+
+void Sound::InitPlayOnceFlags()
+{
+    for (SoundMap::const_iterator it = m_soundMap.begin(); it != m_soundMap.end(); ++it)
+        m_soundPlayOnceFlags[it->first] = false;
 }
 

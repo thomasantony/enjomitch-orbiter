@@ -36,19 +36,23 @@ namespace MFDGoodies
 /// Sound map
 /** Maps a sample id (an enum) onto a filename of sound sample.
 You need to derive from this class and put your mapping in constructor.
-Then you need to store the derived map and pass it to Sound.
+Then you need to store the derived map and pass it to Sound class.
 */
-	class SoundMap : public std::map<int, const char *>
+	class SoundMap : public std::map<int, std::string>
 {
 public:
     /// Default constructor
     /** The actual mapping is performed here like in the following example:
     <p>
-    this->operator[]( HALF_ORBITAL_VEL ) = "Sound/LaunchMFDEnjo/HalfOV.wav";<br>
-    this->operator[]( TARGET_MANUAL ) = "Sound/LaunchMFDEnjo/ManualTarget.wav";
+    const std::string dir = "Sound/LaunchMFDEnjo/";
+    AddSample(HALF_ORBITAL_VEL, dir + "HalfOV.wav");<br>
+    AddSample(TARGET_MANUAL,    dir + "ManualTarget.wav");
     </p>
     */
     SoundMap();
+
+protected:
+    void AddSample(int enumId, const std::string & relativeFileName);
 };
 }
 }

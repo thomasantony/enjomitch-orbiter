@@ -36,18 +36,19 @@
 
 SoundMapLaunchMFD::SoundMapLaunchMFD()
 {
-    this->operator[]( HALF_ORBITAL_VEL ) =				"Sound/LaunchMFDEnjo/HalfOV.wav";
-    this->operator[]( TARGET_MANUAL ) =					"Sound/LaunchMFDEnjo/ManualTarget.wav";
-    this->operator[]( TARGET_SELECTED ) =				"Sound/LaunchMFDEnjo/TargetSelected.wav";
-    this->operator[]( CUT_ENGINES ) =					"Sound/LaunchMFDEnjo/CutEngines.wav";
-    this->operator[]( ALTITUDE_SET ) =					"Sound/LaunchMFDEnjo/alt_set.wav";
-    this->operator[]( ALTITUDE_AUTO ) =					"Sound/LaunchMFDEnjo/AltitudeAutomatic.wav";
-    this->operator[]( HUD_ENABLED ) =					"Sound/LaunchMFDEnjo/hud_en.wav";
-    this->operator[]( HUD_DISABLED ) =					"Sound/LaunchMFDEnjo/hud_dis.wav";
-    this->operator[]( BEEP_ENABLED ) =					"Sound/LaunchMFDEnjo/beep_en.wav";
-    this->operator[]( VOICE_ENABLED ) =					"Sound/LaunchMFDEnjo/voice_en.wav";
-    this->operator[]( VOICE_DISABLED ) =				"Sound/LaunchMFDEnjo/voice_dis.wav";
-    this->operator[]( BEEP ) =							"Sound/LaunchMFDEnjo/beep_am_light22.wav";
-    this->operator[]( BEEP_DA ) =						"Sound/LaunchMFDEnjo/da_available.wav";
-    this->operator[]( TARGET_INCL_LOWER_THAN_LAT ) =	"Sound/LaunchMFDEnjo/TgtInclLessThanLat.wav";
+    const std::string dir = "Sound/LaunchMFDEnjo/";
+    AddSample( HALF_ORBITAL_VEL , 			dir + "HalfOV.wav");
+    AddSample( TARGET_MANUAL , 				dir + "ManualTarget.wav");
+    AddSample( TARGET_SELECTED , 			dir + "TargetSelected.wav");
+    AddSample( CUT_ENGINES , 				dir + "CutEngines.wav");
+    AddSample( ALTITUDE_SET , 				dir + "alt_set.wav");
+    AddSample( ALTITUDE_AUTO , 				dir + "AltitudeAutomatic.wav");
+    AddSample( HUD_ENABLED , 				dir + "hud_en.wav");
+    AddSample( HUD_DISABLED , 				dir + "hud_dis.wav");
+    AddSample( BEEP_ENABLED , 				dir + "beep_en.wav");
+    AddSample( VOICE_ENABLED , 				dir + "voice_en.wav");
+    AddSample( VOICE_DISABLED , 			dir + "voice_dis.wav");
+    AddSample( BEEP , 						dir + "beep_am_light22.wav");
+    AddSample( BEEP_DA , 					dir + "da_available.wav");
+    AddSample( TARGET_INCL_LOWER_THAN_LAT , dir + "TgtInclLessThanLat.wav");
 }

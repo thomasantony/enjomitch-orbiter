@@ -56,9 +56,24 @@ public:
     by calling SetUseSound() with false argument.
     \param sample - sound sample defined in enum and mapped to file in SoundMap
     */
-    void PlayWave( const int sample );
+    void PlayWave( const int sample ) const;
+
+    /// Plays sound sample only once
+    /** Plays sound sample only once, setting a flag, to ensure that it won't repeat the sample
+    until instructed to do so with ResetWaveOnce().
+    \param sample - sound sample defined in enum and mapped to file in SoundMap
+    */
     void PlayWaveOnce( const int sample );
+
+    /// Resets the Play Once flag set by PlayWaveOnce()
+    /** Resets the Play Once flag set by PlayWaveOnce()
+    \param sample - sound sample defined in enum and mapped to file in SoundMap
+    */
     void ResetWaveOnce( const int sample );
+
+    /// Resets all the Play Once flags set by PlayWaveOnce()
+    /** Resets all the Play Once flags set by PlayWaveOnce()
+    */
     void ResetWavesOnce();
 
     /// Sets sound to using or not using
@@ -72,7 +87,8 @@ public:
     void SwitchUseSound();
 
 private:
-	bool IsUsingSound();
+	bool IsUsingSound() const;
+	void InitPlayOnceFlags();
     const SoundMap & m_soundMap;
     std::map<int, bool> m_soundPlayOnceFlags;
     bool m_useSoundUser;

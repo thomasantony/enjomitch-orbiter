@@ -30,3 +30,8 @@ using namespace EnjoLib::MFDGoodies;
 SoundMap::SoundMap()
 {
 }
+
+void SoundMap::AddSample(int enumId, const std::string & relativeFileName)
+{
+    this->operator[]( enumId ) = relativeFileName;
+}
