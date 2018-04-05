@@ -168,6 +168,9 @@
 		<Unit filename="../lib/Systems/SystemsConverter.hpp" />
 		<Unit filename="../lib/Systems/Vect3.cpp" />
 		<Unit filename="../lib/Systems/Vect3.hpp" />
+		<Unit filename="src/BurnTimeCalcMFD.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="src/BurnTimeMFD.cpp" />
 		<Unit filename="src/BurnTimeMFD.h" />
 		<Unit filename="src/Comms.cpp" />
@@ -194,7 +197,9 @@
 		<Unit filename="src/MFDDataBurnTime.h" />
 		<Unit filename="src/PluginBurnTime.cpp" />
 		<Unit filename="src/PluginBurnTime.h" />
+		<Unit filename="src/afxres.h" />
 		<Unit filename="src/globals.h" />
+		<Unit filename="src/resource.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

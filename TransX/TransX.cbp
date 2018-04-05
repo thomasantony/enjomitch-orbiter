@@ -285,6 +285,9 @@
 		<Unit filename="src/Opti/OptimiserFactory.h" />
 		<Unit filename="src/Opti/VarConstraint.cpp" />
 		<Unit filename="src/Opti/VarConstraint.h" />
+		<Unit filename="src/TransX.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="src/TransXFunction.cpp" />
 		<Unit filename="src/TransXFunction.h" />
 		<Unit filename="src/basefunction.cpp" />

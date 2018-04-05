@@ -134,9 +134,6 @@
 			<Add library="user32.lib" />
 			<Add library="gdi32.lib" />
 		</Linker>
-		<Unit filename="../../libMFD/MFDButtonPage.hpp" />
-		<Unit filename="../../libMFD/MFDTextCalculator.hpp" />
-		<Unit filename="../../libMFD/MyDC.h" />
 		<Unit filename="../../libMFD/Utils/MFDTextCalculator.cpp" />
 		<Unit filename="../../libMFD/Utils/MFDTextCalculator.hpp" />
 		<Unit filename="HUDDrawer.cpp" />
