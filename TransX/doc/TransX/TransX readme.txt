@@ -18,8 +18,8 @@ Installing
 ----------
 
 Copy the enclosed dll file into the modules/plugin directory of your Orbiter installation. Select the module on the Modules tab of the Orbiter Launchpad, and activate it.
-You also need to download and install ModuleMessaging SDK, available here:
-http://www.orbithangar.com/searchid.php?ID=6412
+You also need to download and install ModuleMessagingExt SDK, available here:
+https://www.orbithangar.com/searchid.php?ID=6889
 as well as Visual C++ Redistributable Packages for Visual Studio 2013:
 http://www.microsoft.com/en-us/download/details.aspx?id=40784
 
