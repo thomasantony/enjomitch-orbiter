@@ -573,27 +573,28 @@ void LaunchMFD::PrintTargetParamsForAzimuthMode(MyDC hDC)
         return;
     COLORREF colour;
     unsigned int line_offset = 1, xoffset = 23;
+    const int margin = 1;
     double lat = m_data->GetMovParams().m_lat;
     MFDTextCalculator c(W, H);
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, CURRENT_LATITUDE);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, CURRENT_LATITUDE);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.2lf°", lat*DEG);
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, SELECTED_TARGET);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, SELECTED_TARGET);
     MFDTextOut(hDC, c.X(strlen(SELECTED_TARGET)), c.Y(line_offset++), GREEN, m_data->GetTargetDisplStr());
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, DESIRED_INCLINATION);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, DESIRED_INCLINATION);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.2lf°", m_data->GetTgtParam().incl*DEG);
     const double planeAngle = SpaceMathOrbiter().GetPlaneAngle( m_data->GetVessel(), m_data->GetTargetHandle() );
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, RINC);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, RINC);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.2lf°", planeAngle * DEG);
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, PEA);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, PEA);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.1lf km", m_data->PeA / 1000);
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, APA);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, APA);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.1lf km", m_data->ApA / 1000);
     line_offset++;
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, INTERSECTION_TIME);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, INTERSECTION_TIME);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.1lf s", m_data->GetTgtParam().timeToNode);
-    MFDTextOut(hDC, 0,              c.Y(line_offset),   YELLOW, NEXT_LAUNCH_TIME);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset),   YELLOW, NEXT_LAUNCH_TIME);
     MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset++), GREEN, "%.1lf s", m_data->GetShipVariables().m_next_launch_time);
-    MFDTextOut(hDC, 0,              c.Y(line_offset), YELLOW, TIME_TO_MECO);
+    MFDTextOut(hDC, c.X(margin),    c.Y(line_offset), YELLOW, TIME_TO_MECO);
     if (m_data->GetTMECO() < 0) 	colour = RED;
     else 										colour = GREEN;
     MFDTextOut(hDC, c.X(xoffset), c.Y(line_offset++), colour, "%.1lf s", m_data->GetTMECO());
@@ -604,16 +605,17 @@ void LaunchMFD::PrintResults(MyDC hDC)
     unsigned int i = 0;
     int line_offset = 14; // start point of the below strings
     COLORREF colour;
-    int xoffset = 21;
+    const int xoffset = 21;
+    const int margin = 1;
     MFDTextCalculator c(W, H);
 
-    MFDTextOut(hDC, 0,              c.Y(line_offset), YELLOW, HEADING_ERROR);
+    MFDTextOut(hDC, c.X(margin),  c.Y(line_offset), YELLOW, HEADING_ERROR);
     if (fabs(error) <= MAX_ERROR) 		colour = GREY;
     else 								colour = GREEN;
     MFDTextOut(hDC, c.X(strlen(HEADING_ERROR)), c.Y(line_offset), colour, "%.2lf°", error);
-    MFDTextOut(hDC, c.X(xoffset),   c.Y(line_offset), YELLOW, CURRENT);
+    MFDTextOut(hDC, c.X(xoffset), c.Y(line_offset), YELLOW, CURRENT);
     MFDTextOut(hDC, c.X(xoffset + strlen(CURRENT)), c.Y(line_offset++), GREEN, "%.2lf°", heading * DEG);
-    MFDTextOut(hDC, 0,              c.Y(line_offset), YELLOW, PITCH_ERROR);
+    MFDTextOut(hDC, c.X(margin),  c.Y(line_offset), YELLOW, PITCH_ERROR);
     if (fabs(pitchError) <= MAX_ERROR) 	colour = GREY;
     else 								colour = GREEN;
     MFDTextOut(hDC, c.X(strlen(PITCH_ERROR)), c.Y(line_offset), colour, "%.2lf°", pitchError);
@@ -621,14 +623,14 @@ void LaunchMFD::PrintResults(MyDC hDC)
     MFDTextOut(hDC, c.X(xoffset + strlen(CURRENT)), c.Y(line_offset), GREEN, "%.2lf°", pV->GetPitch() * DEG);
 
     line_offset += 2;
-    MFDTextOut(hDC, 0, c.Y(line_offset++), YELLOW, REQUIRED_HEADING);
-    MFDTextOut(hDC, 0, c.Y(line_offset), YELLOW, NORTHERN);
+    MFDTextOut(hDC, c.X(margin), c.Y(line_offset++), YELLOW, REQUIRED_HEADING);
+    MFDTextOut(hDC, c.X(margin), c.Y(line_offset), YELLOW, NORTHERN);
     if (m_data->AzimuthLock == NORTHERN_AZIMUTH
             || (m_data->AzimuthLock == BOTH_AZIMUTHS && m_data->GetTgtParam().azFlag == NORTHERN_AZIMUTH))
         colour = GREY;
     else    colour = GREEN;
     MFDTextOut(hDC, c.X(strlen(NORTHERN)),  c.Y(line_offset++), colour, "%.2lf°", az * DEG);
-    MFDTextOut(hDC, 0,                      c.Y(line_offset), YELLOW, SOUTHERN);
+    MFDTextOut(hDC, c.X(margin),            c.Y(line_offset), YELLOW, SOUTHERN);
     if (m_data->AzimuthLock == SOUTHERN_AZIMUTH
             || (m_data->AzimuthLock == BOTH_AZIMUTHS && m_data->GetTgtParam().azFlag == SOUTHERN_AZIMUTH))
         colour = GREY;
@@ -637,7 +639,7 @@ void LaunchMFD::PrintResults(MyDC hDC)
 
     if(m_data->m_useOffplaneCorrector)
     {
-        MFDTextOut(hDC, 0, c.Y(line_offset), YELLOW, CORRECTION);
+        MFDTextOut(hDC, c.X(margin), c.Y(line_offset), YELLOW, CORRECTION);
         if(m_data->GetOffPlaneCorrector()->IsValid())
             MFDTextOut(hDC, c.X(strlen(CORRECTION)), c.Y(line_offset), GREEN, "%.2lf°", m_data->GetOffPlaneCorrector()->GetCorrectionAngle() * DEG)
             else
@@ -645,12 +647,12 @@ void LaunchMFD::PrintResults(MyDC hDC)
     }
 
     line_offset += 2;
-    MFDTextOut(hDC, 0, c.Y(line_offset), GREY, INCLINATION_ADJ_FACTOR);
+    MFDTextOut(hDC, c.X(margin), c.Y(line_offset), GREY, INCLINATION_ADJ_FACTOR);
     MFDTextOut(hDC, c.X(strlen(INCLINATION_ADJ_FACTOR)), c.Y(line_offset++), GREEN, "%.2lf°", m_data->InclinationFactor);
 
     std::string environment = m_data->IsInAtmosphere() ? ATMO : SPACE;
     if ( const AutopilotBase * ap = plugin->m_apMan.GetAP( m_data->GetAutopilotType() ) )
-        MFDTextOut(hDC, 0, c.Y(line_offset), GREY, (ap->GetIdentifier() + environment).c_str() );
+        MFDTextOut(hDC, c.X(margin), c.Y(line_offset), GREY, (ap->GetIdentifier() + environment).c_str() );
 }
 
 EnjoLib::MFDGoodies::Sound & LaunchMFD::GetSound()

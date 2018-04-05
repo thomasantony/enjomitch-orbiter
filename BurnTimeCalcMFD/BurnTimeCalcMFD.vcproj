@@ -617,6 +617,14 @@
 			</Filter>
 		</Filter>
 		<File
+			RelativePath=".\src\afxres.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\BurnTimeCalcMFD.rc"
+			>
+		</File>
+		<File
 			RelativePath=".\src\BurnTimeMFD.cpp"
 			>
 		</File>
@@ -762,6 +770,10 @@
 		</File>
 		<File
 			RelativePath="..\lib\Systems\Point.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\resource.h"
 			>
 		</File>
 		<File

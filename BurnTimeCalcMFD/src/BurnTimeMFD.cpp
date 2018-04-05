@@ -39,7 +39,9 @@
 // Version 2.9 by ADSWNJ (Copyright (c) 2016)
 //    Fixed text overwrite issue when in Target Mode and using invalid engine (i.e. doors closed or no propellant)
 //    Fixed bug when using invalid engine and docked (burns instantly complete, instead of stating invalid engine)
-//
+// Version 3.0 by Enjo (Copyright (c) 2018)
+//    Liberated from a direct linkage against ModuleMessagingExt. Now using dynamic linkage via LoadLibraryA
+//    Created resource files, thus moving the MFD away from Misc to MFD modes in Orbiter Launchpad
 
 // Released under the terms of the LGPL: http://www.gnu.org/licenses/lgpl.txt
 /*

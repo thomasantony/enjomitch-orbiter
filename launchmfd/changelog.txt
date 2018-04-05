@@ -1,5 +1,13 @@
 ﻿Launch MFD changelog
 
+v. 1.6.5 05-04-2018
+- Removed OrbiterSound dependency and using only own Sound class
+- Linking dynamically against ModuleMessagingExt via LoadLibrary - no fixed dependency anymore
+- Sorted out correct left margin for all MFD text
+
+v. 1.6.4 07-09-2016
+- replaced the legacy ModuleMessaging with ModuleMessagingExt
+
 v. 1.6.3 04-01-2015
 - Integration with RV_Orientation: Exposing "TargetObjectIndex" variable through ModuleMessaging, so that the RV_Orientation may automatically read it.
 
