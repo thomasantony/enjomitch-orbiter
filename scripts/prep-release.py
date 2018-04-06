@@ -101,9 +101,9 @@ addons = []
 #addon.AddFile1("Modules/Plugin/AbsoluteKillrot.dll")
 #addons.append(copy.deepcopy(addon))
 
-#addon = Addon("TopographicMapMFD-v.0.5")
-#addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
-#addons.append(copy.deepcopy(addon))
+addon = Addon("TopographicMapMFD-v.0.6")
+addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
+addons.append(copy.deepcopy(addon))
 
 addon = Addon("BurnTimeCalcMFD-v.3.0.0")
 addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
