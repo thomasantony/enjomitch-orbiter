@@ -1,5 +1,5 @@
 // Copyright 2015 by "Topper" - Original author: concept, calculations
-// Copyright 2015 by Szymon Ender "Enjo" (http://www.enderspace.de) - Co-developer: optimizations, putting it together
+// Copyright 2015-8 by Szymon Ender "Enjo" (http://www.enderspace.de) - Co-developer: optimizations, putting it together
 // Released under the terms of the LGPL v3: http://www.gnu.org/licenses/lgpl.txt
 
 #include "TopoMap.h"
@@ -8,7 +8,7 @@
 #include <Math/Colors.hpp>
 #include <Systems/Point.hpp>
 #include "gcAPI.h"
-#include "Sketchpad2.h"
+//#include "Sketchpad2.h"
 
 
 int TopoMap::m_numLinesPerRefresh = 2;
@@ -50,11 +50,10 @@ void TopoMap::Draw(oapi::Sketchpad *skp)
     if (!m_surface)
         return;
     //ogciSketchBlt(skp, m_surface, 0, 0); // Jarmo's blitting
-    //oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H); // No effect, as the DC is locked.
+    oapiBlt(skp->GetSurface(), m_surface, 0, 0, 0, 0, W, H); // The only working solution
     //oapiBlt(m_surface, 0, 0, 0, 0, W, H); // No effect, as the DC is locked.
-    Sketchpad2  skp2 (skp->GetSurface());
-    skp2.CopyRect(m_surface, NULL, 0, 0);
-
+    //Sketchpad2  skp2 (skp->GetSurface());
+    //skp2.CopyRect(m_surface, NULL, 0, 0); // Unimplemented in DX9
 }
 
 void TopoMap::RefreshIncrement()
@@ -86,6 +85,8 @@ void TopoMap::UpdateMap()
 		return;
     using namespace EnjoLib;
     const VESSEL * v = oapiGetFocusInterface();
+    if (! v)
+        return;
     const OBJHANDLE surfRef = v->GetSurfaceRef();
     if (!surfRef)
         return;
@@ -94,7 +95,7 @@ void TopoMap::UpdateMap()
     v->GetEquPos(lng_Vessel,lat_Vessel,rad);
     if (m_zoomAuto)
     {
-        const double alt = rad - oapiGetSize(v->GetSurfaceRef());
+        const double alt = rad - oapiGetSize(surfRef);
         const double zoom = alt / 11.0;
         m_zoom = zoom;
     }
@@ -119,7 +120,7 @@ void TopoMap::UpdateMap()
         for (int y=yMin; y<yMax; y++)
         {
             const Geo pixel = ORBITERTOOLS::pointRadialDistance(left,heading,y*m_zoom,v);
-            const double elevation = oapiSurfaceElevation(v->GetSurfaceRef(),pixel.lon,pixel.lat);
+            const double elevation = oapiSurfaceElevation(surfRef,pixel.lon,pixel.lat);
             if (elevation > highest) highest = elevation;
             if (elevation < lowest)  lowest =  elevation;
             const double f = 255;

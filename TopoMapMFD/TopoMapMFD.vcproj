@@ -47,8 +47,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
+				AdditionalIncludeDirectories="&quot;$(OrbiterDir2016)Orbitersdk\include&quot;;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\Debug/TopoMapMFD.pch"
@@ -73,11 +73,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessaging.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib gcAPI.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\lib"
+				AdditionalLibraryDirectories="&quot;$(OrbiterDir2016)Orbitersdk\lib&quot;"
 				IgnoreDefaultLibraryNames="msvcirt.lib;LIBCMT;msvcrt.lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/TopoMapMFD.pdb"
@@ -148,7 +148,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="$(OrbiterDir2006)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2006)Orbitersdk\include;..\lib;..\libWin;..\libMFD;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2006;LANG_EN"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -248,7 +248,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -348,7 +348,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -448,7 +448,7 @@
 				Optimization="0"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_PL"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -546,7 +546,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\Debug/TopoMapMFD.pch"
@@ -646,7 +646,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="&quot;$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example&quot;;&quot;$(OrbiterDir2016)Orbitersdk\include&quot;;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2016"
+				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -673,7 +673,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib gcAPI.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -727,14 +727,6 @@
 			</File>
 			<File
 				RelativePath=".\src\MFDButtonPageTopoMFD.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\OGCImy.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\OGCImy.h"
 				>
 			</File>
 			<File

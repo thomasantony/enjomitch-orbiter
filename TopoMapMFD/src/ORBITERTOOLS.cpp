@@ -6,8 +6,11 @@
 
 double ORBITERTOOLS::getFlightVectorHeading(const VESSEL *v)
 {
-    VECTOR3 shipAirspeedVector;
-    v->GetHorizonAirspeedVector(shipAirspeedVector);
+	VECTOR3 shipAirspeedVector = {0,0,0};
+    if (! v->GetHorizonAirspeedVector(shipAirspeedVector))
+		return 0;
+	if (length(shipAirspeedVector) == 0)
+		return 0; // Protect from division by 0 by normalise
     normalise(shipAirspeedVector);
     double vector = acos(shipAirspeedVector.z/sqrt((shipAirspeedVector.x*shipAirspeedVector.x)+(shipAirspeedVector.z*shipAirspeedVector.z)));
     vector = atan2(shipAirspeedVector.x, shipAirspeedVector.z);
