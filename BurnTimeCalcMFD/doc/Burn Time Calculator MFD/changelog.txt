@@ -11,6 +11,13 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v2.8 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
      BurnTimeCalcMFD v2.9 (C) 2016 by Andrew Stokes (ADSWNJ) -- andrew.d.stokes@gmail.com
      BurnTimeCalcMFD v2.9.2 (C) 2016 by Szymon Ender (Enjo) -- www.enderspace.de
+     BurnTimeCalcMFD v3.0 (C) 2018 by Szymon Ender (Enjo) -- www.enderspace.de
+
+CHANGES IN v3.0
+===============
+* Liberated from a direct linkage against ModuleMessagingExt. Now using dynamic linkage via LoadLibraryA
+* Created resource files, thus moving the MFD away from Misc to MFD modes in Orbiter Launchpad
+* Created polymorfic communication and display classes for easier further extension
 
 CHANGES IN v2.9.2
 ===============
