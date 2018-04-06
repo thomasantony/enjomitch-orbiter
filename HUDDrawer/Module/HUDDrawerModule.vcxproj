@@ -159,7 +159,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -178,9 +178,9 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\HUDDrawer.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\HUDDrawer.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Orbitersdk\lib;$(OrbiterDir)Modules;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Orbitersdk\lib;$(OrbiterDir2016)Modules;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/HUDDrawer.pdb</ProgramDatabaseFile>
@@ -253,7 +253,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -274,9 +274,9 @@
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\HUDDrawer.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\HUDDrawer.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Orbitersdk\lib;$(OrbiterDir)Modules;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Orbitersdk\lib;$(OrbiterDir2016)Modules;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -347,7 +347,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_PL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -368,9 +368,9 @@
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\HUDDrawer.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\HUDDrawer.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -439,7 +439,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Orbitersdk\include;..\..\libMFD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -460,9 +460,9 @@
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\HUDDrawer.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\HUDDrawer.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Orbitersdk\lib;$(OrbiterDir)Modules;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Orbitersdk\lib;$(OrbiterDir2016)Modules;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />

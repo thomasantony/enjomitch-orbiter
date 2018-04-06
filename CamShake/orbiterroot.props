@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets">
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <OrbiterDir>..\..\..\orbiter\orbiter2016\</OrbiterDir>
+    <OrbiterDir2016>..\..\..\orbiter\orbiter2016\</OrbiterDir2016>
     <OrbiterDir2010>..\..\..\orbiter\orbiter100830\</OrbiterDir2010>
     <OrbiterDir2006>..\..\..\orbiter\orbiter060929\</OrbiterDir2006>
     <OrbiterDirBETA>..\..\..\orbiter\orbiterBETA\</OrbiterDirBETA>
@@ -13,8 +13,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup>
-    <BuildMacro Include="OrbiterDir">
-      <Value>$(OrbiterDir)</Value>
+    <BuildMacro Include="OrbiterDir2016">
+      <Value>$(OrbiterDir2016)</Value>
     </BuildMacro>
     <BuildMacro Include="OrbiterDir2010">
       <Value>$(OrbiterDir2010)</Value>

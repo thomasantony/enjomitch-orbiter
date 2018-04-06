@@ -158,7 +158,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -177,9 +177,9 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;LIBCMT;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/TopoMapMFD.pdb</ProgramDatabaseFile>
@@ -252,7 +252,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -273,9 +273,9 @@
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -346,7 +346,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_PL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -367,9 +367,9 @@
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;OrbiterSoundSDK40.lib;orbiter.lib;orbitersdk.lib;VesselHooking.lib;ModuleMessaging.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />
@@ -438,7 +438,7 @@
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ORB2016;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -459,9 +459,9 @@
     <Link>
       <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;orbiter.lib;orbitersdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OrbiterDir)Modules\Plugin\TopoMapMFD.dll</OutputFile>
+      <OutputFile>$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(OrbiterDir)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OrbiterDir2016)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDir2016)Orbitersdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcirt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary />

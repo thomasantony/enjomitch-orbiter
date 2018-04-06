@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OrbiterDir)Orbitersdk\include"
+				AdditionalIncludeDirectories="$(OrbiterDir2016)Orbitersdk\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -74,10 +74,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib  orbitersdk.lib "
-				OutputFile="$(OrbiterDir)Modules\ModuleMessagingExt.dll"
+				OutputFile="$(OrbiterDir2016)Modules\ModuleMessagingExt.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OrbiterDir)Orbitersdk\lib"
+				AdditionalLibraryDirectories="$(OrbiterDir2016)Orbitersdk\lib"
 				IgnoreDefaultLibraryNames="msvcirt.lib;LIBCMT;msvcrt.lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/ModuleMessagingExt.pdb"
@@ -110,7 +110,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy Debug\ModuleMessagingExt.lib $(OrbiterDir)OrbiterSDK\lib"
+				CommandLine="copy Debug\ModuleMessagingExt.lib $(OrbiterDir2016)OrbiterSDK\lib"
 			/>
 		</Configuration>
 		<Configuration
@@ -148,7 +148,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="$(OrbiterDir)Orbitersdk\include"
+				AdditionalIncludeDirectories="$(OrbiterDir2016)Orbitersdk\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -177,10 +177,10 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib  orbitersdk.lib "
-				OutputFile="$(OrbiterDir)Modules\ModuleMessagingExt.dll"
+				OutputFile="$(OrbiterDir2016)Modules\ModuleMessagingExt.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OrbiterDir)Orbitersdk\lib"
+				AdditionalLibraryDirectories="$(OrbiterDir2016)Orbitersdk\lib"
 				IgnoreDefaultLibraryNames="msvcirt.lib;libcmt.lib"
 				SubSystem="2"
 				ImportLibrary=""
@@ -446,7 +446,7 @@
 				AdditionalOptions="/DEBUG"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="$(OrbiterDir)Orbitersdk\include"
+				AdditionalIncludeDirectories="$(OrbiterDir2016)Orbitersdk\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -475,10 +475,10 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib  orbitersdk.lib "
-				OutputFile="$(OrbiterDir)Modules\ModuleMessagingExt.dll"
+				OutputFile="$(OrbiterDir2016)Modules\ModuleMessagingExt.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(OrbiterDir)Orbitersdk\lib"
+				AdditionalLibraryDirectories="$(OrbiterDir2016)Orbitersdk\lib"
 				IgnoreDefaultLibraryNames="msvcirt.lib;libcmt.lib"
 				SubSystem="2"
 				ImportLibrary=""
@@ -509,7 +509,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="move $(OrbiterDir)Modules\ModuleMessagingExt.lib $(OrbiterDir)OrbiterSDK\lib"
+				CommandLine="move $(OrbiterDir2016)Modules\ModuleMessagingExt.lib $(OrbiterDir2016)OrbiterSDK\lib"
 			/>
 		</Configuration>
 	</Configurations>
