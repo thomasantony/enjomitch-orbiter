@@ -7,6 +7,7 @@
 
 #include <OrbiterSDK.h>
 #include <map>
+#include "SurfaceElevationCache.h"
 
 class TopoMap
 {
@@ -38,13 +39,15 @@ class TopoMap
         int m_lineRefreshed;
         bool m_rgb;
         SURFHANDLE m_surface;
-        double highest;
-        double lowest;
+        double m_elevHighest;
+        double m_elevLowest;
         static int m_numLinesPerRefresh;
         static const int c_maxLinesPerRefresh;
         static const double c_zoomMax, c_zoomMin, c_zoomIncr;
         static bool m_zoomAuto;
         static double m_zoom;
+
+        SurfaceElevationCache m_cache;
 
 };
 

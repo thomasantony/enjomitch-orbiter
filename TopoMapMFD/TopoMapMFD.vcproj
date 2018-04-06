@@ -750,6 +750,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\SurfaceElevationCache.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\SurfaceElevationCache.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\TopoMap.cpp"
 				>
 			</File>

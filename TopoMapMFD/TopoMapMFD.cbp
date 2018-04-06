@@ -210,11 +210,12 @@
 		<Unit filename="../lib/Util/CharManipulations.hpp" />
 		<Unit filename="src/MFDButtonPageTopoMFD.cpp" />
 		<Unit filename="src/MFDButtonPageTopoMFD.h" />
-		<Unit filename="src/OGCImy.h" />
 		<Unit filename="src/ORBITERTOOLS.cpp" />
 		<Unit filename="src/ORBITERTOOLS.h" />
 		<Unit filename="src/PluginTopoMapMFD.cpp" />
 		<Unit filename="src/PluginTopoMapMFD.h" />
+		<Unit filename="src/SurfaceElevationCache.cpp" />
+		<Unit filename="src/SurfaceElevationCache.h" />
 		<Unit filename="src/TopoMap.cpp" />
 		<Unit filename="src/TopoMap.h" />
 		<Unit filename="src/TopoMapMFD.cpp" />
@@ -223,6 +224,7 @@
 			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Unit filename="src/afxres.h" />
+		<Unit filename="src/resource.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

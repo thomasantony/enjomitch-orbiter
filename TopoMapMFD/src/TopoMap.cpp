@@ -4,6 +4,7 @@
 
 #include "TopoMap.h"
 #include "ORBITERTOOLS.h"
+
 #include <Math/GeneralMath.hpp>
 #include <Math/Colors.hpp>
 #include <Systems/Point.hpp>
@@ -32,8 +33,8 @@ TopoMap::TopoMap(int width, int height)
     m_rgb = false;
     m_lineRefreshed = 0;
 
-    highest = 5000;
-    lowest = -5000;
+    m_elevHighest = 5000;
+    m_elevLowest = -5000;
     m_surface = oapiCreateSurface(W, H);
     //m_surface = ogciCreateSurfaceEx(W, H, OAPISURFACE_TEXTURE|OAPISURFACE_RENDERTARGET); // Using Jarmo's stuff
     if (m_surface)
@@ -120,11 +121,11 @@ void TopoMap::UpdateMap()
         for (int y=yMin; y<yMax; y++)
         {
             const Geo pixel = ORBITERTOOLS::pointRadialDistance(left,heading,y*m_zoom,v);
-            const double elevation = oapiSurfaceElevation(surfRef,pixel.lon,pixel.lat);
-            if (elevation > highest) highest = elevation;
-            if (elevation < lowest)  lowest =  elevation;
+            const double elevation = m_cache.GetSurfaceElevation(surfRef, pixel);
+            if (elevation > m_elevHighest) m_elevHighest = elevation;
+            if (elevation < m_elevLowest)  m_elevLowest =  elevation;
             const double f = 255;
-            const double elevation255 = ((elevation + (0 - lowest)) / ( highest - lowest)) * f;
+            const double elevation255 = ((elevation + (0 - m_elevLowest)) / ( m_elevHighest - m_elevLowest)) * f;
             DWORD col;
             if (!m_rgb)
                 col = RGB(elevation255,elevation255,elevation255);
