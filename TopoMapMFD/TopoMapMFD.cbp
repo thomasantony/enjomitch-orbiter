@@ -186,7 +186,6 @@
 			<Add library="kernel32.lib" />
 			<Add library="user32.lib" />
 			<Add library="gdi32.lib" />
-			<Add library="gcAPI.lib" />
 		</Linker>
 		<Unit filename="../libMFD/Utils/FileUtilsOrbiter.cpp" />
 		<Unit filename="../libMFD/Utils/FileUtilsOrbiter.hpp" />

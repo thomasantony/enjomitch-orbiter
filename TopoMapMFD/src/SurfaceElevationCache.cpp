@@ -71,7 +71,7 @@ void SurfaceElevationCache::ClearUnusedElelemts()
         if (age > MAX_AGE_SECONDS)
         {
             //sprintf(oapiDebugString(), "Age = %0.2lf", age);
-            m_cache.erase(it++);
+            it = m_cache.erase(it); // Erase and return next
         }
         else
         {
