@@ -64,13 +64,14 @@ bool Comms::SetOtherMFDBurnVars(const DataSourceBase * source, int sourceId, MFD
 {
     data->IsArmed=data->IsEngaged=false;
     data->mode = BURNMODE_MAN;
-    double dv = fabs(source->GetDV());
-    if (dv > 1e-5 && source->GetIBT() > 0)
+    const double dv = fabs(source->GetDV());
+	const double ibt = source->GetIBT();
+    if (dv > 1e-5 && ibt > 0)
     { // We're not interested in negative times or zero dV's
         data->otherMFDsel = sourceId;
         data->velVector = source->GetVelVec();
         data->dv = dv;
-        data->IManual = source->GetIBT();
+        data->IManual = ibt;
         //HandlerAutoBurn();
         return true;
     }

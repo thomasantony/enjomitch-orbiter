@@ -45,3 +45,6 @@ BaseSyncMFD/.git/*
 */.gitattributes
 Backup*
 UpgradeLog*.htm
+*/.git
+*/.vs/
+Glideslope/Glideslope MFD.docx

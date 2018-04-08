@@ -1,6 +1,6 @@
 //  ==============================================================================================================================================
 //	Copyright (C) 2002 - 2015 Jarmo Nikkanen
-//                2016        Andrew Stokes
+//                2016 - 2018  Andrew Stokes
 //
 //  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -16,11 +16,10 @@
 #ifndef __BASESYNCEXPORTS_H
 #define __BASESYNCEXPORTS_H
 
-#include "EnjoLib\ModuleMessagingExtBase.hpp"
-#include "EnjoLib\ModuleMessagingExtPut.hpp"
+#include "MMExt2_Advanced.hpp"
 
 //
-// This defines the five data structures used by BaseSyncMFD to export internal variables via ModuleMessagingMFD:
+// This defines the five data structures used by BaseSyncMFD to export internal variables via MMExt2:
 //
 // 1. BaseSyncExportTgtStruct ... current target reference body, name, lat, lon
 // 2. BaseSyncExportModeStruct ... information on the modes we are in (lat, apo, peri, closest, plus equ/dir, plus deorbit or not)
@@ -28,34 +27,15 @@
 // 4. BaseSyncExportBurnStruct ... information on the plain change burn needed to align with the base. The burn data depends on the mode.equ (i.e. direct or equatorial burn)
 // 5. BaseSyncExportDeorbitStruct ... information on the deorbit retro burn needed to hit the desired reentry parameters, or dataValid = false if no solution
 // 
-// These structures are all exposed via ModuleMessagingPutByRef. 
 // 
-// To access these structures, do the following:
-//
-// 1. #include "BaseSyncExports.hpp" in the header of the class receiving the data
-//
-// 2. Inside the class receiving the data, include the following (n.b. the consts are mandatory to prevent you updating the structure by accident):
-//		// Base Sync Exports
-//		const struct BaseSyncExportTgtStruct *BS_trgt;
-//		const struct BaseSyncExportModeStruct *BS_mode;
-//		const struct BaseSyncExportSolStruct *BS_sol;
-//		const struct BaseSyncExportDeorbitStruct *BS_deo;
-//		const struct BaseSyncExportBurnStruct *BS_burn;
-//
-//		Inside your class code, implement something like this:
-// 	  if (!EnjoLib::ModuleMessagingExt().ModMsgGetByRef("BaseSyncMFD","BaseSyncTarget",2, &BS_trgt,myvessel)) return false;
-//		if (!EnjoLib::ModuleMessagingExt().ModMsgGetByRef("BaseSyncMFD","BaseSyncMode", 1, &BS_mode,myvessel)) return false;
-//		if (!EnjoLib::ModuleMessagingExt().ModMsgGetByRef("BaseSyncMFD","BaseSyncSolution", 2, &BS_sol,myvessel)) return false;
-//		if (!EnjoLib::ModuleMessagingExt().ModMsgGetByRef("BaseSyncMFD","BaseSyncDeorbit", 4, &BS_deo,myvessel)); return false;
-//		if (!EnjoLib::ModuleMessagingExt().ModMsgGetByRef("BaseSyncMFD","BaseSyncBurn", 1, &BS_burn,myvessel)); return false;
-//
-//	3. If you get good returns from all ModMsgGetByRef, then you will have a read-only pointer to the data structures (e.g. VC->BS_trgt->name will point to the target name)
+// See MMExt2 docuemtnation, plus Glideslope for how to consume this. 
 //
 
 #pragma pack(push)
 #pragma pack(8)
-struct BaseSyncExportTgtStruct: public EnjoLib::ModuleMessagingExtBase {	// Target Data
-	BaseSyncExportTgtStruct():EnjoLib::ModuleMessagingExtBase(2,sizeof(BaseSyncExportTgtStruct)) {};
+#define BASESYNC_EXPORT_TGT_VER 2
+struct BaseSyncExportTgtStruct: public MMExt2::MMStruct {	// Target Data
+	BaseSyncExportTgtStruct():MMStruct(BASESYNC_EXPORT_TGT_VER,sizeof(BaseSyncExportTgtStruct)) {};
 	char		ref[32];			// Reference planet or moon
 	char		name[32];		// Current target base, or "Surface"
 	double	lat;				// Target latitude (radians)
@@ -65,15 +45,17 @@ struct BaseSyncExportTgtStruct: public EnjoLib::ModuleMessagingExtBase {	// Targ
 	double	ant;				// Angle of reentry at start of glideslope (radians)
 };
 
-struct BaseSyncExportModeStruct: public EnjoLib::ModuleMessagingExtBase  {	// Current Mode
-	BaseSyncExportModeStruct():EnjoLib::ModuleMessagingExtBase(1,sizeof(BaseSyncExportModeStruct)) {};
+#define BASESYNC_EXPORT_MODE_VER 1
+struct BaseSyncExportModeStruct: public MMExt2::MMStruct {	// Current Mode
+	BaseSyncExportModeStruct():MMStruct(BASESYNC_EXPORT_MODE_VER,sizeof(BaseSyncExportModeStruct)) {};
 	int		enc;				// 0 = Latitude, 1 = Closest, 2 = Aopapsis, 3 = Periapsis
 	bool		dir;				// True if E/D is Direct, false if Equator
 	bool		deo;				// True if we are in deorbit screen
 };
 
-struct BaseSyncExportSolStruct: public EnjoLib::ModuleMessagingExtBase  {	// Best Solution Data
-	BaseSyncExportSolStruct():EnjoLib::ModuleMessagingExtBase(2,sizeof(BaseSyncExportSolStruct)) {};
+#define BASESYNC_EXPORT_SOL_VER 2
+struct BaseSyncExportSolStruct: public MMExt2::MMStruct {	// Best Solution Data
+	BaseSyncExportSolStruct():MMStruct(BASESYNC_EXPORT_SOL_VER,sizeof(BaseSyncExportSolStruct)) {};
 	bool		dataValid;		// True if we have a solution (e.g. if we are in latitude mode, there may not be a solution)
 	int		num;				// Best solution number
 	double	tSol;				// Time until best solution
@@ -88,8 +70,9 @@ struct BaseSyncExportSolStruct: public EnjoLib::ModuleMessagingExtBase  {	// Bes
 	bool		nmlBurn;			// Normal (True) or AntiNormal (False) burn needed
 };
 
-struct BaseSyncExportDeorbitStruct: public EnjoLib::ModuleMessagingExtBase  {// Deorbit Data Structure
-	BaseSyncExportDeorbitStruct():EnjoLib::ModuleMessagingExtBase(4,sizeof(BaseSyncExportDeorbitStruct)) {};
+#define BASESYNC_EXPORT_DEO_VER 4
+struct BaseSyncExportDeorbitStruct: public MMExt2::MMStruct {// Deorbit Data Structure
+	BaseSyncExportDeorbitStruct():MMStruct(BASESYNC_EXPORT_DEO_VER,sizeof(BaseSyncExportDeorbitStruct)) {};
 	bool		dataValid;		// True if we have calculated a deorbit solution (i.e. pressed DEO)
 	double	dV;				// Magnitude of deorbit retro burn (m/s)
 	double	tBurn;			// Magnitude of deorbit retro burn (secs of burn time)
@@ -98,9 +81,10 @@ struct BaseSyncExportDeorbitStruct: public EnjoLib::ModuleMessagingExtBase  {// 
 	double	trlBurn;			// TRL of burn point
 };
 
-struct BaseSyncExportBurnStruct: public EnjoLib::ModuleMessagingExtBase  {// Export of required burn (for Burn Time Calculator or other AP's)
+#define BASESYNC_EXPORT_BURN_VER 1
+struct BaseSyncExportBurnStruct: public MMExt2::MMStruct {// Export of required burn (for Burn Time Calculator or other AP's)
 
-	BaseSyncExportBurnStruct():EnjoLib::ModuleMessagingExtBase(1,sizeof(BaseSyncExportBurnStruct)) {};
+	BaseSyncExportBurnStruct():MMStruct(BASESYNC_EXPORT_BURN_VER,sizeof(BaseSyncExportBurnStruct)) {};
 
 	bool	  dataValid;		  // True if there is a calculated solution
 	double	dV;				      // Magnitude of burn (m/s)

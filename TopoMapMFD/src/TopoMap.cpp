@@ -8,7 +8,7 @@
 #include <Math/GeneralMath.hpp>
 #include <Math/Colors.hpp>
 #include <Systems/Point.hpp>
-#include "gcAPI.h"
+//#include "gcAPI.h"
 //#include "Sketchpad2.h"
 
 
@@ -21,11 +21,14 @@ const double TopoMap::c_zoomIncr = 1.025;
 //const double TopoMap::c_zoomIncr = 10; // testing
 bool TopoMap::m_zoomAuto = false;
 double TopoMap::m_zoom = c_zoomMin;
+double TopoMap::m_zoomPrev = m_zoom;
 
 TopoMap::TopoMap(int width, int height)
 {
-    if (!gcEnabled())
-        gcInitialize();
+    //if (!gcEnabled())
+    {
+        //gcInitialize();
+    }
     W = width; H = height;
     // W and H must be even, or the surface doesn't get redrawn.
 	if (W%2 != 0) W--;
@@ -111,17 +114,31 @@ void TopoMap::UpdateMap()
     const int yMax = (int)floor(H/2.0);
 
     const Geo vesGeo(lat_Vessel,lng_Vessel);
-    if (m_lineRefreshed >= W)
+    if (m_lineRefreshed >= W) // Full cycle achieved. Start from left border again
     {
         m_lineRefreshed = 0;
+        m_cache.ClearUnusedElelemts(); // Clear to save ram. Don't call this too often because it's a CPU hog
     }
+    if (m_zoomPrev != m_zoom)
+    {
+        // When changing zoom, clear the cache to avoid artifacts
+        // Unfortunately when using auto zoom, the cache is cleared automatically here, until zoom settles down
+        m_cache.ClearAll();
+    }
+
+    // Variables needed for cache's geo space discretisation
+    const Geo xMinGeo       = ORBITERTOOLS::pointRadialDistance(vesGeo,PI05,xMin*m_zoom,v);
+    const Geo xMaxGeo       = ORBITERTOOLS::pointRadialDistance(vesGeo,PI05,xMax*m_zoom,v);
+    const Geo pixelTopLeft  = ORBITERTOOLS::pointRadialDistance(xMinGeo,0,  yMin*m_zoom,v);
+    const Geo pixelBotRigh  = ORBITERTOOLS::pointRadialDistance(xMaxGeo,0,  yMax*m_zoom,v);
+
     for (int i = 0, x=xMin + m_lineRefreshed; x<xMax; x++, m_lineRefreshed++, i++)
     {
         const Geo left = ORBITERTOOLS::pointRadialDistance(vesGeo,heading+PI05,x*m_zoom,v);
         for (int y=yMin; y<yMax; y++)
         {
             const Geo pixel = ORBITERTOOLS::pointRadialDistance(left,heading,y*m_zoom,v);
-            const double elevation = m_cache.GetSurfaceElevation(surfRef, pixel);
+            const double elevation = m_cache.GetSurfaceElevation(surfRef, pixel, pixelTopLeft, pixelBotRigh, W, H);
             if (elevation > m_elevHighest) m_elevHighest = elevation;
             if (elevation < m_elevLowest)  m_elevLowest =  elevation;
             const double f = 255;
@@ -147,6 +164,7 @@ void TopoMap::UpdateMap()
             break;
 		}
     }
+    m_zoomPrev = m_zoom;
 }
 
 void TopoMap::ZoomAutoSwitch()

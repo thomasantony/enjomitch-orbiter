@@ -46,6 +46,7 @@ class TopoMap
         static const double c_zoomMax, c_zoomMin, c_zoomIncr;
         static bool m_zoomAuto;
         static double m_zoom;
+        static double m_zoomPrev;
 
         SurfaceElevationCache m_cache;
 

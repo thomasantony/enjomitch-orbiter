@@ -673,7 +673,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib gcAPI.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

@@ -124,6 +124,7 @@
 			<Add option="/EHsc" />
 			<Add directory="../lib" />
 			<Add directory="../../libMFD" />
+			<Add directory="../Glideslope" />
 		</Compiler>
 		<Linker>
 			<Add option="/NODEFAULTLIB:LIBCMT" />

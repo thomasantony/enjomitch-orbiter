@@ -1,6 +1,6 @@
 //  ==============================================================================================================================================
 //	Copyright (C) 2002 - 2015 Jarmo Nikkanen
-//                2016        Andrew Stokes
+//                2016 - 2018  Andrew Stokes
 //
 //  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -18,9 +18,10 @@
 
 #include "BSOrbit.hpp"
 #include "BaseSyncExports.hpp"
-#include "EnjoLib\ModuleMessagingExtPut.hpp"
-#include "EnjoLib\ModuleMessagingExt.hpp"
 #include "GlideslopeExports.hpp"
+#include "MMExt2_Advanced.hpp"
+
+#define ORBITER2016
 
 #define IMFD_DEBUG 0 
 
@@ -39,13 +40,12 @@ static int		ID;
 extern bool     error_flag;
 
 
-class SyncMFD : public EnjoLib::ModuleMessagingExtPut {
+class SyncMFD {
 
 public:
 			SyncMFD(class GeoSyncMFD *);
 			~SyncMFD();
 
-	const char * ModuleMessagingGetModuleName() const { return "BaseSyncMFD"; }
 	void	Update(HDC);	
 	void	TimeStep();
 	void    Write(FILEHANDLE);
@@ -81,6 +81,10 @@ public:
 	double  sync_est, sync_rea, sync_opt;
 	int     sync_min, sync_sel, display_texts, sync_num, sync_dispmin;
 	bool    vector_display;
+
+  MMExt2::Advanced mma;
+private:
+
 };
 
 

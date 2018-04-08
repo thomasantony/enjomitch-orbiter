@@ -1,6 +1,6 @@
 //  ==============================================================================================================================================
 //	Copyright (C) 2002 - 2015 Jarmo Nikkanen
-//                2016        Andrew Stokes
+//                2016 - 2018  Andrew Stokes
 //
 //  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -82,8 +82,8 @@ extern double _NAN;
 
 double MIN(double a,double b);
 double MAX(double a,double b);
-double asinh(double);
-double acosh(double);
+double __asinh(double);
+double __acosh(double);
 
 extern class Orbit Ecliptic;
 

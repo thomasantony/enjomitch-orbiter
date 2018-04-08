@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="windows-1250"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="8,00"
 	Name="BaseSyncMFD"
-	ProjectGUID="{D33508A8-0972-47C5-A0F1-0705405D70DC}"
+	ProjectGUID="{3E508824-1454-4128-AB13-EF2616AD80C0}"
 	RootNamespace="BaseSyncMFD"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -17,10 +16,12 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
 			ConfigurationType="2"
-			CharacterSet="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops;.\orbiterroot.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -36,38 +37,53 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/BaseSyncMFD.tlb"
+				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/D &quot;_CRT_SECURE_NO_WARNINGS&quot;"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\Orbitersdk\include"
+				AdditionalIncludeDirectories="..\Glideslope;&quot;$(OrbiterDir2016)Orbitersdk\include&quot;;..\lib;..\libMFD;..\KOST_Orbiter"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;FIRST_INSTANCE"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
+				PrecompiledHeaderFile=".\Debug/BaseSyncMFD.pch"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDataBaseFileName=".\Debug/"
+				WarningLevel="1"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4290;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc&quot;;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="orbiter.lib orbitersdk.lib gdi32.lib"
-				OutputFile="..\..\..\Modules\Plugin\$(ProjectName).dll"
-				Version="2.2"
-				AdditionalLibraryDirectories="..\..\..\Orbitersdk\lib"
-				IgnoreDefaultLibraryNames="msvcirt.lib, msvcrt.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				OutputFile="$(OrbiterDir2016)Modules\Plugin\BaseSyncMFD.dll"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OrbiterDir2016)Orbitersdk\lib;"
+				IgnoreDefaultLibraryNames="msvcirt.lib;LIBCMT;msvcrt.lib"
 				GenerateDebugInformation="true"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				ProgramDatabaseFile=".\Debug/BaseSyncMFD.pdb"
+				SubSystem="2"
+				ImportLibrary=".\Debug/BaseSyncMFD.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -81,24 +97,30 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\Debug/BaseSyncMFD.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\release\$(ConfigurationName)"
+			Name="Release2009|Win32"
+			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-			CharacterSet="2"
-			WholeProgramOptimization="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops;.\orbiterroot.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -114,35 +136,54 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\..\..\..\Modules/BaseSyncMFD.tlb"
+				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/D &quot;_CRT_SECURE_NO_WARNINGS&quot;"
+				AdditionalOptions="/DEBUG"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="$(OrbiterDir2010)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;FIRST_INSTANCE"
+				StringPooling="true"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\Release2009/BaseSyncMFD.pch"
+				AssemblerListingLocation=".\Release2009/"
+				ObjectFile=".\Release2009/"
+				ProgramDataBaseFileName=".\Release2009/"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
+				SuppressStartupBanner="true"
+				DisableSpecificWarnings="4290;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc&quot;;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="orbiter.lib orbitersdk.lib gdi32.lib"
-				OutputFile=".\release\$(ProjectName).dll"
-				Version="2.2"
-				IgnoreDefaultLibraryNames="msvcirt.lib, msvcrtd.lib"
-				GenerateDebugInformation="true"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				AdditionalOptions="/DEBUG"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				OutputFile="$(OrbiterDir2010)Modules\Plugin\BaseSyncMFD.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OrbiterDir2010)Orbitersdk\lib;"
+				IgnoreDefaultLibraryNames="msvcirt.lib;libcmt.lib"
+				SubSystem="2"
+				ImportLibrary=""
 				TargetMachine="1"
 			/>
 			<Tool
@@ -156,12 +197,316 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\..\..\..\Modules/BaseSyncMFD.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="ReleaseBETA|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops;.\orbiterroot.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\..\..\..\Modules/BaseSyncMFD.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/DEBUG"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\Release2009/BaseSyncMFD.pch"
+				AssemblerListingLocation=".\Release2009/"
+				ObjectFile=".\Release2009/"
+				ProgramDataBaseFileName=".\Release2009/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DisableSpecificWarnings="4290;4996"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc&quot;;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/DEBUG"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				OutputFile="$(OrbiterDirBETA)Modules\Plugin\BaseSyncMFD.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OrbiterDirBETA)Orbitersdk\lib;"
+				IgnoreDefaultLibraryNames="msvcirt.lib;libcmt.lib"
+				SubSystem="2"
+				ImportLibrary=""
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\..\..\..\Modules/BaseSyncMFD.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug-BETA|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops;.\orbiterroot.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/BaseSyncMFD.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="$(OrbiterDirBETA)Orbitersdk\include;..\lib;..\libMFD;..\KOST_Orbiter"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ORB2009;LANG_EN"
+				MinimalRebuild="true"
+				RuntimeLibrary="1"
+				PrecompiledHeaderFile=".\Debug/BaseSyncMFD.pch"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDataBaseFileName=".\Debug/"
+				WarningLevel="1"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="4"
+				DisableSpecificWarnings="4290;4996"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc&quot;;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				OutputFile="$(OrbiterDirBETA)\Modules\Plugin\BaseSyncMFD.dll"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OrbiterDirBETA)Orbitersdk\lib"
+				IgnoreDefaultLibraryNames="msvcirt.lib;LIBCMT;msvcrt.lib"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\Debug/BaseSyncMFD.pdb"
+				SubSystem="2"
+				ImportLibrary=".\Debug/BaseSyncMFD.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\Debug/BaseSyncMFD.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release2016|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops;.\orbiterroot.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\..\..\..\Modules/BaseSyncMFD.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/DEBUG"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="&quot;$(OrbiterDir2016)Orbitersdk\include&quot;;..\lib;..\libMFD;..\KOST_Orbiter;..\Glideslope"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ORB2009;LANG_EN"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\Release2009/BaseSyncMFD.pch"
+				AssemblerListingLocation=".\Release2009/"
+				ObjectFile=".\Release2009/"
+				ProgramDataBaseFileName=".\Release2009/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DisableSpecificWarnings="4290;4996"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc&quot;;C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/DEBUG"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				OutputFile="$(OrbiterDir2016)Modules\Plugin\BaseSyncMFD.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(OrbiterDir2016)Orbitersdk\lib"
+				IgnoreDefaultLibraryNames="msvcirt.lib;libcmt.lib"
+				SubSystem="2"
+				ImportLibrary=""
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\..\..\..\Modules/BaseSyncMFD.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -171,60 +516,54 @@
 	<References>
 	</References>
 	<Files>
-		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+		<File
+			RelativePath=".\BaseSyncExports.hpp"
 			>
-			<File
-				RelativePath=".\BaseSyncMFD.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\BSOrbit.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\BSReference.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\BSTools.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Sync.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+		</File>
+		<File
+			RelativePath=".\BaseSyncMFD.cpp"
 			>
-			<File
-				RelativePath=".\BaseSyncMFD.h"
-				>
-			</File>
-			<File
-				RelativePath=".\BSOrbit.h"
-				>
-			</File>
-			<File
-				RelativePath=".\BSReference.h"
-				>
-			</File>
-			<File
-				RelativePath=".\BSTools.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+		</File>
+		<File
+			RelativePath=".\BaseSyncMFD.hpp"
 			>
-		</Filter>
+		</File>
+		<File
+			RelativePath=".\BaseSyncMFD.rc"
+			>
+		</File>
+		<File
+			RelativePath=".\BSOrbit.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\BSOrbit.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\BSReference.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\BSReference.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\BSTools.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\BSTools.hpp"
+			>
+		</File>
+		<File
+			RelativePath=".\resource.h"
+			>
+		</File>
+		<File
+			RelativePath=".\Sync.cpp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

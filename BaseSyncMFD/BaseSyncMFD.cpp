@@ -1,6 +1,6 @@
 //  ==============================================================================================================================================
 //	Copyright (C) 2002 - 2015 Jarmo Nikkanen
-//                2016        Andrew Stokes
+//                2016 - 2018 Andrew Stokes
 //
 //  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -25,8 +25,6 @@
 #include "BSTools.hpp"
 #include "BaseSyncMFD.hpp"
 #include "BSReference.hpp"
-#include "EnjoLib\ModuleMessagingExt.hpp"
-
 
 HBRUSH green_brush=NULL, dgreen_brush=NULL;
 HBRUSH yellow_brush=NULL;
@@ -34,8 +32,6 @@ HBRUSH black_brush=NULL,grey_brush=NULL;
 HPEN dash_pen=NULL,solid_pen=NULL,solid_pen_y=NULL,dash_pen_y=NULL,solid_pen_grey=NULL;
 HPEN dash_pen_dgrey=NULL,solid_pen_dgrey=NULL,solid_pen_dgreen=NULL, solid_pen_white=NULL;
 HBRUSH white_brush=NULL,red_brush=NULL,dgrey_brush=NULL,no_brush=NULL;
-
-
 
 //	GLOBAL DATA AND FUNCTIONS
 int mode,CW;
@@ -112,7 +108,7 @@ DLLCLBK void InitModule(HINSTANCE hDLL)
 		fclose(fil); 
 	}
 
-	static char *name = "BaseSync";
+	static char *name = "BaseSyncMFD";
 	MFDMODESPEC spec;
 	spec.name    = name;
 	spec.key     = letter;
@@ -281,26 +277,26 @@ bool GeoSyncMFD::ConsumeKeyBuffered (DWORD key)
 	switch (key) {	  
 
 		case OAPI_KEY_Z:
-      if (Sync->usingGS2) return true; // ANG, ANT, ALT disables when slaved to GS2
+      if (Sync->usingGS2) return true; // ANG, ANT, ALT disables when linked to GS2
 			ID=7;
 			oapiOpenInputBox ("ReEntry angle (0.0°-90.0°) (typ. 0.5°-4.0°)", DataInput, 0, 20, (void*)this);
 			return true;  
 
 		case OAPI_KEY_X:			
-      if (Sync->usingGS2) return true; // ANG, ANT, ALT disables when slaved to GS2
+      if (Sync->usingGS2) return true; // ANG, ANT, ALT disables when linked to GS2
 			ID=8;
 			oapiOpenInputBox ("ReEntry anticipation (0.0°-360.0°) (typ. 45°-180°)", DataInput, 0, 20, (void*)this);
 			return true;  
 
 		case OAPI_KEY_A:			
-      if (Sync->usingGS2) return true; // ANG, ANT, ALT disables when slaved to GS2
+      if (Sync->usingGS2) return true; // ANG, ANT, ALT disables when linked to GS2
 			ID=9;
 			oapiOpenInputBox ("ReEntry altitude (km) (typ. 80-120)", DataInput, 0, 20, (void*)this);
 			return true;  
 				
 		case OAPI_KEY_T:			
 			ID=4;
-			oapiOpenInputBox ("Enter Target Base, or GS2 to slave to Glideslope 2", DataInput, 0, 30, (void*)this);
+			oapiOpenInputBox ("Enter Target Base, or GS to link to Glideslope", DataInput, 0, 30, (void*)this);
 			return true;  
         
 		case OAPI_KEY_L: 
@@ -475,28 +471,29 @@ bool DataInput (void *id, char *str, void *data)
 			strcpy(Sync->trgt->name,"None");
 		}
 	} else if (ID==4) {                                                         // TARGET NAME
-    if (!_stricmp(str,"GS2")) {
-      if (EnjoLib::ModuleMessagingExt().ModMsgGetByRef("GS2","GlideslopeTarget",2,&Sync->gs2trgt)) {
+    if (!_stricmp(str,"GS2") || !_stricmp(str, "GS") || !_stricmp(str, "Glideslope")) {
+
+      bool ret = Sync->mma.GetMMStruct("GS2", "GlideslopeTarget", &Sync->gs2trgt, GLIDESLOPE_EXPORT_TGT_VER, sizeof(GlideslopeExportTgtStruct));
+      if (ret) {
         Sync->usingGS2 = true;
-
-
         Sync->trgt = (BaseSyncExportTgtStruct *) Sync->gs2trgt;
         Sync->MMPut_done = false;
         return true;
       } else {
         return false;
       }
+      
     }
     Sync->usingGS2 = false;
     Sync->trgt = &Sync->bstrgt;
-    Sync->MMPut_done = false;		OBJHANDLE ref=oapiGetGbodyByName(Sync->trgt->ref);
+    Sync->MMPut_done = false;
+    
+    OBJHANDLE ref=oapiGetGbodyByName(Sync->trgt->ref);
 		if (ref) {
 			OBJHANDLE bas=oapiGetBaseByName(ref,str);
 			if (bas) {
         strncpy(Sync->trgt->name,str,31);
 				oapiGetBaseEquPos(bas,&Sync->trgt->lon, &Sync->trgt->lat);
-			} else {
-				strcpy(Sync->trgt->name,"None");
 			}
 		}
 

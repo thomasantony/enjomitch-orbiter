@@ -20,7 +20,7 @@ USAGE
 - Enable the MFD with Shift+P.
 - Switch between RGB and Greayscale modes with Shift+R. You will notice that the greyscale mode is more sensitive.
 - If your machine can handle it, for a smoother experience increase the number of simultaneously refreshed lines with Shift+]. Decrease with Shift+[.
-- The MFD zooms in and out automatically, depending on your altitude.
+- After pressing Shitf+A, the MFD zooms in and out automatically, depending on your altitude. Set zoom to fixed value via Shift+Z and Shift+X,
 - Look in the Scenarios/TopographicMapMFD dir for some interesting landmarks.
 
 ===================

@@ -1,6 +1,6 @@
 //  ==============================================================================================================================================
 //	Copyright (C) 2002 - 2015 Jarmo Nikkanen
-//                2016        Andrew Stokes
+//                2016 - 2018 Andrew Stokes
 //
 //  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -53,14 +53,14 @@ class Orbit Ecliptic;
 
 // ==============================================================================================================================================
 //
-double acosh(double x)
+double __acosh(double x)
 {
 	return( log( x + sqrt( x*x - 1.0)) );
 }
 
 // ==============================================================================================================================================
 //
-double asinh(double x)
+double __asinh(double x)
 {
 	return( log( x + sqrt( x*x + 1.0)) );
 }
@@ -586,7 +586,7 @@ double tan2eca(double t,double e)
 		return eca;
 	}
 
-	double eca=acosh(cos(t)/sqrt(1.0-e*e*st*st));
+	double eca=__acosh(cos(t)/sqrt(1.0-e*e*st*st));
 	if (t>PI) eca=-eca;
 	return eca;
 }
@@ -652,7 +652,7 @@ double tra2eca(double tra,double e)
 	double cos_tra = cos(tra);
     	
 	if (e>1.0) {
-        eca = acosh( (e+cos_tra) / (1.0+e*cos_tra) );	
+        eca = __acosh( (e+cos_tra) / (1.0+e*cos_tra) );	
 		if (tra>PI) eca=-eca;
 		return(eca);
 	}
