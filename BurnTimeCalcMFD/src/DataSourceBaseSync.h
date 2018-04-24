@@ -1,6 +1,7 @@
 #ifndef DATASOURCEBASESYNC_H
 #define DATASOURCEBASESYNC_H
 
+/*
 #include "DataSourceBase.h"
 
 class MFDDataBurnTime;
@@ -22,5 +23,6 @@ class DataSourceBaseSync : public DataSourceBase
         double m_ibt;
         double m_dv;
 };
+*/
 
 #endif // DATASOURCETRANSX_H

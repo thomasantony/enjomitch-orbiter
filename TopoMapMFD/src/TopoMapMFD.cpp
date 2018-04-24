@@ -31,7 +31,6 @@ TopoMapMFD::TopoMapMFD (DWORD w, DWORD h, VESSEL *vessel, PluginTopoMapMFD * plu
     , m_tm(w, h)
     , m_plugin(plugin)
 {
-
     m_plugin->SetTopoMap(&m_tm);
 }
 
@@ -71,7 +70,6 @@ bool TopoMapMFD::Update (oapi::Sketchpad * skp)
         MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), BLUE,  ossZoom.str().c_str());
         MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), RED,   ossZoom.str().c_str());
         MFDTextOut(skp, mcalc.X(x), mcalc.Y(y++), GREEN, ossZoom.str().c_str());
-
     }
     else
     {

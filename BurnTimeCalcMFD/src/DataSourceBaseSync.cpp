@@ -1,3 +1,4 @@
+/*
 #include "DataSourceBaseSync.h"
 #include "MFDDataBurnTime.h"
 #include "BaseSyncExports.hpp"
@@ -44,3 +45,4 @@ std::string DataSourceBaseSync::GetDisplayStringDV(MFDDataBurnTime * data) const
     }
     return "BaseSync inv. orient.  %7.3f";
 }
+*/

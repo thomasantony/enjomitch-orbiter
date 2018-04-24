@@ -14,7 +14,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
-					<Add option="/MDd" />
+					<Add option="/MTd" />
 					<Add option="/Zi" />
 					<Add option="/DBUILD_DLL" />
 					<Add option="/D_DEBUG" />
@@ -38,7 +38,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
-					<Add option="/MD" />
+					<Add option="/MT" />
 					<Add option="/Ot" />
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
@@ -62,7 +62,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
-					<Add option="/MD" />
+					<Add option="/MT" />
 					<Add option="/Ot" />
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
@@ -86,7 +86,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
-					<Add option="/MD" />
+					<Add option="/MT" />
 					<Add option="/Ot" />
 					<Add option="/O2" />
 					<Add option="/DBUILD_DLL" />
@@ -95,7 +95,6 @@
 					<Add option="/DLANG_EN" />
 					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include" />
 					<Add directory="../../../Orbiter/orbiter2016/Orbitersdk/include/lua" />
-					<Add directory="../../../Orbiter/orbiter2016/Sound/OrbiterSound_SDK/MFDSOUND_SDK/MFDSound_Example" />
 					<Add directory="BurnTimeCalcMFD/src" />
 					<Add directory="lib/Orbiter" />
 				</Compiler>
