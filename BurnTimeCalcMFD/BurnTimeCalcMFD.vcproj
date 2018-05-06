@@ -74,7 +74,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\BurnTimeMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -176,7 +176,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2010)Modules\Plugin\BurnTimeMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -276,7 +276,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDirBETA)Modules\Plugin\BurnTimeMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -373,7 +373,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDirBETA)\Modules\Plugin\BurnTimeMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -475,7 +475,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winmm.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\BurnTimeMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -528,6 +528,26 @@
 				</File>
 				<File
 					RelativePath="..\libMFD\Utils\mfdbuttonpage.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="MFDSound++"
+				>
+				<File
+					RelativePath="..\libMFD\MFDSound++\Sound.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\MFDSound++\Sound.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\MFDSound++\SoundMap.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\MFDSound++\SoundMap.hpp"
 					>
 				</File>
 			</Filter>
@@ -612,6 +632,26 @@
 				</File>
 				<File
 					RelativePath="..\lib\Orbiter\VesselCapabilities.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Util"
+				>
+				<File
+					RelativePath="..\lib\Util\CharManipulations.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Util\CharManipulations.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Util\FileUtils.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Util\FileUtils.hpp"
 					>
 				</File>
 			</Filter>
@@ -774,6 +814,22 @@
 		</File>
 		<File
 			RelativePath=".\src\resource.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\SoundMapBTC.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\SoundMapBTC.h"
+			>
+		</File>
+		<File
+			RelativePath=".\src\SoundSampleIDEnum.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\SoundSampleIDEnum.hpp"
 			>
 		</File>
 		<File

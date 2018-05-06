@@ -43,6 +43,10 @@
 //    Liberated from a direct linkage against ModuleMessagingExt. Now using dynamic linkage via LoadLibraryA
 //    Created resource files, thus moving the MFD away from Misc to MFD modes in Orbiter Launchpad
 //    Created extensible OOD communication classes
+// Version 3.1 by Enjo (Copyright (c) 2018)
+//    Liberated from BaseSynchExports.h. Now compiles as a self-contained project
+//    Runtime library is now linked statically
+//    Added a sound played upon arming the MFD
 
 // Released under the terms of the LGPL: http://www.gnu.org/licenses/lgpl.txt
 /*
@@ -82,6 +86,7 @@
 
 #include "BurnTimeMFD.h"
 #include "MFDButtonPageBTC.h"
+#include "SoundSampleIDEnum.hpp"
 #include <windows.h>
 #include <stdio.h>
 #include <math.h>
@@ -177,6 +182,7 @@ BurnTimeMFD::BurnTimeMFD (DWORD w, DWORD h, VESSEL *vessel, PluginBurnTime * plu
  : MFD2 (w, h, vessel)
  , m_data(dynamic_cast<MFDDataBurnTime *>(plugin->AssociateMFDData(vessel)))
  , m_graph(0,0,W,H)
+ , m_sound(m_soundMap)
  {
   height = (int)h;
   if (m_data->mul==0) m_data->mul=1.0;
@@ -438,6 +444,7 @@ void BurnTimeMFD::HandlerAutoBurn()
       }
       oapiGetVesselInterface(oapiGetFocusObject())->SetThrusterGroupLevel(m_data->groups[m_data->Sel_eng],0);
       m_data->ArmAutoBurn();
+      m_sound.PlayWave(SOUND_ARM);
 }
 
 void BurnTimeMFD::HandlerBurnNow()
@@ -465,6 +472,7 @@ void BurnTimeMFD::HandlerAimAutoCirc()
       m_data->IsCircular=true;
       m_data->CalcCircular();
       m_data->ArmAutoBurn();
+      m_sound.PlayWave(SOUND_ARM);
 }
 
 void BurnTimeMFD::HandlerSwitchSI_US()

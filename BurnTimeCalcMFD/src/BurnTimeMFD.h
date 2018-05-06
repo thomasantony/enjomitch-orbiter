@@ -3,6 +3,8 @@
 
 #include <orbitersdk.h>
 #include "Graph.h"
+#include <MFDSound++/Sound.hpp>
+#include "SoundMapBTC.h"
 
 class MFDDataBurnTime;
 class PluginBurnTime;
@@ -54,6 +56,9 @@ private:
 	void writemenu(oapi::Sketchpad * skp);
   int line( int );
   Graph m_graph;
+
+  SoundMapBTC m_soundMap;
+  EnjoLib::MFDGoodies::Sound m_sound;
 };
 
 #endif // BURNTIMEMFD_H_INCLUDED
