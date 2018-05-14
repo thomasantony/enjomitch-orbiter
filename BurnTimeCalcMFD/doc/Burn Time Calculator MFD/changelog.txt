@@ -15,7 +15,7 @@ BTC: BurnTimeCalcMFD v1.1 (C) 2004 by David Henderson -- orbiter@aibs.org.uk
      BurnTimeCalcMFD v3.1 (C) 2018 by Szymon Ender (Enjo) -- www.enderspace.de
 
 
-CHANGES IN v3.0
+CHANGES IN v3.1
 ===============
 * Liberated from BaseSynchExports.h. Now compiles as a self-contained project
 * Runtime library is now linked statically

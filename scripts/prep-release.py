@@ -105,22 +105,28 @@ addon = Addon("TopographicMapMFD-v.0.7")
 addon.AddFile1("Modules/Plugin/TopoMapMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("BurnTimeCalcMFD-v.3.0.0")
+addon = Addon("BurnTimeCalcMFD-v.3.1.0")
 addon.AddFile1("Modules/Plugin/BurnTimeMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("LaunchMFD-v.1.6.5")
+addon = Addon("LaunchMFD-v.1.6.6")
 addon.AddFile1("Modules/Plugin/LaunchMFD.dll")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("LaunchMFD-v.1.6.5-pl")
+addon = Addon("LaunchMFD-v.1.6.6-pl")
 addon.AddFile1("Modules/Plugin/LaunchMFD_pl.dll")
 addons.append(copy.deepcopy(addon))
 
 # Complex addons
-addon = Addon("TransX-2018.04.05-MMExt2")
+addon = Addon("TransX-2018.05.06-VCpp")
 addon.AddFile1("Modules/Plugin/TransX.dll")
 addon.AddFile1("Modules/Plugin/TransX2.dll")
+addons.append(copy.deepcopy(addon))
+
+addon = Addon("HUDDrawerSDK-v.0.5")
+addon.AddFile1("Modules/Plugin/HUDDrawer.dll")
+addon.AddFile1("Modules/VesselHooking.dll")
+addon.AddFile2("Modules/VesselHooking.lib", "Orbitersdk/lib/VesselHooking.lib")
 addons.append(copy.deepcopy(addon))
 
 distribute(addons, version)
@@ -139,11 +145,7 @@ addon.AddFile1("Modules/ModuleMessagingExt.dll")
 addon.AddFile2("Modules/ModuleMessagingExt.lib", "Orbitersdk/lib/ModuleMessagingExt.lib")
 addons.append(copy.deepcopy(addon))
 
-addon = Addon("HUDDrawerSDK-v.0.4")
-addon.AddFile1("Modules/Plugin/HUDDrawer.dll")
-addon.AddFile1("Modules/VesselHooking.dll")
-addon.AddFile2("Modules/VesselHooking.lib", "Orbitersdk/lib/VesselHooking.lib")
-addons.append(copy.deepcopy(addon))
+
 
 
 

@@ -50,7 +50,7 @@
 				AdditionalIncludeDirectories="&quot;$(OrbiterDir2016)Orbitersdk\include&quot;;..\lib;..\libMFD;..\libWin;..\KOST_Orbiter"
 				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				MinimalRebuild="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\Debug/TopoMapMFD.pch"
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
@@ -73,7 +73,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib gcAPI.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -175,7 +175,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK35.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessaging.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2006)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -275,7 +275,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessaging.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -375,7 +375,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessaging.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDirBETA)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -475,7 +475,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/DEBUG"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessaging.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDir2016)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -548,7 +548,7 @@
 				AdditionalIncludeDirectories="$(OrbiterDirBETA)Sound\OrbiterSound_SDK\MFDSOUND_SDK\MFDSound_Example;$(OrbiterDirBETA)Orbitersdk\include;..\libWin;..\lib;..\libMFD;..\KOST_Orbiter"
 				PreprocessorDefinitions="D3D9CLIENT_EXPORTS"
 				MinimalRebuild="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\Debug/TopoMapMFD.pch"
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
@@ -571,7 +571,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib OrbiterSoundSDK40.lib orbiter.lib orbitersdk.lib VesselHooking.lib ModuleMessaging.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib orbiter.lib orbitersdk.lib"
 				OutputFile="$(OrbiterDirBETA)Modules\Plugin\TopoMapMFD.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"

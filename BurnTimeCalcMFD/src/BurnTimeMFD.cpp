@@ -42,7 +42,7 @@
 // Version 3.0 by Enjo (Copyright (c) 2018)
 //    Liberated from a direct linkage against ModuleMessagingExt. Now using dynamic linkage via LoadLibraryA
 //    Created resource files, thus moving the MFD away from Misc to MFD modes in Orbiter Launchpad
-//    Created extensible OOD communication classes
+//    Created extensible OOD communication and display classes
 // Version 3.1 by Enjo (Copyright (c) 2018)
 //    Liberated from BaseSynchExports.h. Now compiles as a self-contained project
 //    Runtime library is now linked statically
@@ -106,78 +106,6 @@
 static MFDButtonPageBTC gButtons;
 extern PluginBurnTime * plugin;
 
-int DisplayEngUnit(char* buffer, char* pattern, char* noscalepattern, double x) {
-  char Big[]=  " kMGTPEZY";
-  char Small[]=" munpfazy";
-  int ptr=0;
-  if(fabs(x)>1e-24) {
-    if(fabs(x)>1) {
-      while(fabs(x)>1000) {
-        ptr++;
-        x=x/1000.0;
-      }
-      if (ptr==0) {
-        return sprintf(buffer,noscalepattern,x);
-      } else {
-        return sprintf(buffer,pattern,x,Big[ptr]);
-      }
-    } else {
-      while(fabs(x)<1) {
-        ptr++;
-        x=x*1000.0;
-      }
-      if (ptr==0) {
-        return sprintf(buffer,noscalepattern,x);
-      } else {
-        return sprintf(buffer,pattern,x,Small[ptr]);
-      }
-    }
-  } else {
-    return sprintf(buffer,noscalepattern,x);
-  }
-}
-
-void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* unitSI, const char* unitUS, double multSI, double multUS, double value, int x, int l) {
-  char buf[256];
-  char label[256];
-  char noscalelabel[256];
-  sprintf(label,"%s%%c%s",format,m_data->dspunit==0?unitSI:unitUS);
-  sprintf(noscalelabel,"%s%s",format,m_data->dspunit==0?unitSI:unitUS);
-  int len=DisplayEngUnit(buf,label,noscalelabel,value*(m_data->dspunit==0?multSI:multUS));
-  skp->Text(x,line(l),buf,len);
-}
-
-void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double mult, double value, int x, int l) {
-  char buf[256];
-  char label[256];
-  char noscalelabel[256];
-  sprintf(label,"%s%%c%s",format,units);
-  sprintf(noscalelabel,"%s%s",format,units);
-  int len=DisplayEngUnit(buf,label,noscalelabel,value*mult);
-  skp->Text(x,line(l),buf,len);
-}
-
-void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double value, int x, int l) {
-  char buf[256];
-  char label[256];
-  char noscalelabel[256];
-  sprintf(label,"%s%%c%s",format,units);
-  sprintf(noscalelabel,"%s%s",format,units);
-  int len=DisplayEngUnit(buf,label,noscalelabel,value);
-  skp->Text(x,line(l),buf,len);
-}
-
-void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, const char* value, int x, int l) {
-  char buf[256];
-  sprintf(buf,format,value);
-  skp->Text(x,line(l),buf,strlen(buf));
-}
-
-void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, int x, int l) {
-  char buf[256];
-  skp->Text(x,line(l),format,strlen(buf));
-}
-
 BurnTimeMFD::BurnTimeMFD (DWORD w, DWORD h, VESSEL *vessel, PluginBurnTime * plugin)
  : MFD2 (w, h, vessel)
  , m_data(dynamic_cast<MFDDataBurnTime *>(plugin->AssociateMFDData(vessel)))
@@ -198,7 +126,7 @@ bool BurnTimeMFD::Update(oapi::Sketchpad * skp)
 	//m_data->ReGetDataFromSource(); // confusing
   unsigned int thrustercount = 0;
 
-  Title (skp, "BurnTimeMFD v3.0");
+  Title (skp, "BurnTimeMFD v3.1");
 
 
   //m_graph.vectorpointdisplay(skp, m_data->velVector, pV);
@@ -532,4 +460,76 @@ char *BurnTimeMFD::ButtonLabel (int bt) {
 
 bool BurnTimeMFD::ConsumeButton(int bt, int event) {
   return gButtons.ConsumeButton(this, bt, event);
+}
+
+int DisplayEngUnit(char* buffer, char* pattern, char* noscalepattern, double x) {
+  char Big[]=  " kMGTPEZY";
+  char Small[]=" munpfazy";
+  int ptr=0;
+  if(fabs(x)>1e-24) {
+    if(fabs(x)>1) {
+      while(fabs(x)>1000) {
+        ptr++;
+        x=x/1000.0;
+      }
+      if (ptr==0) {
+        return sprintf(buffer,noscalepattern,x);
+      } else {
+        return sprintf(buffer,pattern,x,Big[ptr]);
+      }
+    } else {
+      while(fabs(x)<1) {
+        ptr++;
+        x=x*1000.0;
+      }
+      if (ptr==0) {
+        return sprintf(buffer,noscalepattern,x);
+      } else {
+        return sprintf(buffer,pattern,x,Small[ptr]);
+      }
+    }
+  } else {
+    return sprintf(buffer,noscalepattern,x);
+  }
+}
+
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* unitSI, const char* unitUS, double multSI, double multUS, double value, int x, int l) {
+  char buf[256];
+  char label[256];
+  char noscalelabel[256];
+  sprintf(label,"%s%%c%s",format,m_data->dspunit==0?unitSI:unitUS);
+  sprintf(noscalelabel,"%s%s",format,m_data->dspunit==0?unitSI:unitUS);
+  int len=DisplayEngUnit(buf,label,noscalelabel,value*(m_data->dspunit==0?multSI:multUS));
+  skp->Text(x,line(l),buf,len);
+}
+
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double mult, double value, int x, int l) {
+  char buf[256];
+  char label[256];
+  char noscalelabel[256];
+  sprintf(label,"%s%%c%s",format,units);
+  sprintf(noscalelabel,"%s%s",format,units);
+  int len=DisplayEngUnit(buf,label,noscalelabel,value*mult);
+  skp->Text(x,line(l),buf,len);
+}
+
+void BurnTimeMFD::PrintEngUnit(oapi::Sketchpad * skp, const char* format, const char* units, double value, int x, int l) {
+  char buf[256];
+  char label[256];
+  char noscalelabel[256];
+  sprintf(label,"%s%%c%s",format,units);
+  sprintf(noscalelabel,"%s%s",format,units);
+  int len=DisplayEngUnit(buf,label,noscalelabel,value);
+  skp->Text(x,line(l),buf,len);
+}
+
+void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, const char* value, int x, int l) {
+  char buf[256];
+  sprintf(buf,format,value);
+  skp->Text(x,line(l),buf,strlen(buf));
+}
+
+void BurnTimeMFD::PrintString(oapi::Sketchpad * skp, const char* format, int x, int l) {
+  char buf[256];
+  skp->Text(x,line(l),format,strlen(buf));
 }
