@@ -31,8 +31,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "Matrix.hpp"
-#include <sstream>
 #include "Assertions.hpp"
+
+#include <sstream>
+#include <iostream>
 
 using namespace EnjoLib;
 
@@ -42,12 +44,14 @@ Matrix::Matrix()
 
 Matrix::Matrix(int n)
 {
+    this->reserve(n);
     for (int i = 0; i < n; ++i)
         push_back( VectorD(n) );
 }
 
 Matrix::Matrix(int n, int m)
 {
+    this->reserve(n);
     for (int i = 0; i < n; ++i)
         push_back( VectorD(m) );
 }
@@ -56,22 +60,29 @@ Matrix::~Matrix()
 {
 }
 
+void Matrix::Add(const VectorD & vec)
+{
+    push_back( vec );
+}
+
 int Matrix::GetNRows() const
 {
     return size();
 }
 
+/*
 int Matrix::GetNCols() const
 {
     if ( size() == 0 )
         return 0;
-    return at(0).size();
+    return this->operator[](0).size();
 }
+*/
 
 std::string Matrix::Print() const // TODO
 {
     std::ostringstream ss;
-    ss << "\n";
+    //ss << "\n"; // breaks file exchange
     for ( Matrix::const_iterator it = begin(); it != end(); ++it)
         ss << it->Print() << "\n";
     return ss.str();
@@ -87,13 +98,64 @@ std::string Matrix::PrintScilab( const char * varName ) const // TODO
     return ss.str();
 }
 
+std::string Matrix::SizeStr() const
+{
+    std::ostringstream oss;
+    oss << "(" << GetNRows() << ", " << GetNCols() << ")";
+    return oss.str();
+}
+
 Matrix Matrix::T() const
 {
-    Matrix t(GetNCols(), GetNRows());
-    for ( int i = 0; i < GetNRows(); ++i )
-        for ( int j = 0; j < GetNCols(); ++j )
+    const int nrows = GetNRows();
+    const int ncols = GetNCols();
+    Matrix t(ncols, nrows);
+    for ( int i = 0; i < nrows; ++i )
+        for ( int j = 0; j < ncols; ++j )
             t[j][i] = at(i)[j];
     return t;
+}
+
+Matrix Matrix::FilterByMask(const std::vector<bool> & mask) const
+{
+    Assertions::SizesEqual(at(0), mask.size(), "Matrix::FilterByMask");
+
+    Matrix ret;
+    ret.reserve(size());
+    const size_t maskSize = mask.size();
+    for (size_t i = 0; i < this->size(); ++i)
+    {
+        VectorD row;
+        row.reserve(maskSize);
+        for (size_t j = 0; j < maskSize; ++j)
+        {
+            if (mask.at(j))
+            {
+                row.push_back(at(i).at(j));
+                //row.push_back(this->operator[](i)[j]);
+            }
+        }
+        ret.Add(row);
+    }
+    return ret;
+}
+
+Matrix & Matrix::FilterByMaskMe(const std::vector<bool> & mask)
+{
+    *this = FilterByMask(mask);
+    return *this;
+}
+
+VectorD Matrix::Flatten() const
+{
+    const int nrows = GetNRows();
+    const int ncols = GetNCols();
+    VectorD flat;
+    flat.reserve(nrows * ncols);
+    for ( int i = 0; i < nrows; ++i )
+        for ( int j = 0; j < ncols; ++j )
+            flat.push_back(this->operator[](i)[j]);
+    return flat;
 }
 
 Matrix & Matrix::TMe()
@@ -104,27 +166,96 @@ Matrix & Matrix::TMe()
 
 Matrix Matrix::operator * (const Matrix & par) const
 {
-    Assertions().CanMultiply( *this, par, "Matrix::operator *" );
+    Assertions::CanMultiply( *this, par, "Matrix::operator *" );
     Matrix prod(GetNRows(), par.GetNCols());
-
-    for (int i = 0; i < prod.GetNRows(); ++i)
-        for (int j = 0; j < prod.GetNCols(); ++j)
+    const int nrows = prod.GetNRows();
+    const int ncols = prod.GetNCols();
+    const int ncolsThis = GetNCols();
+    for (int i = 0; i < nrows; ++i)
+        for (int j = 0; j < ncols; ++j)
         {
             double prodSum = 0;
-            for (int ai = 0; ai < GetNCols(); ++ai )
+            for (int ai = 0; ai < ncolsThis; ++ai )
             {
-                prodSum += at(i).at(ai) * par.at(ai).at(j);
+                //prodSum += at(i).at(ai) * par.at(ai).at(j);
+                prodSum += this->operator[](i)[ai] * par[ai][j];
             }
             prod[i][j] = prodSum;
         }
     return prod;
 }
 
-Matrix Matrix::AdjustMean() const
+Matrix Matrix::AdjustMeanRows() const
+{
+    const Matrix & ret = AdjustMean(*this);
+    return ret;
+}
+
+Matrix Matrix::AdjustMeanCols() const
+{
+    const Matrix & ret = AdjustMean(T());
+    return ret.T();
+}
+
+Matrix Matrix::ApplyMeanRows(const VectorD & mean) const
+{
+    return ApplyMean(*this, mean);
+}
+
+Matrix Matrix::ApplyMeanCols(const VectorD & mean) const
+{
+    const Matrix & mulT = T();
+    return ApplyMean(mulT, mean);
+}
+
+Matrix Matrix::ApplyMean(const Matrix & mat2Apply, const VectorD & mean) const
+{
+    Matrix ret;
+    Assertions::SizesEqual(mean, mat2Apply.size(), "Matrix::ApplyMean");
+    for (size_t row = 0; row < mat2Apply.size(); ++row)
+    {
+        const VectorD & apl = mat2Apply.at(row) + mean.at(row);
+        ret.push_back(apl);
+    }
+    return ret;
+}
+
+Matrix Matrix::AdjustMean(const Matrix & mat2Apply) const
+{
+    if (mat2Apply.GetNCols() == 1)
+    {
+        std::cout << "Warning at Matrix::AdjustMean(): Matrix of one column returns 0\n";
+    }
+    Matrix ret;
+    for ( int i = 0; i < mat2Apply.GetNRows(); ++i )
+    {
+        const VectorD & apl = mat2Apply.at(i);
+
+        Assertions::SizesEqual(apl, size(), "Matrix::AdjustMean");
+        ret.push_back( apl.AdjustMean() );
+    }
+    return ret;
+}
+
+Matrix Matrix::AdjustMeanCols(const VectorD & mean) const
 {
     Matrix ret;
     for ( int i = 0; i < GetNRows(); ++i )
-        ret.push_back( at(i).AdjustMean() );
+    {
+        const VectorD & apl = at(i);
 
+        Assertions::SizesEqual(apl, mean, "Matrix::AdjustMean");
+        ret.push_back( apl - mean );
+    }
+    return ret;
+}
+
+VectorD Matrix::GetCol(int colNum) const
+{
+    VectorD ret;
+    for (int i = 0; i < GetNRows(); ++i)
+    {
+        ret.Add(at(i).at(colNum));
+    }
     return ret;
 }

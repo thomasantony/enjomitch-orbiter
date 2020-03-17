@@ -1,4 +1,4 @@
-#include "EnumStringMap.h"
+#include "EnumStringMap.hpp"
 
 EnumStringMap::EnumStringMap()
 {

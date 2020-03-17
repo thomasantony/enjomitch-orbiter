@@ -54,9 +54,9 @@ class RootBisection : public IRootAlgo
         virtual ~RootBisection();
         Result<double> Run( RootSubject & subj ) const;
         int GetNumIterations() const;
+
     protected:
     private:
-
         double m_minArg, m_maxArg, m_eps;
         bool m_maxArgValPositive;
         int m_maxIter;

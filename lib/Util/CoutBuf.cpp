@@ -2,16 +2,32 @@
 #include <iostream>
 
 using namespace std;
+using namespace EnjoLib;
 
-CoutBuf::CoutBuf(bool verbose)
-: m_verbose(verbose)
+std::ostream cnull(0);
+std::wostream wcnull(0);
+
+std::ostream & GetLog(bool verbose)
+{
+    if (verbose)
+        return std::cout;
+    else
+        //return std::cout;
+        return cnull;
+}
+
+
+Log::Log()
+: m_cnull(0)
+, m_wcnull(0)
 {
 }
 
-CoutBuf::~CoutBuf()
+std::ostream & Log::GetLog(bool verbose)
 {
-    if (m_verbose)
-    {
-        cout << this->str();
-    }
+    if (verbose)
+        return std::cout;
+    else
+        //return std::cout;
+        return m_cnull;
 }

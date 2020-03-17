@@ -9,6 +9,7 @@ class VectorF : public VectorTpl<float>
 {
     public:
         VectorF( const std::vector<float> & init );
+        VectorF( const std::vector<bool> & init );
         VectorF( int n );
         VectorF();
         virtual ~VectorF();

@@ -9,6 +9,7 @@ class VectorD : public VectorTpl<double>
 {
     public:
         VectorD( const std::vector<double> & init );
+        VectorD( const std::vector<bool> & init );
         VectorD( int n );
         VectorD();
         virtual ~VectorD();

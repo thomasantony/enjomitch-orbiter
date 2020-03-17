@@ -15,18 +15,28 @@ class VectorTpl : public std::vector<T>
         std::string PrintPython( const char * varName ) const;
 
         VectorTpl( const std::vector<T> & init );
+        VectorTpl( const std::vector<bool> & init );
         VectorTpl( int n );
         VectorTpl();
         virtual ~VectorTpl();
+
+        void Add(const T & val);
 
         //! Length of vector
         T Len() const;
         //! Normalised copy of vector
         VectorTpl Norm() const;
         T SumSquares() const;
+        T SumAbs() const;
         T Sum() const;
         T Mean() const;
+        T MeanWeighted() const;
+        T Max() const;
+        T Min() const;
         VectorTpl AdjustMean() const;
+        VectorTpl Slice  (unsigned idx, unsigned len) const;
+        VectorTpl SliceTS(unsigned idx, unsigned len) const;
+        VectorTpl Diffs() const;
 
         VectorTpl & operator += (const VectorTpl & par);
         VectorTpl & operator -= (const VectorTpl & par);

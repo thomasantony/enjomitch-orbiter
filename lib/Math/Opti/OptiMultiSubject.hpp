@@ -18,6 +18,15 @@ namespace EnjoLib
             virtual std::vector<double> GetStep() const = 0;
 
 
+            struct Bounds
+            {
+                Bounds(double min, double max) : min(min), max(max) {}
+                double min;
+                double max;
+            };
+            virtual std::vector<Bounds> GetBounds() const { return std::vector<Bounds>(); };
+
+
         protected:
         private:
     };

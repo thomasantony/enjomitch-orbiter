@@ -8,20 +8,27 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/EnjoLib" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-std=c++11" />
 					<Add option="-pg" />
 					<Add option="-g" />
+					<Add option="-fPIC" />
+					<Add option="-ffast-math" />
 					<Add directory="Math" />
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
 					<Add directory="Math/Opti/Root" />
+					<Add directory="Math/" />
+					<Add directory="Math/MultiDimIter" />
+					<Add directory="ML" />
+					<Add directory="Template" />
+					<Add directory="Statistical/3rdParty" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -29,20 +36,26 @@
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/EnjoLib" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option working_dir="bin/Release" />
 				<Option object_output="obj/Release/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-march=corei7-avx" />
 					<Add option="-O3" />
 					<Add option="-std=c++11" />
+					<Add option="-ffast-math" />
+					<Add option="-fPIC" />
 					<Add directory="Math" />
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
 					<Add directory="Math/Opti/Root" />
+					<Add directory="Math/" />
+					<Add directory="Math/MultiDimIter" />
+					<Add directory="ML" />
+					<Add directory="Template" />
+					<Add directory="Statistical/3rdParty" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -62,6 +75,11 @@
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
 					<Add directory="Math/Opti/Root" />
+					<Add directory="Math/" />
+					<Add directory="Math/MultiDimIter" />
+					<Add directory="ML" />
+					<Add directory="Template" />
+					<Add directory="Statistical/3rdParty" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -72,16 +90,22 @@
 				<Option working_dir="" />
 				<Option object_output="obj/Release-MinGW32/" />
 				<Option type="2" />
-				<Option compiler="mingw32" />
+				<Option compiler="mingw_32" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++0x" />
+					<Add option="`/usr/i686-w64-mingw32/bin/wx-config  --version=3.0 --static=yes --debug=no --cflags`" />
 					<Add directory="Math" />
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
 					<Add directory="Math/Opti/Root" />
+					<Add directory="Math/" />
+					<Add directory="Math/MultiDimIter" />
+					<Add directory="ML" />
+					<Add directory="Template" />
+					<Add directory="Statistical/3rdParty" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -103,33 +127,57 @@
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
 					<Add directory="Math/Opti/Root" />
+					<Add directory="Math/" />
+					<Add directory="Math/MultiDimIter" />
+					<Add directory="ML" />
+					<Add directory="Template" />
+					<Add directory="Statistical/3rdParty" />
 				</Compiler>
 			</Target>
 			<Target title="Release-x64">
 				<Option output="bin/Release-x64/EnjoLib" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option working_dir="bin/Release-x64" />
 				<Option object_output="obj/Release-x64/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-O3" />
+					<Add option="-fPIC" />
 					<Add option="-std=c++0x" />
+					<Add option="-ffast-math" />
 					<Add directory="Math" />
 					<Add directory="Util" />
 					<Add directory="Statistical" />
 					<Add directory="Math/Opti" />
 					<Add directory="Math/Opti/Root" />
+					<Add directory="Math/" />
+					<Add directory="Math/MultiDimIter" />
+					<Add directory="ML" />
+					<Add directory="Template" />
+					<Add directory="Statistical/3rdParty" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
+				<ExtraCommands>
+					<Add after="./run-tests.sh" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="../lib" />
+			<Add directory="/home/enjo/devel/lib/tree/include" />
+			<Add directory="/usr/include/eigen3" />
+			<Add directory="/usr/include/mkl" />
 		</Compiler>
+		<Linker>
+			<Add library="crypto" />
+			<Add library="newmat" />
+			<Add directory="/home/enjo/devel/lib/tree/lib" />
+		</Linker>
+		<Unit filename="ML/CrossValidation.cpp" />
+		<Unit filename="ML/CrossValidation.hpp" />
+		<Unit filename="Math/AxisRescale.cpp" />
+		<Unit filename="Math/AxisRescale.hpp" />
 		<Unit filename="Math/AzimuthMath.cpp" />
 		<Unit filename="Math/AzimuthMath.hpp" />
 		<Unit filename="Math/Burkardt/BrentBurkardt.cpp" />
@@ -142,6 +190,8 @@
 		<Unit filename="Math/Burkardt/NelderMeadBurkardt.hpp" />
 		<Unit filename="Math/Burkardt/Poly.cpp" />
 		<Unit filename="Math/Burkardt/Poly.hpp" />
+		<Unit filename="Math/Colors.cpp" />
+		<Unit filename="Math/Colors.hpp" />
 		<Unit filename="Math/Constants.hpp" />
 		<Unit filename="Math/GeneralMath.cpp" />
 		<Unit filename="Math/GeneralMath.hpp" />
@@ -151,8 +201,20 @@
 		<Unit filename="Math/GreatCircleMath.hpp" />
 		<Unit filename="Math/MaxMin.cpp" />
 		<Unit filename="Math/MaxMin.hpp" />
+		<Unit filename="Math/MaxMinFind.cpp" />
+		<Unit filename="Math/MaxMinFind.hpp" />
+		<Unit filename="Math/MaxMinFindAll.cpp" />
+		<Unit filename="Math/MaxMinFindAll.hpp" />
+		<Unit filename="Math/MaxMinFindD.cpp" />
+		<Unit filename="Math/MaxMinFindD.hpp" />
+		<Unit filename="Math/MaxMinFindF.cpp" />
+		<Unit filename="Math/MaxMinFindF.hpp" />
 		<Unit filename="Math/MaxMinPoint.cpp" />
 		<Unit filename="Math/MaxMinPoint.hpp" />
+		<Unit filename="Math/MultiDimIter/IMultiDimIterConsumerTpl.cpp" />
+		<Unit filename="Math/MultiDimIter/IMultiDimIterConsumerTpl.hpp" />
+		<Unit filename="Math/MultiDimIter/MultiDimIterTpl.cpp" />
+		<Unit filename="Math/MultiDimIter/MultiDimIterTpl.hpp" />
 		<Unit filename="Math/Opti/IOptiAlgo.cpp" />
 		<Unit filename="Math/Opti/IOptiAlgo.hpp" />
 		<Unit filename="Math/Opti/OptiBinSearch.cpp" />
@@ -161,6 +223,8 @@
 		<Unit filename="Math/Opti/OptiBrent.hpp" />
 		<Unit filename="Math/Opti/OptiFactory.cpp" />
 		<Unit filename="Math/Opti/OptiFactory.hpp" />
+		<Unit filename="Math/Opti/OptiMultiBinSearch.cpp" />
+		<Unit filename="Math/Opti/OptiMultiBinSearch.hpp" />
 		<Unit filename="Math/Opti/OptiMultiNelderMead.cpp" />
 		<Unit filename="Math/Opti/OptiMultiNelderMead.hpp" />
 		<Unit filename="Math/Opti/OptiMultiSubject.cpp" />
@@ -169,10 +233,14 @@
 		<Unit filename="Math/Opti/OptiSubject.hpp" />
 		<Unit filename="Math/Opti/OptiType.cpp" />
 		<Unit filename="Math/Opti/OptiType.hpp" />
+		<Unit filename="Math/PerlinNoise.cpp" />
+		<Unit filename="Math/PerlinNoise.hpp" />
 		<Unit filename="Math/RK4.cpp" />
 		<Unit filename="Math/RK4.hpp" />
 		<Unit filename="Math/RK4AccelerationBase.cpp" />
 		<Unit filename="Math/RK4AccelerationBase.hpp" />
+		<Unit filename="Math/RandomMath.cpp" />
+		<Unit filename="Math/RandomMath.hpp" />
 		<Unit filename="Math/Root/IRootAlgo.cpp" />
 		<Unit filename="Math/Root/IRootAlgo.hpp" />
 		<Unit filename="Math/Root/RootBisection.cpp" />
@@ -185,6 +253,8 @@
 		<Unit filename="Math/Root/RootSubject.hpp" />
 		<Unit filename="Math/Root/RootType.cpp" />
 		<Unit filename="Math/Root/RootType.hpp" />
+		<Unit filename="Math/SafeNumber.cpp" />
+		<Unit filename="Math/SafeNumber.hpp" />
 		<Unit filename="Math/SimpsonFunctor.cpp" />
 		<Unit filename="Math/SimpsonFunctor.hpp" />
 		<Unit filename="Math/SolverQuartic.cpp" />
@@ -193,6 +263,8 @@
 		<Unit filename="Math/SpaceMath.hpp" />
 		<Unit filename="Math/SpaceMathBody.cpp" />
 		<Unit filename="Math/SpaceMathBody.hpp" />
+		<Unit filename="Math/SplineLin.cpp" />
+		<Unit filename="Math/SplineLin.hpp" />
 		<Unit filename="Math/Unused/BinSearchOpti2D.cpp" />
 		<Unit filename="Math/Unused/BinSearchOpti2D.hpp" />
 		<Unit filename="Math/Unused/BinSearchOpti2DSubject.cpp" />
@@ -209,19 +281,46 @@
 		<Unit filename="PID/IntegratorDiscrete.hpp" />
 		<Unit filename="PID/PID.cpp" />
 		<Unit filename="PID/PID.hpp" />
+		<Unit filename="Statistical/3rdParty/EigenEigen3.cpp" />
+		<Unit filename="Statistical/3rdParty/EigenEigen3.hpp" />
+		<Unit filename="Statistical/3rdParty/EigenMKL.cpp" />
+		<Unit filename="Statistical/3rdParty/EigenMKL.hpp" />
+		<Unit filename="Statistical/3rdParty/EigenNewmat10.cpp" />
+		<Unit filename="Statistical/3rdParty/EigenNewmat10.hpp" />
+		<Unit filename="Statistical/3rdParty/EigenNumpy.cpp" />
+		<Unit filename="Statistical/3rdParty/EigenNumpy.hpp" />
 		<Unit filename="Statistical/Assertions.cpp" />
 		<Unit filename="Statistical/Assertions.hpp" />
+		<Unit filename="Statistical/Autocorrelation.cpp" />
+		<Unit filename="Statistical/Autocorrelation.hpp" />
+		<Unit filename="Statistical/Centroid.cpp" />
+		<Unit filename="Statistical/Centroid.hpp" />
+		<Unit filename="Statistical/Correlation.cpp" />
+		<Unit filename="Statistical/Correlation.hpp" />
 		<Unit filename="Statistical/EigenAbstract.cpp" />
 		<Unit filename="Statistical/EigenAbstract.hpp" />
-		<Unit filename="Statistical/EigenNewmat10.hpp" />
+		<Unit filename="Statistical/EigenFactoryAbstract.cpp" />
+		<Unit filename="Statistical/EigenFactoryAbstract.hpp" />
 		<Unit filename="Statistical/EigenValueComparator.cpp" />
 		<Unit filename="Statistical/EigenValueComparator.hpp" />
 		<Unit filename="Statistical/EigenValueVector.cpp" />
 		<Unit filename="Statistical/EigenValueVector.hpp" />
+		<Unit filename="Statistical/KMeans1d.cpp" />
+		<Unit filename="Statistical/KMeans1d.hpp" />
+		<Unit filename="Statistical/KMeans1dCluster.cpp" />
+		<Unit filename="Statistical/KMeans1dCluster.hpp" />
 		<Unit filename="Statistical/Matrix.cpp" />
 		<Unit filename="Statistical/Matrix.hpp" />
+		<Unit filename="Statistical/MeanWeighted.cpp" />
+		<Unit filename="Statistical/MeanWeighted.hpp" />
+		<Unit filename="Statistical/PCA.cpp" />
+		<Unit filename="Statistical/PCA.hpp" />
+		<Unit filename="Statistical/PCAAuto.cpp" />
+		<Unit filename="Statistical/PCAAuto.hpp" />
 		<Unit filename="Statistical/Statistical.cpp" />
 		<Unit filename="Statistical/Statistical.hpp" />
+		<Unit filename="Statistical/StdDev.cpp" />
+		<Unit filename="Statistical/StdDev.hpp" />
 		<Unit filename="Statistical/VectorD.cpp" />
 		<Unit filename="Statistical/VectorD.hpp" />
 		<Unit filename="Statistical/VectorF.cpp" />
@@ -245,30 +344,76 @@
 		<Unit filename="Systems/ThreeSphericals.hpp" />
 		<Unit filename="Systems/Vect3.cpp" />
 		<Unit filename="Systems/Vect3.hpp" />
+		<Unit filename="Template/LoopThreadedTpl.cpp" />
+		<Unit filename="Template/LoopThreadedTpl.hpp" />
+		<Unit filename="Template/PtrHelper.cpp" />
+		<Unit filename="Template/PtrHelper.hpp" />
+		<Unit filename="Template/SharedPtr.cpp" />
+		<Unit filename="Template/SharedPtr.hpp" />
+		<Unit filename="Template/UniquePtr.cpp" />
+		<Unit filename="Template/UniquePtr.hpp" />
+		<Unit filename="Template/ValArray.cpp" />
+		<Unit filename="Template/ValArray.hpp" />
+		<Unit filename="Util/AlgoSTD.cpp" />
+		<Unit filename="Util/AlgoSTD.hpp" />
 		<Unit filename="Util/AutoPtr.hpp" />
+		<Unit filename="Util/Bimap.cpp" />
+		<Unit filename="Util/Bimap.hpp" />
 		<Unit filename="Util/Bool3State.cpp" />
 		<Unit filename="Util/Bool3State.hpp" />
+		<Unit filename="Util/CStr.cpp" />
+		<Unit filename="Util/CStr.hpp" />
 		<Unit filename="Util/CharManipulations.cpp" />
 		<Unit filename="Util/CharManipulations.hpp" />
+		<Unit filename="Util/ConcurrentQueueTpl.cpp" />
+		<Unit filename="Util/ConcurrentQueueTpl.hpp" />
 		<Unit filename="Util/CoutBuf.cpp" />
 		<Unit filename="Util/CoutBuf.hpp" />
+		<Unit filename="Util/EnumClassWrapper.cpp" />
+		<Unit filename="Util/EnumClassWrapper.hpp" />
 		<Unit filename="Util/EnumStringMap.cpp" />
-		<Unit filename="Util/EnumStringMap.h" />
+		<Unit filename="Util/EnumStringMap.hpp" />
 		<Unit filename="Util/FileUtils.cpp" />
 		<Unit filename="Util/FileUtils.hpp" />
+		<Unit filename="Util/HtmlGen.cpp" />
+		<Unit filename="Util/HtmlGen.hpp" />
+		<Unit filename="Util/Ifstream.cpp" />
+		<Unit filename="Util/Ifstream.hpp" />
+		<Unit filename="Util/LinuxNetwork.cpp" />
+		<Unit filename="Util/LinuxNetwork.hpp" />
+		<Unit filename="Util/LinuxTools.cpp" />
+		<Unit filename="Util/LinuxTools.hpp" />
+		<Unit filename="Util/LoopThreaded.cpp" />
+		<Unit filename="Util/LoopThreaded.hpp" />
 		<Unit filename="Util/NonCopyable.cpp" />
 		<Unit filename="Util/NonCopyable.hpp" />
+		<Unit filename="Util/Ofstream.cpp" />
+		<Unit filename="Util/Ofstream.hpp" />
+		<Unit filename="Util/ProgressMonit.cpp" />
+		<Unit filename="Util/ProgressMonit.hpp" />
+		<Unit filename="Util/ProgressMonitHigh.cpp" />
+		<Unit filename="Util/ProgressMonitHigh.hpp" />
 		<Unit filename="Util/Result.cpp" />
 		<Unit filename="Util/Result.hpp" />
 		<Unit filename="Util/StackTrace.hpp" />
+		<Unit filename="Util/Time.cpp" />
+		<Unit filename="Util/Time.hpp" />
+		<Unit filename="Util/TimeComponents.cpp" />
+		<Unit filename="Util/TimeComponents.hpp" />
+		<Unit filename="Util/Timer.cpp" />
+		<Unit filename="Util/Timer.hpp" />
 		<Unit filename="Util/TimerChrono.cpp" />
 		<Unit filename="Util/TimerChrono.hpp" />
 		<Unit filename="Util/Tokenizer.cpp" />
 		<Unit filename="Util/Tokenizer.hpp" />
+		<Unit filename="Util/ToolsMixed.cpp" />
+		<Unit filename="Util/ToolsMixed.hpp" />
 		<Unit filename="Util/Trim.cpp" />
 		<Unit filename="Util/Trim.hpp" />
 		<Unit filename="Util/ValueWithDescription.cpp" />
 		<Unit filename="Util/ValueWithDescription.hpp" />
+		<Unit filename="Util/VecOp.cpp" />
+		<Unit filename="Util/VecOp.hpp" />
 		<Unit filename="Util/VectorNonCopyable.cpp" />
 		<Unit filename="Util/VectorNonCopyable.hpp" />
 		<Unit filename="Visual/Canvas.cpp" />
@@ -278,8 +423,6 @@
 		<Unit filename="Visual/ScalePointFunctor.cpp" />
 		<Unit filename="Visual/ScalePointFunctor.hpp" />
 		<Extensions>
-			<code_completion />
-			<envvars />
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="src/EnjoLibApp.cpp" main="EnjoLibFrame" init_handlers="necessary" language="CPP" />
@@ -290,7 +433,6 @@
 					<wxDialog wxs="wxsmith/DialogCalendar.wxs" src="src/DialogCalendar.cpp" hdr="src/DialogCalendar.h" fwddecl="0" i18n="1" name="DialogCalendar" language="CPP" />
 				</resources>
 			</wxsmith>
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

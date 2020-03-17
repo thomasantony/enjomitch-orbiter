@@ -49,6 +49,8 @@ class RootSubject
         virtual double UpdateGetValue( double arg ) = 0;
         /// Can give additional hint to the caller about validity of the result, if known.
         virtual bool IsValid( double arg, double lastValue ) { return true; };
+        /// Make it return true, when the input of your subject is supposed to be discrete
+        virtual bool IsDiscrete() const { return false; };
     protected:
     private:
 };

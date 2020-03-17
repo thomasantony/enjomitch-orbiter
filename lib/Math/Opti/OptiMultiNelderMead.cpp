@@ -1,8 +1,8 @@
 #include "OptiMultiNelderMead.hpp"
 #include "../Burkardt/NelderMeadBurkardt.hpp"
 #include "OptiMultiSubject.hpp"
-//#include "../../Statistical/Assertions.hpp"
-//#include "../../Statistical/VectorTpl.hpp"
+#include "../../Statistical/Assertions.hpp"
+#include "../../Statistical/VectorTpl.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -26,7 +26,7 @@ Result<std::vector<double> > OptiMultiNelderMead::Run( OptiMultiSubject & subj, 
     const std::vector<double> sta = subj.GetStart();
     const std::vector<double> ste = subj.GetStep();
 
-    //Assertions().SizesEqual(EnjoLib::VectorTpl<double>(sta), EnjoLib::VectorTpl<double>(ste), "start, step");
+    Assertions::SizesEqual(EnjoLib::VectorTpl<double>(sta), EnjoLib::VectorTpl<double>(ste), "start, step");
 
     // TODO: assertions!
     int i;

@@ -46,9 +46,11 @@ public:
             const std::string & startMarker,
             const std::string & endMarker ) const;
     bool FileExists( const std::string & fileName ) const;
+    bool DirExists( const std::string & dirName ) const;
+    void CreateDirIfNotExistsLinux(const std::string & dirName) const;
+    std::string GetBaseDir(const std::string & fullPath) const;
     size_t GetNumLinesFile( const std::string & fileName, bool skipHeader = false ) const;
     size_t GetNumLinesFile( std::istream & is, bool skipHeader = false ) const;
-    void PrintProgressBar(size_t i, size_t sz) const;
 
 private:
     std::vector<std::string> GetOneSection( std::istream & file, const std::string & endMarker ) const;

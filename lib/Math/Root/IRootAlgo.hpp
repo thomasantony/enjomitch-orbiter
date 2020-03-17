@@ -47,7 +47,6 @@ namespace EnjoLib
             virtual Result<double> Run( RootSubject & subj ) const = 0;
             /// Returns the number of used iterations
             virtual int GetNumIterations() const = 0;
-
         protected:
         private:
     };

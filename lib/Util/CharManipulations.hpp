@@ -34,9 +34,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef CHAR_MANIPULATIONS_HPP_INCLUDED
 #define CHAR_MANIPULATIONS_HPP_INCLUDED
 
+#include <vector>
 #include <string>
 #include <sstream>
 #include <stdexcept>
+#include <utility>
 
 namespace EnjoLib
 {
@@ -46,16 +48,25 @@ public:
 	/// Author - David "Daver" Rowbotham
 	//void char_replace_s(char *src, char lookfor, char replacewith, size_t maxlength);
 	/// Author - Szymon Ender
-	std::string replace(const std::string & in, const std::string & lookFor, const std::string & replaceWith );
-	std::string trim(const std::string & in );
-	std::string ToStr(double d, unsigned precision = 2) const;
+	std::string Replace(const std::string & in, const std::string & lookFor, const std::string & replaceWith ) const;
+	std::string Trim(const std::string & in ) const;
+	std::string ToStr(double d, unsigned precision = 2) const; // Don't use!
 	std::string ToStr(int i) const;
+	std::string MakeLeadingZeroes(int d, unsigned numZeroes) const;
+	bool StartsWith(const std::string & str, const std::string & prefix) const;
+	bool Contains(const std::string & str, const std::string & toFind) const;
+	bool EndsWith(const std::string & str, const std::string & sufffix) const;
+	std::vector<std::string> EndsWith(const std::vector<std::string> & files, const std::string & sufffix) const;
+	std::pair<std::string, std::string> GetFileNameExtension(const std::string & fileWithExt) const;
 	bool ToDouble(const std::string & in, double * d) const;
 	double ToDouble(const std::string & in) const;
 	int ToInt(const std::string & in) const;
 	bool ToInt(const std::string & in, int * i) const;
 	template <class T> bool ToNumber(const std::string & in, T * d) const;
 	template <class T> T    ToNumber(const std::string & in) const;
+	template <class T> std::vector<T> ToNumbersVec(const std::vector<std::string> & in) const;
+	std::string ToUpper(std::string in) const;
+	std::string ToLower(std::string in) const;
 
 private:
 };
@@ -64,7 +75,7 @@ template <class T> bool CharManipulations::ToNumber(const std::string & in, T * 
 {
     *number = 0;
     std::istringstream ss;
-    ss.str(in);
+    ss.str(Trim(in));
     if ( ! (ss >> *number) )
         return false;
     return true;
@@ -74,9 +85,21 @@ template <class T> T CharManipulations::ToNumber(const std::string & in) const
 {
     T number;
     if (!ToNumber<T>(in, &number))
-        throw std::invalid_argument("Not number - " + in);
+        throw std::invalid_argument("Not number: '" + in + "'");
     return number;
 }
+
+template <class T> std::vector<T> CharManipulations::ToNumbersVec(const std::vector<std::string> & in) const
+{
+    std::vector<T> ret;
+    for (size_t i = 0; i < in.size(); ++i)
+    {
+        const T & number = ToNumber<T>(in.at(i));
+        ret.push_back(number);
+    }
+    return ret;
+}
+
 }
 
 #endif

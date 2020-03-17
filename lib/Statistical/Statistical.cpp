@@ -32,52 +32,92 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <cstdlib>
 #include <cmath>
+#include <algorithm>
+#include <iostream>
 #include "Statistical.hpp"
 #include "Assertions.hpp"
 #include "VectorD.hpp"
 #include "Matrix.hpp"
+#include "../Util/CharManipulations.hpp"
+#include "../Util/Tokenizer.hpp"
+#include "../Math/GeneralMath.hpp"
 
+using namespace std;
 using namespace EnjoLib;
 
-Statistical::Statistical()
-{
-}
 
-Statistical::~Statistical()
-{
-}
+Statistical::Statistical(){}
+Statistical::~Statistical(){}
 
 double Statistical::SumMulDiffMean( const VectorD & v1, const VectorD & v2 ) const
 {
-    Assertions().SizesEqual(v1, v2, "Statistical::SumSquares");
-    double mean1 = v1.Mean();
-    double mean2 = v2.Mean();
+    Assertions::SizesEqual(v1, v2, "Statistical::SumSquares");
+    const double mean1 = v1.Mean();
+    const double mean2 = v2.Mean();
 
     double sumSquares = 0;
     for ( size_t i = 0; i < v1.size(); ++i )
     {
-        double diff1 = v1[i] - mean1;
-        double diff2 = v2[i] - mean2;
+        const double diff1 = v1[i] - mean1;
+        const double diff2 = v2[i] - mean2;
         sumSquares += diff1 * diff2;
     }
-
+    /*
+    if (sumSquares == 0)
+    {
+        cout << v1.PrintPython("V1") << endl;
+        cout << v1.PrintPython("V2")<< endl;
+        int a = 1;
+        int b = a;
+    }
+    */
     return sumSquares;
 }
 
 double Statistical::StandardDeviation( const VectorD & v ) const
 {
-    Assertions().AtLeast2Dimensions(v,"Statistical::StandardDeviation");
-    double variance = Variance(v);
-    double sd = sqrt(variance);
+    Assertions::AtLeast2Dimensions(v,"Statistical::StandardDeviation");
+    const double variance = Variance(v);
+    const double sd = sqrt(variance);
+    return sd;
+}
 
+double Statistical::StandardDeviation( const Matrix & m ) const
+{
+    double sumVariances = 0;
+    const Matrix & mT = m.T();
+    for (size_t i = 0; i < mT.size(); ++i)
+    {
+        const double variance = Variance(mT.at(i));
+        sumVariances += variance;
+    }
+    const double sd = sqrt(sumVariances);
+    return sd;
+}
+
+double Statistical::DistFromMean( const Matrix & m, const VectorD & v ) const
+{
+    //Assertions::AtLeast2Dimensions(m,"Statistical::DistFromMean");
+    const Matrix & mT = m.T();
+    double sumVariances = 0;
+    for (size_t i = 0; i < mT.size(); ++i)
+    {
+        const double mean = mT.at(i).Mean();
+        const double diff = v.at(i) - mean;
+        const double diffSquare = diff * diff;
+        const double n = mT.at(i).size() - 1;
+        sumVariances += diffSquare / n;
+    }
+    const double sd = sqrt(sumVariances);
     return sd;
 }
 
 double Statistical::Variance( const VectorD & v ) const
 {
-    Assertions().AtLeast2Dimensions(v,"Statistical::Variance");
+    Assertions::AtLeast2Dimensions(v,"Statistical::Variance");
     double diffMean = SumMulDiffMean(v, v);
     double sizeMinus1 = v.size() - 1;
+    Assertions::IsNonZero(sizeMinus1,"Statistical::Variance");
     double var = diffMean / sizeMinus1;
 
     return var;
@@ -85,8 +125,8 @@ double Statistical::Variance( const VectorD & v ) const
 
 double Statistical::Covariance( const VectorD & v1, const VectorD & v2 ) const
 {
-    Assertions().SizesEqual(v1, v2, "Statistical::Covariance");
-    Assertions().AtLeast2Dimensions(v1,"Statistical::Covariance");
+    Assertions::SizesEqual(v1, v2, "Statistical::Covariance");
+    Assertions::AtLeast2Dimensions(v1,"Statistical::Covariance");
 
     double diffMean = SumMulDiffMean(v1, v2);
     double sizeMinus1 = v1.size() - 1;
@@ -95,21 +135,253 @@ double Statistical::Covariance( const VectorD & v1, const VectorD & v2 ) const
     return covar;
 }
 
-Matrix Statistical::CovarianceMatrix( const Matrix & data )
+Matrix Statistical::CovarianceMatrix( const Matrix & data ) const
 {
-    unsigned dimensions = data.size();
+    unsigned dimensions = data.GetNCols();
     Matrix covMat(dimensions);
+    const Matrix & dataT = data.T();
     for (unsigned i = 0; i < dimensions; ++i)
     {
-        const VectorD & vi = data.at(i);
+        const VectorD & vi = dataT.at(i);
         for (unsigned j = i; j < dimensions; ++j)
         {
-            const VectorD & vj = data.at(j);
+            const VectorD & vj = dataT.at(j);
             double cov = Covariance(vi, vj);
             covMat.at(i).at(j) = cov;
             covMat.at(j).at(i) = cov;
         }
     }
     return covMat;
+}
+
+double Statistical::Median( const VectorD & v ) const
+{
+    Assertions::NonEmpty(v, "Statistical::Median");
+    VectorD sorted(v.size());
+    std::partial_sort_copy (v.begin(), v.end(), sorted.begin(), sorted.end());
+    double median = sorted.at(sorted.size() / 2);
+    return median;
+}
+
+// Used for reconstruction
+ScalingOpStandardize::ScalingOpStandardize(double refMean, double refStdDev)
+: m_refMean(refMean)
+, m_refStdDev(refStdDev)
+{
+    Assertions::IsNonZero(m_refStdDev, "ScalingOpStandardize::ScalingOpStandardize - zero stdDev");
+}
+ScalingOpStandardize::ScalingOpStandardize(const std::string & str)
+{
+    //const std::vector<std::string> & lines = Tokenizer().GetLines(fileName);
+    //const std::string & str = lines.at(0);
+    const std::vector<std::string> & meanStd = Tokenizer().Tokenize(str);
+    m_refMean   = CharManipulations().ToDouble(meanStd.at(0));
+    m_refStdDev = CharManipulations().ToDouble(meanStd.at(1));
+}
+ScalingOpStandardize::ScalingOpStandardize(const VectorD & refVec)
+{
+    Assertions::NonEmpty(refVec,   "ScalingOpStandardize::ScalingOpStandardize::constr() - refVec");
+    m_refMean = refVec.Mean();
+    m_refStdDev = Statistical().StandardDeviation(refVec);
+    Assertions::IsNonZero(m_refStdDev, "ScalingOpStandardize::ScalingOpStandardize::constr() - zero stdDev");
+}
+double ScalingOpStandardize::operator()(const double inVal) const
+{
+    Assertions::IsNonZero(m_refStdDev, "ScalingOpStandardize::ScalingOpStandardize::op() - zero stdDev");
+    const double standardized = (inVal - m_refMean) / m_refStdDev;
+    return standardized;
+}
+std::string ScalingOpStandardize::ToStr() const
+{
+    //CharManipulations cman;
+    const std::string str = to_string(m_refMean) + " " + to_string(m_refStdDev);
+    //cout << m_refMean << ", " << m_refStdDev << ", " << str << endl;
+    return str;
+}
+void ScalingOpStandardize::SetRefMean(double mean)
+{
+    m_refMean = mean;
+}
+void ScalingOpStandardize::SetRefStdDev(double stdDev)
+{
+    m_refStdDev = stdDev;
+}
+ScalingOpStandardizeInvert::ScalingOpStandardizeInvert(const ScalingOpStandardize & scaler)
+: m_scaler(scaler)
+{
+}
+double ScalingOpStandardizeInvert::operator()(const double standardized) const
+{
+    const double raw = standardized * m_scaler.GetRefStdDev() + m_scaler.GetRefMean();
+    return raw;
+}
+
+VectorD Statistical::StandardizeInvert( const ScalingOpStandardizeInvert & scaleOp, const VectorD & applyVec ) const
+{
+    Assertions::NonEmpty(applyVec, "Statistical::StandardizeInvert - applyVec");
+    VectorD ret; ret.reserve(applyVec.size());
+    std::transform(applyVec.begin(), applyVec.end(), std::back_inserter(ret), scaleOp);
+    return ret;
+}
+
+VectorD Statistical::Standardize( const ScalingOpStandardize & scaleOp, const VectorD & applyVec ) const
+{
+    Assertions::NonEmpty(applyVec, "Statistical::Standardize - applyVec");
+    VectorD ret; ret.reserve(applyVec.size());
+    std::transform(applyVec.begin(), applyVec.end(), std::back_inserter(ret), scaleOp);
+    return ret;
+}
+Matrix Statistical::Standardize( const std::vector<ScalingOpStandardize> & scalersOp, const Matrix & applyMat ) const
+{
+    Assertions::NonEmpty(applyMat, "Statistical::Standardize - applyMat");
+    Assertions::SizesEqual( scalersOp.size(), applyMat.GetNCols(), "Statistical::Standardize - applyMat");
+
+    Matrix ret = applyMat;
+    for (int ifeat = 0; ifeat < int(scalersOp.size()); ++ifeat)
+    {
+        const ScalingOpStandardize & scalerOp = scalersOp.at(ifeat);
+        //cout << "scalex = " << scalerx.ToStr() << endl;
+        for (VectorD & row : ret)
+        {
+            row.at(ifeat) = scalerOp(row.at(ifeat));
+        }
+    }
+    return ret;
+}
+
+VectorD Statistical::Standardize( const VectorD & refVec, const VectorD & applyVec ) const
+{
+    const ScalingOpStandardize scaleOp(refVec);
+    return Standardize(scaleOp, applyVec);
+}
+
+VectorD Statistical::Standardize( const VectorD & refVec ) const
+{
+    return Standardize(refVec, refVec);
+}
+
+Matrix Statistical::Standardize( const Matrix & refMat, const Matrix & applyMat ) const
+{
+    Assertions::NonEmpty(refMat, "Statistical::Standardize Mat ref");
+    Assertions::NonEmpty(applyMat, "Statistical::Standardize Mat apply");
+    Assertions::SizesEqual(refMat.at(0), applyMat.at(0), "Statistical::Standardize");
+
+    const Matrix & matT = refMat.T();
+    const Matrix & matApplyT = applyMat.T();
+    Matrix standardizedT;
+    for (int i = 0; i < int(matT.size()); ++i)
+    {
+        const VectorD & stdVec = Standardize(matT.at(i), matApplyT.at(i));
+        standardizedT.push_back(stdVec);
+    }
+    return standardizedT.T();
+}
+
+Matrix Statistical::Standardize( const Matrix & refMat ) const
+{
+    return Standardize(refMat, refMat);
+}
+
+double Statistical::RMS( const VectorD & v) const
+{
+    Assertions::NonEmpty(v, "Statistical::RMS");
+    double sumSquared = 0;
+    for (unsigned i = 0; i < v.size(); ++i)
+    {
+        const double val = v.at(i);
+        const double val2 = val*val;
+        sumSquared += val2;
+    }
+    const double divided = sumSquared / double(v.size());
+    const double squareroot = sqrt(divided);
+    return squareroot;
+}
+
+double Statistical::RMSTwo(const VectorD & v1, const VectorD & v2) const
+{
+    Assertions::NonEmpty(v1, "Statistical::RMSTwo");
+    Assertions::SizesEqual(v1, v2, "Statistical::RMSTwo");
+    return RMS(PrepareDiff(v1, v2));
+}
+
+VectorD Statistical::PrepareDiff(const VectorD & v1, const VectorD & v2) const
+{
+    Assertions::NonEmpty(v1, "Statistical::PrepareDiff");
+    Assertions::SizesEqual(v1, v2, "Statistical::PrepareDiff");
+    VectorD diff(v1.size());
+    for (unsigned i = 0; i < v1.size(); ++i)
+    {
+        const double dif = v1.at(i) - v2.at(i);
+        diff.at(i) = dif;
+    }
+    return diff;
+}
+
+double Statistical::METwo(const VectorD & v1, const VectorD & v2) const
+{
+    Assertions::NonEmpty(v1, "Statistical::METwo");
+    Assertions::SizesEqual(v1, v2, "Statistical::METwo");
+    return ME(PrepareDiff(v1, v2));
+}
+
+double Statistical::ME(const VectorD & v) const
+{
+    Assertions::NonEmpty(v, "Statistical::ME");
+    const double ret = v.SumAbs() / double(v.size());
+    return ret;
+}
+
+/// Calculates distance between means in terms of standard deviations' distance
+double Statistical::CohendEffectSize(const VectorD & v1, const VectorD & v2) const
+{
+    const char * idd = "Statistical::CohendEffectSize";
+    Assertions::AtLeast2Dimensions(v1, idd);
+    Assertions::AtLeast2Dimensions(v2, idd);
+    const double var1 = Variance(v1);
+    const double var2 = Variance(v2);
+    const double sz1 = v1.size();
+    const double sz2 = v2.size();
+    const double mn1 = v1.Mean();
+    const double mn2 = v2.Mean();
+
+    const double pooledStdDev = sqrt(((sz1 - 1) * var1 + (sz2 - 1) * var2) / (sz1 + sz2 - 2));
+    Assertions::IsNonZero(pooledStdDev, idd);
+    const double effectSize = (mn1 - mn2) / pooledStdDev;
+    return effectSize;
+}
+
+VectorD Statistical::RelativeChange( const VectorD & v ) const
+{
+    return Change(v, true);
+}
+
+VectorD Statistical::AbsoluteChange( const VectorD & v ) const
+{
+    return Change(v, false);
+}
+
+VectorD Statistical::Change( const VectorD & v, bool relative ) const
+{
+    VectorD ret;
+    GeneralMath gmh;
+    for (int i = 1; i < int(v.size()); ++i)
+    {
+        const double vCurr = v.at(i);
+        const double vPrev = v.at(i-1);
+        const double chng = relative ? gmh.RelativeChange(vCurr, vPrev) : gmh.AbsoluteChange(vCurr, vPrev);
+        ret.push_back(chng);
+    }
+    return ret;
+}
+
+VectorD Statistical::MeanCols( const Matrix & m ) const
+{
+    VectorD ret;
+    const Matrix & t = m.T();
+    for (size_t i = 0; i < t.size(); ++i)
+    {
+        ret.push_back(t.at(i).Mean());
+    }
+    return ret;
 }
 

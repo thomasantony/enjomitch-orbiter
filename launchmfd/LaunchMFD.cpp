@@ -381,8 +381,8 @@ void LaunchMFD::WriteStatus (FILEHANDLE scn) const
     oapiWriteScenario_float (scn, "APA",    m_data->ApA);
     oapiWriteScenario_float (scn, "GCSTEP", m_data->m_greatCircle.GetPlotPrecision() * 1000); // Mutiplied due to loss of precission
 
-    std::string tgt = CharManipulations().replace(m_data->GetTargetStdStr(), " ",">");
-    std::string tgtDisp = CharManipulations().replace(m_data->GetTargetDisplStr(), " ",">");
+    std::string tgt = CharManipulations().Replace(m_data->GetTargetStdStr(), " ",">");
+    std::string tgtDisp = CharManipulations().Replace(m_data->GetTargetDisplStr(), " ",">");
     oapiWriteScenario_string (scn, "TGT", (char*)tgt.c_str());
     oapiWriteScenario_string (scn, "TGTDISP", (char*)tgtDisp.c_str());
 }
@@ -431,13 +431,13 @@ void LaunchMFD::ReadStatus (FILEHANDLE scn)
             {
                 std::string tgt;
                 ss >> tgt;
-                strTgt = CharManipulations().replace(tgt, ">", " ");
+                strTgt = CharManipulations().Replace(tgt, ">", " ");
             }
             else if ( id == "TGTDISP" )
             {
                 std::string tgt;
                 ss >> tgt;
-                strTgtDispl = CharManipulations().replace(tgt, ">", " ");
+                strTgtDispl = CharManipulations().Replace(tgt, ">", " ");
             }
         }
     }

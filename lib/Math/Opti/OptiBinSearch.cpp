@@ -59,38 +59,67 @@ Result<double> OptiBinSearch::Run( OptiSubject & subj ) const
     double a = m_minArg;
     double b = m_maxArg;
     bool bmaxIter = false;
+    bool condEps = false;
 
     double mid = (a + b) / 2; // Midpoint
     double valMid = subj.UpdateGetValue(mid);
     do
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)
         mid = (a + b) / 2; // Midpoint
-        double left = (a + mid) / 2;
-        double right = (mid + b) / 2;
-        double valLeft = subj.UpdateGetValue(left);
-        double valRight = subj.UpdateGetValue(right);
+        const double left  = (a + mid) / 2;
+        const double right = (mid + b) / 2;
+        const double valLeft  = subj.UpdateGetValue(left);
+        const double valRight = subj.UpdateGetValue(right);
         if (valLeft < valRight && valLeft <= valMid)
         {
             b = mid; // Narrow right border
             valMid = valLeft;
+
+            if (IsDiscrete())
+            {
+                b = ceil(mid);
+            }
         }
         else if (valRight < valLeft && valRight <= valMid)
         {
             a = mid; // Narrow left border
             valMid = valRight;
+
+            if (IsDiscrete())
+            {
+                a = floor(mid);
+            }
         }
         else // Narrow both borders, because the answer is inside
 		{
 			a = left;
 			b = right;
 			// value of the middle point stays the same and doesn't need to be recalculated
+
+			if (IsDiscrete())
+            {
+                a = floor(left);
+                b = ceil(right);
+            }
 		}
         bmaxIter = ++i == m_maxIter;
-    } while( (b-a)/2 > m_eps && ! bmaxIter ); // Continue searching, until below threshold
+        const double diffBA = b - a;
+        if (IsDiscrete())
+        {
+            condEps = diffBA > 1;
+        }
+        else
+        {
+            condEps = diffBA / 2.0 > m_eps;
+        }
+    } while( condEps && ! bmaxIter ); // Continue searching, until below threshold
     //sprintf(oapiDebugString(), "i = %d, maxi = %d, arg = %lf, value = %lf, pdiff = %lf",i, m_maxIter, arg, diff, prevDiff);
     if ( bmaxIter )
         return Result<double>(m_maxArg, false);
     else
+    {
         //return Result<double>(arg, subj.IsValid( arg, value ));
-        return Result<double>(mid, true);
+        const double argRet = IsDiscrete() ? GeneralMath().round(mid) : mid;
+        return Result<double>(argRet, true);
+    }
 }

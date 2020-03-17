@@ -35,6 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <string>
 #include <sstream>
+#include <stdexcept>
+//#include <typeinfo>
 
 #ifdef __GNUC__ // GCC has __PRETTY_FUNCTION__
     #define FUNCTION_DESCR __PRETTY_FUNCTION__
@@ -44,9 +46,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     #define FUNCTION_DESCR __FILE__
 #endif
 
+//std::string(typeid(*this).name()) + ":" + std::string(FUNCTION_DESCR) + ":" +
 #define STRACE_PREPARE \
     std::string(FUNCTION_DESCR) + ":" + \
-    static_cast<ostringstream*>( &(ostringstream() << __LINE__) )->str()
+    static_cast<std::ostringstream*>( &(std::ostringstream() << __LINE__) )->str()
 
 /// Throws an exception with error message
 /**

@@ -8,15 +8,16 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/EnjoLibwx" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="`wx-config --version=3.0 --debug=yes --cflags`" />
+					<Add directory="src/Maps" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -26,14 +27,15 @@
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/EnjoLibwx" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option working_dir="bin/Release" />
 				<Option object_output="obj/Release/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="`wx-config --version=3.0 --debug=no --cflags`" />
+					<Add directory="src/Maps" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -52,6 +54,7 @@
 					<Add option="-O2" />
 					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/lib/wx/include/msw-unicode-static-2.9" />
 					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/include" />
+					<Add directory="src/Maps" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -79,11 +82,12 @@
 				<Option working_dir="" />
 				<Option object_output="obj/Release-MinGW32/" />
 				<Option type="2" />
-				<Option compiler="mingw32" />
+				<Option compiler="mingw_32" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="`/usr/i686-w64-mingw32/bin/wx-config  --version=3.0 --static=yes --debug=no --cflags`" />
+					<Add directory="src/Maps" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -105,6 +109,7 @@
 					<Add option="-D__WXDEBUG__" />
 					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/lib/wx/include/msw-unicode-static-2.9" />
 					<Add directory="C:/MinGW/msys/1.0/home/enjo/paczki/wxWidgets-2.9.1/include" />
+					<Add directory="src/Maps" />
 				</Compiler>
 				<Linker>
 					<Add option="-mtreads" />
@@ -126,49 +131,75 @@
 					<Add directory="bin/Debug" />
 				</Linker>
 			</Target>
+			<Target title="Release-x64">
+				<Option output="bin/Release-x64/EnjoLibwx" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release-x64" />
+				<Option object_output="obj/Release/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config --version=3.0 --debug=no --cflags`" />
+					<Add directory="src/Maps" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`wx-config --version=3.0 --debug=no --libs`" />
+					<Add directory="../lib" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++0x" />
 			<Add option="-Wall" />
+			<Add option="-std=c++0x" />
+			<Add option="-fPIC" />
 			<Add option="-DWX_PRECOMP" />
 			<Add directory="../../orbiter/lib" />
 			<Add directory="../lib" />
 		</Compiler>
-		<Unit filename="ConfigSavesWindow.cpp" />
-		<Unit filename="ConfigSavesWindow.h" />
-		<Unit filename="Database/DatabaseAbstract.cpp" />
-		<Unit filename="Database/DatabaseAbstract.hpp" />
-		<Unit filename="Database/Entity.cpp" />
-		<Unit filename="Database/Entity.hpp" />
-		<Unit filename="Database/Persistor.cpp" />
-		<Unit filename="Database/Persistor.hpp" />
-		<Unit filename="Database/Table.cpp" />
-		<Unit filename="Database/Table.hpp" />
-		<Unit filename="DrawingMovable/DrawingObject.cpp" />
-		<Unit filename="DrawingMovable/DrawingObject.h" />
-		<Unit filename="DrawingMovable/DrawingObjectAbstract.cpp" />
-		<Unit filename="DrawingMovable/DrawingObjectAbstract.h" />
-		<Unit filename="DrawingMovable/DrawingObjectFactoryAbstract.cpp" />
-		<Unit filename="DrawingMovable/DrawingObjectFactoryAbstract.h" />
-		<Unit filename="DrawingMovable/DrawingObjectManager.cpp" />
-		<Unit filename="DrawingMovable/DrawingObjectManager.h" />
-		<Unit filename="DrawingMovable/MovableRect.cpp" />
-		<Unit filename="DrawingMovable/MovableRect.h" />
-		<Unit filename="ImageManipulation.cpp" />
-		<Unit filename="ImageManipulation.hpp" />
-		<Unit filename="MyChoiceEnum.cpp" />
-		<Unit filename="MyChoiceEnum.h" />
-		<Unit filename="MyListCtrlCheckbox.cpp" />
-		<Unit filename="MyListCtrlCheckbox.h" />
-		<Unit filename="MyWxScrolledWindow.cpp" />
-		<Unit filename="MyWxScrolledWindow.h" />
-		<Unit filename="wx_pch.h">
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
+		<Unit filename="src/ConfigSavesWindow.cpp" />
+		<Unit filename="src/ConfigSavesWindow.h" />
+		<Unit filename="src/Database/DatabaseAbstract.cpp" />
+		<Unit filename="src/Database/DatabaseAbstract.hpp" />
+		<Unit filename="src/Database/Entity.cpp" />
+		<Unit filename="src/Database/Entity.hpp" />
+		<Unit filename="src/Database/Persistor.cpp" />
+		<Unit filename="src/Database/Persistor.hpp" />
+		<Unit filename="src/Database/Table.cpp" />
+		<Unit filename="src/Database/Table.hpp" />
+		<Unit filename="src/DrawingMovable/DrawingObject.cpp" />
+		<Unit filename="src/DrawingMovable/DrawingObject.h" />
+		<Unit filename="src/DrawingMovable/DrawingObjectAbstract.cpp" />
+		<Unit filename="src/DrawingMovable/DrawingObjectAbstract.h" />
+		<Unit filename="src/DrawingMovable/DrawingObjectFactoryAbstract.cpp" />
+		<Unit filename="src/DrawingMovable/DrawingObjectFactoryAbstract.h" />
+		<Unit filename="src/DrawingMovable/DrawingObjectManager.cpp" />
+		<Unit filename="src/DrawingMovable/DrawingObjectManager.h" />
+		<Unit filename="src/DrawingMovable/MovableRect.cpp" />
+		<Unit filename="src/DrawingMovable/MovableRect.h" />
+		<Unit filename="src/ImageManipulation.cpp" />
+		<Unit filename="src/ImageManipulation.hpp" />
+		<Unit filename="src/Maps/IMapControl.cpp" />
+		<Unit filename="src/Maps/IMapControl.hpp" />
+		<Unit filename="src/Maps/MapCheckbox.cpp" />
+		<Unit filename="src/Maps/MapCheckbox.hpp" />
+		<Unit filename="src/Maps/MapChoiceEnum.cpp" />
+		<Unit filename="src/Maps/MapChoiceEnum.hpp" />
+		<Unit filename="src/Maps/MapControlBaseTpl.cpp" />
+		<Unit filename="src/Maps/MapControlBaseTpl.hpp" />
+		<Unit filename="src/Maps/MapControlTpl.cpp" />
+		<Unit filename="src/Maps/MapControlTpl.hpp" />
+		<Unit filename="src/Maps/MapSpin.cpp" />
+		<Unit filename="src/Maps/MapSpin.hpp" />
+		<Unit filename="src/MyChoiceEnum.cpp" />
+		<Unit filename="src/MyChoiceEnum.h" />
+		<Unit filename="src/MyListCtrlCheckbox.cpp" />
+		<Unit filename="src/MyListCtrlCheckbox.h" />
+		<Unit filename="src/MyWxScrolledWindow.cpp" />
+		<Unit filename="src/MyWxScrolledWindow.h" />
+		<Unit filename="src/pch/wx_pch.h" />
 		<Extensions>
-			<code_completion />
-			<envvars />
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="src/EnjoLibwxApp.cpp" main="EnjoLibwxFrame" init_handlers="necessary" language="CPP" />
@@ -179,7 +210,6 @@
 					<wxDialog wxs="wxsmith/DialogCalendar.wxs" src="src/DialogCalendar.cpp" hdr="src/DialogCalendar.h" fwddecl="0" i18n="1" name="DialogCalendar" language="CPP" />
 				</resources>
 			</wxsmith>
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

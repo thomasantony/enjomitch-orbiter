@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <cstdlib>
 #include <sstream>
 #include <stdexcept>
+#include <algorithm>
 #include "CharManipulations.hpp"
 using namespace EnjoLib;
 
@@ -52,8 +53,9 @@ void CharManipulations::char_replace_s(char *src, char lookfor, char replacewith
 }
 */
 
-std::string CharManipulations::replace(const std::string & in, const std::string & lookFor, const std::string & replaceWith )
+std::string CharManipulations::Replace(const std::string & in, const std::string & lookFor, const std::string & replaceWith ) const
 {
+    //replace(baseDirNoZ.begin(), baseDirNoZ.end(), '\\', '/');
     std::string out = in;
     size_t pos;
     while ( (pos = out.find(lookFor)) != std::string::npos )
@@ -63,9 +65,59 @@ std::string CharManipulations::replace(const std::string & in, const std::string
     return out;
 }
 
-std::string CharManipulations::trim(const std::string & in )
+bool CharManipulations::StartsWith(const std::string & str, const std::string & prefix) const
 {
-    return replace(in, " ", "");
+    if (prefix.length() > str.length())
+        return false;
+    return std::equal(prefix.begin(), prefix.end(), str.begin());
+}
+
+bool CharManipulations::EndsWith(const std::string & str, const std::string & sufffix) const
+{
+    if (sufffix.length() > str.length())
+        return false;
+    return std::equal(sufffix.begin(), sufffix.end(), str.end() - sufffix.length());
+}
+
+bool CharManipulations::Contains(const std::string & str, const std::string & toFind) const
+{
+    return (str.find(toFind) != std::string::npos);
+}
+
+std::vector<std::string> CharManipulations::EndsWith(const std::vector<std::string> & files, const std::string & sufffix) const
+{
+    std::vector<std::string> ret;
+    //for (const std::string & file : files)
+    for (int i = 0; i < int(files.size()); ++i)
+    {
+        const std::string & file = files.at(i);
+        if (EndsWith(file, sufffix))
+            ret.push_back(file);
+    }
+    return ret;
+}
+
+std::pair<std::string, std::string> CharManipulations::GetFileNameExtension(const std::string & fileWithExt) const
+{
+    std::size_t found = fileWithExt.find_last_of(".");
+    if (found == std::string::npos)
+        return std::pair<std::string, std::string>();
+    return make_pair(fileWithExt.substr(0,found), fileWithExt.substr(found+1));
+}
+
+
+std::string CharManipulations::Trim(const std::string & in ) const
+{
+    std::string mod = in;
+    while (StartsWith(mod, " "))
+    {
+        mod = mod.substr(1);
+    }
+    while (EndsWith(mod, " "))
+    {
+        mod = mod.substr(0, mod.size() - 1);
+    }
+    return mod;
 }
 
 std::string CharManipulations::ToStr(double d, unsigned precision) const
@@ -82,6 +134,18 @@ std::string CharManipulations::ToStr(int i) const
     std::ostringstream ss;
     ss << i;
     return ss.str();
+}
+
+std::string CharManipulations::MakeLeadingZeroes(int d, unsigned numZeroes) const
+{
+    std::ostringstream oss;
+    oss << d;
+    std::string ret = oss.str();
+    while (ret.size() < numZeroes)
+    {
+        ret = '0' + ret;
+    }
+    return ret;
 }
 
 bool CharManipulations::ToDouble(const std::string & in, double * d) const
@@ -102,4 +166,16 @@ bool CharManipulations::ToInt(const std::string & in, int * i) const
 int CharManipulations::ToInt(const std::string & in) const
 {
     return ToNumber<int>(in);
+}
+
+std::string CharManipulations::ToUpper(std::string in) const
+{
+    std::transform(in.begin(), in.end(), in.begin(), ::toupper);
+    return in;
+}
+
+std::string CharManipulations::ToLower(std::string in) const
+{
+    std::transform(in.begin(), in.end(), in.begin(), ::tolower);
+    return in;
 }

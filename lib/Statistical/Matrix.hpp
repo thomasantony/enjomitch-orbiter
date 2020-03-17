@@ -41,21 +41,39 @@ class Matrix : public std::vector<VectorD>
     public:
         std::string Print() const;
         std::string PrintScilab( const char * varName ) const;
+        std::string SizeStr() const;
         Matrix();
         Matrix(int n);
         Matrix(int n, int m);
         virtual ~Matrix();
 
+        void Add(const VectorD & vec);
+
         Matrix T() const;
         Matrix & TMe();
-        Matrix AdjustMean() const;
+        Matrix AdjustMeanRows() const;
+        Matrix AdjustMeanCols() const;
+        Matrix AdjustMeanCols(const VectorD & mean) const;
+        Matrix ApplyMeanCols(const VectorD & mean) const;
+        Matrix ApplyMeanRows(const VectorD & mean) const;
+        VectorD Flatten() const;
+        VectorD GetCol(int colNum) const;
         int GetNRows() const;
-        int GetNCols() const;
+        int GetNCols() const
+        {
+            if ( empty() )
+                return 0;
+            return this->operator[](0).size();
+        }
+        Matrix FilterByMask(const std::vector<bool> & mask) const;
+        Matrix & FilterByMaskMe(const std::vector<bool> & mask);
 
         Matrix operator * (const Matrix & par) const;
 
     protected:
     private:
+        Matrix ApplyMean(const Matrix & mat2Apply, const VectorD & mean) const;
+        Matrix AdjustMean(const Matrix & mat2Apply) const;
 };
 }
 #endif // MATRIX_H

@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include <cmath>
+#include <ctime>
 #include "Constants.hpp"
 #include "GeneralMath.hpp"
 #include "SimpsonFunctor.hpp"
@@ -83,14 +84,36 @@ double GeneralMath::Log2( double n ) const
 double GeneralMath::LinearInterpol( double x, const Point & p1, const Point & p2 ) const
 {
     // y = ax + b
-    const Point & pDiff = p2 - p1;
+    const Point pDiff = p2 - p1;
     if ( pDiff.x == 0 )
         return p1.y;
 
-    const double a = pDiff.y / pDiff.x;
-    const double b = p1.y - a * p1.x;
-    const double y = a * x + b;
+    const LineParams & lpar = CalcLineParams(p1, p2);
+    const double y = lpar.a * x + lpar.b;
     return y;
+}
+
+double GeneralMath::FindIntercept( double y, const Point & p1, const Point & p2 ) const
+{
+    const Point pDiff = p2 - p1;
+    if ( pDiff.x == 0 )
+        return p1.y;
+    if ( pDiff.y == 0 )
+        return p1.x;
+
+    const LineParams & lpar = CalcLineParams(p1, p2);
+    const double x = (y - lpar.b) / lpar.a;
+
+    return x;
+}
+
+GeneralMath::LineParams GeneralMath::CalcLineParams(const Point & p1, const Point & p2) const
+{
+    const Point pDiff = p2 - p1;
+    LineParams lpar;
+    lpar.a = pDiff.y / pDiff.x;
+    lpar.b = p1.y - lpar.a * p1.x;
+    return lpar;
 }
 
 double GeneralMath::GetInPIRange( double angle ) const
@@ -122,4 +145,63 @@ int GeneralMath::GetMaxIterBinSearchBound(double minArg, double maxArg, double e
     const double numSlices = this->round( fabs(maxArg-minArg) / eps);
     int maxIter = 2 * this->round(this->Log2(numSlices));
     return maxIter;
+}
+
+std::vector<double> GeneralMath::UniformDistr(int n, double min, double max) const
+{
+    const double len = (max - min) / double(n + 1);
+    std::vector<double> ret;
+
+    for (int i = 0; i < n; ++i)
+    {
+        const double pos = min + (i+1) * len;
+        ret.push_back(pos);
+    }
+    return ret;
+}
+
+int GeneralMath::GetGreatestCommonDivisor(int a, int b) const
+{
+    //https://pl.wikipedia.org/wiki/Algorytm_Euklidesa
+    while(b != 0)             // Tworzymy pętlę działającą gdy b ≠ 0
+    {
+        int c = a % b;              // Zmienna c przyjmuje wartość a modulo b
+        a = b;                // Przypisujemy b do a
+        b = c;                // Przypisujemy c do b
+    }
+    return a;                 // Zwracamy a, czyli żądane NWD(a,b)
+}
+
+int GeneralMath::GetNumDigits(double number) const
+{
+    int digits = 0;
+    if (number < 0) digits = 1; // remove this line if '-' counts as a digit
+    while (number > 1) {
+        number /= 10;
+        digits++;
+    }
+    return digits;
+}
+
+double GeneralMath::RelativeChange(double val, double valRef) const
+{
+    if (valRef == 0)
+        return 0;
+    return (val - valRef) / valRef;
+}
+
+double GeneralMath::AbsoluteChange(double val, double valRef) const
+{
+    return val - valRef;
+}
+
+double GeneralMath::PointsPower(double x, double power) const
+{
+    double out = 0;
+    if (x >= 0)
+        out = -1 + pow(x + 1, power);
+    else
+        out = -(-1 + pow(-x + 1, power));
+
+    return out;
 }

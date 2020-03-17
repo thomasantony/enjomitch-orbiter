@@ -1,8 +1,8 @@
 #ifndef BINSEARCHOPTI2D_H
 #define BINSEARCHOPTI2D_H
 
-#include "../Util/Result.hpp"
-#include "../Systems/Point.hpp"
+#include "../../Util/Result.hpp"
+#include "../../Systems/Point.hpp"
 
 namespace EnjoLib
 {

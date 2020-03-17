@@ -30,30 +30,26 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <string>
-#include <stdexcept>
-
 #include "Assertions.hpp"
 #include "VectorTpl.hpp"
 #include "Matrix.hpp"
 
+#include <string>
+#include <stdexcept>
+#include <sstream>
+
 using namespace EnjoLib;
 
-Assertions::Assertions()
-{
-}
-
-Assertions::~Assertions()
-{
-}
-
-void Assertions::CanMultiply( const Matrix & m1, const Matrix & m2, const char * identifier  ) const
+void Assertions::CanMultiply( const Matrix & m1, const Matrix & m2, const char * identifier  )
 {
     if ( m1.GetNCols() != m2.GetNRows() )
-        throw std::invalid_argument( std::string("Can't multiply matrices at\n") + identifier + "()\n");
+    {
+        std::ostringstream oss;
+        oss << "Can't multiply matrices of sizes " << m1.SizeStr() << " and " << m2.SizeStr() << " at\n" << identifier << "\n";
+        throw std::invalid_argument( oss.str() );
+    }
 }
-
-void Assertions::Square( const Matrix & m, const char * identifier ) const
+void Assertions::Square( const Matrix & m, const char * identifier )
 {
     for (Matrix::const_iterator it = m.begin(); it != m.end(); ++it)
     {
@@ -61,6 +57,41 @@ void Assertions::Square( const Matrix & m, const char * identifier ) const
             throw std::invalid_argument( std::string("Matrix not square at\n") + identifier + "()\n");
     }
 }
+void Assertions::NonEmpty( const Matrix & mat, const char * identifier )
+{
+    if (mat.empty())
+        throw std::invalid_argument( std::string("Empty matrix at\n") + identifier + "()\n");
+}
+void Assertions::SizesEqual( size_t sz, size_t refSize, const char * identifier )
+{
+    if ( sz != refSize )
+    {
+        std::ostringstream oss;
+        oss << "Incompatible sizes of: " << sz << " & " << refSize << ", at:\n" << identifier << "()\n";
+        throw std::invalid_argument(oss.str());
+    }
+}
+
+void Assertions::IsTrue( bool cond, const char * identifier )
+{
+    if ( not cond )
+    {
+        std::ostringstream oss;
+        oss << "Condition is false, at:\n" << identifier << "()\n";
+        throw std::invalid_argument(oss.str());
+    }
+}
+
+void Assertions::IsFalse( bool cond, const char * identifier )
+{
+    if ( cond )
+    {
+        std::ostringstream oss;
+        oss << "Condition is true, at:\n" << identifier << "()\n";
+        throw std::invalid_argument(oss.str());
+    }
+}
+
 /*
 template<class T>
 void Assertions::SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier ) const

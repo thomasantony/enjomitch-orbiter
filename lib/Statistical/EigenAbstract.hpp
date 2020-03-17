@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define EIGENABSTRACT_H
 
 #include <vector>
+#include <memory>
 #include "EigenValueVector.hpp"
 namespace EnjoLib
 {
@@ -49,6 +50,12 @@ class EigenAbstract
         Matrix GetSortedFeatureVectorFactor( const Matrix & m, double leaveFactor ) const;
         Matrix GetSortedFeatureVector( const Matrix & m ) const;
         std::vector<EigenValueVector> GetEigenValVec( const Matrix & m, bool sorted ) const;
+
+        static std::unique_ptr<EigenAbstract> CreateEigen3();
+        static std::unique_ptr<EigenAbstract> CreateMKL();
+        static std::unique_ptr<EigenAbstract> CreateDefault();
+        static std::unique_ptr<EigenAbstract> CreateNewmat();
+        static std::unique_ptr<EigenAbstract> CreateNumpy();
 
     protected:
         virtual std::vector<EigenValueVector> GetEigenValVecClient( const Matrix & m ) const = 0;

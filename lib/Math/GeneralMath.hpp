@@ -33,6 +33,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef GENERALMATH_HPP_INCLUDED
 #define GENERALMATH_HPP_INCLUDED
 
+#include <vector>
+
 namespace EnjoLib
 {
 class SimpsonFunctor;
@@ -50,7 +52,14 @@ struct GeneralMath
     double SimpsonInt(double a, double b, const SimpsonFunctor & function, double epsilon = 0.001) const;
     /// Linear interpolation
     double LinearInterpol( double x, const Point & p1, const Point & p2 ) const;
-	int round(double r) const;
+    /// Find Intercept
+    double FindIntercept( double y, const Point & p1, const Point & p2 ) const;
+    struct LineParams
+    {
+        double a, b;
+    };
+    int round(double r) const;
+    LineParams CalcLineParams(const Point & p1, const Point & p2) const;
 	double Log2(double n) const;
 	/// Returns angle in <-PI, PI> range
 	double GetInPIRange( double angle ) const;
@@ -62,6 +71,13 @@ struct GeneralMath
 	int sign( double x ) const;
 	/// Iteration limit for bound binary search
 	int GetMaxIterBinSearchBound(double minArg, double maxArg, double eps) const;
+	std::vector<double> UniformDistr(int n, double min, double max) const;
+	int GetGreatestCommonDivisor(int a, int b) const;
+    int GetNumDigits(double number) const;
+    double RelativeChange(double val, double valRef) const;
+    double AbsoluteChange(double val, double valRef) const;
+    /// Applies points faster than linear and is symmetric
+    double PointsPower(double x, double power) const;
 };
 }
 

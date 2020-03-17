@@ -35,9 +35,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "../GeneralMath.hpp"
 //#include <sstream>
 #include <cmath>
+#include <iostream>
 //#include <Orbitersdk.h>
+//#include <iostream>
 
-
+using namespace std;
 using namespace EnjoLib;
 
 RootBisection::RootBisection( double minArg, double maxArg, double eps )
@@ -55,7 +57,6 @@ RootBisection::RootBisection( double minArg, double maxArg, double eps )
 RootBisection::~RootBisection()
 {}
 
-//#include <orbitersdk.h>
 Result<double> RootBisection::Run( RootSubject & subj ) const
 {
     // Validation block
@@ -84,6 +85,7 @@ Result<double> RootBisection::Run( RootSubject & subj ) const
         faSign = gm.sign(fa);
     }
     bool bmaxIter = false;
+    bool condEps = false;
     do
     {   // Cut the argument in slices until the value (value) is below threshold (binary search)
         mid = (a + b) / 2.0; // Midpoint
@@ -100,16 +102,29 @@ Result<double> RootBisection::Run( RootSubject & subj ) const
             b = mid; // Narrow right border
             // f(a) can be reused from current iteration
         }
-
+        //std::cout << "a = " << a << ", b = " << b << ", mid = " << (a + b) / 2.0 << std::endl;
         bmaxIter = ++i == m_maxIter;
-    } while( (b-a) > m_eps && ! bmaxIter ); // Continue searching, until below threshold
+        const double diffBA = b - a;
+        if (subj.IsDiscrete())
+        {
+            condEps = diffBA > 1;
+        }
+        else
+        {
+            condEps = diffBA > m_eps;
+        }
+    } while( condEps && ! bmaxIter ); // Continue searching, until below threshold
     //sprintf(oapiDebugString(), "i = %d, maxi = %d, mid = %lf, value = %lf, pdiff = %lf",i, m_maxIter, mid, diff, prevDiff);
     m_numIter = i;
     if ( bmaxIter )
         return Result<double>(m_maxArg, false);
     else
-        return Result<double>(mid, subj.IsValid( mid, midValue ));
+    {
+        const double argRet = subj.IsDiscrete() ? gm.round(b) : mid;
+        return Result<double>(argRet, subj.IsValid( argRet, midValue ));
+    }
 }
+
 
 int RootBisection::GetNumIterations() const
 {

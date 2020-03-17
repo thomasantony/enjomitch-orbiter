@@ -1,4 +1,5 @@
 #include "Colors.hpp"
+#include "GeneralMath.hpp"
 
 using namespace EnjoLib;
 
@@ -12,9 +13,9 @@ using namespace EnjoLib;
    (C) Paul Bourke  http://paulbourke.net/texture_colour/colourspace/
 */
 
-Colors::COLOUR Colors::GreyToRGB(double v,double vmin,double vmax)
+Colors::COLOR Colors::GreyToRGB(double v,double vmin,double vmax) const
 {
-   COLOUR c = {1.0,1.0,1.0}; // white
+   COLOR c = {1.0,1.0,1.0}; // white
    double dv;
 
    if (v < vmin)
@@ -38,4 +39,22 @@ Colors::COLOUR Colors::GreyToRGB(double v,double vmin,double vmax)
    }
 
    return(c);
+}
+
+Colors::COLOR_256 Colors::To256(const COLOR & col) const
+{
+    COLOR_256 ret = {0, 0, 0};
+    ret.r = To256(col.r);
+    ret.g = To256(col.g);
+    ret.b = To256(col.b);
+    return ret;
+}
+
+int Colors::To256(double col) const
+{
+    const int maxVal = 255;
+    int res = GeneralMath().round(col * maxVal);
+    if (res > maxVal)
+        res = maxVal;
+    return res;
 }

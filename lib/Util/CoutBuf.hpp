@@ -1,16 +1,29 @@
 #ifndef COUTBUF_H
 #define COUTBUF_H
 
-#include <sstream>
+#include <iostream>
+//#include <iosfwd>
 
-class CoutBuf : public std::ostringstream
+namespace EnjoLib
+{
+class Log
 {
     public:
-        CoutBuf(bool verbose);
-        virtual ~CoutBuf();
-    protected:
+        Log();
+        virtual ~Log(){}
+
+        std::ostream & GetLog(bool verbose);
+
     private:
-        bool m_verbose;
+        std::ostream m_cnull;
+        std::wostream m_wcnull;
 };
+}
+
+
+extern std::ostream cnull;
+extern std::wostream wcnull;
+
+std::ostream & GetLog(bool verbose);
 
 #endif // COUTBUF_H

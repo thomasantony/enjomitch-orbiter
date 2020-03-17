@@ -37,6 +37,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Assertions.hpp"
 #include "Matrix.hpp"
 
+//#include <iostream>
+
+//using namespace std;
 using namespace EnjoLib;
 
 EigenAbstract::EigenAbstract()
@@ -49,8 +52,9 @@ EigenAbstract::~EigenAbstract()
 
 std::vector<EigenValueVector> EigenAbstract::GetEigenValVec( const Matrix & m, bool sorted ) const
 {
-    Assertions().Square(m, "EigenAbstract::GetEigenValVec");
+    Assertions::Square(m, "EigenAbstract::GetEigenValVec");
     const std::vector<EigenValueVector> & cvec = GetEigenValVecClient( m );
+    //cout << m.SizeStr() << " cvec = " << cvec.size() << endl;
     if ( ! sorted )
         return cvec;
     else
@@ -90,4 +94,31 @@ Matrix EigenAbstract::GetSortedFeatureVectorFactor( const Matrix & m, double lea
         ret.push_back(cvec[i].GetVector());
     }
     return ret;
+}
+
+/// Temporary
+#include "3rdParty/EigenEigen3.hpp"
+#include "3rdParty/EigenMKL.hpp"
+#include "3rdParty/EigenNumpy.hpp"
+#include "3rdParty/EigenNewmat10.hpp"
+std::unique_ptr<EigenAbstract> EigenAbstract::CreateEigen3()
+{
+    return std::unique_ptr<EigenAbstract>(new EigenEigen3());
+}
+std::unique_ptr<EigenAbstract> EigenAbstract::CreateDefault()
+{
+    //return CreateNewmat(); /// TODO: Errors in tests, just like MKL! Ergo: wrong Eigen or tests!
+    return CreateMKL();
+}
+std::unique_ptr<EigenAbstract> EigenAbstract::CreateMKL()
+{
+    return std::unique_ptr<EigenAbstract>(new EigenMKL());
+}
+std::unique_ptr<EigenAbstract> EigenAbstract::CreateNewmat()
+{
+    return std::unique_ptr<EigenAbstract>(new EigenNewmat10());
+}
+std::unique_ptr<EigenAbstract> EigenAbstract::CreateNumpy()
+{
+    return std::unique_ptr<EigenAbstract>(new EigenNumpy());
 }

@@ -130,10 +130,40 @@
 			<Add library="gdi32.lib" />
 			<Add library="winmm.lib" />
 		</Linker>
+		<Unit filename="../../../lib/Math/VectorMath.cpp" />
+		<Unit filename="../../../lib/Math/VectorMath.hpp" />
+		<Unit filename="../../../lib/Orbiter/AngularAcc.hpp" />
+		<Unit filename="../../../lib/Orbiter/AutopilotRotation.hpp" />
+		<Unit filename="../../../lib/Orbiter/BurnTime.hpp" />
+		<Unit filename="../../../lib/Orbiter/SpaceMathOrbiter.hpp" />
+		<Unit filename="../../../lib/Orbiter/SystemsConverterOrbiter.hpp" />
+		<Unit filename="../../../lib/Orbiter/VesselCapabilities.hpp" />
+		<Unit filename="../../../lib/PID/DerivatorDiscrete.cpp" />
+		<Unit filename="../../../lib/PID/DerivatorDiscrete.hpp" />
+		<Unit filename="../../../lib/PID/IntegratorDiscrete.cpp" />
+		<Unit filename="../../../lib/PID/IntegratorDiscrete.hpp" />
+		<Unit filename="../../../lib/PID/PID.cpp" />
+		<Unit filename="../../../lib/PID/PID.hpp" />
+		<Unit filename="../../../lib/Systems/Geo.cpp" />
+		<Unit filename="../../../lib/Systems/Geo.hpp" />
+		<Unit filename="../../../lib/Systems/Point.cpp" />
+		<Unit filename="../../../lib/Systems/Point.hpp" />
+		<Unit filename="../../../lib/Systems/Spherical.cpp" />
+		<Unit filename="../../../lib/Systems/Spherical.hpp" />
+		<Unit filename="../../../lib/Systems/SystemsConverter.cpp" />
+		<Unit filename="../../../lib/Systems/SystemsConverter.hpp" />
+		<Unit filename="../../../lib/Systems/Vect3.cpp" />
+		<Unit filename="../../../lib/Systems/Vect3.hpp" />
+		<Unit filename="../../../lib/Util/CharManipulations.cpp" />
+		<Unit filename="../../../lib/Util/CharManipulations.hpp" />
+		<Unit filename="../../../lib/Util/FileUtils.cpp" />
+		<Unit filename="../../../lib/Util/FileUtils.hpp" />
 		<Unit filename="../libMFD/MFDSound++/Sound.cpp" />
 		<Unit filename="../libMFD/MFDSound++/Sound.hpp" />
 		<Unit filename="../libMFD/MFDSound++/SoundMap.cpp" />
 		<Unit filename="../libMFD/MFDSound++/SoundMap.hpp" />
+		<Unit filename="../libMFD/Orbiter/AutopilotRotation.cpp" />
+		<Unit filename="../libMFD/Orbiter/AutopilotRotation.hpp" />
 		<Unit filename="../libMFD/Utils/MFDButtonPage.cpp" />
 		<Unit filename="../libMFD/Utils/mfdbuttonpage.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/MFDData.cpp" />
@@ -142,40 +172,7 @@
 		<Unit filename="../libMFD/multipleVesselsMFD/PluginMultipleVessels.hpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.cpp" />
 		<Unit filename="../libMFD/multipleVesselsMFD/SimulationTimeData.hpp" />
-		<Unit filename="../lib/Math/VectorMath.cpp" />
-		<Unit filename="../lib/Math/VectorMath.hpp" />
-		<Unit filename="../lib/Orbiter/AngularAcc.cpp" />
-		<Unit filename="../lib/Orbiter/AngularAcc.hpp" />
-		<Unit filename="../lib/Orbiter/AutopilotRotation.cpp" />
-		<Unit filename="../lib/Orbiter/AutopilotRotation.hpp" />
-		<Unit filename="../lib/Orbiter/BurnTime.cpp" />
-		<Unit filename="../lib/Orbiter/BurnTime.hpp" />
-		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.cpp" />
-		<Unit filename="../lib/Orbiter/SpaceMathOrbiter.hpp" />
-		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.cpp" />
-		<Unit filename="../lib/Orbiter/SystemsConverterOrbiter.hpp" />
-		<Unit filename="../lib/Orbiter/VesselCapabilities.cpp" />
-		<Unit filename="../lib/Orbiter/VesselCapabilities.hpp" />
-		<Unit filename="../lib/PID/DerivatorDiscrete.cpp" />
-		<Unit filename="../lib/PID/DerivatorDiscrete.hpp" />
-		<Unit filename="../lib/PID/IntegratorDiscrete.cpp" />
-		<Unit filename="../lib/PID/IntegratorDiscrete.hpp" />
-		<Unit filename="../lib/PID/PID.cpp" />
-		<Unit filename="../lib/PID/PID.hpp" />
-		<Unit filename="../lib/Systems/Geo.cpp" />
-		<Unit filename="../lib/Systems/Geo.hpp" />
-		<Unit filename="../lib/Systems/Point.cpp" />
-		<Unit filename="../lib/Systems/Point.hpp" />
-		<Unit filename="../lib/Systems/Spherical.cpp" />
-		<Unit filename="../lib/Systems/Spherical.hpp" />
-		<Unit filename="../lib/Systems/SystemsConverter.cpp" />
-		<Unit filename="../lib/Systems/SystemsConverter.hpp" />
-		<Unit filename="../lib/Systems/Vect3.cpp" />
-		<Unit filename="../lib/Systems/Vect3.hpp" />
-		<Unit filename="../lib/Util/CharManipulations.cpp" />
-		<Unit filename="../lib/Util/CharManipulations.hpp" />
-		<Unit filename="../lib/Util/FileUtils.cpp" />
-		<Unit filename="../lib/Util/FileUtils.hpp" />
+		<Unit filename="../libOrbiter/AutopilotRotation.hpp" />
 		<Unit filename="src/BurnTimeCalcMFD.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
@@ -213,10 +210,6 @@
 		<Unit filename="src/globals.h" />
 		<Unit filename="src/resource.h" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-			<lib_finder disable_auto="1" />
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
 				<doxyfile_project />
@@ -226,6 +219,7 @@
 				<doxyfile_dot />
 				<general />
 			</DoxyBlocks>
+			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

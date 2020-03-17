@@ -55,7 +55,7 @@ FileUtilsOrbiter::~FileUtilsOrbiter()
 
 std::string FileUtilsOrbiter::GetVesselConfigFileName( const VESSEL * v, const std::string & suffix ) const
 {
-    std::string classNameNoSpaces = CharManipulations().replace(v->GetClassName(), " ", "_");
+    std::string classNameNoSpaces = CharManipulations().Replace(v->GetClassName(), " ", "_");
     std::stringstream ss;
     ss << GetMFDConfigDir() << classNameNoSpaces << suffix << ".cfg";
     return ss.str();
@@ -64,8 +64,8 @@ std::string FileUtilsOrbiter::GetVesselConfigFileName( const VESSEL * v, const s
 std::string FileUtilsOrbiter::GetVesselConfigDir( const VESSEL * v ) const
 {
     CharManipulations cm;
-    std::string classNameNoSpaces = cm.replace(v->GetClassName(), " ", "_");
-    std::string classNameSlashes = cm.replace(classNameNoSpaces, "/", "\\");
+    std::string classNameNoSpaces = cm.Replace(v->GetClassName(), " ", "_");
+    std::string classNameSlashes = cm.Replace(classNameNoSpaces, "/", "\\");
 
     std::string vesselFamily;
     // Find last slash, indicating vessel family

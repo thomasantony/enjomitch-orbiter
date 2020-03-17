@@ -34,11 +34,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define STATISTICAL_H
 
 #include <vector>
+#include <string> // for scaler
 
 namespace EnjoLib
 {
 class VectorD;
 class Matrix;
+
+class ScalingOpStandardize
+{
+public:
+    ScalingOpStandardize(const VectorD & refVec);
+    ScalingOpStandardize(double refMean = 0, double refStdDev = 1);
+    ScalingOpStandardize(const std::string & str);
+    double operator()(const double inVal) const;
+    double GetRefMean() const { return m_refMean; }
+    double GetRefStdDev() const { return m_refStdDev; }
+    void SetRefMean(double mean);
+    void SetRefStdDev(double stdDev);
+    std::string ToStr() const;
+
+private:
+    double m_refMean;
+    double m_refStdDev;
+};
+
+class ScalingOpStandardizeInvert
+{
+    public:
+        ScalingOpStandardizeInvert(const ScalingOpStandardize & scaler);
+        double operator()(const double standardized) const;
+    private:
+        const ScalingOpStandardize & m_scaler;
+};
 
 class Statistical
 {
@@ -46,13 +74,33 @@ class Statistical
         Statistical();
         virtual ~Statistical();
 
+        double METwo(const VectorD & v1, const VectorD & v2) const;
+        double ME(const VectorD & v) const;
+        double RMSTwo(const VectorD & v1, const VectorD & v2) const;
+        double RMS(const VectorD & v) const;
+        double CohendEffectSize(const VectorD & v1, const VectorD & v2) const;
         double StandardDeviation( const VectorD & v ) const;
+        double StandardDeviation( const Matrix & m ) const;
+        double DistFromMean( const Matrix & m, const VectorD & v ) const;
+        double Median( const VectorD & v ) const;
         double Variance( const VectorD & v ) const;
         double Covariance( const VectorD & v1, const VectorD & v2 ) const;
         double SumMulDiffMean( const VectorD & v1, const VectorD & v2 ) const;
-        Matrix CovarianceMatrix( const Matrix & data );
+        VectorD StandardizeInvert( const ScalingOpStandardizeInvert & scaleOp, const VectorD & applyVec ) const;
+        VectorD Standardize( const ScalingOpStandardize & scaleOp, const VectorD & applyVec ) const;
+        Matrix  Standardize( const std::vector<ScalingOpStandardize> & scalersOp, const Matrix & applyMat ) const;
+        VectorD Standardize( const VectorD & refVec, const VectorD & applyVec ) const;
+        VectorD Standardize( const VectorD & refVec ) const;
+        Matrix  Standardize( const Matrix & refMat, const Matrix & applyMat ) const;
+        Matrix  Standardize( const Matrix & refMat ) const;
+        VectorD MeanCols( const Matrix & v ) const;
+        VectorD RelativeChange( const VectorD & v ) const;
+        VectorD AbsoluteChange( const VectorD & v ) const;
+        Matrix CovarianceMatrix( const Matrix & data ) const;
     protected:
     private:
+        VectorD Change( const VectorD & v, bool relative ) const;
+        VectorD PrepareDiff(const VectorD & v1, const VectorD & v2) const;
 };
 }
 #endif // STATISTICAL_H

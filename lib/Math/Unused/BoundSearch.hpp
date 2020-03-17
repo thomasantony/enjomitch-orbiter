@@ -1,7 +1,7 @@
 #ifndef BOUNDSEARCH_H
 #define BOUNDSEARCH_H
-#include "../Util/Result.hpp"
-#include "OptiSubject.hpp"
+#include "../../Util/Result.hpp"
+#include "../Opti/OptiSubject.hpp"
 
 namespace EnjoLib
 {

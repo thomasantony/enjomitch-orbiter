@@ -33,6 +33,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include "FileUtils.hpp"
 #include "CharManipulations.hpp"
 using namespace EnjoLib;
@@ -49,7 +52,7 @@ std::vector<std::vector<std::string> > FileUtils::GetConfigSections( const std::
     std::string line;
     while ( std::getline(file, line) )
     {
-        if (CharManipulations().trim(line) == startMarker)
+        if (CharManipulations().Trim(line) == startMarker)
         {
             std::vector<std::string> section = GetOneSection( file, endMarker );
             sections.push_back(section);
@@ -62,7 +65,7 @@ std::vector<std::string> FileUtils::GetOneSection( std::istream & file, const st
 {
     std::vector<std::string> section;
     std::string line;
-    while ( std::getline(file, line) && CharManipulations().trim(line) != endMarker )
+    while ( std::getline(file, line) && CharManipulations().Trim(line) != endMarker )
         section.push_back(line);
     return section;
 }
@@ -71,6 +74,43 @@ bool FileUtils::FileExists( const std::string & fileName ) const
 {
     std::ifstream f(fileName.c_str());
         return f.is_open();
+}
+
+bool FileUtils::DirExists( const std::string & dirName ) const
+{
+    struct stat info;
+
+    if( stat( dirName.c_str(), &info ) != 0 )
+        //printf( "cannot access %s\n", pathname );
+        return false;
+    else if( info.st_mode & S_IFDIR )  // S_ISDIR() doesn't exist on my windows
+        //printf( "%s is a directory\n", pathname );
+        return true;
+    else
+        //printf( "%s is no directory\n", pathname );
+        return false;
+}
+
+void FileUtils::CreateDirIfNotExistsLinux(const std::string & dirName) const
+{
+    if (DirExists(dirName))
+        return;
+    const std::string command = "mkdir -p " + dirName;
+    if (int err = system(command.c_str()))
+    {
+        std::cout << "FileUtils::CreateDirIfNotExistsLinux(): err = " << err << std::endl;
+    }
+}
+
+std::string FileUtils::GetBaseDir(const std::string & fullPath) const
+{
+    std::size_t found = fullPath.find_last_of("/\\");
+    if (found == std::string::npos)
+    {
+        return "";
+    }
+    const std::string & baseDir = fullPath.substr(0,found);
+    return baseDir;
 }
 
 size_t FileUtils::GetNumLinesFile( const std::string & fileName, bool skipHeader ) const
@@ -90,18 +130,4 @@ size_t FileUtils::GetNumLinesFile( std::istream & is, bool skipHeader ) const
     while ( std::getline(is, line) )
         ++size;
     return size;
-}
-
-void FileUtils::PrintProgressBar(size_t i, size_t sz) const
-{
-    int percentPrev = int(i / (float)sz * 10);
-    int percent = int((i+1) / (float)sz * 10);
-    if (percent != percentPrev || i == 0)
-    {
-        std::cout << percent * 10 << "% ";
-        std::cout.flush();
-    }
-
-    if (i == sz - 1)
-        std::cout << "  Done!" << std::endl;
 }

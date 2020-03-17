@@ -35,13 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using namespace EnjoLib;
 
-EigenValueComparator::EigenValueComparator()
-{
-}
-
-EigenValueComparator::~EigenValueComparator()
-{
-}
+EigenValueComparator::EigenValueComparator(){}
+EigenValueComparator::~EigenValueComparator(){}
 
 bool EigenValueComparator::operator()( const EigenValueVector & ev1, const EigenValueVector & ev2 )
 {

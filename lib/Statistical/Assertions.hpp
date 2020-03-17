@@ -43,31 +43,49 @@ class Matrix;
 class Assertions
 {
     public:
-        Assertions();
-        virtual ~Assertions();
-        template<class T>
-        void SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier ) const;
-        template<class T>
-        void AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier ) const;
-        void Square( const Matrix & m, const char * identifier ) const;
-        void CanMultiply( const Matrix & m1, const Matrix & m2, const char * identifier  ) const;
-
+        template<class T> static void NonEmpty( const VectorTpl<T> & v1, const char * identifier );
+        static void NonEmpty( const Matrix & v1,    const char * identifier );
+        template<class T> static void SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier );
+        template<class T> static void SizesEqual( const VectorTpl<T> & v1, size_t refSize, const char * identifier );
+        static void SizesEqual( size_t sz, size_t refSize, const char * identifier );
+        template<class T> static void AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier );
+        template<class T> static void IsNonZero( T val, const char * identifier );
+        static void Square( const Matrix & m, const char * identifier );
+        static void CanMultiply( const Matrix & m1, const Matrix & m2, const char * identifier );
+        static void IsTrue( bool cond, const char * identifier );
+        static void IsFalse( bool cond, const char * identifier );
     protected:
     private:
 };
 
     template<class T>
-    void Assertions::SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier ) const
+    void Assertions::NonEmpty( const VectorTpl<T> & v1, const char * identifier )
     {
-        if ( v1.size() != v2.size() )
-            throw std::invalid_argument( std::string("Incompatible sizes at\n") + identifier + "()\n");
+        if (v1.empty())
+            throw std::invalid_argument( std::string("Empty vector at\n") + identifier + "()\n");
     }
-
     template<class T>
-    void Assertions::AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier ) const
+    void Assertions::SizesEqual( const VectorTpl<T> & v1, const VectorTpl<T> & v2, const char * identifier )
+    {
+        return SizesEqual(v1.size(), v2.size(), identifier);
+    }
+    template<class T>
+    void Assertions::SizesEqual( const VectorTpl<T> & v1, size_t refSize, const char * identifier )
+    {
+        return SizesEqual(v1.size(), refSize, identifier);
+    }
+    template<class T>
+    void Assertions::AtLeast2Dimensions( const VectorTpl<T> & v, const char * identifier )
     {
         if ( v.size() < 2 )
             throw std::invalid_argument( std::string("Dimension must be at least 2\n") + identifier + "()\n");
+    }
+
+    template<class T>
+    void Assertions::IsNonZero( T val, const char * identifier )
+    {
+        if ( val == 0 )
+            throw std::invalid_argument( std::string("Zero value\n") + identifier + "()\n");
     }
 }
 #endif // VECTORUTIL_H
