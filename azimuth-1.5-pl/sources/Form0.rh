@@ -1,0 +1,31 @@
+#if !defined Form0_hpp_
+	#define Form0_hpp_
+
+
+
+
+
+#define IDC_TJVDESIGNPANEL 100
+#define IDC_INCLINATION_AND_ALT 101
+#define IDC_LATITUDE 102
+#define IDC_BODY_AND_ALT 103
+#define IDC_ORBIT_ALT 104
+#define IDC_CALCULATOR 105
+#define IDC_MASS 106
+#define IDC_EQUATOR_RADIUS 107
+#define IDC_SIDEREAL_DAY 108
+#define IDC_LISTBOX_BODY 109
+#define IDC_LISTBOX_LAT 110
+#define IDC_LISTBOX_INCLIN 111
+#define IDC_EDIT_INCLIN 112
+#define IDC_EDIT_LAT 113
+#define IDC_EDIT_ORBIT_ALT 114
+#define IDC_CALCULATE 115
+#define IDC_QUIT 116
+#define IDC_EDIT_OUTPUT 117
+#define IDC_EDIT_MASS 118
+#define IDC_EDIT_EQUATOR_RAD 119
+#define IDC_EDIT_SID_DAY 120
+
+
+#endif

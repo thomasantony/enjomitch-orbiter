@@ -1,0 +1,61 @@
+=========== INTRODUCTION ==============
+
+This is an orbital scenery generation module. It creates and moves objects as vessels, which act as asteroids, with random velocity and rotation. They're configured in a way that gives you a Frontier-like sense of your ship's acceleration.
+The objects are created when you are 50 km above atmosphere or 20 km above surface of bodies without atmosphere.
+Works best with FOV = 60*
+This addon is not suitable for low end computers, like below 2 GHz.
+Also, be aware that it may randomly CTD.
+
+
+=========== INSTALLATION ==============
+
+To install, extract this archive in orbiter's top directory, keeping the structure intact. Make sure you activate the orbscn module in Orbiter Launchpad's Modules tab. 
+
+If Orbiter complains about missing DLLs, then you'll need to install VC++ Redistributable Package from here:
+http://www.microsoft.com/downloads/details.aspx?familyid=32bc1bee-a3f9-4c13-9c99-220b62a191ee&displaylang=en
+
+
+======== FEATURES AND CHANGES =========
+
+Changes compared to Computerex' version:
+- once the objects are created, they're not destroyed and recreated when they reach rendering boundry, but moved instead. This approach increases stability greatly
+- the rendering boundries are no longer cuboid's walls, but a cone's walls. This is to prevent rendering the objects when they're not visible from your cockpit, as the cone is FOV dependant. This way you can have less generated objects (this means more FPS) with the same visual effects as if there were more of them
+- objects have random velocity and rotation
+- objects that are generated closely before you, will appear from the borders of your screen, and never from its center
+- when you accelerate, the objects are created further, because otherwise the closely generated ones would immediately reach rendering boundry
+
+
+========== CONFIGURATION ==============
+
+Currently, you can only configure the max count of vessels. 30 is ok for low end computers, while 100 or below is ok for high end computers. By default, Orbital Scenery will spawn 30 objects.
+The configuration file is located in:
+
+Modules/Plugin/orbscn.ini
+
+
+=========== LIMITATIONS ===============
+
+- the module is currently not fully configurable, but will be later
+- vessels are created in front of ship, not camera; probably fixable
+
+
+=========== LEGAL NOTICE ==============
+
+Copyright 2007 Mohd "Computerex" Ali  - original author
+Copyright 2008 Simon "Enjo" Ender     - current maintainer
+
+Warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL NORMAN WALSH OR ANY OTHER CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+In particular - it may crash your Orbiter to desktop under undefined conditions. It's just a warning, that when a CTD occurs, it's probably Orbital Scenery's fault.
+I'm not an expert but I think it may also make some mental ailments. If you play for very long and start to see moving asteroids after you close your eyes, then it means that you've overdosed Orbital Scenery :) If it happens, I advise disabling orbscn module from Orbiter Launchpad's Modules tab immediately.
+
+
+=========== FILES LIST ===============
+
+Config/Vessels/roid.cfg
+Doc/orbscn.txt (this file)
+Modules/Plugin/orbscn.ini
+Modules/Plugin/orbscn.dll
+Orbitersdk/Samples/orbscn (directory)

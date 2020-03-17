@@ -1,0 +1,163 @@
+=============================================
+Energy MFD mk2 v. 0.1
+=============================================
+
+
+=============================================
+INTRODUCTION
+=============================================
+
+Energy MFD mk2 is a tool which samples your kinetic (KE), potential (PE), and their sum - mechanical energy (ME). The stored data is printed on graphs, giving you a nice view of your energy states. The MFD is mainly an educational tool, but you may find it handy in some situations.
+
+The Energy MFD mk2's motto is: 
+"Isn't this what your physics teacher told you?"
+
+The idea was taken from ronpenton's Energy MFD, which can be found here: http://www.orbithangar.com/searchid.php?ID=1473
+
+Just for reference,
+KE = m * v^2 / 2
+PE = - G * M * m / r
+ME = KE + PE
+
+where:
+m - ship's mass
+v - ship's velocity
+G - gravity constant
+M - reference object's mass
+r - distance between the ship and the object
+
+
+=============================================
+MODULE INSTALLATION AND ACTIVATION
+=============================================
+
+You need VC++ 2005 redistributable package if you haven't istalled it already:
+http://www.microsoft.com/downloads/details.aspx?FamilyId=32BC1BEE-A3F9-4C13-9C99-220B62A191EE&displaylang=en
+Extract the archive into Orbiter's root directory. Activate EnergyMDKmk2 from Modules tab. 
+After starting Orbiter, the module is activated with [Shift+E], after invoking MFD selection with [Shift+F1]
+
+
+=============================================
+BUTTONS AND KEY SUMMARY
+=============================================
+
+[Gr]  [Shift+G] - select Gravity reference
+[Sr]  [Shift+S] - select Surface reference
+[Tgt] [Shift+T] - enter arbitrary Target
+[sAm] [Shift+A] - enter sAmpling time
+[seL] [Shift+L] - seLect graph
+[Er]  [Shift+E] - enter Energy range for selected graphs
+[Rst] [Shift+R] - Reset data
+[Mod] [Shift+M] - switch display Mode
+
+
+=============================================
+USAGE
+=============================================
+
+---------------------------------------------
+Reference body
+---------------------------------------------
+
+Reference body can be selected with either [Gr] button or [Shift+G] keystroke, which selects your Gravity reference - the most significant gravity field contributor in your area, or [Sr] or [Shift+S], for Surface reference - the closest body. You can also use [Tgt] or [Shift+T] to select an arbitrary target (not necessary a celestial body).
+You'll see, that if you are too far away from the reference body (> 400e6 m currently), you won't get the graphs for the energies to prevent Orbiter from hanging, but you will still get energy readouts.
+
+---------------------------------------------
+Sampling time
+---------------------------------------------
+
+SAmpling time can be selected with [sAm] or [Shift+A]. Standard = 150 s is good for low and medium orbits, and sampling time of for example 400 s is good after performing an ejection burn. Sampling time can't be set below 1 s, and please don't set it to low values and accelerate time greatly. It will hang Orbiter.
+Low sampling times are good for orbital insertion. 4 or 5 s is enough. Remember that your display is limited to 200 data points, and sampling time of 1 s fills those points quite fast! Of course, after that the old data is overwritten by newer data. The smaller the sampling data, the more data points will fit in your graph.
+
+---------------------------------------------
+Graphs and their modes selection
+---------------------------------------------
+
+SeLect a particular graph or all of them with [seL] button or [Shift+L]. The selected graph is highlighted on the right of the MFD
+Graphs' Y range can be set with four modes by using [Er] or [Shift+E] and entering:
+  'a' for automatic   - min Y is minimal value from graph's data set; max Y is max value from graph's data set
+  'b' for absolute    - min Y is minimal value from all graphs data sets; max Y is max value from graphs data sets. This mode gives you an idea, how big are the energies relative to each other
+  'z' for zero based  - one of the boundaries is 0, depending on which energy we are considering. Useful for watching your energy after an ejection burn
+  manual              - min and max are entered with keyboard, for example: -5e12 6e12
+  
+---------------------------------------------
+Resetting data
+---------------------------------------------
+  
+Unpleasant things can happen when you have big time acceleration, relatively low sampling time, and then you decrease the time acceleration. The X axis (time) can have problems with its automatic range setting. If your sampling time is bigger than your current time acceleration, yet you see that the time data isn't stored and the axis isn't being compressed, then you can press [Rst] button, or [Shift+R] keystroke. This will reset all the data, and hopefully bring the X axis to a normal state. The Rst button is also useful in a situation, when you want to take orbital insertion data after being in orbit. You'll see that the X axis isn't compressing itself without the reset.
+
+---------------------------------------------
+Display modes
+---------------------------------------------
+
+The MFD can operate in 3 display modes - graph mode, words mode, both. The mode can be switched with [Mod] or [Shift+M]
+
+
+=============================================
+EXPERIMENTS
+=============================================
+
+---------------------------------------------
+I) Low Earth orbit operations
+---------------------------------------------
+
+1) Start "DeltaGlider/DG mk4 in orbit" scenario and activate Energy MFD mk2
+2) Accelerate your ship prograde to make your orbit elliptic and observe how your energies look while the time passes
+3) Accelerate prograde in periapsis again and see how you increased your ME, by increasing the KE. The PE is unchanged. See how the starting sinusoid becomes squished at higher KE, because you cover this distance in smaller time
+4) At apoapsis, note your KE and velocity from Orbit MFD and imagine that on this altitude, a satellite is orbiting your reference body in a circular orbit. Your orbit is smaller, so you'd have to move faster. 
+5) If you circularise the orbit, you'll see that your final orbit's energy (ME) is greater than before, so if your potential energy was the same as the target's (same alt) and ME was be smaller, then ... ? Yes! your KE was smaller. If you're on a smaller, elliptic orbit, intersecting a satellite in a circular orbit, you'll not move faster than the satellite all the time. And this is the reason why you had to accelerate PROGRADE at the intersection to raise periapsis.
+
+---------------------------------------------
+II) Ejection from Earth's orbit
+---------------------------------------------
+
+1) Start "DeltaGlider/DG mk4 in orbit" scenario and activate Energy MFD mk2
+2) Accelerate time to get data samples. Make 1-2 orbits
+3) Accelerate prograde to reach Eccentricity ~ 1.5 and see how your KE and ME increased
+4) Increase sampling time to about 500 - 550 s and switch graph modes to "Zero based"
+5) Observe how your PE goes down to zero, and your KE doesn't. You'll have some amount of KE relative to this body all the time. More precisely, your KE will be ME at infinity 
+
+---------------------------------------------
+III) Ejection from Earth's orbit, part2
+---------------------------------------------
+
+1) Start "DeltaGlider/DG mk4 in orbit" scenario and accelerate prograde immediately (at periapsis with SimTime = 0). While accelerating, activate Energy MFD mk2 
+2) Keep accelerating prograde for say 200 s and note your ME at the end of burn. You'll have this ME as KE in infinity
+3) Start "DeltaGlider/DG mk4 in orbit" scenario again, reach the apoapsis, and turn prograde. Restart orbiter. You'll be in apoapsis with SimTime = 0. Immediately begin accelerating prograde, and keep accelerating for the same time as before. Now note your ME. A lot smaller, despite we used the same amount of fuel, isn't it? It's like that, because you were accelerating with a smaller starting velocity, and your energy increase is proportional to your current velocity. It's "free energy". See these pages for info:
+http://www.orbitermars.co.uk/stdorbit.htm
+http://www.orbiter-forum.com/showthread.php?t=2267
+
+
+=============================================
+STABILITY
+=============================================
+
+Energy MFD mk2 suffers from the same stability problems as Ascent MFD (Custom MFD). Please don't set a low sampling time and big time acceleration in the same time, or Orbiter will hang. Same thing happens sometimes, when you use 0.1x time acceleration after having big time acceleration. In fact, stability issues are the reason why I had to limit maximal data acquisition to some radius from the reference object.
+
+
+=============================================
+FILES LIST
+=============================================
+
+doc\EnergyMFDmk2\*
+modules\plugin\EnergyMFDmk2.dll
+orbitersdk\samples\EnergyMFDmk2\*
+
+
+=============================================
+CREDITS
+=============================================
+
+Dr. Martin Schweiger  - sharing Custom MFD sources and Orbiter
+ronpenton             - Energy MFD creator
+
+
+=============================================
+LEGAL NOTICE
+=============================================
+
+Copyright 2008 Simon "Enjo" Ender
+
+Warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL SIMON ENDER OR ANY OTHER CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

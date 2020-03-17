@@ -1,0 +1,6 @@
+[10:43] <Enjo> do you think that Orbiter would allow me to hijack Numpad5 button after checking if angular velocity is less than a given value ?
+[10:43] <Enjo> then I'd initiate absolute killrot
+[10:43] <Enjo> where given value = 0.0005 m/s eg.
+[10:43] <X-Viila> No, but you can do it anyway.
+[10:44] <X-Viila> Each timestep, poll if killrot autopilot is active. If it is, check the delta.
+[10:44] <X-Viila> If the delta is small enough null the rot and disable killrot.
