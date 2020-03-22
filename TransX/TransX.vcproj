@@ -1154,67 +1154,148 @@
 				Name="Orbiter"
 				>
 				<File
-					RelativePath="..\lib\Orbiter\AngularAcc.cpp"
+					RelativePath="..\libMFD\Orbiter\AngularAcc.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\AngularAcc.hpp"
+					RelativePath="..\libMFD\Orbiter\AngularAcc.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\BurnTime.cpp"
+					RelativePath="..\libMFD\Orbiter\AutopilotRotation.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="ReleaseBETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug-BETA|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2009Red|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug-Red|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="ReleaseBETA-Red|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2016|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release2016Red|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)\$(InputName)1.obj"
+							XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\AutopilotRotation.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\BurnTime.hpp"
+					RelativePath="..\libMFD\Orbiter\BurnTime.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\Engine.cpp"
+					RelativePath="..\libMFD\Orbiter\BurnTime.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\Engine.hpp"
+					RelativePath="..\libMFD\Orbiter\SketchpadDummy.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\SketchpadDummy.cpp"
+					RelativePath="..\libMFD\Orbiter\SketchpadDummy.h"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\SketchpadDummy.h"
+					RelativePath="..\libMFD\Orbiter\SpaceMathOrbiter.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.cpp"
+					RelativePath="..\libMFD\Orbiter\SpaceMathOrbiter.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.hpp"
+					RelativePath="..\libMFD\Orbiter\SystemsConverterOrbiter.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.cpp"
+					RelativePath="..\libMFD\Orbiter\SystemsConverterOrbiter.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.hpp"
+					RelativePath="..\libMFD\Orbiter\UtilOrbiter.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\UtilOrbiter.cpp"
+					RelativePath="..\libMFD\Orbiter\UtilOrbiter.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\UtilOrbiter.hpp"
+					RelativePath="..\libMFD\Orbiter\VesselCapabilities.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\lib\Orbiter\VesselCapabilities.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\VesselCapabilities.hpp"
+					RelativePath="..\libMFD\Orbiter\VesselCapabilities.hpp"
 					>
 				</File>
 			</Filter>
@@ -1243,6 +1324,50 @@
 				</File>
 				<File
 					RelativePath="..\lib\PID\PID.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Statistical"
+				>
+				<File
+					RelativePath="..\lib\Statistical\Assertions.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Assertions.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Matrix.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\Matrix.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\VectorD.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\VectorD.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\VectorF.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\VectorF.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\VectorTpl.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\lib\Statistical\VectorTpl.hpp"
 					>
 				</File>
 			</Filter>
@@ -1303,14 +1428,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\lib\Orbiter\AutopilotRotation.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\lib\Orbiter\AutopilotRotation.hpp"
-			>
-		</File>
 		<File
 			RelativePath=".\src\basefunction.cpp"
 			>

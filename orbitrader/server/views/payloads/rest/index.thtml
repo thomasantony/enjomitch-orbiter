@@ -1,0 +1,11 @@
+<response status="ok">
+	<payloadbay>
+	<? foreach ($payloads as $payload): ?>
+		<payload>
+			<product_id><?= $payload['Payload']['product_id'] ?></product_id>
+			<name><?= $payload['Product']['product_name'] ?></name>
+			<amount><?= $payload['Payload']['amount'] ?></amount>
+		</payload>
+	<? endforeach; ?>
+	</payloadbay>
+</response>

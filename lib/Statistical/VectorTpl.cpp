@@ -81,6 +81,12 @@ void VectorTpl<T>::Add(const T & val)
 }
 
 template<class T>
+void VectorTpl<T>::Add(const VectorTpl<T> & vec)
+{
+    for (CIt cit = vec.begin(), citend = vec.end(); cit != citend; ++cit) this->push_back(*cit);
+}
+
+template<class T>
 std::string VectorTpl<T>::Print() const
 {
     std::ostringstream ss;

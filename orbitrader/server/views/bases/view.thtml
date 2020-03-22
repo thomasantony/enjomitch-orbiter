@@ -1,0 +1,24 @@
+<!-- view of one base - action of a controller -->
+<h1><?= $base['Base']['base_name'] ?></h1>
+Location: <?= $base['Base']['planet'] ?>
+
+<table>
+<thead>
+	<tr>
+		<th>Product</th>
+		<th>Unit Price</th>
+	</tr>
+</thead>
+<tbody>
+<? foreach ($base['Price'] as $price): ?>
+	<tr>
+		<td><?= $price['Product']['product_name'] ?></td>
+		<td><?= $price['unit_price'] ?>c</td>
+	</tr>
+<? endforeach; ?>
+</tbody>
+</table>
+
+<!---
+	<? print_r($base) ?>
+-->

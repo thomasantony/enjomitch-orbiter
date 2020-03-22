@@ -149,7 +149,7 @@ void TopoMap::UpdateMap()
             else
             {
                 const double v = (f - elevation255)/f;
-                const Colors::COLOUR rgbCol = Colors().GreyToRGB(v, 0, 1);
+                const Colors::COLOR rgbCol = Colors().GreyToRGB(v, 0, 1);
                 col = RGB(rgbCol.r * f, rgbCol.g * f, rgbCol.b * f);
             }
             int xx = x+xMax;

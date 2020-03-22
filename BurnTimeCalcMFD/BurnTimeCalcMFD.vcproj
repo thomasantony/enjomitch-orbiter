@@ -551,6 +551,58 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Orbiter"
+				>
+				<File
+					RelativePath="..\libMFD\Orbiter\AngularAcc.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\AngularAcc.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\AutopilotRotation.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\AutopilotRotation.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\BurnTime.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\BurnTime.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\SpaceMathOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\SpaceMathOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\SystemsConverterOrbiter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\SystemsConverterOrbiter.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\VesselCapabilities.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\libMFD\Orbiter\VesselCapabilities.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="MultipleVessels"
@@ -583,58 +635,6 @@
 		<Filter
 			Name="EnjoLib"
 			>
-			<Filter
-				Name="Orbiter"
-				>
-				<File
-					RelativePath="..\lib\Orbiter\AngularAcc.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\AngularAcc.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\AutopilotRotation.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\AutopilotRotation.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\BurnTime.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\BurnTime.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\SpaceMathOrbiter.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\SystemsConverterOrbiter.hpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\VesselCapabilities.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\lib\Orbiter\VesselCapabilities.hpp"
-					>
-				</File>
-			</Filter>
 			<Filter
 				Name="Util"
 				>

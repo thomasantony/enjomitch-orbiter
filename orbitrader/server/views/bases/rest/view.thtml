@@ -1,0 +1,28 @@
+<!-- create a rest resourse of one bases's view -->
+<? if (isset($base) && !empty($base)): ?>
+<response status="ok">
+	<basename><?= $base['Base']['base_name'] ?></basename>
+	<planet><?= $base['Base']['planet'] ?></planet>
+	
+	<prices>
+	<? if (!empty($base['Price'])) foreach ($base['Price'] as $price): ?>
+		<price>
+			<product_id><?= $price['product_id'] ?></product_id>
+			<name><?= $price['Product']['product_name'] ?></name>
+			<unitprice><?= $price['unit_price'] ?></unitprice>
+		</price>
+	<? endforeach; ?>
+	</prices>
+</response>
+<? else: ?>
+<!-- if a client passed a wrong argument -->
+<reponse status="fail">
+	<err type='struct'>
+	<? if ($session->check('Message.flash')): ?>
+		<msg><?php e(strip_tags($session->read('Message.flash')));?></msg>
+	<? else: ?>
+		<msg>Unkown base</msg>
+	<? endif; ?>
+	</err> 
+</response>
+<? endif; ?>

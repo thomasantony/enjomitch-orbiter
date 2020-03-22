@@ -35,7 +35,7 @@ class LoopThreadedTpl
         void AddInputVector(const std::vector<TIn> & vinput)
         {
             for (int i = 0; i < int(vinput.size()); ++i) {
-                AddInput(i, vinput[i]);
+                AddInputRef(i, vinput[i]);
             }
         }
 
@@ -48,7 +48,8 @@ class LoopThreadedTpl
         void AddInput(int iter, const TIn & input)
         {
             const int dataSetIdx = m_loopThreaded.GetIdxOfDatasetForIteration(iter);
-            m_datasets.at(dataSetIdx).push_back(&input);
+            m_dataCopies.emplace_back(input); // ?
+            m_datasets.at(dataSetIdx).push_back(&m_dataCopies.at(m_dataCopies.size()-1));
         }
 
         std::vector<TOut> GetOutputVector()
@@ -69,6 +70,12 @@ class LoopThreadedTpl
     protected:
 
     private:
+        void AddInputRef(int iter, const TIn & input)
+        {
+            const int dataSetIdx = m_loopThreaded.GetIdxOfDatasetForIteration(iter);
+            m_datasets.at(dataSetIdx).push_back(&input);
+        }
+
         static std::vector<TOut> FunVec(const std::vector<const TIn *> & sss, std::function<TOut(const TIn&)> func)
         {
             std::vector<TOut> ticks;
@@ -78,6 +85,7 @@ class LoopThreadedTpl
         }
 
         LoopThreaded m_loopThreaded;
+        std::vector<TIn> m_dataCopies;
         std::vector<std::vector<const TIn *>> m_datasets; // Pointer uses a lot less memory for complex input objects
         std::function<TOut(const TIn&)> m_funcConv;
 };

@@ -1,0 +1,10 @@
+<!-- index = list of all bases - action of a controller  -->
+<ul>
+<? foreach ($bases as $base): ?>
+	<li>
+		<!-- link is a html helper - creates a link with a given displaying name, to a given url -->
+	<?=
+		$html->link( $base['Base']['base_name'], "/bases/view/{$base['Base']['planet']}/{$base['Base']['base_name']}");
+	?> on <?= $base['Base']['planet'] ?></li>
+<? endforeach; ?>
+</ul>

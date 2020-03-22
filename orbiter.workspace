@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Default workspace">
-		<Project filename="../../../../media/enjo/68EA4347EA43112C/Users/Justyna/Documents/03 SZYMON/devel/Orbiter-sf/Orbiter-hg/BurnTimeCalcMFD/BurnTimeCalcMFD.cbp" />
-		<Project filename="../../../../media/enjo/68EA4347EA43112C/Users/Justyna/Documents/03 SZYMON/devel/Orbiter-sf/Orbiter-hg/CamShake/CamShake.cbp" />
-		<Project filename="../../../../media/enjo/68EA4347EA43112C/Users/Justyna/Documents/03 SZYMON/devel/Orbiter-sf/Orbiter-hg/HUDDrawer/Module/HUDDrawerModule.cbp" />
-		<Project filename="../../../../media/enjo/68EA4347EA43112C/Users/Justyna/Documents/03 SZYMON/devel/Orbiter-sf/Orbiter-hg/HUDDrawer/VesselHooking/VesselHooking.cbp" />
-		<Project filename="../../../../media/enjo/68EA4347EA43112C/Users/Justyna/Documents/03 SZYMON/devel/Orbiter-sf/Orbiter-hg/launchmfd/LaunchMFD.cbp" />
-		<Project filename="../../../../media/enjo/68EA4347EA43112C/Users/Justyna/Documents/03 SZYMON/devel/Orbiter-sf/Orbiter-hg/TransX/TransX.cbp" />
+		<Project filename="BurnTimeCalcMFD/BurnTimeCalcMFD.cbp" />
+		<Project filename="CamShake/CamShake.cbp" />
+		<Project filename="HUDDrawer/Module/HUDDrawerModule.cbp" />
+		<Project filename="HUDDrawer/VesselHooking/VesselHooking.cbp" />
+		<Project filename="launchmfd/LaunchMFD.cbp" />
+		<Project filename="TransX/TransX.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

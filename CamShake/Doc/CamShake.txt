@@ -1,0 +1,5 @@
+The CamShake documentation has moved to CamShake.pdf
+
+
+Recompiled for Orbiter 2010 
+- Enjo

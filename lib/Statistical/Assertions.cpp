@@ -74,7 +74,7 @@ void Assertions::SizesEqual( size_t sz, size_t refSize, const char * identifier 
 
 void Assertions::IsTrue( bool cond, const char * identifier )
 {
-    if ( not cond )
+    if ( ! cond )
     {
         std::ostringstream oss;
         oss << "Condition is false, at:\n" << identifier << "()\n";

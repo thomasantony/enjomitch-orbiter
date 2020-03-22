@@ -309,6 +309,8 @@
 		<Unit filename="Statistical/KMeans1d.hpp" />
 		<Unit filename="Statistical/KMeans1dCluster.cpp" />
 		<Unit filename="Statistical/KMeans1dCluster.hpp" />
+		<Unit filename="Statistical/LossFunctions.cpp" />
+		<Unit filename="Statistical/LossFunctions.hpp" />
 		<Unit filename="Statistical/Matrix.cpp" />
 		<Unit filename="Statistical/Matrix.hpp" />
 		<Unit filename="Statistical/MeanWeighted.cpp" />
@@ -317,6 +319,10 @@
 		<Unit filename="Statistical/PCA.hpp" />
 		<Unit filename="Statistical/PCAAuto.cpp" />
 		<Unit filename="Statistical/PCAAuto.hpp" />
+		<Unit filename="Statistical/ScalingOpStandardize.cpp" />
+		<Unit filename="Statistical/ScalingOpStandardize.hpp" />
+		<Unit filename="Statistical/ScalingOpStandardizeInvert.cpp" />
+		<Unit filename="Statistical/ScalingOpStandardizeInvert.hpp" />
 		<Unit filename="Statistical/Statistical.cpp" />
 		<Unit filename="Statistical/Statistical.hpp" />
 		<Unit filename="Statistical/StdDev.cpp" />

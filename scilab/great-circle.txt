@@ -1,0 +1,26 @@
+http://mathforum.org/library/drmath/view/52070.html
+
+
+Hi Gavin,
+
+Here's one way to do what you want. Start with the spherical 
+coordinates of two points (a,p1,t1) and (a,p2,t2) on the earth. Here, 
+a is the radius of the (assumed to be) spherical earth, p1 and p2 are 
+co-latitudes, and t1 and t2 are measured from Greenwich all the way 
+around, from 0 to 2pi.
+
+Convert these to rectangular coordinates (x1,y1,z1) and (x2,y2,z2) 
+using the usual spherical to rectangular conversion formulas.
+
+The points (x1,y1,z1) and (x2,y2,z2), together with the center of the 
+sphere, determine a plane that cuts the sphere in the great circle of 
+interest.
+
+Any point r on the line joining (x1,y1,z1) and (x2,y2,z2) can be 
+written in the form (I'm thinking in terms of vectors):
+
+   r = {x,y,z} = {x1,y1,z1} + t[{x2,y2,z2} - {x1,y1,z1}]     
+
+What we want, given t in [0,1], is a number g(t), such that the length 
+of g(t)*r is a. Solve this equation for g(t). Then g(t)*r is a point 
+on the great circle.

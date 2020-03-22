@@ -30,17 +30,19 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <cstdlib>
-#include <cmath>
-#include <algorithm>
-#include <iostream>
 #include "Statistical.hpp"
 #include "Assertions.hpp"
 #include "VectorD.hpp"
 #include "Matrix.hpp"
-#include "../Util/CharManipulations.hpp"
-#include "../Util/Tokenizer.hpp"
+#include "ScalingOpStandardize.hpp"
+#include "ScalingOpStandardizeInvert.hpp"
+
 #include "../Math/GeneralMath.hpp"
+
+//#include <cstdlib>
+#include <cmath>
+#include <algorithm>
+//#include <iostream>
 
 using namespace std;
 using namespace EnjoLib;
@@ -161,59 +163,6 @@ double Statistical::Median( const VectorD & v ) const
     std::partial_sort_copy (v.begin(), v.end(), sorted.begin(), sorted.end());
     double median = sorted.at(sorted.size() / 2);
     return median;
-}
-
-// Used for reconstruction
-ScalingOpStandardize::ScalingOpStandardize(double refMean, double refStdDev)
-: m_refMean(refMean)
-, m_refStdDev(refStdDev)
-{
-    Assertions::IsNonZero(m_refStdDev, "ScalingOpStandardize::ScalingOpStandardize - zero stdDev");
-}
-ScalingOpStandardize::ScalingOpStandardize(const std::string & str)
-{
-    //const std::vector<std::string> & lines = Tokenizer().GetLines(fileName);
-    //const std::string & str = lines.at(0);
-    const std::vector<std::string> & meanStd = Tokenizer().Tokenize(str);
-    m_refMean   = CharManipulations().ToDouble(meanStd.at(0));
-    m_refStdDev = CharManipulations().ToDouble(meanStd.at(1));
-}
-ScalingOpStandardize::ScalingOpStandardize(const VectorD & refVec)
-{
-    Assertions::NonEmpty(refVec,   "ScalingOpStandardize::ScalingOpStandardize::constr() - refVec");
-    m_refMean = refVec.Mean();
-    m_refStdDev = Statistical().StandardDeviation(refVec);
-    Assertions::IsNonZero(m_refStdDev, "ScalingOpStandardize::ScalingOpStandardize::constr() - zero stdDev");
-}
-double ScalingOpStandardize::operator()(const double inVal) const
-{
-    Assertions::IsNonZero(m_refStdDev, "ScalingOpStandardize::ScalingOpStandardize::op() - zero stdDev");
-    const double standardized = (inVal - m_refMean) / m_refStdDev;
-    return standardized;
-}
-std::string ScalingOpStandardize::ToStr() const
-{
-    //CharManipulations cman;
-    const std::string str = to_string(m_refMean) + " " + to_string(m_refStdDev);
-    //cout << m_refMean << ", " << m_refStdDev << ", " << str << endl;
-    return str;
-}
-void ScalingOpStandardize::SetRefMean(double mean)
-{
-    m_refMean = mean;
-}
-void ScalingOpStandardize::SetRefStdDev(double stdDev)
-{
-    m_refStdDev = stdDev;
-}
-ScalingOpStandardizeInvert::ScalingOpStandardizeInvert(const ScalingOpStandardize & scaler)
-: m_scaler(scaler)
-{
-}
-double ScalingOpStandardizeInvert::operator()(const double standardized) const
-{
-    const double raw = standardized * m_scaler.GetRefStdDev() + m_scaler.GetRefMean();
-    return raw;
 }
 
 VectorD Statistical::StandardizeInvert( const ScalingOpStandardizeInvert & scaleOp, const VectorD & applyVec ) const

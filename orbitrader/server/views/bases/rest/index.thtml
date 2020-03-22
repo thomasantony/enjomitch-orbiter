@@ -1,0 +1,11 @@
+<!-- Create a rest resource of bases index -->
+<response status="ok">
+	<bases>
+	<? foreach ($bases as $base): ?>
+		<base>
+			<basename><?= $base['Base']['base_name'] ?></basename>
+			<planet><?= $base['Base']['planet'] ?></planet>
+		</base>
+	<? endforeach; ?>
+	</bases>
+</response>

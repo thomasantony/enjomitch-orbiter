@@ -21,6 +21,7 @@ class VectorTpl : public std::vector<T>
         virtual ~VectorTpl();
 
         void Add(const T & val);
+        void Add(const VectorTpl<T> & vec);
 
         //! Length of vector
         T Len() const;

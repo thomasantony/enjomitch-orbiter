@@ -1,0 +1,14 @@
+<!-- Rest resource - generates an xml of a given base view -->
+<basename><?= $base['Base']['base_name'] ?></basename>
+<planet><?= $base['Base']['planet'] ?></planet>
+
+<prices>
+<? foreach ($base['Price'] as $price): ?>
+	<price>
+		<product_id><?= $price['product_id'] ?></product_id>
+		<name><?= $price['Product']['product_name'] ?></name>
+		<price><?= $price['unit_price'] ?></price>
+	</price>
+<? endforeach; ?>
+</prices>
+

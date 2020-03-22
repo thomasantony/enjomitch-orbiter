@@ -34,39 +34,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define STATISTICAL_H
 
 #include <vector>
-#include <string> // for scaler
 
 namespace EnjoLib
 {
 class VectorD;
 class Matrix;
-
-class ScalingOpStandardize
-{
-public:
-    ScalingOpStandardize(const VectorD & refVec);
-    ScalingOpStandardize(double refMean = 0, double refStdDev = 1);
-    ScalingOpStandardize(const std::string & str);
-    double operator()(const double inVal) const;
-    double GetRefMean() const { return m_refMean; }
-    double GetRefStdDev() const { return m_refStdDev; }
-    void SetRefMean(double mean);
-    void SetRefStdDev(double stdDev);
-    std::string ToStr() const;
-
-private:
-    double m_refMean;
-    double m_refStdDev;
-};
-
-class ScalingOpStandardizeInvert
-{
-    public:
-        ScalingOpStandardizeInvert(const ScalingOpStandardize & scaler);
-        double operator()(const double standardized) const;
-    private:
-        const ScalingOpStandardize & m_scaler;
-};
+class ScalingOpStandardize;
+class ScalingOpStandardizeInvert;
 
 class Statistical
 {
